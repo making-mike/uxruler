@@ -2,7 +2,7 @@
 
 UXRuler is an open source product and UX strategy skill for AI coding agents. It helps turn a mission or product idea into a clear chain of market, user, need, infrastructure, product, value, decisions, metrics, and UX evaluation artifacts.
 
-The installable skill lives in `product-ux-action-pack/`.
+The installable skill lives in `uxruler/`.
 
 ## What It Helps With
 
@@ -33,7 +33,7 @@ Use Codex's skill installer with the public skill folder:
 
 ```text
 Use $skill-installer to install this skill:
-https://github.com/making-mike/uxruler/tree/main/product-ux-action-pack
+https://github.com/making-mike/uxruler/tree/main/uxruler
 
 Then restart Codex to pick up new skills.
 ```
@@ -41,7 +41,7 @@ Then restart Codex to pick up new skills.
 After installation, start with:
 
 ```text
-Use $product-ux-action-pack to turn this product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan.
+Use $uxruler to turn this product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan.
 ```
 
 ## Install In Claude Code
@@ -53,8 +53,8 @@ REPO="https://github.com/making-mike/uxruler.git"
 TMP_DIR="$(mktemp -d)"
 git clone --depth 1 "$REPO" "$TMP_DIR/uxruler"
 mkdir -p ~/.claude/skills
-rm -rf ~/.claude/skills/product-ux-action-pack
-cp -R "$TMP_DIR/uxruler/product-ux-action-pack" ~/.claude/skills/
+rm -rf ~/.claude/skills/uxruler
+cp -R "$TMP_DIR/uxruler/uxruler" ~/.claude/skills/
 rm -rf "$TMP_DIR"
 ```
 
@@ -69,18 +69,18 @@ REPO="https://github.com/making-mike/uxruler.git"
 TMP_DIR="$(mktemp -d)"
 git clone --depth 1 "$REPO" "$TMP_DIR/uxruler"
 mkdir -p .claude/skills
-rm -rf .claude/skills/product-ux-action-pack
-cp -R "$TMP_DIR/uxruler/product-ux-action-pack" .claude/skills/
+rm -rf .claude/skills/uxruler
+cp -R "$TMP_DIR/uxruler/uxruler" .claude/skills/
 rm -rf "$TMP_DIR"
 
-git add .claude/skills/product-ux-action-pack
+git add .claude/skills/uxruler
 ```
 
 ## Repository Layout
 
 ```text
 .
-├── product-ux-action-pack/
+├── uxruler/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
 │   └── references/

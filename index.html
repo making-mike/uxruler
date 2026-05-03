@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#101820">
   <link rel="canonical" href="https://uxruler.com/">
   <meta property="og:title" content="UXRuler">
-  <meta property="og:description" content="An open source action pack and agent skill for building digital products from mission to measurable user value.">
+  <meta property="og:description" content="An open source UXRuler skill for building digital products from mission to measurable user value.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://uxruler.com/">
   <meta name="twitter:card" content="summary">
@@ -850,7 +850,7 @@
             <span>Responsywny graf z warstwą decyzyjną</span>
           </div>
           <div class="process-graph-frame">
-            <div class="graph-board" id="actionPackGraph">
+            <div class="graph-board" id="uxrulerGraph">
               <svg class="graph-connectors" aria-hidden="true"></svg>
 
               <div class="graph-row statements-row" aria-label="Statements do uzupełnienia">
@@ -1030,13 +1030,13 @@
             <div class="kicker">Instalacja</div>
             <h2>Dodaj skill do swojego agenta</h2>
           </div>
-          <p>UXRuler jest open source'owym folderem skilla z plikiem `SKILL.md` i referencjami. Folder `product-ux-action-pack/` powinien być dostępny w publicznym repo, żeby każdy mógł zainstalować go z internetu.</p>
+          <p>UXRuler jest open source'owym folderem skilla z plikiem `SKILL.md` i referencjami. Folder `uxruler/` powinien być dostępny w publicznym repo, żeby każdy mógł zainstalować go z internetu.</p>
         </div>
 
         <div class="repo-input">
           <label for="repoUrl">
             Publiczne repo UXRuler
-            <span>Repo powinno zawierać folder `product-ux-action-pack/` w katalogu głównym. Domyślny URL możesz zmienić, jeżeli hostujesz fork.</span>
+            <span>Repo powinno zawierać folder `uxruler/` w katalogu głównym. Domyślny URL możesz zmienić, jeżeli hostujesz fork.</span>
           </label>
           <input id="repoUrl" type="url" value="https://github.com/making-mike/uxruler.git" spellcheck="false">
         </div>
@@ -1093,13 +1093,13 @@
 
         <div class="prompt-strip">
           <div class="prompt">
-            <code>Use $product-ux-action-pack to turn this product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan.</code>
+            <code>Use $uxruler to turn this product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan.</code>
           </div>
           <div class="prompt">
-            <code>Use $product-ux-action-pack to audit this feature. Show whether it traces back to a real audience, user need, infrastructure capability, product experience, measurable value, and a decision artifact.</code>
+            <code>Use $uxruler to audit this feature. Show whether it traces back to a real audience, user need, infrastructure capability, product experience, measurable value, and a decision artifact.</code>
           </div>
           <div class="prompt">
-            <code>Use $product-ux-action-pack to map this existing repo into product artifacts and identify missing assumptions, metrics, decisions, UX evaluation, and rollout feedback loops.</code>
+            <code>Use $uxruler to map this existing repo into product artifacts and identify missing assumptions, metrics, decisions, UX evaluation, and rollout feedback loops.</code>
           </div>
         </div>
       </div>
@@ -1231,7 +1231,7 @@
     });
 
     function renderProcessGraph() {
-      const board = document.getElementById("actionPackGraph");
+      const board = document.getElementById("uxrulerGraph");
       if (!board) return;
       const svg = board.querySelector(".graph-connectors");
       if (!svg) return;
@@ -1327,7 +1327,7 @@
       document.fonts.ready.then(scheduleProcessGraphRender);
     }
     if ("ResizeObserver" in window) {
-      new ResizeObserver(scheduleProcessGraphRender).observe(document.getElementById("actionPackGraph"));
+      new ResizeObserver(scheduleProcessGraphRender).observe(document.getElementById("uxrulerGraph"));
     }
     scheduleProcessGraphRender();
 
@@ -1336,7 +1336,7 @@
     function repoToFolderUrl(repoUrl) {
       const clean = repoUrl.trim().replace(/\/$/, "");
       if (clean.includes("/tree/")) return clean;
-      return clean.replace(/\.git$/, "") + "/tree/main/product-ux-action-pack";
+      return clean.replace(/\.git$/, "") + "/tree/main/uxruler";
     }
 
     function shellEscape(value) {
@@ -1350,8 +1350,8 @@
 
       const commands = {
         codex: `Use $skill-installer to install this skill:\n${folderUrl}\n\nThen restart Codex to pick up new skills.`,
-        claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/product-ux-action-pack-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/product-ux-action-pack\ncp -R "$TMP_DIR/product-ux-action-pack-repo/product-ux-action-pack" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# restart Claude Code`,
-        projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/product-ux-action-pack-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/product-ux-action-pack\ncp -R "$TMP_DIR/product-ux-action-pack-repo/product-ux-action-pack" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/product-ux-action-pack`
+        claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# restart Claude Code`,
+        projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/uxruler`
       };
 
       Object.entries(commands).forEach(([id, command]) => {

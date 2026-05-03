@@ -13,5 +13,5 @@ Describe the change in one or two sentences.
 ## Checklist
 
 - [ ] I kept the change focused.
-- [ ] I checked YAML metadata if `product-ux-action-pack/SKILL.md` or `agents/openai.yaml` changed.
+- [ ] I checked YAML metadata if `uxruler/SKILL.md` or `agents/openai.yaml` changed.
 - [ ] I updated docs or examples when behavior changed.

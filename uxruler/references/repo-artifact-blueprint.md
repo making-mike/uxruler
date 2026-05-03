@@ -147,7 +147,7 @@ Source pattern: OpenAI Codex AGENTS.md guidance.
 Include:
 
 - product mission and current product stage;
-- how to use the action pack folders;
+- how to use the UXRuler folders;
 - build, test, lint, and verification commands;
 - rules for updating assumptions, decisions, metrics, and artifacts;
 - files agents should read before touching product or UX work;
@@ -228,7 +228,7 @@ Include:
 - who it is for;
 - how to run it;
 - where product context lives;
-- links to `AGENTS.md`, `DESIGN.md`, and the action pack folders.
+- links to `AGENTS.md`, `DESIGN.md`, and the UXRuler folders.
 
 ### `ROADMAP.md`
 

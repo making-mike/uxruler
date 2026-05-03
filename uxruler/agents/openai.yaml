@@ -1,0 +1,4 @@
+interface:
+  display_name: "UXRuler"
+  short_description: "Turn product ideas into UX and repo artifacts"
+  default_prompt: "Use $uxruler to turn my product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan."

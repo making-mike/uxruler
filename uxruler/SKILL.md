@@ -1,11 +1,11 @@
 ---
-name: product-ux-action-pack
-description: UXRuler product and UX strategy workflow for turning a mission or product idea into a concrete digital product, feature, rollout plan, repo artifact map, or product audit. Use when the user asks to plan, evaluate, or improve a digital product, UX strategy, product discovery, market/user needs, value proposition, feature prioritization, infrastructure-to-experience mapping, design systems, rollout, usability feedback, product decisions, product metrics, repository documentation, or an "action pack" for product teams and agents.
+name: uxruler
+description: UXRuler product and UX strategy workflow for turning a mission or product idea into a concrete digital product, feature, rollout plan, repo artifact map, or product audit. Use when the user asks to plan, evaluate, or improve a digital product, UX strategy, product discovery, market/user needs, value proposition, feature prioritization, infrastructure-to-experience mapping, design systems, rollout, usability feedback, product decisions, product metrics, repository documentation, or UXRuler-style product guidance for teams and agents.
 ---
 
 # UXRuler
 
-Technical skill ID: `product-ux-action-pack`.
+Technical skill ID: `uxruler`.
 
 Use this skill to help a user move from a product mission to delivered user value. Do not start from screens or features unless the user already has a narrow feature brief. Prefer the sequence:
 
@@ -26,7 +26,7 @@ Respond in the user's language. If the user writes in Polish, use Polish termino
 
 ## Fill-In Statements
 
-Use fill-in statements whenever the output is meant to become a worksheet, action pack, workshop exercise, or agent prompt. They make abstract product thinking executable.
+Use fill-in statements whenever the output is meant to become a UXRuler worksheet, workshop exercise, or agent prompt. They make abstract product thinking executable.
 
 ### Mission / Product Thesis
 
@@ -152,7 +152,7 @@ Release starts value validation; it does not end product work.
 
 ### 7. Decision & Measurement
 
-Decision and measurement is the control layer for the whole action pack. It records assumptions, non-goals, risks, decision history, experiments, metrics, feedback, and review cadence.
+Decision and measurement is the control layer for the whole UXRuler workflow. It records assumptions, non-goals, risks, decision history, experiments, metrics, feedback, and review cadence.
 
 - **Question:** What do we believe, what did we decide, and how will we know whether it worked?
 - **Action:** Capture assumptions, decision records, risks, north-star/input metrics, experiment plans, tracking plans, feedback methods, and review dates.
@@ -165,12 +165,12 @@ This layer should answer four questions for each meaningful product move: what d
 
 ## Repo Artifact Blueprint
 
-When the user asks to map the action pack to repository folders, create project documentation, or prepare agent-readable product context, use `references/repo-artifact-blueprint.md`.
+When the user asks to map the UXRuler to repository folders, create project documentation, or prepare agent-readable product context, use `references/repo-artifact-blueprint.md`.
 
 Prefer a repo structure that separates:
 
 - root files that tools and agents discover automatically;
-- `product/00-*` to `product/07-*` stage artifacts that follow the action pack;
+- `product/00-*` to `product/07-*` stage artifacts that follow the UXRuler;
 - `product/08-decision-measurement/` as the control layer for assumptions, decisions, risks, experiments, metrics, analytics, and feedback.
 
 Do not recommend creating every file by default. Start with a minimum viable artifact set, then expand based on product maturity, team size, risk, and whether the repo is private, team-facing, agent-facing, or open source.
@@ -203,7 +203,7 @@ For a feature or product audit, produce a table with:
 
 `Stage | Current assumption | Evidence | Artifact | Decision | Metric | Next action`
 
-For a team action pack, produce:
+For a team using UXRuler, produce:
 
 1. One-sentence scope
 2. Fill-in statements for mission, problem, and feature/product decision
@@ -222,7 +222,7 @@ For a repo artifact map with template sections, load `references/repo-artifact-b
 5. Template sections for custom product files
 6. Rules for what agents should read or update
 
-For a printable or slide-based action pack, use a repeatable one-page pattern for each stage:
+For a printable or slide-based UXRuler worksheet, use a repeatable one-page pattern for each stage:
 
 1. Stage number and name
 2. Short subtitle

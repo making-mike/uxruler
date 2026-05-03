@@ -7,13 +7,13 @@ Thanks for helping improve UXRuler. The project is intentionally small: one inst
 - Clearer product and UX workflow guidance.
 - Better artifact templates for product teams and agents.
 - Fixes to installation instructions for Codex, Claude Code, or project-local usage.
-- Source corrections in `product-ux-action-pack/references/`.
+- Source corrections in `uxruler/references/`.
 - Examples that show how UXRuler works in a real repository.
 
 ## Before You Open A Pull Request
 
-1. Read `product-ux-action-pack/SKILL.md`.
-2. Keep the technical skill name as `product-ux-action-pack` unless the maintainers explicitly decide to migrate it.
+1. Read `uxruler/SKILL.md`.
+2. Keep the technical skill name as `uxruler` unless the maintainers explicitly decide to migrate it.
 3. Check that links, install commands, and examples still point to the public repo.
 4. Prefer small pull requests with one clear purpose.
 
@@ -30,7 +30,7 @@ Thanks for helping improve UXRuler. The project is intentionally small: one inst
 There is no build step. Before submitting, at minimum:
 
 ```sh
-ruby -e 'require "yaml"; s=File.read("product-ux-action-pack/SKILL.md"); YAML.safe_load(s[/\A---\n(.*?)\n---/m,1]); YAML.safe_load(File.read("product-ux-action-pack/agents/openai.yaml")); puts "yaml ok"'
+ruby -e 'require "yaml"; s=File.read("uxruler/SKILL.md"); YAML.safe_load(s[/\A---\n(.*?)\n---/m,1]); YAML.safe_load(File.read("uxruler/agents/openai.yaml")); puts "yaml ok"'
 ```
 
 Check that install commands use the intended repo URL.
