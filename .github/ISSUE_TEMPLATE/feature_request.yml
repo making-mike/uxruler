@@ -23,7 +23,6 @@ body:
     attributes:
       label: Area
       options:
-        - Website
         - Skill workflow
         - Artifact template
         - Repo blueprint

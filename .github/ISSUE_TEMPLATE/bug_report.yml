@@ -1,5 +1,5 @@
 name: Bug report
-description: Report something broken in the website, skill, templates, or installation docs.
+description: Report something broken in the skill, templates, or installation docs.
 title: "[Bug]: "
 labels:
   - bug
@@ -30,7 +30,6 @@ body:
     attributes:
       label: Area
       options:
-        - Website
         - Codex installation
         - Claude Code installation
         - Skill workflow

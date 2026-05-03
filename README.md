@@ -2,7 +2,7 @@
 
 UXRuler is an open source product and UX strategy skill for AI coding agents. It helps turn a mission or product idea into a clear chain of market, user, need, infrastructure, product, value, decisions, metrics, and UX evaluation artifacts.
 
-The public website lives in `index.html`. The installable skill lives in `product-ux-action-pack/`.
+The installable skill lives in `product-ux-action-pack/`.
 
 ## What It Helps With
 
@@ -80,7 +80,6 @@ git add .claude/skills/product-ux-action-pack
 
 ```text
 .
-├── index.html
 ├── product-ux-action-pack/
 │   ├── SKILL.md
 │   ├── agents/openai.yaml
@@ -94,19 +93,9 @@ git add .claude/skills/product-ux-action-pack
 └── SECURITY.md
 ```
 
-## Website Publishing
-
-The root `index.html` is a static page and can be served directly by GitHub Pages, Vercel, Netlify, or any static host.
-
-For GitHub Pages with the custom domain, keep `CNAME` set to:
-
-```text
-uxruler.com
-```
-
 ## Contributing
 
-Contributions are welcome. Start with `CONTRIBUTING.md` and keep changes focused: improve the skill workflow, clarify templates, fix installation docs, or improve the static website without adding a build step unless it is clearly needed.
+Contributions are welcome. Start with `CONTRIBUTING.md` and keep changes focused: improve the skill workflow, clarify templates, fix installation docs, or add examples that make the product workflow easier to use.
 
 ## License
 
