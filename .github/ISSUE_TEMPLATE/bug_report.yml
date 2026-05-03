@@ -1,0 +1,47 @@
+name: Bug report
+description: Report something broken in the website, skill, templates, or installation docs.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve UXRuler.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Describe the bug and the impact.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include commands, prompts, URLs, or files when useful.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Website
+        - Codex installation
+        - Claude Code installation
+        - Skill workflow
+        - Artifact templates
+        - References
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: false

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security reports
+    url: https://github.com/making-mike/uxruler/security/advisories/new
+    about: Please report security-sensitive issues privately.

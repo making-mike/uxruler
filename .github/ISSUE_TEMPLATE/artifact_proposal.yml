@@ -1,0 +1,28 @@
+name: Artifact proposal
+description: Propose a new product, UX, research, metric, or decision artifact.
+title: "[Artifact]: "
+labels:
+  - artifact
+  - proposal
+body:
+  - type: textarea
+    id: stage
+    attributes:
+      label: Which UXRuler stage does this support?
+      description: Mission, audience, user, need, infrastructure, product, value, evaluation, or decision/measurement.
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: What decision does it improve?
+      description: UXRuler artifacts should help teams or agents make better decisions.
+    validations:
+      required: true
+  - type: textarea
+    id: template
+    attributes:
+      label: Suggested template
+      description: Add headings or starter fields if you have them.
+    validations:
+      required: false

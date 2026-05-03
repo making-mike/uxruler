@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest an improvement to UXRuler.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Explain the user, team, agent, or product workflow need.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the smallest useful version.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Website
+        - Skill workflow
+        - Artifact template
+        - Repo blueprint
+        - Installation
+        - Examples
+        - Other
+    validations:
+      required: true

@@ -1,0 +1,1388 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UXRuler</title>
+  <meta name="description" content="UXRuler is an open source product and UX strategy skill that turns a mission into market, user, need, product, value, metrics, and repo artifacts.">
+  <meta name="theme-color" content="#101820">
+  <link rel="canonical" href="https://uxruler.com/">
+  <meta property="og:title" content="UXRuler">
+  <meta property="og:description" content="An open source action pack and agent skill for building digital products from mission to measurable user value.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uxruler.com/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23101820"/><circle cx="22" cy="22" r="7" fill="%2366e3cc"/><circle cx="42" cy="42" r="7" fill="%23fbbf24"/><path d="M18 44 44 18" stroke="white" stroke-width="5" stroke-linecap="round"/></svg>'>
+  <style>
+    :root {
+      --ink: #111827;
+      --muted: #5b6472;
+      --paper: #f7f9fb;
+      --surface: #ffffff;
+      --line: #d8dee8;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --rose: #e11d48;
+      --amber: #b45309;
+      --green-soft: #dff5ef;
+      --blue-soft: #e5efff;
+      --rose-soft: #ffe6eb;
+      --amber-soft: #fff0d3;
+      --shadow: 0 18px 60px rgba(17, 24, 39, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(12, 18, 28, 0.78);
+      backdrop-filter: blur(16px);
+      color: #fff;
+    }
+
+    .topbar .shell {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 64px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 750;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border: 2px solid rgba(255, 255, 255, 0.88);
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #66e3cc;
+    }
+
+    .brand-mark::before {
+      left: 5px;
+      top: 5px;
+    }
+
+    .brand-mark::after {
+      right: 5px;
+      bottom: 5px;
+      background: #fbbf24;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.82);
+    }
+
+    nav a {
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 86vh;
+      overflow: hidden;
+      color: #fff;
+      background: #101820;
+      display: flex;
+      align-items: center;
+      padding: 96px 0 56px;
+    }
+
+    #processCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.88;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(16, 24, 32, 0.94), rgba(16, 24, 32, 0.74) 48%, rgba(16, 24, 32, 0.2)),
+        linear-gradient(180deg, rgba(16, 24, 32, 0), rgba(16, 24, 32, 0.55));
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      padding-top: 20px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #b8fff0;
+      font-size: 14px;
+      font-weight: 720;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: #66e3cc;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-bottom: 20px;
+      font-size: 64px;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .hero-lead {
+      max-width: 680px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border-radius: 8px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 730;
+      text-decoration: none;
+    }
+
+    .button.primary {
+      background: #66e3cc;
+      color: #09201b;
+      border-color: #66e3cc;
+    }
+
+    .button.secondary {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    main {
+      background: var(--paper);
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(260px, 0.55fr);
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 36px;
+    }
+
+    .kicker {
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: 38px;
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    .section-head p,
+    .wide-copy {
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .process-graph {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .process-graph-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+    }
+
+    .process-graph-header strong {
+      color: #0b3f3a;
+      font-size: 15px;
+    }
+
+    .process-graph-header span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .process-graph-frame {
+      overflow: hidden;
+      padding: 22px;
+    }
+
+    .graph-board {
+      position: relative;
+      display: grid;
+      gap: 48px;
+    }
+
+    .graph-connectors {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .graph-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+    }
+
+    .stages-row {
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .decision-row {
+      grid-template-columns: minmax(220px, 1.25fr) repeat(4, minmax(0, 1fr));
+      align-items: stretch;
+    }
+
+    .statements-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .graph-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+      overflow-wrap: anywhere;
+    }
+
+    .stage-card {
+      min-height: 220px;
+      padding: 18px 16px;
+    }
+
+    .stage-card.green {
+      border-color: rgba(15, 118, 110, 0.28);
+      background: var(--green-soft);
+    }
+
+    .stage-card.blue {
+      border-color: rgba(37, 99, 235, 0.24);
+      background: var(--blue-soft);
+    }
+
+    .stage-card.rose {
+      border-color: rgba(225, 29, 72, 0.22);
+      background: var(--rose-soft);
+    }
+
+    .stage-card.amber {
+      border-color: rgba(180, 83, 9, 0.28);
+      background: var(--amber-soft);
+    }
+
+    .stage-card .num {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      background: rgba(17, 24, 39, 0.08);
+      font-weight: 820;
+    }
+
+    .stage-card h3,
+    .decision-card h3,
+    .statement-card h3 {
+      margin-bottom: 10px;
+      line-height: 1.18;
+      font-size: 21px;
+    }
+
+    .stage-card h3 {
+      font-size: 18px;
+    }
+
+    .stage-card p,
+    .decision-card p,
+    .statement-card p {
+      margin-bottom: 0;
+      color: #4d5665;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .stage-card p {
+      font-size: 15px;
+    }
+
+    .decision-card {
+      padding: 18px;
+      border-color: rgba(15, 118, 110, 0.24);
+    }
+
+    .decision-summary {
+      border-color: rgba(15, 118, 110, 0.34);
+      background: #effaf7;
+    }
+
+    .decision-summary h3 {
+      color: #0b3f3a;
+    }
+
+    .decision-question {
+      display: grid;
+      align-content: center;
+      min-height: 92px;
+      color: #183f3b;
+      font-weight: 790;
+    }
+
+    .statement-card {
+      padding: 20px;
+      border-color: #111827;
+      background: #111827;
+      color: #fff;
+    }
+
+    .statement-card h3 {
+      color: #66e3cc;
+      font-size: 18px;
+    }
+
+    .statement-card p {
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 15px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .ux-layers {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .ux-layer {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: var(--surface);
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+    }
+
+    .ux-layer strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .ux-layer p {
+      margin-bottom: 18px;
+      color: var(--muted);
+    }
+
+    .ux-layer .question {
+      display: block;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: #263140;
+      font-weight: 720;
+      font-size: 14px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 26px;
+      background: var(--surface);
+      box-shadow: 0 10px 36px rgba(17, 24, 39, 0.06);
+    }
+
+    .panel h3 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    .panel p {
+      color: var(--muted);
+    }
+
+    .bullets {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 20px 0 0;
+      list-style: none;
+    }
+
+    .bullets li {
+      position: relative;
+      padding-left: 24px;
+      color: #394150;
+    }
+
+    .bullets li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .repo-map {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .file-list {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .file-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 14px;
+      border-radius: 8px;
+      background: #eef3f8;
+      color: #263140;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+    }
+
+    .tag {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: #fff;
+      color: var(--muted);
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .code-block {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #263140;
+      background: #0e1724;
+      color: #d8fff5;
+      box-shadow: var(--shadow);
+    }
+
+    .code-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #9fb1c7;
+      font-size: 13px;
+      font-weight: 740;
+    }
+
+    .copy {
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      padding: 6px 10px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .repo-input {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 22px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+    }
+
+    .repo-input label {
+      display: grid;
+      gap: 7px;
+      color: #263140;
+      font-weight: 760;
+    }
+
+    .repo-input span {
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .repo-input input {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 12px;
+      color: var(--ink);
+      background: #f8fafc;
+      font: inherit;
+    }
+
+    .install-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 100%;
+    }
+
+    .install-card .code-block {
+      box-shadow: none;
+    }
+
+    .install-card pre {
+      min-height: 172px;
+      font-size: 13px;
+    }
+
+    .prompt-strip {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .prompt {
+      border-left: 4px solid var(--teal);
+      border-radius: 8px;
+      background: #fff;
+      padding: 18px;
+      color: #2c3645;
+      box-shadow: 0 8px 26px rgba(17, 24, 39, 0.05);
+    }
+
+    .footer {
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 1060px) {
+      .install-grid,
+      .ux-layers {
+        grid-template-columns: 1fr;
+      }
+
+      .repo-input {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .shell {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .topbar {
+        position: absolute;
+      }
+
+      .topbar .shell {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero {
+        min-height: 82vh;
+        padding: 148px 0 42px;
+      }
+
+      h1 {
+        font-size: 42px;
+        line-height: 1.08;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      .hero-lead,
+      .section-head p,
+      .wide-copy {
+        font-size: 17px;
+      }
+
+      .section-head,
+      .split,
+      .repo-map {
+        grid-template-columns: 1fr;
+      }
+
+      .process-graph-frame {
+        padding: 14px;
+      }
+
+      .graph-board {
+        gap: 18px;
+      }
+
+      .graph-connectors {
+        display: none;
+      }
+
+      .stages-row,
+      .decision-row,
+      .statements-row {
+        grid-template-columns: 1fr;
+      }
+
+      .stage-card {
+        min-height: 0;
+      }
+
+      .panel,
+      .install-card,
+      .code-block,
+      pre {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .panel {
+        padding: 20px;
+      }
+
+      .install-card pre {
+        min-height: 0;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="Nawigacja strony">
+    <div class="shell">
+      <div class="brand" aria-label="UXRuler">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>UXRuler</span>
+      </div>
+      <nav>
+        <a href="#mapa">Mapa</a>
+        <a href="#repo">Repo</a>
+        <a href="#install">Instalacja</a>
+        <a href="#prompty">Prompty</a>
+        <a href="https://github.com/making-mike/uxruler" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <canvas id="processCanvas" aria-hidden="true"></canvas>
+    <div class="shell">
+      <div class="hero-content">
+        <div class="eyebrow">uxruler.com</div>
+        <h1>UXRuler porządkuje drogę od misji do mierzalnej wartości</h1>
+        <p class="hero-lead">Open source skill prowadzi produkt od pierwszej tezy przez rynek, potrzeby użytkownika, infrastrukturę, doświadczenie, rollout, metryki i decyzje. Dzięki temu człowiek albo agent nie zaczyna od ekranu, tylko od sensu.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#install">Zainstaluj skill</a>
+          <a class="button secondary" href="#mapa">Zobacz UXRuler</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="mapa">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Mapa procesu</div>
+            <h2>Od tezy produktowej do ewaluacji UX</h2>
+          </div>
+          <p>Każdy etap odpowiada na inne pytanie. Razem tworzą ścieżkę, która chroni przed budowaniem funkcji bez rynku, UI bez potrzeby i release’u bez wartości.</p>
+        </div>
+
+        <div class="process-graph" aria-label="Responsywny wykres UXRuler">
+          <div class="process-graph-header">
+            <strong>Etapy, decyzje, metryki i statements w jednym grafie</strong>
+            <span>Responsywny graf z warstwą decyzyjną</span>
+          </div>
+          <div class="process-graph-frame">
+            <div class="graph-board" id="actionPackGraph">
+              <svg class="graph-connectors" aria-hidden="true"></svg>
+
+              <div class="graph-row statements-row" aria-label="Statements do uzupełnienia">
+                <article class="graph-card statement-card" data-node="thesis">
+                  <h3>Product thesis</h3>
+                  <p>Wierzymy, że [odbiorcy] potrzebują lepszego sposobu na [problem], ponieważ [okazja].</p>
+                </article>
+                <article class="graph-card statement-card" data-node="problem">
+                  <h3>Problem statement</h3>
+                  <p>Użytkownik chce [korzyść], dlatego próbuje [zadanie], ale napotyka [bolączkę].</p>
+                </article>
+                <article class="graph-card statement-card" data-node="feature">
+                  <h3>Feature statement</h3>
+                  <p>Zbudujemy [funkcję / flow], żeby pomóc [użytkownikowi] osiągnąć [korzyść].</p>
+                </article>
+              </div>
+
+              <div class="graph-row stages-row" aria-label="Etapy UXRuler">
+                <article class="graph-card stage-card green" data-node="mission">
+                  <span class="num">0</span>
+                  <h3>Misja</h3>
+                  <p>Co chcemy zmienić i dlaczego teraz warto to sprawdzić?</p>
+                </article>
+                <article class="graph-card stage-card blue" data-node="audience">
+                  <span class="num">1</span>
+                  <h3>Odbiorcy</h3>
+                  <p>Rynek, segmenty, buyerzy, kanały i kontekst adopcji.</p>
+                </article>
+                <article class="graph-card stage-card rose" data-node="user">
+                  <span class="num">2</span>
+                  <h3>Użytkownik</h3>
+                  <p>Konkretna osoba, jej zadania, bolączki, korzyści i kontekst.</p>
+                </article>
+                <article class="graph-card stage-card amber" data-node="need">
+                  <span class="num">3</span>
+                  <h3>Potrzeba</h3>
+                  <p>Most od badań do funkcji: co naprawdę uzasadnia budowę?</p>
+                </article>
+                <article class="graph-card stage-card green" data-node="infra">
+                  <span class="num">4</span>
+                  <h3>Infrastruktura</h3>
+                  <p>Technologia, dane, bezpieczeństwo, analityka i operacje.</p>
+                </article>
+                <article class="graph-card stage-card blue" data-node="product">
+                  <span class="num">5</span>
+                  <h3>Produkt</h3>
+                  <p>Architektura informacji, interfejs, interakcje i design system.</p>
+                </article>
+                <article class="graph-card stage-card rose" data-node="value">
+                  <span class="num">6</span>
+                  <h3>Wartość</h3>
+                  <p>Rollout, onboarding, komunikacja, feedback i iteracja.</p>
+                </article>
+                <article class="graph-card stage-card amber" data-node="evaluation">
+                  <span class="num">7</span>
+                  <h3>Ewaluacja</h3>
+                  <p>Użyteczność, ergonomia, atrakcyjność i tożsamość.</p>
+                </article>
+              </div>
+
+              <div class="graph-row decision-row" aria-label="Warstwa decyzji i metryk">
+                <article class="graph-card decision-card decision-summary" data-node="decisionSummary">
+                  <h3>Decyzje i metryki są przekrojowe</h3>
+                  <p>To sposób przechodzenia przez każdy etap: od misji aż po ewaluację.</p>
+                </article>
+                <article class="graph-card decision-card decision-question" data-node="assumption">Co zakładamy?</article>
+                <article class="graph-card decision-card decision-question" data-node="evidence">Jakie mamy dowody?</article>
+                <article class="graph-card decision-card decision-question" data-node="decision">Jaką decyzję podejmujemy?</article>
+                <article class="graph-card decision-card decision-question" data-node="measure">Po czym poznamy, że mieliśmy rację?</article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="warstwy-ux">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">4 warstwy UX</div>
+            <h2>UXRuler prowadzi do ewaluacji jakości doświadczenia</h2>
+          </div>
+          <p>Każdy etap procesu powinien ostatecznie wzmacniać jedną z czterech warstw. Jeżeli produkt nie przechodzi tego testu, problem nie zawsze leży w interfejsie. Czasem trzeba wrócić do potrzeby, rynku, infrastruktury albo sposobu dostarczenia wartości.</p>
+        </div>
+
+        <div class="ux-layers" aria-label="Cztery warstwy UX">
+          <article class="ux-layer">
+            <strong>Użyteczność</strong>
+            <p>Produkt rozwiązuje realny problem i odpowiada na potrzebę wynikającą z badań, a nie tylko na pomysł funkcji.</p>
+            <span class="question">Czy użytkownik dostaje wartość, której naprawdę potrzebuje?</span>
+          </article>
+
+          <article class="ux-layer">
+            <strong>Ergonomia</strong>
+            <p>Doświadczenie pozwala wykonać zadanie szybko, zrozumiale i bez zbędnego wysiłku poznawczego.</p>
+            <span class="question">Czy najważniejsze zadanie da się zrobić bez tarcia?</span>
+          </article>
+
+          <article class="ux-layer">
+            <strong>Atrakcyjność</strong>
+            <p>Produkt jest klarowny, angażujący i zapamiętywalny, a design system wzmacnia zaufanie do rozwiązania.</p>
+            <span class="question">Czy użytkownik chce wrócić do tego doświadczenia?</span>
+          </article>
+
+          <article class="ux-layer">
+            <strong>Tożsamość</strong>
+            <p>Produkt pasuje do tego, kim użytkownik chce być, jak chce pracować i jak chce podejmować decyzje.</p>
+            <span class="question">Czy produkt wzmacnia obraz użytkownika o sobie?</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="repo">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Repo jako pamięć produktu</div>
+            <h2>Nowe repo i istniejący produkt dostają inne tryby pracy</h2>
+          </div>
+          <p>Skill nie tylko opisuje UX. On zamienia UX w pliki, które mogą czytać ludzie i agenci: instrukcje, decyzje, metryki, szablony, badania i design system.</p>
+        </div>
+
+        <div class="split">
+          <article class="panel">
+            <h3>Nowe repo</h3>
+            <p>Skill działa jak product operating system starter. Tworzy minimalny zestaw artefaktów, zanim zespół zacznie kodować.</p>
+            <ul class="bullets">
+              <li>Formułuje tezę produktową i pierwsze założenia.</li>
+              <li>Mapuje rynek, użytkownika i potrzebę przed wyborem funkcji.</li>
+              <li>Ustala pierwszą metrykę wartości i log decyzji.</li>
+              <li>Daje agentom kontekst w `AGENTS.md`, `DESIGN.md` i folderach `product/`.</li>
+            </ul>
+          </article>
+
+          <article class="panel">
+            <h3>Istniejący produkt</h3>
+            <p>Skill działa jak audyt UX i product due diligence. Rekonstruuje logikę produktu po fakcie i pokazuje luki.</p>
+            <ul class="bullets">
+              <li>Sprawdza, czy funkcje wynikają z realnych potrzeb.</li>
+              <li>Łączy feedback, analytics, architekturę i rollout z decyzjami.</li>
+              <li>Wskazuje brakujące artefakty: metryki, research, decision log, UX scorecard.</li>
+              <li>Pomaga ustalić, co naprawić najpierw, żeby produkt rozwijał się bardziej UX-owo.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell repo-map">
+        <div>
+          <div class="kicker">Minimalny zestaw</div>
+          <h2>Pliki, od których warto zacząć</h2>
+          <p class="wide-copy">Nie trzeba tworzyć całej biblioteki dokumentów od razu. Skill zaczyna od małego zestawu, który daje agentom i zespołowi najwięcej kontekstu za najmniejszy koszt.</p>
+        </div>
+
+        <ul class="file-list" aria-label="Minimalny zestaw plików">
+          <li><span>AGENTS.md</span><span class="tag">agent</span></li>
+          <li><span>DESIGN.md</span><span class="tag">design</span></li>
+          <li><span>product/00-mission/product-thesis.md</span><span class="tag">misja</span></li>
+          <li><span>product/01-audience/market-map.md</span><span class="tag">rynek</span></li>
+          <li><span>product/02-user/jobs-pains-gains.md</span><span class="tag">user</span></li>
+          <li><span>product/03-need/problem-statement.md</span><span class="tag">potrzeba</span></li>
+          <li><span>product/05-product/design-system.md</span><span class="tag">produkt</span></li>
+          <li><span>product/08-decision-measurement/north-star-metric.md</span><span class="tag">metryka</span></li>
+          <li><span>product/08-decision-measurement/decision-log.md</span><span class="tag">decyzje</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Instalacja</div>
+            <h2>Dodaj skill do swojego agenta</h2>
+          </div>
+          <p>UXRuler jest open source'owym folderem skilla z plikiem `SKILL.md` i referencjami. Folder `product-ux-action-pack/` powinien być dostępny w publicznym repo, żeby każdy mógł zainstalować go z internetu.</p>
+        </div>
+
+        <div class="repo-input">
+          <label for="repoUrl">
+            Publiczne repo UXRuler
+            <span>Repo powinno zawierać folder `product-ux-action-pack/` w katalogu głównym. Domyślny URL możesz zmienić, jeżeli hostujesz fork.</span>
+          </label>
+          <input id="repoUrl" type="url" value="https://github.com/making-mike/uxruler.git" spellcheck="false">
+        </div>
+
+        <div class="install-grid">
+          <article class="panel install-card">
+            <h3>Codex</h3>
+            <p>Najprostsza ścieżka: użyj wbudowanego `skill-installer` i podaj URL do folderu skilla w publicznym repo.</p>
+            <div class="code-block">
+              <div class="code-head">
+                <span>Prompt</span>
+                <button class="copy" data-copy="codex">Kopiuj</button>
+              </div>
+              <pre id="codex"><code></code></pre>
+            </div>
+          </article>
+
+          <article class="panel install-card">
+            <h3>Claude Code</h3>
+            <p>Instalacja jako personal skill. Claude wykrywa skille z `~/.claude/skills/` po restarcie Claude Code.</p>
+            <div class="code-block">
+              <div class="code-head">
+                <span>Terminal</span>
+                <button class="copy" data-copy="claude">Kopiuj</button>
+              </div>
+              <pre id="claude"><code></code></pre>
+            </div>
+          </article>
+
+          <article class="panel install-card">
+            <h3>Projektowo</h3>
+            <p>Wariant dla zespołu: skill jest częścią konkretnego repo i można go commitować razem z projektem.</p>
+            <div class="code-block">
+              <div class="code-head">
+                <span>Terminal</span>
+                <button class="copy" data-copy="projectSkill">Kopiuj</button>
+              </div>
+              <pre id="projectSkill"><code></code></pre>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="prompty">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="kicker">Startowe prompty</div>
+            <h2>Jak uruchomić UXRuler</h2>
+          </div>
+          <p>Po instalacji najlepiej zacząć od jednego konkretnego zadania: nowy produkt, audyt feature’a albo mapowanie istniejącego repo.</p>
+        </div>
+
+        <div class="prompt-strip">
+          <div class="prompt">
+            <code>Use $product-ux-action-pack to turn this product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan.</code>
+          </div>
+          <div class="prompt">
+            <code>Use $product-ux-action-pack to audit this feature. Show whether it traces back to a real audience, user need, infrastructure capability, product experience, measurable value, and a decision artifact.</code>
+          </div>
+          <div class="prompt">
+            <code>Use $product-ux-action-pack to map this existing repo into product artifacts and identify missing assumptions, metrics, decisions, UX evaluation, and rollout feedback loops.</code>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      UXRuler pomaga budować produkt jako system doświadczenia: od misji, przez potrzeby i design system, po decyzje, metryki i feedback. Open source na licencji MIT.
+    </div>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("processCanvas");
+    const ctx = canvas.getContext("2d");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const colors = ["#66e3cc", "#7aa7ff", "#ff6f8f", "#fbbf24"];
+    let nodes = [];
+    let width = 0;
+    let height = 0;
+    let pointer = { x: 0, y: 0, active: false };
+
+    function resize() {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      width = canvas.offsetWidth;
+      height = canvas.offsetHeight;
+      canvas.width = Math.floor(width * ratio);
+      canvas.height = Math.floor(height * ratio);
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      createNodes();
+      draw(0);
+    }
+
+    function createNodes() {
+      const count = width < 760 ? 42 : 72;
+      nodes = Array.from({ length: count }, (_, index) => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.28,
+        vy: (Math.random() - 0.5) * 0.28,
+        r: 2 + Math.random() * 3,
+        color: colors[index % colors.length]
+      }));
+
+      const path = [
+        [0.16, 0.34], [0.26, 0.42], [0.36, 0.31], [0.46, 0.49],
+        [0.56, 0.38], [0.66, 0.54], [0.76, 0.43], [0.86, 0.58]
+      ];
+
+      path.forEach((point, index) => {
+        if (nodes[index]) {
+          nodes[index].x = width * point[0];
+          nodes[index].y = height * point[1];
+          nodes[index].r = 5;
+        }
+      });
+    }
+
+    function draw(time) {
+      ctx.clearRect(0, 0, width, height);
+
+      ctx.strokeStyle = "rgba(255,255,255,0.045)";
+      ctx.lineWidth = 1;
+      for (let x = 0; x < width; x += 72) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += 72) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      nodes.forEach((node, index) => {
+        if (!reducedMotion) {
+          node.x += node.vx;
+          node.y += node.vy;
+
+          if (node.x < 0 || node.x > width) node.vx *= -1;
+          if (node.y < 0 || node.y > height) node.vy *= -1;
+
+          if (pointer.active) {
+            const dx = pointer.x - node.x;
+            const dy = pointer.y - node.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 150) {
+              node.x -= dx * 0.0018;
+              node.y -= dy * 0.0018;
+            }
+          }
+        }
+
+        for (let j = index + 1; j < nodes.length; j += 1) {
+          const other = nodes[j];
+          const dx = node.x - other.x;
+          const dy = node.y - other.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 138) {
+            ctx.strokeStyle = `rgba(255,255,255,${0.15 - dist / 980})`;
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+          }
+        }
+
+        ctx.fillStyle = node.color;
+        ctx.globalAlpha = 0.78;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+
+      if (!reducedMotion) {
+        requestAnimationFrame(draw);
+      }
+    }
+
+    window.addEventListener("resize", resize);
+    window.addEventListener("pointermove", (event) => {
+      pointer = { x: event.clientX, y: event.clientY, active: true };
+    });
+    window.addEventListener("pointerleave", () => {
+      pointer.active = false;
+    });
+
+    function renderProcessGraph() {
+      const board = document.getElementById("actionPackGraph");
+      if (!board) return;
+      const svg = board.querySelector(".graph-connectors");
+      if (!svg) return;
+
+      const boardBox = board.getBoundingClientRect();
+      svg.setAttribute("viewBox", `0 0 ${boardBox.width} ${boardBox.height}`);
+      svg.setAttribute("width", boardBox.width);
+      svg.setAttribute("height", boardBox.height);
+      svg.innerHTML = `
+        <defs>
+          <marker id="graphArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f766e"></path>
+          </marker>
+        </defs>
+      `;
+
+      const node = (name) => board.querySelector(`[data-node="${name}"]`);
+      const point = (name, anchor) => {
+        const el = node(name);
+        if (!el) return null;
+        const box = el.getBoundingClientRect();
+        const x = box.left - boardBox.left;
+        const y = box.top - boardBox.top;
+        const points = {
+          left: [x, y + box.height / 2],
+          right: [x + box.width, y + box.height / 2],
+          top: [x + box.width / 2, y],
+          bottom: [x + box.width / 2, y + box.height],
+          center: [x + box.width / 2, y + box.height / 2]
+        };
+        return points[anchor];
+      };
+
+      const path = (fromName, fromAnchor, toName, toAnchor, options = {}) => {
+        const from = point(fromName, fromAnchor);
+        const to = point(toName, toAnchor);
+        if (!from || !to) return;
+
+        const [x1, y1] = from;
+        const [x2, y2] = to;
+        const dx = Math.max(28, Math.abs(x2 - x1) * 0.45);
+        const dy = Math.max(26, Math.abs(y2 - y1) * 0.35);
+        let d;
+
+        if (fromAnchor === "right" && toAnchor === "left") {
+          d = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
+        } else if (fromAnchor === "bottom" && toAnchor === "top") {
+          d = `M ${x1} ${y1} C ${x1} ${y1 + dy}, ${x2} ${y2 - dy}, ${x2} ${y2}`;
+        } else {
+          d = `M ${x1} ${y1} C ${x1} ${(y1 + y2) / 2}, ${x2} ${(y1 + y2) / 2}, ${x2} ${y2}`;
+        }
+
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        line.setAttribute("d", d);
+        line.setAttribute("fill", "none");
+        line.setAttribute("stroke", "#0f766e");
+        line.setAttribute("stroke-width", options.width || "2");
+        line.setAttribute("stroke-linecap", "round");
+        line.setAttribute("opacity", options.opacity || "0.72");
+        line.setAttribute("marker-end", "url(#graphArrow)");
+        if (options.dashed) line.setAttribute("stroke-dasharray", "5 7");
+        svg.appendChild(line);
+      };
+
+      const stages = ["mission", "audience", "user", "need", "infra", "product", "value", "evaluation"];
+      stages.slice(0, -1).forEach((stage, index) => {
+        path(stage, "right", stages[index + 1], "left", { width: "2.2", opacity: "0.82" });
+      });
+
+      [
+        ["mission", "assumption"], ["audience", "assumption"],
+        ["user", "evidence"], ["need", "evidence"],
+        ["infra", "decision"], ["product", "decision"],
+        ["value", "measure"], ["evaluation", "measure"]
+      ].forEach(([from, to]) => path(from, "bottom", to, "top", { dashed: true, opacity: "0.5" }));
+
+      [
+        ["thesis", "mission"], ["thesis", "audience"],
+        ["problem", "user"], ["problem", "need"],
+        ["feature", "need"], ["feature", "product"], ["feature", "value"]
+      ].forEach(([from, to]) => path(from, "bottom", to, "top", { dashed: true, opacity: "0.38", width: "1.7" }));
+    }
+
+    let graphFrame = 0;
+    function scheduleProcessGraphRender() {
+      cancelAnimationFrame(graphFrame);
+      graphFrame = requestAnimationFrame(renderProcessGraph);
+    }
+
+    window.addEventListener("resize", scheduleProcessGraphRender);
+    window.addEventListener("load", scheduleProcessGraphRender);
+    if (document.fonts) {
+      document.fonts.ready.then(scheduleProcessGraphRender);
+    }
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(scheduleProcessGraphRender).observe(document.getElementById("actionPackGraph"));
+    }
+    scheduleProcessGraphRender();
+
+    const repoInput = document.getElementById("repoUrl");
+
+    function repoToFolderUrl(repoUrl) {
+      const clean = repoUrl.trim().replace(/\/$/, "");
+      if (clean.includes("/tree/")) return clean;
+      return clean.replace(/\.git$/, "") + "/tree/main/product-ux-action-pack";
+    }
+
+    function shellEscape(value) {
+      return value.replace(/"/g, '\\"');
+    }
+
+    function renderInstallCommands() {
+      const repoUrl = repoInput.value.trim() || "https://github.com/making-mike/uxruler.git";
+      const folderUrl = repoToFolderUrl(repoUrl);
+      const escapedRepo = shellEscape(repoUrl);
+
+      const commands = {
+        codex: `Use $skill-installer to install this skill:\n${folderUrl}\n\nThen restart Codex to pick up new skills.`,
+        claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/product-ux-action-pack-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/product-ux-action-pack\ncp -R "$TMP_DIR/product-ux-action-pack-repo/product-ux-action-pack" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# restart Claude Code`,
+        projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/product-ux-action-pack-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/product-ux-action-pack\ncp -R "$TMP_DIR/product-ux-action-pack-repo/product-ux-action-pack" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/product-ux-action-pack`
+      };
+
+      Object.entries(commands).forEach(([id, command]) => {
+        const block = document.querySelector(`#${id} code`);
+        if (block) block.textContent = command;
+      });
+    }
+
+    repoInput.addEventListener("input", renderInstallCommands);
+    renderInstallCommands();
+
+    document.querySelectorAll(".copy").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copy);
+        const text = target ? target.innerText.trim() : "";
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = "Skopiowano";
+          setTimeout(() => {
+            button.textContent = "Kopiuj";
+          }, 1400);
+        } catch {
+          button.textContent = "Zaznacz tekst";
+        }
+      });
+    });
+
+    resize();
+    if (!reducedMotion) {
+      requestAnimationFrame(draw);
+    }
+  </script>
+</body>
+</html>
