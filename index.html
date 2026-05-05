@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UX RULER</title>
-  <meta name="description" content="UX RULER to proces UX open source dla ludzi i agentów.">
+  <meta name="description" content="UX RULER to open source proces UX dla ludzi i agentów.">
   <meta name="theme-color" content="#000000">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
@@ -26,14 +26,71 @@
   <link rel="shortcut icon" href="assets/favicon/favicon.ico">
   <link rel="manifest" href="assets/favicon/manifest.json">
   <meta property="og:title" content="UX RULER">
-  <meta property="og:description" content="UX RULER to proces UX open source dla ludzi i agentów.">
+  <meta property="og:description" content="UX RULER to open source proces UX dla ludzi i agentów.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://uxruler.com/">
   <meta name="twitter:card" content="summary">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Kalam:wght@700&family=Permanent+Marker&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fragment-mono-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fragment-mono-latin-ext.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/kalam-700-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/kalam-700-latin-ext.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin-ext.woff2" crossorigin>
   <style>
+    @font-face {
+      font-family: "Fragment Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("assets/fonts/fragment-mono-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Fragment Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("assets/fonts/fragment-mono-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "Kalam";
+      font-style: normal;
+      font-weight: 700;
+      font-display: block;
+      src: url("assets/fonts/kalam-700-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Kalam";
+      font-style: normal;
+      font-weight: 700;
+      font-display: block;
+      src: url("assets/fonts/kalam-700-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "Space Grotesk";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: block;
+      src: url("assets/fonts/space-grotesk-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Space Grotesk";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: block;
+      src: url("assets/fonts/space-grotesk-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
     :root {
       --black: #000;
       --white: #fff;
@@ -45,7 +102,7 @@
       --small-line: 16px;
       --meta-line: 20px;
       --text-line: 24px;
-      --h1-line: 88px;
+      --h1-line: clamp(66px, 5.5vw, 80px);
       --h2-line: 40px;
       --h3-line: 24px;
       --footer-title-line: 80px;
@@ -63,6 +120,7 @@
       --rail-label-size: clamp(10px, calc(var(--topbar-height) * 0.4167), 20px);
       --rail-label-scale-max: 2.35;
       --rail-nav-offset: calc(var(--topbar-height) / 3);
+      --rail-bottom-padding: 16px;
       --rail-about-offset: calc(var(--topbar-height) * 2.5);
       --rail-label-x: max(22px, calc(var(--rail-width) - var(--rail-label-size) - var(--rail-nav-offset)));
       --content-gutter-left: clamp(74px, 8.2vw, 132px);
@@ -381,7 +439,7 @@
     h1 {
       max-width: 16em;
       margin-bottom: 32px;
-      font-size: clamp(38px, 5.2vw, 76px);
+      font-size: clamp(36px, 4.7vw, 68px);
       line-height: var(--h1-line);
       letter-spacing: 0;
       transform: translateY(-10px);
@@ -393,6 +451,7 @@
       color: var(--muted);
       font-size: clamp(18px, 1.6vw, 24px);
       line-height: 32px;
+      transform: translateY(2px);
     }
 
     .hero-actions {
@@ -428,6 +487,7 @@
       font-size: 12px;
       line-height: var(--small-line);
       text-decoration: none;
+      cursor: pointer;
     }
 
     .button.primary {
@@ -440,6 +500,94 @@
       background: var(--white);
       color: var(--black);
       border-color: var(--black);
+    }
+
+    .footer-feedback {
+      display: grid;
+      justify-self: end;
+      width: min(100%, 420px);
+      min-width: 0;
+      border: 2px solid var(--black);
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .footer-feedback-head {
+      display: grid;
+      gap: 8px;
+      border-bottom: 2px solid var(--black);
+      padding: 16px 18px 18px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .footer-feedback-kicker,
+    .footer-feedback-status {
+      margin-bottom: 0;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .footer-feedback-title {
+      margin: 0;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    .footer-feedback-intro {
+      margin: 0;
+      color: inherit;
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .footer-feedback-fields {
+      display: grid;
+      gap: 14px;
+      padding: 18px;
+    }
+
+    .footer-feedback-field {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .footer-feedback-field span {
+      font-family: var(--heading-font);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .footer-feedback .survey-textarea {
+      min-height: 136px;
+      resize: vertical;
+    }
+
+    .footer-feedback .survey-textarea:focus-visible,
+    .footer-feedback .survey-input:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 3px;
+    }
+
+    .footer-feedback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-feedback .button {
+      min-height: 48px;
+      padding: 0 18px;
+    }
+
+    .footer-feedback-status {
+      flex: 1 1 12rem;
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .button:hover,
@@ -912,6 +1060,10 @@
       line-height: var(--small-line);
     }
 
+    .code-block.has-corner-copy .code-head {
+      padding-right: 12px;
+    }
+
     .copy {
       border: 2px solid var(--white);
       border-radius: 0;
@@ -922,6 +1074,46 @@
       font-size: 12px;
       line-height: var(--small-line);
       cursor: pointer;
+    }
+
+    .copy.icon-copy {
+      position: relative;
+      flex: 0 0 auto;
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--white);
+      font-size: 0;
+      line-height: 1;
+      opacity: 0.74;
+    }
+
+    .copy.icon-copy::before {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      transform: translate(-1px, 1px);
+    }
+
+    .copy.icon-copy::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      transform: translate(3px, -3px);
+      background: var(--black);
+    }
+
+    .copy.icon-copy:hover,
+    .copy.icon-copy:focus-visible {
+      opacity: 1;
     }
 
     pre {
@@ -944,7 +1136,7 @@
 
     .install-card {
       display: grid;
-      grid-template-rows: auto minmax(96px, auto) minmax(0, 1fr);
+      grid-template-rows: auto minmax(96px, 1fr) auto auto;
       gap: 16px;
       align-content: stretch;
       min-height: 100%;
@@ -955,41 +1147,475 @@
       margin-bottom: 0;
     }
 
+    .install-open {
+      width: 120px;
+      min-height: 56px;
+      justify-self: start;
+      align-self: start;
+    }
+
     .install-card .code-block {
       display: flex;
       flex-direction: column;
       align-self: stretch;
-      min-height: 100%;
+      height: 280px;
+      min-height: 0;
     }
 
     .install-card pre {
       flex: 1;
-      min-height: 172px;
+      min-height: 0;
+      overflow: auto;
     }
 
-    .prompt-strip {
+    .examples-grid {
       display: grid;
-      gap: 16px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 24px;
+      align-items: start;
       margin-top: 24px;
+    }
+
+    .prompt-list {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
     }
 
     .prompt {
       display: grid;
-      gap: 16px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
       border: 2px solid var(--black);
+      background: var(--white);
+      padding: 14px;
+      color: var(--black);
+    }
+
+    .prompt.is-active {
       background: var(--black);
-      padding: 16px;
       color: var(--white);
     }
 
-    .prompt-head {
+    .prompt-select {
+      display: grid;
+      gap: 8px;
+      min-width: 0;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .prompt-select:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 5px;
+    }
+
+    .prompt-title {
+      font-family: var(--heading-font);
+      font-size: 18px;
+      line-height: var(--text-line);
+    }
+
+    .prompt-intent {
+      color: inherit;
+      font-size: 13px;
+      line-height: var(--meta-line);
+      opacity: 0.74;
+    }
+
+    .prompt .copy {
+      grid-column: 1;
+      justify-self: start;
+      border-color: var(--black);
+      background: var(--white);
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    .prompt.is-active .copy {
+      border-color: var(--white);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .prompt-label,
+    .prompt code {
+      grid-column: 1 / -1;
+    }
+
+    .prompt-label {
+      display: block;
+      padding-top: 12px;
+      border-top: 2px solid currentColor;
+      font-family: var(--heading-font);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+      opacity: 0.72;
+    }
+
+    .prompt code {
+      display: block;
+      min-width: 0;
+      font-size: 14px;
+      line-height: var(--meta-line);
+      overflow-wrap: anywhere;
+    }
+
+    .prompt-flow {
+      display: grid;
+      gap: 18px;
+      min-width: 0;
+      border: 2px solid var(--black);
+      padding: 18px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .prompt-flow-head {
+      display: grid;
+      gap: 8px;
+    }
+
+    .prompt-flow-label,
+    .prompt-flow-outcome-label {
+      margin-bottom: 0;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .prompt-flow-title {
+      margin: 0;
+      color: inherit;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    .prompt-flow-steps {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: prompt-flow;
+    }
+
+    .prompt-flow-step {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      counter-increment: prompt-flow;
+    }
+
+    .prompt-flow-step::before {
+      content: counter(prompt-flow);
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border: 2px solid currentColor;
+      font-family: var(--heading-font);
+      font-size: 12px;
+      line-height: var(--small-line);
+    }
+
+    .prompt-flow-step strong {
+      display: block;
+      margin-bottom: 2px;
+      font-family: var(--heading-font);
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .prompt-flow-step span,
+    .prompt-flow-outcome {
+      display: block;
+      margin: 0;
+      color: inherit;
+      font-size: 13px;
+      line-height: var(--meta-line);
+      opacity: 0.76;
+    }
+
+    .prompt-flow-outcome-box {
+      display: grid;
+      gap: 8px;
+      border-top: 2px solid currentColor;
+      padding-top: 14px;
+    }
+
+    .survey-shell {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .survey-shell[hidden] {
+      display: none;
+    }
+
+    .survey-panel {
+      width: min(680px, 100%);
+      max-height: min(760px, calc(100svh - 48px));
+      overflow: auto;
+      border: 2px solid var(--black);
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .survey-panel:focus {
+      outline: none;
+    }
+
+    .survey-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      color: var(--white);
+      gap: 16px;
+      border-bottom: 2px solid var(--black);
+      padding: 12px 16px;
       font-size: 12px;
       line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .survey-close {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .survey-close:hover,
+    .survey-close:focus-visible,
+    .survey-action:hover,
+    .survey-action:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 4px;
+    }
+
+    .survey-body {
+      display: grid;
+      gap: 20px;
+      padding: 24px;
+    }
+
+    .survey-body[hidden] {
+      display: none;
+    }
+
+    .survey-title {
+      margin-bottom: 8px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    .survey-intro,
+    .survey-status,
+    .survey-complete-copy {
+      margin-bottom: 0;
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .survey-fields {
+      display: grid;
+      gap: 18px;
+    }
+
+    .survey-question {
+      display: grid;
+      gap: 16px;
+      min-width: 0;
+      margin: 0;
+      border: 0;
+      padding: 0;
+    }
+
+    .survey-question.has-error .survey-question-title {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    .survey-question-title {
+      font-family: var(--heading-font);
+      font-size: 18px;
+      line-height: var(--text-line);
+    }
+
+    .survey-textarea {
+      width: 100%;
+      min-height: 120px;
+      resize: vertical;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      padding: 12px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .survey-input {
+      width: 100%;
+      min-height: 44px;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      padding: 10px 12px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .install-step-panel {
+      display: grid;
+      gap: 20px;
+    }
+
+    .install-step-panel[hidden] {
+      display: none;
+    }
+
+    .install-step-label,
+    .install-target,
+    .install-feedback-status {
+      margin-bottom: 0;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .install-target {
+      display: inline-block;
+      border-bottom: 2px solid currentColor;
+    }
+
+    .install-command {
+      display: grid;
+      gap: 0;
+      border: 2px solid var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .install-command .code-head {
+      border-color: var(--white);
+    }
+
+    .install-command pre {
+      max-height: 280px;
+      min-height: 0;
+    }
+
+    .survey-choice-list,
+    .survey-rating-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .survey-choice {
+      display: grid;
+      grid-template-columns: 20px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      border: 2px solid var(--black);
+      padding: 10px 12px;
+      cursor: pointer;
+    }
+
+    .survey-choice input {
+      width: 16px;
+      height: 16px;
+      margin: 2px 0 0;
+      accent-color: var(--black);
+    }
+
+    .survey-choice span {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .survey-rating-list {
+      grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+    }
+
+    .survey-rating {
+      display: grid;
+      place-items: center;
+      min-height: 44px;
+      border: 2px solid var(--black);
+      cursor: pointer;
+    }
+
+    .survey-rating input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .survey-rating span {
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .survey-rating:has(input:checked),
+    .survey-choice:has(input:checked) {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .survey-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .survey-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      padding: 0 14px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .survey-action.primary {
+      background: var(--black);
+      color: var(--white);
     }
 
     .footer {
@@ -1003,7 +1629,15 @@
     }
 
     .footer .shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: clamp(32px, 6vw, 96px);
+      align-items: start;
       min-height: 0;
+    }
+
+    .footer-copy {
+      min-width: 0;
     }
 
     .footer-title {
@@ -1014,9 +1648,20 @@
       line-height: var(--footer-title-line);
     }
 
+    @media (max-width: 1320px) {
+      .footer .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-feedback {
+        justify-self: center;
+        width: min(100%, 560px);
+      }
+    }
+
     @media (max-width: 1160px) {
       :root {
-        --h1-line: 72px;
+        --h1-line: 66px;
         --footer-title-line: 64px;
       }
 
@@ -1044,6 +1689,10 @@
         grid-template-columns: 1fr;
       }
 
+      .examples-grid {
+        grid-template-columns: 1fr;
+      }
+
     }
 
     @media (max-width: 600px) {
@@ -1056,7 +1705,7 @@
         --mobile-ruler-track-width: calc(100vw + 320px);
         --mobile-ruler-offset: 0px;
         --mobile-header-height: calc(var(--topbar-height) + var(--mobile-topline-height) + var(--mobile-nav-height) + var(--mobile-ruler-height));
-        --h1-line: 48px;
+        --h1-line: 44px;
         --footer-title-line: 48px;
       }
 
@@ -1245,8 +1894,17 @@
         padding: 44px 0 48px;
       }
 
+      .footer-feedback {
+        width: 100%;
+      }
+
+      .footer-feedback-head,
+      .footer-feedback-fields {
+        padding: 16px;
+      }
+
       h1 {
-        font-size: clamp(28px, 9vw, 44px);
+        font-size: clamp(26px, 8vw, 40px);
       }
 
       .section-head,
@@ -1296,6 +1954,38 @@
         min-height: 0;
       }
 
+      .prompt {
+        grid-template-columns: 1fr;
+      }
+
+      .prompt .copy {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: start;
+      }
+
+      .prompt code {
+        grid-column: 1;
+      }
+
+      .survey-shell {
+        align-items: end;
+        padding: 12px;
+      }
+
+      .survey-panel {
+        max-height: calc(100svh - 24px);
+      }
+
+      .survey-body {
+        padding: 18px;
+      }
+
+      .survey-title {
+        font-size: 20px;
+        line-height: var(--h3-line);
+      }
+
       main section {
         padding: 56px 0;
         scroll-margin-top: var(--mobile-header-height);
@@ -1316,11 +2006,26 @@
     }
   </style>
   <script>
-    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
-    posthog.init('phc_wjAEaf2HYu9seYjiNruZYWiKmqTqHaDJjQsdApcJ9wnz', {
-      api_host: 'https://eu.i.posthog.com',
-      defaults: '2026-01-30'
-    });
+    if (/(^|\.)uxruler\.com$/.test(window.location.hostname)) {
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_wjAEaf2HYu9seYjiNruZYWiKmqTqHaDJjQsdApcJ9wnz', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-01-30',
+        autocapture: false,
+        rageclick: false,
+        capture_pageview: true,
+        capture_pageleave: 'if_capture_pageview',
+        disable_session_recording: true,
+        disable_surveys: true,
+        disable_external_dependency_loading: true,
+        advanced_disable_flags: true,
+        advanced_disable_toolbar_metrics: true,
+        capture_performance: false,
+        capture_heatmaps: false,
+        capture_dead_clicks: false,
+        capture_exceptions: false
+      });
+    }
   </script>
 </head>
 <body>
@@ -1330,7 +2035,7 @@
         <img src="assets/logo.svg" alt="">
       </a>
       <div class="topline">
-        <span class="topline-text">Proces UX open source dla ludzi i agentów</span>
+        <span class="topline-text">Open source proces UX dla ludzi i agentów</span>
         <div class="language-switcher" aria-label="Wybór języka">
           <button class="lang-button is-active" type="button" data-lang="pl" aria-pressed="true">PL</button>
           <button class="lang-button" type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -1346,16 +2051,16 @@
           <a class="rail-nav-link" href="#about" data-section="about">Proces</a>
           <a class="rail-nav-link" href="#repo" data-section="repo">Workflow</a>
           <a class="rail-nav-link" href="#install" data-section="install">Instalacja</a>
-          <a class="rail-nav-link" href="#prompty" data-section="prompty">Prompty</a>
+          <a class="rail-nav-link" href="#examples" data-section="examples">Przykłady</a>
         </nav>
       </div>
       <div class="hero-panel">
         <div class="hero-ruler" aria-hidden="true"></div>
         <div class="hero-content">
           <h1>Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h1>
-          <p class="hero-lead">Open source'owy proces UX dla ludzi i agentów. Pomaga przejść od misji, rynku i potrzeby użytkownika do decyzji, metryk, ewaluacji UX i lekkiej pamięci produktu w repo.</p>
+          <p class="hero-lead">Open source proces UX dla ludzi i agentów. Pomaga przejść od misji, rynku i potrzeby użytkownika do decyzji, metryk, ewaluacji UX i lekkiej pamięci produktu w repo.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#install" data-track="landing_install_cta_clicked" data-track-location="hero" data-track-target="install">Zainstaluj skill</a>
+            <a class="button primary" href="install.html" data-track="landing_install_cta_clicked" data-track-location="hero" data-track-target="install_page">Zainstaluj skill</a>
             <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="landing_github_cta_clicked" data-track-location="hero" data-track-target="github">Współtwórz</a>
           </div>
         </div>
@@ -1644,8 +2349,8 @@
       <div class="shell repo-map">
         <div>
           <div class="kicker">Struktura repo</div>
-          <h2>Pełna struktura, minimum na czarno</h2>
-          <p class="wide-copy">Czarne wiersze to domyślny zestaw startowy po ustaleniu kierunku produktu. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.</p>
+          <h2>Porządek w pracy nad produktem od pierwszego pliku</h2>
+          <p class="wide-copy">UX RULER pomaga utrzymać repozytorium lekkie, czytelne i gotowe do podejmowania decyzji. Startujesz od najważniejszych artefaktów, a kolejne pliki dodajesz dopiero wtedy, gdy wspierają strategię, pomiar albo realną pracę nad produktem.</p>
         </div>
 
         <div class="structure-accordion" aria-label="Docelowa struktura plików">
@@ -1816,10 +2521,11 @@
           <article class="panel install-card">
             <h3>Codex</h3>
             <p>Najprostsza ścieżka: użyj wbudowanego `skill-installer` i podaj URL do folderu skilla w publicznym repo.</p>
-            <div class="code-block">
+            <a class="button primary install-open" href="install.html#codex" data-track="landing_install_path_opened" data-track-location="install" data-track-target="codex">Instaluj</a>
+            <div class="code-block has-corner-copy">
               <div class="code-head">
                 <span>Prompt</span>
-                <button class="copy" data-copy="codex">Kopiuj</button>
+                <button class="copy icon-copy" data-copy="codex" aria-label="Kopiuj">Kopiuj</button>
               </div>
               <pre id="codex"><code></code></pre>
             </div>
@@ -1828,22 +2534,24 @@
           <article class="panel install-card">
             <h3>Claude Code</h3>
             <p>Instalacja jako personal skill. Claude wykrywa skille z `~/.claude/skills/` po restarcie Claude Code.</p>
-            <div class="code-block">
+            <a class="button primary install-open" href="install.html#claude" data-track="landing_install_path_opened" data-track-location="install" data-track-target="claude">Instaluj</a>
+            <div class="code-block has-corner-copy">
               <div class="code-head">
                 <span>Terminal</span>
-                <button class="copy" data-copy="claude">Kopiuj</button>
+                <button class="copy icon-copy" data-copy="claude" aria-label="Kopiuj">Kopiuj</button>
               </div>
               <pre id="claude"><code></code></pre>
             </div>
           </article>
 
           <article class="panel install-card">
-            <h3>Projektowo</h3>
+            <h3>Repository</h3>
             <p>Wariant dla zespołu: skill jest częścią konkretnego repo i można go commitować razem z projektem.</p>
-            <div class="code-block">
+            <a class="button primary install-open" href="install.html#projectSkill" data-track="landing_install_path_opened" data-track-location="install" data-track-target="projectSkill">Instaluj</a>
+            <div class="code-block has-corner-copy">
               <div class="code-head">
                 <span>Terminal</span>
-                <button class="copy" data-copy="projectSkill">Kopiuj</button>
+                <button class="copy icon-copy" data-copy="projectSkill" aria-label="Kopiuj">Kopiuj</button>
               </div>
               <pre id="projectSkill"><code></code></pre>
             </div>
@@ -1852,38 +2560,85 @@
       </div>
     </section>
 
-    <section id="prompty">
+    <section id="examples">
       <div class="shell">
         <div class="section-head">
           <div>
-            <div class="kicker">Startowe prompty</div>
-            <h2>Jak uruchomić UX RULER</h2>
+            <div class="kicker">Examples / Przykłady</div>
+            <h2>Wybierz prompt i zobacz, co się zadzieje</h2>
           </div>
-          <p>Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać prostym językiem o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, wnioski i decyzję.</p>
+          <p>Prompt ma nazwać intencję, nie przepisywać workflow. Zaznacz przykład, a obok zobaczysz, jak UX RULER poprowadzi rozmowę, research, decyzję i ewentualny zapis w repo.</p>
         </div>
 
-        <div class="prompt-strip">
-          <div class="prompt">
-            <div class="prompt-head">
-              <span>Nowy produkt</span>
-              <button class="copy" data-copy="promptOpenSource">Kopiuj</button>
-            </div>
-            <code id="promptOpenSource">Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Używaj prostego języka. Jeśli repo jest puste, pomóż mi najpierw zdefiniować misję przez 2-3 kierunki produktu. Gdy zdecydujemy misję lub kierunek, utwórz albo zaktualizuj kompaktowe PRODUCT.md i ROADMAP.md. W przeciwnym razie zapytaj mnie tylko o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj rynek, odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw wnioski i rekomendacje.</code>
+        <div class="examples-grid">
+          <div class="prompt-list" data-prompt-list role="list" aria-label="Przykłady promptów">
+            <article class="prompt is-active" data-prompt-card="promptOpenSource">
+              <button class="prompt-select" type="button" data-prompt-select="promptOpenSource" aria-pressed="true">
+                <span class="prompt-title" data-prompt-title>Nowy produkt</span>
+                <span class="prompt-intent" data-prompt-intent>Start od pomysłu albo pustego repo.</span>
+              </button>
+              <span class="prompt-label">Prompt</span>
+              <code id="promptOpenSource">Użyj $uxruler na tym repo. Pomóż mi zdefiniować misję i pierwszy kierunek produktu.</code>
+              <button class="copy" data-copy="promptOpenSource">Kopiuj prompt</button>
+            </article>
+
+            <article class="prompt" data-prompt-card="promptAudit">
+              <button class="prompt-select" type="button" data-prompt-select="promptAudit" aria-pressed="false">
+                <span class="prompt-title" data-prompt-title>Audyt funkcji</span>
+                <span class="prompt-intent" data-prompt-intent>Sprawdzenie funkcji przed dalszą budową.</span>
+              </button>
+              <span class="prompt-label">Prompt</span>
+              <code id="promptAudit">Użyj $uxruler do sprawdzenia tej funkcji. Pomóż mi zdecydować, czy warto ją rozwijać.</code>
+              <button class="copy" data-copy="promptAudit">Kopiuj prompt</button>
+            </article>
+
+            <article class="prompt" data-prompt-card="promptRepo">
+              <button class="prompt-select" type="button" data-prompt-select="promptRepo" aria-pressed="false">
+                <span class="prompt-title" data-prompt-title>Przegląd repo</span>
+                <span class="prompt-intent" data-prompt-intent>Decyzja, co poprawić albo opisać najpierw.</span>
+              </button>
+              <span class="prompt-label">Prompt</span>
+              <code id="promptRepo">Użyj $uxruler na tym repo, żeby pomóc mi zdecydować, co zrobić dalej.</code>
+              <button class="copy" data-copy="promptRepo">Kopiuj prompt</button>
+            </article>
           </div>
-          <div class="prompt">
-            <div class="prompt-head">
-              <span>Audyt funkcji</span>
-              <button class="copy" data-copy="promptAudit">Kopiuj</button>
+
+          <aside class="prompt-flow" data-prompt-flow aria-live="polite" aria-label="Schemat akcji">
+            <div class="prompt-flow-head">
+              <p class="prompt-flow-label" data-prompt-flow-label>Schemat akcji</p>
+              <h3 class="prompt-flow-title" data-prompt-flow-title>Nowy produkt</h3>
             </div>
-            <code id="promptAudit">Użyj $uxruler do audytu tej funkcji. Prostym językiem pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i zapisanej decyzji.</code>
-          </div>
-          <div class="prompt">
-            <div class="prompt-head">
-              <span>Przegląd repo</span>
-              <button class="copy" data-copy="promptRepo">Kopiuj</button>
+            <ol class="prompt-flow-steps" data-prompt-flow-steps>
+              <li class="prompt-flow-step">
+                <div>
+                  <strong>Orientacja</strong>
+                  <span>Agent sprawdzi, co już wiadomo z repo i zapyta tylko o brakujący kontekst.</span>
+                </div>
+              </li>
+              <li class="prompt-flow-step">
+                <div>
+                  <strong>Misja i odbiorcy</strong>
+                  <span>Ułoży robocze kierunki produktu, rynek, użytkownika i potrzebę.</span>
+                </div>
+              </li>
+              <li class="prompt-flow-step">
+                <div>
+                  <strong>Dowody</strong>
+                  <span>Poszuka danych użycia, sygnałów z repo albo źródeł, które mogą zmienić decyzję.</span>
+                </div>
+              </li>
+              <li class="prompt-flow-step">
+                <div>
+                  <strong>Decyzja</strong>
+                  <span>Pokaże wnioski, pierwszą metrykę i najmniejszy następny krok.</span>
+                </div>
+              </li>
+            </ol>
+            <div class="prompt-flow-outcome-box">
+              <p class="prompt-flow-outcome-label" data-prompt-outcome-label>Na końcu</p>
+              <p class="prompt-flow-outcome" data-prompt-flow-outcome>Jeśli kierunek zostanie wybrany, agent może zapisać kompaktowe PRODUCT.md i ROADMAP.md.</p>
             </div>
-            <code id="promptRepo">Użyj $uxruler na tym repo. Najpierw zapytaj, co chcę zdecydować po przeglądzie repo, potem sprawdź repo i pokaż prostym językiem, co wiadomo, czego brakuje i co zrobić dalej. Jeśli misja lub kierunek są już zdecydowane, utwórz albo zaktualizuj kompaktowy ROADMAP.md.</code>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
@@ -1891,11 +2646,34 @@
 
   <footer class="footer">
     <div class="shell">
-      <h2 class="footer-title">Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h2>
-      <div class="hero-actions footer-actions">
-        <a class="button primary" href="#install" data-track="landing_install_cta_clicked" data-track-location="footer" data-track-target="install">Zainstaluj skill</a>
-        <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="landing_github_cta_clicked" data-track-location="footer" data-track-target="github">Współtwórz</a>
+      <div class="footer-copy">
+        <h2 class="footer-title">Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h2>
+        <div class="hero-actions footer-actions">
+          <a class="button primary" href="install.html" data-track="landing_install_cta_clicked" data-track-location="footer" data-track-target="install_page">Zainstaluj skill</a>
+          <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="landing_github_cta_clicked" data-track-location="footer" data-track-target="github">Współtwórz</a>
+        </div>
       </div>
+      <form class="footer-feedback" data-footer-feedback-form aria-labelledby="footerFeedbackTitle" novalidate>
+        <div class="footer-feedback-head">
+          <p class="footer-feedback-kicker" data-footer-feedback-kicker>Feedback</p>
+          <h2 class="footer-feedback-title" id="footerFeedbackTitle" data-footer-feedback-title>Co powinniśmy sprawdzić?</h2>
+          <p class="footer-feedback-intro" data-footer-feedback-intro>Napisz, co w UX RULER jest niejasne, brakujące albo warte przetestowania jako pierwsze.</p>
+        </div>
+        <div class="footer-feedback-fields">
+          <label class="footer-feedback-field">
+            <span data-footer-feedback-message-label>Twój feedback</span>
+            <textarea class="survey-textarea" data-footer-feedback-message placeholder="Jedno zdanie wystarczy..." rows="4" required></textarea>
+          </label>
+          <label class="footer-feedback-field">
+            <span data-footer-feedback-email-label>Email do kontaktu (opcjonalnie)</span>
+            <input class="survey-input" type="email" data-footer-feedback-email placeholder="email@example.com">
+          </label>
+          <div class="footer-feedback-actions">
+            <button class="button primary" type="submit" data-footer-feedback-send>Wyślij feedback</button>
+            <p class="footer-feedback-status" data-footer-feedback-status aria-live="polite"></p>
+          </div>
+        </div>
+      </form>
     </div>
   </footer>
 
@@ -1905,39 +2683,184 @@
     const pageCopy = {
       pl: {
         title: "UX RULER",
-        description: "UX RULER to proces UX open source dla ludzi i agentów.",
+        description: "UX RULER to open source proces UX dla ludzi i agentów.",
         heroTitle: "Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.",
+        footerFeedbackKicker: "Feedback",
+        footerFeedbackTitle: "Co powinniśmy sprawdzić?",
+        footerFeedbackIntro: "Napisz, co w UX RULER jest niejasne, brakujące albo warte przetestowania jako pierwsze.",
+        footerFeedbackMessageLabel: "Twój feedback",
+        footerFeedbackMessagePlaceholder: "Jedno zdanie wystarczy...",
+        footerFeedbackEmailLabel: "Email do kontaktu (opcjonalnie)",
+        footerFeedbackEmailPlaceholder: "email@example.com",
+        footerFeedbackSend: "Wyślij feedback",
+        footerFeedbackRequired: "Dodaj krótki feedback przed wysłaniem.",
+        footerFeedbackSent: "Dzięki. To pomoże wybrać, co poprawić najpierw.",
         footerTitle: "Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.",
         copyIdle: "Kopiuj",
         copyDone: "Skopiowano",
         copyFallback: "Zaznacz tekst",
+        copyPromptIdle: "Kopiuj prompt",
+        copyPromptDone: "Prompt skopiowany",
+        installIdle: "Instaluj",
+        surveyKicker: "Pomiar UX RULER",
+        surveyClose: "Zamknij",
+        surveySubmit: "Wyślij",
+        surveySkip: "Później",
+        surveyRequired: "Uzupełnij zaznaczone pytania, żeby wysłać ankietę.",
+        surveyExpectationTitle: "Zanim zaczniesz, co chcesz osiągnąć z UX RULER?",
+        surveyExpectationIntro: "Jedna krótka odpowiedź pomoże sprawdzić, czy strona prowadzi do właściwego użycia.",
+        surveyAfterUseTitle: "Po użyciu UX RULER, co naprawdę się zmieniło?",
+        surveyAfterUseIntro: "Ta odpowiedź pokaże, czy proces pomógł podjąć decyzję, zmienić metrykę albo wybrać następny krok.",
+        surveyTextPlaceholder: "Napisz krótko...",
+        surveyCompleteTitle: "Dzięki. Teraz użyj UX RULER.",
+        surveyCompleteCopy: "Po użyciu wróć do drugiej krótkiej ankiety. Ten sygnał pokaże, czy UX RULER faktycznie zmienił decyzję, metrykę albo następny krok.",
+        surveyAfterUseCompleteTitle: "Dzięki za sygnał.",
+        surveyAfterUseCompleteCopy: "To jest najważniejszy feedback: nie tylko co użytkownik planował, ale co UX RULER realnie pomógł zdecydować.",
+        surveyFollowUpCopy: "Skopiuj link na później",
+        surveyFollowUpCopied: "Link skopiowany",
+        surveyDone: "Zamknij",
         langSwitcherAria: "Wybór języka",
-        promptOpenSource: "Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Używaj prostego języka. Jeśli repo jest puste, pomóż mi najpierw zdefiniować misję przez 2-3 kierunki produktu. Gdy zdecydujemy misję lub kierunek, utwórz albo zaktualizuj kompaktowe PRODUCT.md i ROADMAP.md. W przeciwnym razie zapytaj mnie tylko o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj rynek, odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw wnioski i rekomendacje.",
-        promptAudit: "Użyj $uxruler do audytu tej funkcji. Prostym językiem pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i zapisanej decyzji.",
-        promptRepo: "Użyj $uxruler na tym repo. Najpierw zapytaj, co chcę zdecydować po przeglądzie repo, potem sprawdź repo i pokaż prostym językiem, co wiadomo, czego brakuje i co zrobić dalej. Jeśli misja lub kierunek są już zdecydowane, utwórz albo zaktualizuj kompaktowy ROADMAP.md."
+        promptListAria: "Przykłady promptów",
+        promptFlowAria: "Schemat akcji dla wybranego promptu",
+        promptFlowLabel: "Schemat akcji",
+        promptOutcomeLabel: "Na końcu",
+        promptSelectAria: "Pokaż schemat dla promptu",
+        promptOpenSource: "Użyj $uxruler na tym repo. Pomóż mi zdefiniować misję i pierwszy kierunek produktu.",
+        promptAudit: "Użyj $uxruler do sprawdzenia tej funkcji. Pomóż mi zdecydować, czy warto ją rozwijać.",
+        promptRepo: "Użyj $uxruler na tym repo, żeby pomóc mi zdecydować, co zrobić dalej."
       },
       en: {
         title: "UX RULER",
         description: "UX RULER is an open source UX process for humans and agents.",
         heroTitle: "Guide a product from mission to measurable value for <em>users</em>.",
+        footerFeedbackKicker: "Feedback",
+        footerFeedbackTitle: "What should we check?",
+        footerFeedbackIntro: "Tell us what feels unclear, missing, or worth testing first in UX RULER.",
+        footerFeedbackMessageLabel: "Your feedback",
+        footerFeedbackMessagePlaceholder: "One sentence is enough...",
+        footerFeedbackEmailLabel: "Contact email (optional)",
+        footerFeedbackEmailPlaceholder: "email@example.com",
+        footerFeedbackSend: "Send feedback",
+        footerFeedbackRequired: "Add short feedback before sending.",
+        footerFeedbackSent: "Thanks. This helps choose what to improve first.",
         footerTitle: "Guide a product from mission to measurable value for <em>users</em>.",
         copyIdle: "Copy",
         copyDone: "Copied",
         copyFallback: "Select text",
+        copyPromptIdle: "Copy prompt",
+        copyPromptDone: "Prompt copied",
+        installIdle: "Install",
+        surveyKicker: "UX RULER measurement",
+        surveyClose: "Close",
+        surveySubmit: "Send",
+        surveySkip: "Later",
+        surveyRequired: "Answer the highlighted questions before sending the survey.",
+        surveyExpectationTitle: "Before you start, what do you want from UX RULER?",
+        surveyExpectationIntro: "One short answer helps check whether the page leads to the right kind of use.",
+        surveyAfterUseTitle: "After using UX RULER, what actually changed?",
+        surveyAfterUseIntro: "This answer shows whether the process helped make a decision, change a metric, or choose the next step.",
+        surveyTextPlaceholder: "Write a short answer...",
+        surveyCompleteTitle: "Thanks. Now use UX RULER.",
+        surveyCompleteCopy: "After you use UX RULER, come back to the second short survey. That signal shows whether UX RULER actually changed a decision, metric, or next step.",
+        surveyAfterUseCompleteTitle: "Thanks for the signal.",
+        surveyAfterUseCompleteCopy: "This is the most important feedback: not only what the user planned, but what UX RULER actually helped them decide.",
+        surveyFollowUpCopy: "Copy link for later",
+        surveyFollowUpCopied: "Link copied",
+        surveyDone: "Close",
         langSwitcherAria: "Language",
-        promptOpenSource: "Use $uxruler as an open source UX process for humans and agents. Use simple language. If this repo is empty, help me define the mission first by offering 2 to 3 draft product directions. Once we decide the mission or direction, create or update compact PRODUCT.md and ROADMAP.md. Otherwise, ask me only for missing context first, then inspect any real usage or repo-connected data, check the market, audience, alternatives, and user need, and then present clear findings and recommendations.",
-        promptAudit: "Use $uxruler to audit this feature. In simple language, show whether it comes from a real audience, user need, infrastructure capability, product experience, measurable value, and a recorded decision.",
-        promptRepo: "Use $uxruler on this repo. First ask what I want to decide after you look at the repo, then inspect it and explain in simple language what is known, what is missing, and what to do next. If the mission or direction is already decided, create or update a compact ROADMAP.md."
+        promptListAria: "Prompt examples",
+        promptFlowAria: "Action flow for the selected prompt",
+        promptFlowLabel: "Action flow",
+        promptOutcomeLabel: "Result",
+        promptSelectAria: "Show the flow for prompt",
+        promptOpenSource: "Use $uxruler on this repo. Help me define the mission and first product direction.",
+        promptAudit: "Use $uxruler to check this feature. Help me decide whether it is worth developing.",
+        promptRepo: "Use $uxruler on this repo to help me decide what to do next."
+      }
+    };
+
+    const promptExampleIds = ["promptOpenSource", "promptAudit", "promptRepo"];
+    const promptExampleDetails = {
+      pl: {
+        promptOpenSource: {
+          title: "Nowy produkt",
+          intent: "Start od pomysłu albo pustego repo.",
+          steps: [
+            ["Orientacja", "Agent sprawdzi, co już wiadomo z repo i zapyta tylko o brakujący kontekst."],
+            ["Misja i odbiorcy", "Ułoży robocze kierunki produktu, rynek, użytkownika i potrzebę."],
+            ["Dowody", "Poszuka danych użycia, sygnałów z repo albo źródeł, które mogą zmienić decyzję."],
+            ["Decyzja", "Pokaże wnioski, pierwszą metrykę i najmniejszy następny krok."]
+          ],
+          outcome: "Jeśli kierunek zostanie wybrany, agent może zapisać kompaktowe PRODUCT.md i ROADMAP.md."
+        },
+        promptAudit: {
+          title: "Audyt funkcji",
+          intent: "Sprawdzenie funkcji przed dalszą budową.",
+          steps: [
+            ["Cel", "Agent ustali, co chcesz zdecydować: rozwijać, zawęzić, opóźnić czy przetestować."],
+            ["Ślad potrzeby", "Połączy funkcję z odbiorcami, konkretnym użytkownikiem, potrzebą i wartością."],
+            ["Warunki", "Sprawdzi dostępne dane, feedback, ryzyka infrastruktury i brakujące decyzje."],
+            ["Rekomendacja", "Zaproponuje decyzję, metrykę i najmniejszy test, który podniesie pewność."]
+          ],
+          outcome: "Dostajesz jasne: rozwijać, zawęzić, prototypować, odłożyć albo zmierzyć przed budową."
+        },
+        promptRepo: {
+          title: "Przegląd repo",
+          intent: "Decyzja, co poprawić albo opisać najpierw.",
+          steps: [
+            ["Pytanie o decyzję", "Agent zapyta, co chcesz zdecydować po przeglądzie, jeśli nie wynika to z kontekstu."],
+            ["Czytanie repo", "Sprawdzi README, PRODUCT.md, roadmap, instrukcje agentów, kod i ślady pomiaru."],
+            ["Synteza", "Oddzieli to, co wiadomo, od luk, ryzyk, założeń i brakujących danych."],
+            ["Następny ruch", "Wskaże najmniejszą zmianę, research albo artefakt, który ma sens teraz."]
+          ],
+          outcome: "Repo zostaje lżejsze do dalszej pracy: wiadomo, co zdecydować, co zmierzyć i czego nie dopisywać na zapas."
+        }
+      },
+      en: {
+        promptOpenSource: {
+          title: "New product",
+          intent: "Start from an idea or an empty repo.",
+          steps: [
+            ["Orient", "The agent checks what is already in the repo and asks only for missing context."],
+            ["Mission and audience", "It drafts product directions, market, user, and need."],
+            ["Evidence", "It looks for usage data, repo signals, or sources that could change the decision."],
+            ["Decision", "It shows findings, the first metric, and the smallest next step."]
+          ],
+          outcome: "If a direction is chosen, the agent can write compact PRODUCT.md and ROADMAP.md."
+        },
+        promptAudit: {
+          title: "Feature audit",
+          intent: "Check a feature before building more.",
+          steps: [
+            ["Goal", "The agent clarifies the decision: develop, narrow, defer, or test."],
+            ["Need trail", "It connects the feature to audience, concrete user, need, and value."],
+            ["Conditions", "It checks available data, feedback, infrastructure risk, and missing decisions."],
+            ["Recommendation", "It suggests a decision, metric, and smallest test that raises confidence."]
+          ],
+          outcome: "You get a clear call: develop, narrow, prototype, defer, or measure before building."
+        },
+        promptRepo: {
+          title: "Repo check",
+          intent: "Decide what to improve or document first.",
+          steps: [
+            ["Decision question", "The agent asks what you want to decide after the repo pass when context is missing."],
+            ["Repo read", "It checks README, PRODUCT.md, roadmap, agent instructions, code, and measurement traces."],
+            ["Synthesis", "It separates what is known from gaps, risks, assumptions, and missing data."],
+            ["Next move", "It names the smallest change, research step, or artifact that makes sense now."]
+          ],
+          outcome: "The repo becomes easier to continue from: what to decide, what to measure, and what not to add yet."
+        }
       }
     };
 
     const textTranslations = {
-      "Proces UX open source dla ludzi i agentów": "Open source UX process for humans and agents",
+      "Open source proces UX dla ludzi i agentów": "Open source UX process for humans and agents",
       "Proces": "Process",
       "Instalacja": "Install",
-      "Prompty": "Prompts",
-      "Open source'owy proces UX dla ludzi i agentów. Pomaga przejść od misji, rynku i potrzeby użytkownika do decyzji, metryk, ewaluacji UX i lekkiej pamięci produktu w repo.": "An open source UX process for humans and agents. It helps move from mission, market, and user need to decisions, metrics, UX evaluation, and lightweight product memory in the repo.",
+      "Przykłady": "Examples",
+      "Open source proces UX dla ludzi i agentów. Pomaga przejść od misji, rynku i potrzeby użytkownika do decyzji, metryk, ewaluacji UX i lekkiej pamięci produktu w repo.": "An open source UX process for humans and agents. It helps move from mission, market, and user need to decisions, metrics, UX evaluation, and lightweight product memory in the repo.",
       "Zainstaluj skill": "Install skill",
+      "Instaluj": "Install",
       "Współtwórz": "Contribute",
       "Mapa procesu": "Process map",
       "Misja": "Mission",
@@ -2009,8 +2932,8 @@
       "Wskazuje brakujące decyzje, metryki, research i UX scorecard bez tworzenia plików na zapas.": "It points out missing decisions, metrics, research, and UX scorecards without creating files in advance.",
       "Pomaga ustalić, co naprawić najpierw, żeby produkt rozwijał się w oparciu o potrzeby, decyzje i metryki.": "It helps decide what to fix first so the product evolves around needs, decisions, and metrics.",
       "Struktura repo": "Repo structure",
-      "Pełna struktura, minimum na czarno": "Full structure, minimum in black",
-      "Czarne wiersze to domyślny zestaw startowy po ustaleniu kierunku produktu. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.": "Black rows are the default starter set after the product direction is chosen. The rest is a target artifact library, added only when a decision, risk, or measurement needs its own file.",
+      "Porządek w pracy nad produktem od pierwszego pliku": "Product work stays organized from the first file",
+      "UX RULER pomaga utrzymać repozytorium lekkie, czytelne i gotowe do podejmowania decyzji. Startujesz od najważniejszych artefaktów, a kolejne pliki dodajesz dopiero wtedy, gdy wspierają strategię, pomiar albo realną pracę nad produktem.": "UX RULER helps keep the repository lightweight, readable, and ready for product decisions. You start with the most important artifacts and add new files only when they support strategy, measurement, or real product work.",
       "Minimalny root": "Minimal root",
       "3 pliki": "3 files",
       "mapa": "map",
@@ -2042,15 +2965,20 @@
       "UX RULER instaluje się jako folder skilla z workflow i referencjami. Wybierz ścieżkę dla swojego narzędzia: osobista instalacja w agencie albo kopia lokalna w repo projektu.": "UX RULER installs as a skill folder with a workflow and references. Choose the path for your tool: personal installation in the agent or a local copy in the project repo.",
       "Najprostsza ścieżka: użyj wbudowanego `skill-installer` i podaj URL do folderu skilla w publicznym repo.": "The simplest path: use the built-in `skill-installer` and provide the URL to the skill folder in the public repo.",
       "Instalacja jako personal skill. Claude wykrywa skille z `~/.claude/skills/` po restarcie Claude Code.": "Install as a personal skill. Claude detects skills from `~/.claude/skills/` after restarting Claude Code.",
-      "Projektowo": "Per project",
+      "Repository": "Repository",
       "Wariant dla zespołu: skill jest częścią konkretnego repo i można go commitować razem z projektem.": "A team option: the skill becomes part of a specific repo and can be committed with the project.",
-      "Startowe prompty": "Starter prompts",
-      "Jak uruchomić UX RULER": "How to start UX RULER",
-      "Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać prostym językiem o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, wnioski i decyzję.": "After installation, start with a conversation: give the agent a sketch of the idea, let it ask for context in simple language, inspect available usage and repo data, then ask for research, findings, and a decision.",
+      "Wybierz prompt i zobacz, co się zadzieje": "Choose a prompt and see what happens",
+      "Prompt ma nazwać intencję, nie przepisywać workflow. Zaznacz przykład, a obok zobaczysz, jak UX RULER poprowadzi rozmowę, research, decyzję i ewentualny zapis w repo.": "The prompt should name the intent, not restate the workflow. Select an example and you will see how UX RULER guides the conversation, research, decision, and possible repo update.",
       "Nowy produkt": "New product",
       "Audyt funkcji": "Feature audit",
       "Przegląd repo": "Repo check",
-      "Kopiuj": "Copy"
+      "Co powinniśmy sprawdzić?": "What should we check?",
+      "Napisz, co w UX RULER jest niejasne, brakujące albo warte przetestowania jako pierwsze.": "Tell us what feels unclear, missing, or worth testing first in UX RULER.",
+      "Twój feedback": "Your feedback",
+      "Email do kontaktu (opcjonalnie)": "Contact email (optional)",
+      "Wyślij feedback": "Send feedback",
+      "Kopiuj": "Copy",
+      "Kopiuj prompt": "Copy prompt"
     };
 
     const ariaTranslations = [
@@ -2064,6 +2992,7 @@
 
     const localizedTextNodes = [];
     let currentLanguage = "pl";
+    let currentInstallCommands = {};
 
     function trackLandingEvent(eventName, properties = {}) {
       const event = {
@@ -2167,11 +3096,121 @@
       if (element) element.setAttribute("content", value);
     }
 
-    function renderPromptTexts(language) {
-      ["promptOpenSource", "promptAudit", "promptRepo"].forEach((id) => {
-        const element = document.getElementById(id);
-        if (element) element.textContent = pageCopy[language][id];
+    let activePromptExample = promptExampleIds[0];
+
+    function detailsForPrompt(language, id) {
+      const details = promptExampleDetails[language] || promptExampleDetails[fallbackLanguage];
+      return details[id] || details[promptExampleIds[0]];
+    }
+
+    function renderPromptFlow(language) {
+      const copy = pageCopy[language];
+      const details = detailsForPrompt(language, activePromptExample);
+      const flow = document.querySelector("[data-prompt-flow]");
+      const flowLabel = document.querySelector("[data-prompt-flow-label]");
+      const flowTitle = document.querySelector("[data-prompt-flow-title]");
+      const flowSteps = document.querySelector("[data-prompt-flow-steps]");
+      const outcomeLabel = document.querySelector("[data-prompt-outcome-label]");
+      const outcome = document.querySelector("[data-prompt-flow-outcome]");
+
+      if (flow) flow.setAttribute("aria-label", copy.promptFlowAria);
+      if (flowLabel) flowLabel.textContent = copy.promptFlowLabel;
+      if (flowTitle) flowTitle.textContent = details.title;
+      if (outcomeLabel) outcomeLabel.textContent = copy.promptOutcomeLabel;
+      if (outcome) outcome.textContent = details.outcome;
+
+      if (flowSteps) {
+        clearElement(flowSteps);
+        details.steps.forEach(([title, body]) => {
+          const item = document.createElement("li");
+          item.className = "prompt-flow-step";
+          const content = document.createElement("div");
+          const heading = document.createElement("strong");
+          const description = document.createElement("span");
+
+          heading.textContent = title;
+          description.textContent = body;
+          content.append(heading, description);
+          item.appendChild(content);
+          flowSteps.appendChild(item);
+        });
+      }
+    }
+
+    function renderPromptSelection(language) {
+      const copy = pageCopy[language];
+      const list = document.querySelector("[data-prompt-list]");
+      if (list) list.setAttribute("aria-label", copy.promptListAria);
+
+      promptExampleIds.forEach((id) => {
+        const details = detailsForPrompt(language, id);
+        const card = document.querySelector(`[data-prompt-card="${id}"]`);
+        const trigger = document.querySelector(`[data-prompt-select="${id}"]`);
+        const code = document.getElementById(id);
+        const title = card ? card.querySelector("[data-prompt-title]") : null;
+        const intent = card ? card.querySelector("[data-prompt-intent]") : null;
+        const isActive = id === activePromptExample;
+
+        if (card) card.classList.toggle("is-active", isActive);
+        if (trigger) {
+          trigger.setAttribute("aria-pressed", String(isActive));
+          trigger.setAttribute("aria-label", `${copy.promptSelectAria}: ${details.title}`);
+        }
+        if (title) title.textContent = details.title;
+        if (intent) intent.textContent = details.intent;
+        if (code) code.textContent = copy[id];
       });
+
+      renderPromptFlow(language);
+    }
+
+    function selectPromptExample(id, track = true) {
+      if (!promptExampleIds.includes(id)) return;
+      activePromptExample = id;
+      renderPromptSelection(currentLanguage);
+
+      if (track) {
+        const details = detailsForPrompt(currentLanguage, id);
+        trackLandingEvent("landing_prompt_selected", {
+          prompt_target: id,
+          prompt_title: details.title
+        });
+      }
+    }
+
+    function renderPromptTexts(language) {
+      renderPromptSelection(language);
+    }
+
+    function renderFooterFeedbackCopy(language) {
+      const copy = pageCopy[language];
+      const textTargets = {
+        "[data-footer-feedback-kicker]": "footerFeedbackKicker",
+        "[data-footer-feedback-title]": "footerFeedbackTitle",
+        "[data-footer-feedback-intro]": "footerFeedbackIntro",
+        "[data-footer-feedback-message-label]": "footerFeedbackMessageLabel",
+        "[data-footer-feedback-email-label]": "footerFeedbackEmailLabel",
+        "[data-footer-feedback-send]": "footerFeedbackSend"
+      };
+      const placeholderTargets = {
+        "[data-footer-feedback-message]": "footerFeedbackMessagePlaceholder",
+        "[data-footer-feedback-email]": "footerFeedbackEmailPlaceholder"
+      };
+
+      Object.entries(textTargets).forEach(([selector, key]) => {
+        const element = document.querySelector(selector);
+        if (element) element.textContent = copy[key];
+      });
+
+      Object.entries(placeholderTargets).forEach(([selector, key]) => {
+        const element = document.querySelector(selector);
+        if (element) element.setAttribute("placeholder", copy[key]);
+      });
+
+      const status = document.querySelector("[data-footer-feedback-status]");
+      if (status && status.dataset.feedbackStatus) {
+        status.textContent = copy[status.dataset.feedbackStatus] || "";
+      }
     }
 
     function updateLanguageButtons(language) {
@@ -2182,9 +3221,28 @@
       });
     }
 
+    function isPromptCopyTarget(targetId) {
+      return promptExampleIds.includes(targetId);
+    }
+
+    function copyButtonLabel(button, language, state = "idle") {
+      const copy = pageCopy[language];
+      const isPromptCopy = isPromptCopyTarget(button.dataset.copy);
+
+      if (state === "done") return isPromptCopy ? copy.copyPromptDone : copy.copyDone;
+      if (state === "fallback") return copy.copyFallback;
+      return isPromptCopy ? copy.copyPromptIdle : copy.copyIdle;
+    }
+
+    function setCopyButtonState(button, state = "idle", language = currentLanguage) {
+      const label = copyButtonLabel(button, language, state);
+      button.textContent = button.classList.contains("icon-copy") ? "" : label;
+      button.setAttribute("aria-label", label);
+    }
+
     function resetCopyButtons(language) {
-      document.querySelectorAll(".copy").forEach((button) => {
-        button.textContent = pageCopy[language].copyIdle;
+      document.querySelectorAll(".copy[data-copy]").forEach((button) => {
+        setCopyButtonState(button, "idle", language);
       });
     }
 
@@ -2221,6 +3279,7 @@
 
       renderInstallCommands(language);
       renderPromptTexts(language);
+      renderFooterFeedbackCopy(language);
       updateLanguageButtons(language);
       if (persist) writeStoredLanguage(language);
 
@@ -2466,7 +3525,10 @@
       const railHeight = window.innerHeight;
       const labelGap = 24;
       const topPadding = railOffset;
-      const bottomPadding = railOffset;
+      const bottomPadding = Math.max(
+        readCssPixelVariable("--rail-bottom-padding", 16),
+        railOffset
+      );
       const labelLengths = allLinks.map((link) => link.offsetWidth);
       const labelDepths = allLinks.map((link) => link.offsetHeight);
       const aboutTarget = sectionRailLinks[0] ? railTargetFor(sectionRailLinks[0]) : null;
@@ -2519,7 +3581,9 @@
           cursor += labelLengths[index] * scales[index] + labelGap;
         });
 
-        return tops;
+        const stackBottom = cursor - labelGap;
+        const stackLift = Math.max(0, stackBottom - (railHeight - bottomPadding));
+        return stackLift > 0 ? tops.map((top) => top - stackLift) : tops;
       }
 
       function bottomStackTops(scales) {
@@ -2592,6 +3656,9 @@
     window.addEventListener("scroll", renderRailNav, { passive: true });
     window.addEventListener("resize", renderRailNav);
     window.addEventListener("load", renderRailNav);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(renderRailNav).catch(() => {});
+    }
     renderRailNav();
 
     const defaultRepoUrl = "https://github.com/making-mike/uxruler.git";
@@ -2611,7 +3678,7 @@
       const folderUrl = repoToFolderUrl(repoUrl);
       const escapedRepo = shellEscape(repoUrl);
 
-      const commands = language === "pl"
+      currentInstallCommands = language === "pl"
         ? {
             codex: `Użyj $skill-installer, żeby zainstalować ten skill:\n${folderUrl}\n\nUruchom ponownie Codex, żeby załadować nowe skille.`,
             claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# uruchom ponownie Claude Code`,
@@ -2623,7 +3690,7 @@
             projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/uxruler`
           };
 
-      Object.entries(commands).forEach(([id, command]) => {
+      Object.entries(currentInstallCommands).forEach(([id, command]) => {
         const block = document.querySelector(`#${id} code`);
         if (block) block.textContent = command;
       });
@@ -2692,6 +3759,28 @@
       });
     });
 
+    document.querySelectorAll("[data-prompt-select]").forEach((button) => {
+      button.addEventListener("click", () => {
+        selectPromptExample(button.dataset.promptSelect);
+      });
+    });
+
+    const footerFeedbackForm = document.querySelector("[data-footer-feedback-form]");
+    if (footerFeedbackForm) {
+      footerFeedbackForm.addEventListener("submit", sendFooterFeedback);
+    }
+
+    const footerFeedbackMessage = document.querySelector("[data-footer-feedback-message]");
+    if (footerFeedbackMessage) {
+      footerFeedbackMessage.addEventListener("input", () => {
+        footerFeedbackMessage.removeAttribute("aria-invalid");
+        const status = document.querySelector("[data-footer-feedback-status]");
+        if (status && status.dataset.feedbackStatus === "footerFeedbackRequired") {
+          setFooterFeedbackStatus("");
+        }
+      });
+    }
+
     function fallbackCopy(text) {
       const textArea = document.createElement("textarea");
       textArea.value = text;
@@ -2730,28 +3819,639 @@
       return "unknown";
     }
 
-    document.querySelectorAll(".copy").forEach((button) => {
+    function setFooterFeedbackStatus(copyKey) {
+      const status = document.querySelector("[data-footer-feedback-status]");
+      if (!status) return;
+
+      if (!copyKey) {
+        status.textContent = "";
+        delete status.dataset.feedbackStatus;
+        return;
+      }
+
+      status.dataset.feedbackStatus = copyKey;
+      status.textContent = pageCopy[currentLanguage][copyKey] || "";
+    }
+
+    function sendFooterFeedback(event) {
+      event.preventDefault();
+      const message = document.querySelector("[data-footer-feedback-message]");
+      const email = document.querySelector("[data-footer-feedback-email]");
+      const cleanFeedback = message && "value" in message ? message.value.trim() : "";
+      const cleanEmail = email && "value" in email ? email.value.trim() : "";
+
+      if (!cleanFeedback) {
+        if (message) message.setAttribute("aria-invalid", "true");
+        setFooterFeedbackStatus("footerFeedbackRequired");
+        return;
+      }
+
+      if (message) message.removeAttribute("aria-invalid");
+
+      const eventProperties = {
+        feedback_surface: "footer",
+        feedback_length: cleanFeedback.length,
+        has_contact_email: Boolean(cleanEmail)
+      };
+
+      if (cleanFeedback) eventProperties.feedback = cleanFeedback;
+      if (cleanEmail) eventProperties.contact_email = cleanEmail;
+
+      trackLandingEvent("landing_feedback_sent", eventProperties);
+      setFooterFeedbackStatus("footerFeedbackSent");
+
+      const form = document.querySelector("[data-footer-feedback-form]");
+      if (form && typeof form.reset === "function") form.reset();
+    }
+
+    const surveyStageSearchTerms = {
+      expectation: ["expectation", "expectations", "before use", "before_use", "pre use", "pre_use", "oczekiwania", "przed uzyciem"],
+      after_use: ["after use", "after_use", "after-use", "follow up", "follow_up", "outcome", "result", "po uzyciu", "po_uzyciu", "po-uzyciu", "wynik"]
+    };
+    let activeSurveyState = null;
+
+    function normalizeForSearch(value) {
+      return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[-_]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function normalizeSurveyStage(value) {
+      const normalized = normalizeForSearch(value);
+      if (surveyStageSearchTerms.expectation.includes(normalized)) return "expectation";
+      if (surveyStageSearchTerms.after_use.includes(normalized)) return "after_use";
+      return null;
+    }
+
+    function surveyStageCopy(stage) {
+      const copy = pageCopy[currentLanguage];
+      return stage === "after_use"
+        ? {
+            title: copy.surveyAfterUseTitle,
+            intro: copy.surveyAfterUseIntro,
+            completeTitle: copy.surveyAfterUseCompleteTitle,
+            completeCopy: copy.surveyAfterUseCompleteCopy
+          }
+        : {
+            title: copy.surveyExpectationTitle,
+            intro: copy.surveyExpectationIntro,
+            completeTitle: copy.surveyCompleteTitle,
+            completeCopy: copy.surveyCompleteCopy
+          };
+    }
+
+    function surveyStorageKey(stage) {
+      return `uxruler-survey-${stage}`;
+    }
+
+    function hasSurveyInteracted(stage) {
+      try {
+        return Boolean(window.localStorage.getItem(surveyStorageKey(stage)));
+      } catch {
+        return false;
+      }
+    }
+
+    function markSurveyInteracted(stage, action) {
+      try {
+        window.localStorage.setItem(surveyStorageKey(stage), JSON.stringify({
+          action,
+          at: new Date().toISOString()
+        }));
+      } catch {
+        // Survey display conditions still work through PostHog when local storage is unavailable.
+      }
+    }
+
+    function pushMeasuredEvent(eventName, properties = {}) {
+      const event = {
+        event: eventName,
+        language: currentLanguage,
+        path: window.location.pathname || "/",
+        ...properties
+      };
+      const { event: _eventName, ...eventProperties } = event;
+
+      if (!Array.isArray(window.dataLayer)) {
+        window.dataLayer = [];
+      }
+      window.dataLayer.push(event);
+
+      if (!Array.isArray(window.uxrulerLandingEvents)) {
+        window.uxrulerLandingEvents = [];
+      }
+      window.uxrulerLandingEvents.push(event);
+
+      if (typeof CustomEvent === "function") {
+        window.dispatchEvent(new CustomEvent("uxruler:landing-event", { detail: event }));
+      }
+
+      return eventProperties;
+    }
+
+    function trackSurveyEvent(eventName, properties = {}) {
+      const eventProperties = pushMeasuredEvent(eventName, properties);
+      if (!eventProperties.survey_debug && window.posthog && typeof window.posthog.capture === "function") {
+        window.posthog.capture(eventName, eventProperties);
+      }
+    }
+
+    function readSurveyMetadata(survey) {
+      const description = String(survey && survey.description ? survey.description : "").trim();
+      if (!description) return {};
+
+      if (description.startsWith("{")) {
+        try {
+          return JSON.parse(description);
+        } catch {
+          return {};
+        }
+      }
+
+      const stageMatch = description.match(/uxruler_stage\s*[:=]\s*([a-zA-Z0-9_-]+)/);
+      return stageMatch ? { uxruler_stage: stageMatch[1] } : {};
+    }
+
+    function stageForSurvey(survey) {
+      const metadata = readSurveyMetadata(survey);
+      const metadataStage = normalizeSurveyStage(metadata.uxruler_stage);
+      if (metadataStage) return metadataStage;
+
+      const haystack = normalizeForSearch(`${survey.name || ""} ${survey.description || ""}`);
+      return Object.entries(surveyStageSearchTerms).find(([, terms]) => {
+        return terms.some((term) => haystack.includes(term));
+      })?.[0] || null;
+    }
+
+    function pickSurveyForStage(surveys, stage) {
+      const apiSurveys = surveys.filter((survey) => survey && survey.type === "api");
+      const matchedSurvey = apiSurveys.find((survey) => stageForSurvey(survey) === stage);
+      if (matchedSurvey) return matchedSurvey;
+      return stage === "expectation" ? apiSurveys.find((survey) => !stageForSurvey(survey)) : null;
+    }
+
+    function readSurveyDebugValue() {
+      const params = new URLSearchParams(window.location.search);
+      const value = params.get("survey_debug");
+      return value ? normalizeForSearch(value).replace(/\s+/g, "_") : null;
+    }
+
+    function isLocalSurveyHost() {
+      return ["localhost", "127.0.0.1", "::1", ""].includes(window.location.hostname);
+    }
+
+    function createDebugSurvey(stage) {
+      return stage === "after_use"
+        ? {
+            id: "debug-after-use-survey",
+            name: "UX RULER after use debug",
+            type: "api",
+            description: '{"uxruler_stage":"after_use"}',
+            questions: [
+              {
+                id: "debug-after-use-rating",
+                type: "rating",
+                scale: 10,
+                question: currentLanguage === "pl"
+                  ? "Na ile UX RULER pomógł Ci podjąć lepszą decyzję?"
+                  : "How much did UX RULER help you make a better decision?"
+              },
+              {
+                id: "debug-after-use-text",
+                type: "open_text",
+                question: currentLanguage === "pl"
+                  ? "Co konkretnie zmieniło się po użyciu?"
+                  : "What specifically changed after using it?"
+              }
+            ]
+          }
+        : {
+            id: "debug-expectation-survey",
+            name: "UX RULER expectation debug",
+            type: "api",
+            description: '{"uxruler_stage":"expectation"}',
+            questions: [
+              {
+                id: "debug-expectation-choice",
+                type: "multiple_choice",
+                question: currentLanguage === "pl"
+                  ? "Czego oczekujesz od UX RULER?"
+                  : "What do you expect from UX RULER?",
+                choices: currentLanguage === "pl"
+                  ? ["Wybrać kierunek produktu", "Sprawdzić funkcję", "Ułożyć pamięć produktu w repo", "Zdefiniować metrykę"]
+                  : ["Choose a product direction", "Check a feature", "Create product memory in the repo", "Define a metric"]
+              },
+              {
+                id: "debug-expectation-text",
+                type: "open_text",
+                question: currentLanguage === "pl"
+                  ? "Co chcesz zdecydować po pierwszym użyciu?"
+                  : "What do you want to decide after the first use?"
+              }
+            ]
+          };
+    }
+
+    function followUpSurveyUrl() {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("survey_debug");
+      url.searchParams.set("survey", "after-use");
+      url.hash = "";
+      return url.toString();
+    }
+
+    function choiceText(choice) {
+      if (choice && typeof choice === "object") {
+        return String(choice.label || choice.value || choice.name || "");
+      }
+      return String(choice || "");
+    }
+
+    function questionType(question) {
+      return String(question.type || "open_text").toLowerCase();
+    }
+
+    function isQuestionRequired(question) {
+      return question.optional !== true && question.required !== false;
+    }
+
+    function clearElement(element) {
+      while (element.firstChild) {
+        element.removeChild(element.firstChild);
+      }
+    }
+
+    function renderOpenQuestion(container, question, index) {
+      const textarea = document.createElement("textarea");
+      textarea.className = "survey-textarea";
+      textarea.name = `survey-question-${index}`;
+      textarea.dataset.questionIndex = String(index);
+      textarea.placeholder = pageCopy[currentLanguage].surveyTextPlaceholder;
+      textarea.rows = 4;
+      container.appendChild(textarea);
+    }
+
+    function renderChoiceQuestion(container, question, index, inputType) {
+      const list = document.createElement("div");
+      list.className = "survey-choice-list";
+
+      (question.choices || []).forEach((choice, choiceIndex) => {
+        const label = document.createElement("label");
+        label.className = "survey-choice";
+
+        const input = document.createElement("input");
+        input.type = inputType;
+        input.name = `survey-question-${index}`;
+        input.value = choiceText(choice);
+        input.dataset.questionIndex = String(index);
+
+        const span = document.createElement("span");
+        span.textContent = choiceText(choice) || String(choiceIndex + 1);
+
+        label.append(input, span);
+        list.appendChild(label);
+      });
+
+      container.appendChild(list);
+    }
+
+    function renderRatingQuestion(container, question, index) {
+      const list = document.createElement("div");
+      list.className = "survey-rating-list";
+      const scale = Number(question.scale || question.rating_scale || 10);
+      const max = Number.isFinite(scale) && scale > 1 ? Math.min(scale, 10) : 10;
+      const min = max === 10 ? 0 : 1;
+
+      for (let value = min; value <= max; value += 1) {
+        const label = document.createElement("label");
+        label.className = "survey-rating";
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = `survey-question-${index}`;
+        input.value = String(value);
+        input.dataset.questionIndex = String(index);
+
+        const span = document.createElement("span");
+        span.textContent = String(value);
+
+        label.append(input, span);
+        list.appendChild(label);
+      }
+
+      container.appendChild(list);
+    }
+
+    function renderSurveyFields(survey) {
+      const fields = document.querySelector("[data-survey-fields]");
+      if (!fields) return;
+      clearElement(fields);
+
+      (survey.questions || []).forEach((question, index) => {
+        const fieldset = document.createElement("fieldset");
+        fieldset.className = "survey-question";
+        fieldset.dataset.questionIndex = String(index);
+
+        const legend = document.createElement("legend");
+        legend.className = "survey-question-title";
+        legend.textContent = question.question || question.title || `Question ${index + 1}`;
+        fieldset.appendChild(legend);
+
+        const type = questionType(question);
+        if (type.includes("multiple")) {
+          renderChoiceQuestion(fieldset, question, index, "checkbox");
+        } else if (type.includes("single")) {
+          renderChoiceQuestion(fieldset, question, index, "radio");
+        } else if (type.includes("rating") || type === "nps") {
+          renderRatingQuestion(fieldset, question, index);
+        } else {
+          renderOpenQuestion(fieldset, question, index);
+        }
+
+        fields.appendChild(fieldset);
+      });
+    }
+
+    function collectSurveyResponses(form, survey) {
+      const responses = {};
+      const missing = [];
+      const questions = survey.questions || [];
+
+      questions.forEach((question, index) => {
+        const controls = Array.from(form.querySelectorAll(`[data-question-index="${index}"]`))
+          .filter((control) => "value" in control);
+        const type = questionType(question);
+        let value = "";
+
+        if (type.includes("multiple")) {
+          value = controls.filter((control) => control.checked).map((control) => control.value);
+        } else if (type.includes("single") || type.includes("rating") || type === "nps") {
+          const selected = controls.find((control) => control.checked);
+          value = selected ? selected.value : "";
+          if ((type.includes("rating") || type === "nps") && value !== "") {
+            value = Number(value);
+          }
+        } else {
+          value = controls[0] ? controls[0].value.trim() : "";
+        }
+
+        const hasValue = Array.isArray(value) ? value.length > 0 : value !== "";
+        if (isQuestionRequired(question) && !hasValue) {
+          missing.push(index);
+        }
+
+        if (hasValue) {
+          const questionId = question.id || String(index);
+          responses[`$survey_response_${questionId}`] = value;
+        }
+      });
+
+      return { responses, missing };
+    }
+
+    function setSurveyValidationState(missing) {
+      const status = document.querySelector("[data-survey-status]");
+      document.querySelectorAll(".survey-question").forEach((fieldset) => {
+        fieldset.classList.toggle("has-error", missing.includes(Number(fieldset.dataset.questionIndex)));
+      });
+      if (status) {
+        status.textContent = missing.length ? pageCopy[currentLanguage].surveyRequired : "";
+      }
+    }
+
+    function renderSurveyComplete(stage, context = {}) {
+      const copy = pageCopy[currentLanguage];
+      const stageCopy = surveyStageCopy(stage);
+      const form = document.querySelector("[data-survey-form]");
+      const complete = document.querySelector("[data-survey-complete]");
+      const title = document.querySelector("[data-survey-complete-title]");
+      const body = document.querySelector("[data-survey-complete-copy]");
+      const followUpButton = document.querySelector("[data-survey-followup-copy]");
+      const doneButton = document.querySelector("[data-survey-done]");
+
+      if (form) form.hidden = true;
+      if (complete) complete.hidden = false;
+      if (title) title.textContent = stageCopy.completeTitle;
+      if (body) body.textContent = stageCopy.completeCopy;
+      if (doneButton) doneButton.textContent = copy.surveyDone;
+
+      if (followUpButton) {
+        followUpButton.hidden = stage === "after_use";
+        followUpButton.textContent = copy.surveyFollowUpCopy;
+        followUpButton.onclick = async () => {
+          const copied = await copyText(followUpSurveyUrl());
+          followUpButton.textContent = copied ? copy.surveyFollowUpCopied : copy.copyFallback;
+          trackSurveyEvent("landing_survey_followup_link_copied", {
+            survey_stage: stage,
+            copied,
+            survey_debug: Boolean(context.debug)
+          });
+        };
+      }
+    }
+
+    function openSurveyModal(survey, stage, context = {}) {
+      const shell = document.querySelector("[data-survey-shell]");
+      const panel = document.querySelector(".survey-panel");
+      const form = document.querySelector("[data-survey-form]");
+      const complete = document.querySelector("[data-survey-complete]");
+      const title = document.querySelector("[data-survey-title]");
+      const intro = document.querySelector("[data-survey-intro]");
+      const kicker = document.querySelector("[data-survey-kicker]");
+      const submit = document.querySelector("[data-survey-submit]");
+      const skip = document.querySelector("[data-survey-skip]");
+      const close = document.querySelector("[data-survey-close]");
+      const stageCopy = surveyStageCopy(stage);
+
+      if (!shell || !panel || !form) return;
+      activeSurveyState = {
+        survey,
+        stage,
+        context,
+        submitted: false,
+        previousFocus: document.activeElement instanceof HTMLElement ? document.activeElement : null
+      };
+
+      if (complete) complete.hidden = true;
+      form.hidden = false;
+      setSurveyValidationState([]);
+      if (title) title.textContent = stageCopy.title;
+      if (intro) intro.textContent = stageCopy.intro;
+      if (kicker) kicker.textContent = pageCopy[currentLanguage].surveyKicker;
+      if (submit) submit.textContent = pageCopy[currentLanguage].surveySubmit;
+      if (skip) skip.textContent = pageCopy[currentLanguage].surveySkip;
+      if (close) close.setAttribute("aria-label", pageCopy[currentLanguage].surveyClose);
+
+      renderSurveyFields(survey);
+      shell.hidden = false;
+      panel.focus();
+
+      trackSurveyEvent("survey shown", {
+        $survey_id: survey.id,
+        survey_stage: stage,
+        survey_trigger: context.trigger || "unknown",
+        copy_target: context.copy_target || "",
+        copy_group: context.copy_group || "",
+        survey_debug: Boolean(context.debug)
+      });
+    }
+
+    function closeSurveyModal(reason = "dismissed") {
+      const shell = document.querySelector("[data-survey-shell]");
+      if (!shell || shell.hidden) return;
+
+      const state = activeSurveyState;
+      shell.hidden = true;
+      activeSurveyState = null;
+
+      if (state && !state.submitted && reason !== "completed") {
+        if (!state.context.debug) markSurveyInteracted(state.stage, "dismissed");
+        trackSurveyEvent("survey dismissed", {
+          $survey_id: state.survey.id,
+          survey_stage: state.stage,
+          dismiss_reason: reason,
+          survey_debug: Boolean(state.context.debug)
+        });
+      }
+
+      if (state && state.previousFocus && typeof state.previousFocus.focus === "function") {
+        state.previousFocus.focus();
+      }
+    }
+
+    function maybeOpenSurvey(stage, context = {}) {
+      const normalizedStage = normalizeSurveyStage(stage);
+      if (!normalizedStage) return;
+
+      const debugValue = readSurveyDebugValue();
+      const useDebugSurvey = context.debug || debugValue === normalizedStage || (isLocalSurveyHost() && !window.posthog);
+      if (useDebugSurvey) {
+        openSurveyModal(createDebugSurvey(normalizedStage), normalizedStage, { ...context, debug: true });
+        return;
+      }
+
+      if (!context.force && hasSurveyInteracted(normalizedStage)) return;
+      if (!window.posthog || typeof window.posthog.getActiveMatchingSurveys !== "function") return;
+
+      window.posthog.getActiveMatchingSurveys((surveys) => {
+        const survey = pickSurveyForStage(Array.isArray(surveys) ? surveys : [], normalizedStage);
+        if (!survey) {
+          trackLandingEvent("landing_survey_unavailable", {
+            survey_stage: normalizedStage,
+            survey_trigger: context.trigger || "unknown"
+          });
+          return;
+        }
+
+        openSurveyModal(survey, normalizedStage, context);
+      }, true);
+    }
+
+    function readInitialSurveyStage() {
+      const params = new URLSearchParams(window.location.search);
+      const queryStage = normalizeSurveyStage(params.get("survey") || params.get("uxruler_survey"));
+      if (queryStage) return queryStage;
+
+      const hash = normalizeSurveyStage(window.location.hash.replace(/^#/, ""));
+      return hash;
+    }
+
+    const surveyForm = document.querySelector("[data-survey-form]");
+    if (surveyForm) {
+      surveyForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!activeSurveyState) return;
+
+        const { survey, stage, context } = activeSurveyState;
+        const { responses, missing } = collectSurveyResponses(surveyForm, survey);
+        setSurveyValidationState(missing);
+        if (missing.length) return;
+
+        activeSurveyState.submitted = true;
+        if (!context.debug) markSurveyInteracted(stage, "sent");
+        trackSurveyEvent("survey sent", {
+          $survey_id: survey.id,
+          $survey_questions: (survey.questions || []).map((question) => ({
+            id: question.id,
+            question: question.question || question.title || "",
+            type: question.type || "open_text"
+          })),
+          survey_stage: stage,
+          survey_trigger: context.trigger || "unknown",
+          copy_target: context.copy_target || "",
+          copy_group: context.copy_group || "",
+          survey_debug: Boolean(context.debug),
+          ...responses
+        });
+        renderSurveyComplete(stage, context);
+      });
+    }
+
+    document.querySelectorAll("[data-survey-close], [data-survey-skip], [data-survey-done]").forEach((button) => {
+      button.addEventListener("click", () => closeSurveyModal(button.hasAttribute("data-survey-done") ? "completed" : "dismissed"));
+    });
+
+    const surveyShell = document.querySelector("[data-survey-shell]");
+    if (surveyShell) {
+      surveyShell.addEventListener("click", (event) => {
+        if (event.target === surveyShell) closeSurveyModal("backdrop");
+      });
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeSurveyModal("escape");
+      }
+    });
+
+    document.querySelectorAll(".install-open").forEach((button) => {
+      button.textContent = pageCopy[currentLanguage].installIdle;
+    });
+
+    document.querySelectorAll(".copy[data-copy]").forEach((button) => {
       button.addEventListener("click", async () => {
-        const target = document.getElementById(button.dataset.copy);
+        const targetId = button.dataset.copy;
+        const copyGroup = copyGroupFor(targetId);
+
+        if (copyGroup === "prompt") {
+          selectPromptExample(targetId);
+        }
+
+        const target = document.getElementById(targetId);
         const text = target ? target.innerText.trim() : "";
         const copied = await copyText(text);
         trackLandingEvent("landing_copy_clicked", {
-          copy_target: button.dataset.copy || "unknown",
-          copy_group: copyGroupFor(button.dataset.copy),
+          copy_target: targetId || "unknown",
+          copy_group: copyGroup,
           copied,
           text_length: text.length
         });
 
         if (copied) {
-          button.textContent = pageCopy[currentLanguage].copyDone;
+          setCopyButtonState(button, "done");
           setTimeout(() => {
-            button.textContent = pageCopy[currentLanguage].copyIdle;
+            setCopyButtonState(button);
           }, 1400);
         } else {
-          button.textContent = pageCopy[currentLanguage].copyFallback;
+          setCopyButtonState(button, "fallback");
         }
+
       });
     });
+
+    const initialSurveyStage = readInitialSurveyStage();
+    const surveyDebugValue = readSurveyDebugValue();
+    if (initialSurveyStage || (surveyDebugValue && surveyDebugValue !== "copy")) {
+      maybeOpenSurvey(initialSurveyStage || surveyDebugValue, {
+        trigger: surveyDebugValue ? "debug" : "direct_link",
+        force: true,
+        debug: Boolean(surveyDebugValue)
+      });
+    }
 
   </script>
 </body>

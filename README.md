@@ -113,6 +113,7 @@ git add .claude/skills/uxruler
 ├── PRODUCT.md
 ├── ROADMAP.md
 ├── index.html
+├── install.html
 ├── .github/
 ├── README.md
 ├── LICENSE

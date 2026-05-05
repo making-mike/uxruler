@@ -1,0 +1,1712 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UX RULER install</title>
+  <meta name="description" content="Install UX RULER in Codex, Claude Code, or a project repo.">
+  <meta name="theme-color" content="#000000">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <link rel="canonical" href="https://uxruler.com/install.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+  <link rel="manifest" href="assets/favicon/manifest.json">
+  <meta property="og:title" content="UX RULER install">
+  <meta property="og:description" content="Install UX RULER in Codex, Claude Code, or a project repo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uxruler.com/install.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fragment-mono-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fragment-mono-latin-ext.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/kalam-700-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/kalam-700-latin-ext.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin-ext.woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Fragment Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("assets/fonts/fragment-mono-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Fragment Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("assets/fonts/fragment-mono-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "Kalam";
+      font-style: normal;
+      font-weight: 700;
+      font-display: block;
+      src: url("assets/fonts/kalam-700-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Kalam";
+      font-style: normal;
+      font-weight: 700;
+      font-display: block;
+      src: url("assets/fonts/kalam-700-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "Space Grotesk";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: block;
+      src: url("assets/fonts/space-grotesk-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Space Grotesk";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: block;
+      src: url("assets/fonts/space-grotesk-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    :root {
+      --black: #000;
+      --white: #fff;
+      --heading-font: "Space Grotesk", "Fragment Mono", ui-monospace, monospace;
+      --emphasis-font: "Kalam", "Fragment Mono", ui-monospace, monospace;
+      --grid-line: rgba(0, 0, 0, 0.035);
+      --grid-size: 4px;
+      --small-line: 16px;
+      --meta-line: 20px;
+      --text-line: 24px;
+      --h1-line: clamp(56px, 5.4vw, 80px);
+      --h2-line: 40px;
+      --content-min-width: 760px;
+      --rail-width: clamp(96px, calc(100vw - var(--content-min-width)), 346px);
+      --topbar-height: clamp(13px, calc(13.8728vw - 105.434px), 48px);
+      --nav-font-size: clamp(10px, calc(4.6243vw - 35.145px), 16px);
+      --content-gutter-left: clamp(74px, 8.2vw, 132px);
+      --content-gutter-right: clamp(18px, 5vw, 72px);
+      --topbar-columns: var(--rail-width) minmax(0, 1fr);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      position: relative;
+      margin: 0;
+      background: var(--white);
+      color: var(--black);
+      font-family: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      line-height: var(--text-line);
+      text-rendering: geometricPrecision;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      z-index: 0;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: var(--rail-width);
+      background: var(--black);
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      z-index: 0;
+      top: var(--topbar-height);
+      right: 0;
+      bottom: 0;
+      left: var(--rail-width);
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      background-position: 0 0;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    p,
+    li {
+      line-height: var(--text-line);
+    }
+
+    h1,
+    h2,
+    h3,
+    strong {
+      font-weight: 400;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--heading-font);
+      font-weight: 600;
+    }
+
+    em {
+      position: relative;
+      display: inline-block;
+      font-family: var(--emphasis-font);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    em::after {
+      content: "";
+      position: absolute;
+      left: -0.06em;
+      right: -0.04em;
+      bottom: -0.02em;
+      height: 0.13em;
+      border-radius: 999px;
+      background: currentColor;
+      pointer-events: none;
+      transform: rotate(-1.1deg);
+      transform-origin: left center;
+    }
+
+    .topbar {
+      position: fixed;
+      z-index: 30;
+      top: 0;
+      left: 0;
+      right: 0;
+      color: var(--white);
+      font-size: var(--nav-font-size);
+      line-height: var(--small-line);
+    }
+
+    .topbar .shell {
+      display: grid;
+      grid-template-columns: var(--topbar-columns);
+      width: 100%;
+      margin: 0;
+      min-height: var(--topbar-height);
+    }
+
+    .brand {
+      display: block;
+      width: var(--rail-width);
+      height: var(--topbar-height);
+      background: var(--black);
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .brand img {
+      display: block;
+      width: 100%;
+      height: var(--topbar-height);
+      object-fit: fill;
+    }
+
+    .topline {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: var(--topbar-height);
+      padding: 0 clamp(64px, calc(27.7456vw - 194.868px), 112px);
+      overflow: visible;
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .language-switcher {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: inline-flex;
+      align-items: stretch;
+      padding: 4px 4px 4px 0;
+      border: 0;
+      background: transparent;
+    }
+
+    .lang-button {
+      display: inline-grid;
+      place-items: center;
+      min-width: clamp(28px, calc(3.4682vw - 4.358px), 34px);
+      height: auto;
+      border: 0;
+      border-radius: 0;
+      background: var(--black);
+      color: var(--white);
+      font: inherit;
+      font-size: clamp(8px, calc(1.1561vw - 2.786px), 10px);
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lang-button + .lang-button {
+      box-shadow: inset 2px 0 0 var(--white);
+    }
+
+    .lang-button.is-active {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .page-ruler {
+      position: fixed;
+      z-index: 1;
+      top: calc(var(--topbar-height) + 4px);
+      bottom: 0;
+      left: var(--rail-width);
+      width: var(--topbar-height);
+      pointer-events: none;
+      background-image: url("assets/ruler.svg");
+      background-position: left top;
+      background-repeat: repeat-y;
+      background-size: var(--topbar-height) auto;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      margin-left: var(--rail-width);
+      padding-top: calc(var(--topbar-height) + 72px);
+      background: transparent;
+    }
+
+    .shell {
+      width: auto;
+      margin: 0 var(--content-gutter-right) 0 var(--content-gutter-left);
+    }
+
+    .install-hero {
+      display: grid;
+      gap: 28px;
+      max-width: 980px;
+      padding-bottom: 56px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      width: max-content;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--black);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 12em;
+      margin-bottom: 24px;
+      font-size: clamp(40px, 5.4vw, 76px);
+      line-height: var(--h1-line);
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 54rem;
+      margin-bottom: 0;
+      font-size: clamp(18px, 1.6vw, 24px);
+      line-height: 32px;
+    }
+
+    .feedback-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .button,
+    .copy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border: 2px solid currentColor;
+      border-radius: 0;
+      padding: 0 16px;
+      color: var(--black);
+      background: var(--white);
+      font: inherit;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button.primary,
+    .copy {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .button.secondary {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--black);
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    .copy:hover,
+    .copy:focus-visible,
+    .lang-button:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 4px;
+    }
+
+    .lang-button:focus-visible {
+      outline-color: var(--white);
+    }
+
+    .install-flow {
+      border: 2px solid var(--black);
+      background: var(--white);
+      scroll-margin-top: calc(var(--topbar-height) + 24px);
+    }
+
+    .flow-progress {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: 2px solid var(--black);
+      background: var(--white);
+    }
+
+    .flow-step {
+      display: grid;
+      gap: 6px;
+      min-height: 72px;
+      border: 0;
+      border-right: 2px solid var(--black);
+      border-radius: 0;
+      padding: 14px 16px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .flow-step:last-child {
+      border-right: 0;
+    }
+
+    .flow-step strong {
+      font-family: var(--heading-font);
+      font-size: 20px;
+      line-height: var(--text-line);
+    }
+
+    .flow-step.is-active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .flow-step:hover,
+    .flow-step:focus-visible,
+    .target-option:hover,
+    .target-option:focus-visible,
+    .prompt-option:hover,
+    .prompt-option:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: -6px;
+    }
+
+    .flow-step.is-active:focus-visible {
+      outline-color: var(--white);
+    }
+
+    .flow-panel {
+      display: grid;
+      gap: 24px;
+      padding: 24px;
+    }
+
+    .flow-panel[hidden] {
+      display: none;
+    }
+
+    .flow-panel-head {
+      display: grid;
+      gap: 8px;
+      max-width: 52rem;
+    }
+
+    .flow-panel-head h2 {
+      margin-bottom: 0;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: var(--h2-line);
+    }
+
+    .flow-panel-head p {
+      margin-bottom: 0;
+    }
+
+    .flow-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.68fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .target-options,
+    .prompt-options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .target-option,
+    .prompt-option {
+      display: grid;
+      gap: 8px;
+      width: 100%;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      padding: 16px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .target-option[aria-pressed="true"],
+    .prompt-option[aria-pressed="true"] {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .target-option strong,
+    .prompt-option strong {
+      font-family: var(--heading-font);
+      font-size: 20px;
+      line-height: var(--text-line);
+    }
+
+    .target-option span,
+    .prompt-option span {
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .flow-summary {
+      display: grid;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .flow-summary-card {
+      display: grid;
+      gap: 12px;
+      border: 2px solid var(--black);
+      padding: 18px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .flow-summary-card h3 {
+      margin-bottom: 0;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    .flow-summary-card p {
+      margin-bottom: 0;
+    }
+
+    .flow-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .step-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .step-list li {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .step-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 12px;
+      height: 2px;
+      background: var(--black);
+    }
+
+    .flow-summary-card .step-list li::before {
+      background: var(--white);
+    }
+
+    .code-block {
+      min-width: 0;
+      overflow: hidden;
+      border: 2px solid var(--black);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .code-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--white);
+      color: var(--white);
+      font-size: 12px;
+      line-height: var(--small-line);
+    }
+
+    .code-head .copy {
+      border-color: var(--white);
+    }
+
+    pre {
+      margin: 0;
+      max-height: 360px;
+      min-height: 180px;
+      padding: 16px;
+      overflow: auto;
+      font-size: 12px;
+      line-height: var(--meta-line);
+    }
+
+    code {
+      font-family: inherit;
+      white-space: pre;
+    }
+
+    .flow-note {
+      margin: 0;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .active-label {
+      display: block;
+      width: max-content;
+      border-bottom: 2px solid currentColor;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .prompt-preview code {
+      white-space: normal;
+      line-height: var(--text-line);
+    }
+
+    .feedback-form {
+      display: grid;
+      gap: 16px;
+      max-width: 720px;
+      border: 2px solid var(--black);
+      background: var(--white);
+      padding: 24px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field span {
+      font-family: var(--heading-font);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      padding: 12px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    textarea {
+      min-height: 144px;
+      resize: vertical;
+    }
+
+    textarea:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 3px;
+    }
+
+    .status {
+      min-width: 12rem;
+      margin: 0;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .footer {
+      position: relative;
+      z-index: 1;
+      margin-left: var(--rail-width);
+      padding: 56px 0 80px;
+      background: transparent;
+    }
+
+    .footer .shell {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 2px solid var(--black);
+      padding-top: 24px;
+    }
+
+    @media (max-width: 980px) {
+      .install-flow {
+        display: grid;
+      }
+
+      .flow-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-progress {
+        display: contents;
+        border-bottom: 0;
+      }
+
+      .flow-step,
+      .flow-step:nth-child(2),
+      .flow-step:nth-child(-n + 2),
+      .flow-step:last-child {
+        border-right: 0;
+        border-bottom: 2px solid var(--black);
+      }
+
+      .flow-step[data-flow-step-button="tool"] {
+        order: 1;
+      }
+
+      .flow-panel[data-flow-panel="tool"] {
+        order: 2;
+      }
+
+      .flow-step[data-flow-step-button="command"] {
+        order: 3;
+      }
+
+      .flow-panel[data-flow-panel="command"] {
+        order: 4;
+      }
+
+      .flow-step[data-flow-step-button="prompt"] {
+        order: 5;
+      }
+
+      .flow-panel[data-flow-panel="prompt"] {
+        order: 6;
+      }
+
+      .flow-step[data-flow-step-button="feedback"] {
+        order: 7;
+      }
+
+      .flow-panel[data-flow-panel="feedback"] {
+        order: 8;
+      }
+
+      .flow-panel {
+        border-bottom: 2px solid var(--black);
+      }
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --rail-width: 173px;
+        --topbar-height: 24px;
+        --mobile-topline-height: calc(var(--topbar-height) + 12px);
+        --mobile-header-height: calc(var(--topbar-height) + var(--mobile-topline-height));
+        --h1-line: 48px;
+      }
+
+      body::before,
+      .page-ruler {
+        display: none;
+      }
+
+      body::after {
+        left: 0;
+      }
+
+      .topbar {
+        position: fixed;
+        background: var(--black);
+        font-size: 10px;
+      }
+
+      .topbar .shell {
+        position: relative;
+        width: 100%;
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        width: var(--rail-width);
+        margin-left: 0;
+      }
+
+      .topbar .shell::after {
+        content: "";
+        position: absolute;
+        top: calc(var(--topbar-height) - 2px);
+        right: 0;
+        left: calc(var(--rail-width) - 2px);
+        height: 2px;
+        pointer-events: none;
+        background: var(--white);
+      }
+
+      .topline {
+        min-height: var(--mobile-topline-height);
+        border-top: 0;
+        border-bottom: 0;
+        padding: 6px 12px;
+        font-size: 13px;
+        white-space: normal;
+      }
+
+      .topline::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        pointer-events: none;
+        background: var(--white);
+      }
+
+      .language-switcher {
+        position: fixed;
+        z-index: 31;
+        top: 0;
+        right: 0;
+        bottom: auto;
+        height: var(--topbar-height);
+        padding: 0 0 2px;
+      }
+
+      .lang-button {
+        min-width: 42px;
+      }
+
+      .page {
+        margin-left: 0;
+        padding-top: calc(var(--mobile-header-height) + 48px);
+      }
+
+      .shell {
+        width: min(100% - 28px, 1160px);
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: clamp(32px, 10vw, 44px);
+      }
+
+      .flow-panel,
+      .feedback-form {
+        padding: 18px;
+      }
+
+      .footer {
+        margin-left: 0;
+      }
+    }
+  </style>
+  <script>
+    if (/(^|\.)uxruler\.com$/.test(window.location.hostname)) {
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_wjAEaf2HYu9seYjiNruZYWiKmqTqHaDJjQsdApcJ9wnz', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-01-30',
+        autocapture: false,
+        rageclick: false,
+        capture_pageview: true,
+        capture_pageleave: 'if_capture_pageview',
+        disable_session_recording: true,
+        disable_surveys: true,
+        disable_external_dependency_loading: true,
+        advanced_disable_flags: true,
+        advanced_disable_toolbar_metrics: true,
+        capture_performance: false,
+        capture_heatmaps: false,
+        capture_dead_clicks: false,
+        capture_exceptions: false
+      });
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar" aria-label="Page navigation">
+    <div class="shell">
+      <a class="brand" href="index.html#about" aria-label="UX RULER">
+        <img src="assets/logo.svg" alt="">
+      </a>
+      <div class="topline">
+        <span data-i18n="topline">Otwarty proces UX dla ludzi i agentów</span>
+        <div class="language-switcher" aria-label="Wybór języka">
+          <button class="lang-button is-active" type="button" data-lang="pl" aria-pressed="true">PL</button>
+          <button class="lang-button" type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-ruler" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="shell">
+      <section class="install-hero" aria-labelledby="installTitle">
+        <div>
+          <span class="eyebrow" data-i18n="eyebrow">Instalacja</span>
+          <h1 id="installTitle" data-i18n-html="heroTitle">Zainstaluj <em>UX RULER</em></h1>
+          <p class="lead" data-i18n="heroLead">Wybierz narzędzie, skopiuj instrukcję i uruchom skill na realnej decyzji produktowej. Feedback jest na końcu, więc nie przeszkadza w instalacji.</p>
+        </div>
+      </section>
+
+      <section class="install-flow" id="installFlow" aria-labelledby="flowTitle" data-install-flow>
+        <nav class="flow-progress" aria-label="Kroki instalacji">
+          <button class="flow-step" type="button" data-flow-step-button="tool">
+            <span>01</span>
+            <strong data-i18n="flowStepTool">Narzędzie</strong>
+          </button>
+          <button class="flow-step" type="button" data-flow-step-button="command">
+            <span>02</span>
+            <strong data-i18n="flowStepCommand">Instalacja</strong>
+          </button>
+          <button class="flow-step" type="button" data-flow-step-button="prompt">
+            <span>03</span>
+            <strong data-i18n="flowStepPrompt">Start</strong>
+          </button>
+          <button class="flow-step" type="button" data-flow-step-button="feedback">
+            <span>04</span>
+            <strong data-i18n="flowStepFeedback">Feedback</strong>
+          </button>
+        </nav>
+
+        <section class="flow-panel" data-flow-panel="tool" aria-labelledby="flowTitle">
+          <div class="flow-panel-head">
+            <h2 id="flowTitle" data-i18n="flowToolTitle">Gdzie chcesz używać UX RULER?</h2>
+            <p data-i18n="flowToolIntro">Wybierz jedną ścieżkę. Następny krok pokaże tylko właściwą instrukcję, bez reszty komend.</p>
+          </div>
+          <div class="flow-layout">
+            <div class="target-options" data-target-options></div>
+            <div class="flow-summary">
+              <article class="flow-summary-card">
+                <span class="active-label" data-i18n="selectedPathLabel">Wybrana ścieżka</span>
+                <h3 data-selected-target-title>Codex</h3>
+                <p data-selected-target-intro></p>
+              </article>
+              <div class="flow-actions">
+                <button class="button primary" type="button" data-flow-next data-i18n="continueToInstall">Pokaż instrukcję</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="flow-panel" data-flow-panel="command" hidden>
+          <div class="flow-panel-head">
+            <h2 data-i18n="flowCommandTitle">Skopiuj instrukcję instalacji</h2>
+            <p data-i18n="flowCommandIntro">To jest jedyna komenda, której potrzebujesz dla wybranej ścieżki.</p>
+          </div>
+          <div class="flow-layout">
+            <article class="flow-summary-card">
+              <span class="active-label" data-current-target-label>Codex</span>
+              <ol class="step-list" data-active-steps></ol>
+            </article>
+            <div class="code-block">
+              <div class="code-head">
+                <span data-active-command-label>Instrukcja</span>
+                <button class="copy" type="button" data-copy-active-command>Kopiuj</button>
+              </div>
+              <pre><code data-active-command></code></pre>
+            </div>
+          </div>
+          <div class="flow-actions">
+            <button class="button secondary" type="button" data-flow-back data-i18n="backButton">Wstecz</button>
+            <button class="button primary" type="button" data-flow-next data-i18n="continueToPrompt">Dalej do promptu</button>
+          </div>
+        </section>
+
+        <section class="flow-panel" data-flow-panel="prompt" hidden>
+          <div class="flow-panel-head">
+            <h2 data-i18n="flowPromptTitle">Uruchom pierwszy użyteczny prompt</h2>
+            <p data-i18n="flowPromptIntro">Po instalacji zacznij od realnej decyzji. Wybierz sytuację, a potem skopiuj jeden prompt.</p>
+          </div>
+          <div class="flow-layout">
+            <div class="prompt-options" data-prompt-options></div>
+            <div class="flow-summary">
+              <div class="code-block prompt-preview">
+                <div class="code-head">
+                  <span data-selected-prompt-label>Nowy produkt</span>
+                  <button class="copy" type="button" data-copy-active-prompt>Kopiuj</button>
+                </div>
+                <pre><code data-active-prompt></code></pre>
+              </div>
+              <div class="flow-actions">
+                <button class="button secondary" type="button" data-flow-back data-i18n="backButtonPrompt">Wstecz</button>
+                <button class="button primary" type="button" data-flow-next data-i18n="continueToFeedback">Dalej</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="flow-panel" data-flow-panel="feedback" hidden>
+          <div class="flow-panel-head">
+            <h2 data-i18n="feedbackTitle">Co sprawdzić po pierwszym użyciu?</h2>
+            <p data-i18n="feedbackIntro">Po instalacji i pierwszym użyciu zostaw krótki sygnał. Najbardziej pomaga informacja, czy UX RULER zmienił decyzję, metrykę, ryzyko albo następny krok.</p>
+          </div>
+          <form class="feedback-form" data-feedback-form>
+            <label class="field">
+              <span data-i18n="feedbackMessageLabel">Twój feedback</span>
+              <textarea data-feedback-message placeholder="Napisz krótko..."></textarea>
+            </label>
+            <label class="field">
+              <span data-i18n="feedbackEmailLabel">Email do kontaktu (opcjonalnie)</span>
+              <input type="email" data-feedback-email placeholder="email@example.com">
+            </label>
+            <div class="feedback-actions">
+              <button class="button primary" type="submit" data-i18n="feedbackSend">Wyślij feedback</button>
+              <button class="button secondary" type="button" data-flow-back data-i18n="backButtonFeedback">Wstecz</button>
+              <p class="status" data-feedback-status aria-live="polite"></p>
+            </div>
+          </form>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    const supportedLanguages = ["pl", "en"];
+    const fallbackLanguage = "en";
+    const languageStorageKey = "uxruler-language";
+    const defaultRepoUrl = "https://github.com/making-mike/uxruler.git";
+    let currentLanguage = "pl";
+    let currentInstallCommands = {};
+    let activeFlowStep = "tool";
+    let activeInstallTarget = "codex";
+    let activePrompt = "promptOpenSource";
+
+    const pageCopy = {
+      pl: {
+        title: "Instalacja UX RULER",
+        description: "Zainstaluj UX RULER w Codex, Claude Code albo lokalnie w repo projektu.",
+        topline: "Otwarty proces UX dla ludzi i agentów",
+        eyebrow: "Instalacja",
+        heroTitle: "Zainstaluj <em>UX RULER</em>",
+        heroLead: "Wybierz narzędzie, skopiuj instrukcję i uruchom skill na realnej decyzji produktowej. Feedback jest na końcu, więc nie przeszkadza w instalacji.",
+        flowStepTool: "Narzędzie",
+        flowStepCommand: "Instalacja",
+        flowStepPrompt: "Start",
+        flowStepFeedback: "Feedback",
+        flowToolTitle: "Gdzie chcesz używać UX RULER?",
+        flowToolIntro: "Wybierz jedną ścieżkę. Następny krok pokaże tylko właściwą instrukcję, bez reszty komend.",
+        selectedPathLabel: "Wybrana ścieżka",
+        continueToInstall: "Pokaż instrukcję",
+        flowCommandTitle: "Skopiuj instrukcję instalacji",
+        flowCommandIntro: "To jest jedyna komenda, której potrzebujesz dla wybranej ścieżki.",
+        flowPromptTitle: "Uruchom pierwszy użyteczny prompt",
+        flowPromptIntro: "Po instalacji zacznij od realnej decyzji. Wybierz sytuację, a potem skopiuj jeden prompt.",
+        backButton: "Wstecz",
+        backButtonPrompt: "Wstecz",
+        backButtonFeedback: "Wstecz",
+        continueToPrompt: "Dalej do promptu",
+        continueToFeedback: "Dalej",
+        codexChoiceHint: "Osobista instalacja w Codex przez skill-installer.",
+        codexIntro: "Najprostsza ścieżka: użyj wbudowanego skill-installer i podaj publiczny URL folderu skilla.",
+        codexTag: "Prompt",
+        codexStepOne: "Skopiuj instrukcję.",
+        codexStepTwo: "Wklej ją w Codex.",
+        codexStepThree: "Po instalacji uruchom ponownie Codex.",
+        claudeIntro: "Instalacja jako personal skill. Claude Code wykryje skilla z katalogu ~/.claude/skills/ po restarcie.",
+        claudeChoiceHint: "Osobista instalacja w lokalnym katalogu Claude Code.",
+        claudeStepOne: "Skopiuj komendę.",
+        claudeStepTwo: "Uruchom ją w terminalu.",
+        claudeStepThree: "Po instalacji uruchom ponownie Claude Code.",
+        projectTitle: "Repository",
+        projectIntro: "Wariant dla zespołu: skill jest częścią konkretnego repo i można go commitować razem z projektem.",
+        projectChoiceHint: "Kopia skilla w repo projektu dla zespołu.",
+        projectStepOne: "Uruchom komendę w katalogu projektu.",
+        projectStepTwo: "Sprawdź skopiowany folder .claude/skills/uxruler.",
+        projectStepThree: "Commituj skill razem z repo, jeśli ma być wspólny dla zespołu.",
+        terminalTag: "Terminal",
+        terminalTagProject: "Terminal",
+        instructionLabel: "Instrukcja",
+        instructionLabelClaude: "Instrukcja",
+        instructionLabelProject: "Instrukcja",
+        promptsKicker: "Startowe prompty",
+        promptsTitle: "Po instalacji zacznij od decyzji",
+        promptsIntro: "Najlepszy pierwszy krok to nie prośba o dokument. Daj agentowi decyzję, którą chcesz podjąć, i pozwól UX RULER sprawdzić kontekst, dane oraz brakujące dowody.",
+        promptNewLabel: "Nowy produkt",
+        promptNewDescription: "Gdy zaczynasz od pomysłu, pustego repo albo misji do doprecyzowania.",
+        promptAuditLabel: "Audyt funkcji",
+        promptAuditDescription: "Gdy chcesz sprawdzić, czy funkcja wynika z realnej potrzeby.",
+        promptRepoLabel: "Przegląd repo",
+        promptRepoDescription: "Gdy chcesz, żeby agent najpierw zapytał, co masz zdecydować po przeglądzie.",
+        feedbackTitle: "Co sprawdzić po pierwszym użyciu?",
+        feedbackIntro: "Po instalacji i pierwszym użyciu zostaw krótki sygnał. Najbardziej pomaga informacja, czy UX RULER zmienił decyzję, metrykę, ryzyko albo następny krok.",
+        feedbackMessageLabel: "Twój feedback",
+        feedbackMessagePlaceholder: "Napisz krótko...",
+        feedbackEmailLabel: "Email do kontaktu (opcjonalnie)",
+        feedbackEmailPlaceholder: "email@example.com",
+        feedbackSend: "Wyślij feedback",
+        feedbackRequired: "Dodaj krótki feedback albo email przed wysłaniem.",
+        feedbackSent: "Dzięki. To pomoże sprawdzić, czy instalacja prowadzi do realnego użycia.",
+        copyIdle: "Kopiuj",
+        copyDone: "Skopiowano",
+        copyFallback: "Zaznacz tekst",
+        promptOpenSource: "Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Używaj prostego języka. Jeśli repo jest puste, pomóż mi najpierw zdefiniować misję przez 2-3 kierunki produktu. Gdy zdecydujemy misję lub kierunek, utwórz albo zaktualizuj kompaktowe PRODUCT.md i ROADMAP.md. W przeciwnym razie zapytaj mnie tylko o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj rynek, odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw wnioski i rekomendacje.",
+        promptAudit: "Użyj $uxruler do audytu tej funkcji. Prostym językiem pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i zapisanej decyzji.",
+        promptRepo: "Użyj $uxruler na tym repo. Najpierw zapytaj, co chcę zdecydować po przeglądzie repo, potem sprawdź repo i pokaż prostym językiem, co wiadomo, czego brakuje i co zrobić dalej. Jeśli misja lub kierunek są już zdecydowane, utwórz albo zaktualizuj kompaktowy ROADMAP.md."
+      },
+      en: {
+        title: "Install UX RULER",
+        description: "Install UX RULER in Codex, Claude Code, or a project repo.",
+        topline: "Open source UX process for humans and agents",
+        eyebrow: "Install",
+        heroTitle: "Install <em>UX RULER</em>",
+        heroLead: "Choose your tool, copy the instruction, and run the skill on a real product decision. Feedback lives at the end, so it does not interrupt installation.",
+        flowStepTool: "Tool",
+        flowStepCommand: "Install",
+        flowStepPrompt: "Start",
+        flowStepFeedback: "Feedback",
+        flowToolTitle: "Where do you want to use UX RULER?",
+        flowToolIntro: "Choose one path. The next step shows only the matching instruction, not the whole command list.",
+        selectedPathLabel: "Selected path",
+        continueToInstall: "Show instruction",
+        flowCommandTitle: "Copy the install instruction",
+        flowCommandIntro: "This is the only command you need for the selected path.",
+        flowPromptTitle: "Run the first useful prompt",
+        flowPromptIntro: "After installing, start with a real decision. Choose a situation, then copy one prompt.",
+        backButton: "Back",
+        backButtonPrompt: "Back",
+        backButtonFeedback: "Back",
+        continueToPrompt: "Next: prompt",
+        continueToFeedback: "Next",
+        codexChoiceHint: "Personal Codex install through skill-installer.",
+        codexIntro: "The simplest path: use the built-in skill-installer and provide the public URL to the skill folder.",
+        codexTag: "Prompt",
+        codexStepOne: "Copy the instruction.",
+        codexStepTwo: "Paste it into Codex.",
+        codexStepThree: "Restart Codex after installation.",
+        claudeIntro: "Install as a personal skill. Claude Code detects the skill from ~/.claude/skills/ after restart.",
+        claudeChoiceHint: "Personal install in the local Claude Code skills folder.",
+        claudeStepOne: "Copy the command.",
+        claudeStepTwo: "Run it in your terminal.",
+        claudeStepThree: "Restart Claude Code after installation.",
+        projectTitle: "Repository",
+        projectIntro: "A team option: the skill becomes part of a specific repo and can be committed with the project.",
+        projectChoiceHint: "A skill copy inside the project repo for team use.",
+        projectStepOne: "Run the command in the project directory.",
+        projectStepTwo: "Check the copied .claude/skills/uxruler folder.",
+        projectStepThree: "Commit the skill with the repo if it should be shared by the team.",
+        terminalTag: "Terminal",
+        terminalTagProject: "Terminal",
+        instructionLabel: "Instruction",
+        instructionLabelClaude: "Instruction",
+        instructionLabelProject: "Instruction",
+        promptsKicker: "Starter prompts",
+        promptsTitle: "After installing, start with a decision",
+        promptsIntro: "The best first step is not asking for a document. Give the agent the decision you need to make, then let UX RULER check context, data, and missing evidence.",
+        promptNewLabel: "New product",
+        promptNewDescription: "When you are starting from an idea, blank repo, or mission that needs shape.",
+        promptAuditLabel: "Feature audit",
+        promptAuditDescription: "When you want to check whether a feature comes from a real need.",
+        promptRepoLabel: "Repo check",
+        promptRepoDescription: "When you want the agent to ask what you need to decide before reviewing the repo.",
+        feedbackTitle: "What should we check after first use?",
+        feedbackIntro: "After installation and first use, leave a short signal. The most useful feedback says whether UX RULER changed a decision, metric, risk, or next step.",
+        feedbackMessageLabel: "Your feedback",
+        feedbackMessagePlaceholder: "Write a short note...",
+        feedbackEmailLabel: "Contact email (optional)",
+        feedbackEmailPlaceholder: "email@example.com",
+        feedbackSend: "Send feedback",
+        feedbackRequired: "Add short feedback or an email before sending.",
+        feedbackSent: "Thanks. This helps check whether installation leads to real use.",
+        copyIdle: "Copy",
+        copyDone: "Copied",
+        copyFallback: "Select text",
+        promptOpenSource: "Use $uxruler as an open source UX process for humans and agents. Use simple language. If this repo is empty, help me define the mission first by offering 2 to 3 draft product directions. Once we decide the mission or direction, create or update compact PRODUCT.md and ROADMAP.md. Otherwise, ask me only for missing context first, then inspect any real usage or repo-connected data, check the market, audience, alternatives, and user need, and then present clear findings and recommendations.",
+        promptAudit: "Use $uxruler to audit this feature. In simple language, show whether it comes from a real audience, user need, infrastructure capability, product experience, measurable value, and a recorded decision.",
+        promptRepo: "Use $uxruler on this repo. First ask what I want to decide after you look at the repo, then inspect it and explain in simple language what is known, what is missing, and what to do next. If the mission or direction is already decided, create or update a compact ROADMAP.md."
+      }
+    };
+
+    const flowSteps = ["tool", "command", "prompt", "feedback"];
+    const installTargetConfig = {
+      codex: {
+        title: "Codex",
+        introKey: "codexIntro",
+        choiceHintKey: "codexChoiceHint",
+        tagKey: "codexTag",
+        steps: ["codexStepOne", "codexStepTwo", "codexStepThree"],
+        commandLabelKey: "instructionLabel"
+      },
+      claude: {
+        title: "Claude Code",
+        introKey: "claudeIntro",
+        choiceHintKey: "claudeChoiceHint",
+        tagKey: "terminalTag",
+        steps: ["claudeStepOne", "claudeStepTwo", "claudeStepThree"],
+        commandLabelKey: "instructionLabelClaude"
+      },
+      projectSkill: {
+        titleKey: "projectTitle",
+        introKey: "projectIntro",
+        choiceHintKey: "projectChoiceHint",
+        tagKey: "terminalTagProject",
+        steps: ["projectStepOne", "projectStepTwo", "projectStepThree"],
+        commandLabelKey: "instructionLabelProject"
+      }
+    };
+    const promptConfig = [
+      { id: "promptOpenSource", labelKey: "promptNewLabel", descriptionKey: "promptNewDescription" },
+      { id: "promptAudit", labelKey: "promptAuditLabel", descriptionKey: "promptAuditDescription" },
+      { id: "promptRepo", labelKey: "promptRepoLabel", descriptionKey: "promptRepoDescription" }
+    ];
+
+    function normalizeSupportedLanguage(language) {
+      if (!language) return null;
+      const primaryLanguage = String(language).toLowerCase().split("-")[0];
+      return supportedLanguages.includes(primaryLanguage) ? primaryLanguage : null;
+    }
+
+    function readStoredLanguage() {
+      try {
+        return normalizeSupportedLanguage(window.localStorage.getItem(languageStorageKey));
+      } catch {
+        return null;
+      }
+    }
+
+    function readPreferredLanguage() {
+      const browserLanguages = Array.isArray(navigator.languages) && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language];
+
+      for (const language of browserLanguages) {
+        const supportedLanguage = normalizeSupportedLanguage(language);
+        if (supportedLanguage) return supportedLanguage;
+      }
+
+      return fallbackLanguage;
+    }
+
+    function writeStoredLanguage(language) {
+      try {
+        window.localStorage.setItem(languageStorageKey, language);
+      } catch {
+        // Switching still works when storage is unavailable.
+      }
+    }
+
+    function repoToFolderUrl(repoUrl) {
+      return repoUrl
+        .replace(/\.git$/, "")
+        .replace("github.com/", "github.com/")
+        .replace(/^https:\/\/github\.com\/([^/]+)\/([^/]+)$/, "https://github.com/$1/$2/tree/main/uxruler");
+    }
+
+    function shellEscape(value) {
+      return String(value).replace(/"/g, '\\"');
+    }
+
+    function renderInstallCommands(language = currentLanguage) {
+      const folderUrl = repoToFolderUrl(defaultRepoUrl);
+      const escapedRepo = shellEscape(defaultRepoUrl);
+
+      currentInstallCommands = language === "pl"
+        ? {
+            codex: `Użyj $skill-installer, żeby zainstalować ten skill:\n${folderUrl}\n\nUruchom ponownie Codex, żeby załadować nowe skille.`,
+            claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# uruchom ponownie Claude Code`,
+            projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/uxruler`
+          }
+        : {
+            codex: `Use $skill-installer to install this skill:\n${folderUrl}\n\nThen restart Codex to pick up new skills.`,
+            claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# restart Claude Code`,
+            projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/uxruler`
+          };
+
+      renderFlow();
+    }
+
+    function setMetaContent(selector, value) {
+      const element = document.querySelector(selector);
+      if (element) element.setAttribute("content", value);
+    }
+
+    function updateLanguageButtons(language) {
+      document.querySelectorAll(".lang-button").forEach((button) => {
+        const isActive = button.dataset.lang === language;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+    }
+
+    function clearElement(element) {
+      while (element.firstChild) {
+        element.removeChild(element.firstChild);
+      }
+    }
+
+    function targetTitle(target) {
+      const config = installTargetConfig[target] || installTargetConfig.codex;
+      return config.title || pageCopy[currentLanguage][config.titleKey] || target;
+    }
+
+    function renderTargetOptions() {
+      const container = document.querySelector("[data-target-options]");
+      if (!container) return;
+      clearElement(container);
+
+      Object.entries(installTargetConfig).forEach(([target, config]) => {
+        const button = document.createElement("button");
+        button.className = "target-option";
+        button.type = "button";
+        button.dataset.selectTarget = target;
+        button.setAttribute("aria-pressed", String(target === activeInstallTarget));
+
+        const title = document.createElement("strong");
+        title.textContent = targetTitle(target);
+
+        button.append(title);
+        button.addEventListener("click", () => {
+          selectInstallTarget(target, "tool_choice");
+        });
+        container.appendChild(button);
+      });
+    }
+
+    function renderPromptOptions() {
+      const container = document.querySelector("[data-prompt-options]");
+      if (!container) return;
+      clearElement(container);
+
+      promptConfig.forEach((prompt) => {
+        const button = document.createElement("button");
+        button.className = "prompt-option";
+        button.type = "button";
+        button.dataset.selectPrompt = prompt.id;
+        button.setAttribute("aria-pressed", String(prompt.id === activePrompt));
+
+        const title = document.createElement("strong");
+        title.textContent = pageCopy[currentLanguage][prompt.labelKey] || prompt.id;
+
+        const hint = document.createElement("span");
+        hint.textContent = pageCopy[currentLanguage][prompt.descriptionKey] || "";
+
+        button.append(title, hint);
+        button.addEventListener("click", () => {
+          activePrompt = prompt.id;
+          renderFlow();
+          trackInstallEvent("install_prompt_selected", {
+            prompt_target: activePrompt
+          });
+        });
+        container.appendChild(button);
+      });
+    }
+
+    function renderFlow() {
+      const copy = pageCopy[currentLanguage];
+      const targetConfig = installTargetConfig[activeInstallTarget] || installTargetConfig.codex;
+      const activePromptConfig = promptConfig.find((prompt) => prompt.id === activePrompt) || promptConfig[0];
+
+      document.querySelectorAll("[data-flow-panel]").forEach((panel) => {
+        panel.hidden = panel.dataset.flowPanel !== activeFlowStep;
+      });
+
+      document.querySelectorAll("[data-flow-step-button]").forEach((button) => {
+        const step = button.dataset.flowStepButton;
+        const isActive = step === activeFlowStep;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-current", isActive ? "step" : "false");
+      });
+
+      renderTargetOptions();
+      renderPromptOptions();
+
+      const selectedTitle = document.querySelector("[data-selected-target-title]");
+      if (selectedTitle) selectedTitle.textContent = targetTitle(activeInstallTarget);
+      const selectedIntro = document.querySelector("[data-selected-target-intro]");
+      if (selectedIntro) selectedIntro.textContent = copy[targetConfig.introKey] || "";
+
+      const currentTarget = document.querySelector("[data-current-target-label]");
+      if (currentTarget) currentTarget.textContent = targetTitle(activeInstallTarget);
+
+      const activeSteps = document.querySelector("[data-active-steps]");
+      if (activeSteps) {
+        clearElement(activeSteps);
+        targetConfig.steps.forEach((stepKey) => {
+          const item = document.createElement("li");
+          item.textContent = copy[stepKey] || "";
+          activeSteps.appendChild(item);
+        });
+      }
+
+      const commandLabel = document.querySelector("[data-active-command-label]");
+      if (commandLabel) commandLabel.textContent = copy[targetConfig.commandLabelKey] || copy.instructionLabel;
+      const command = document.querySelector("[data-active-command]");
+      if (command) command.textContent = currentInstallCommands[activeInstallTarget] || "";
+
+      const promptLabel = document.querySelector("[data-selected-prompt-label]");
+      if (promptLabel) promptLabel.textContent = copy[activePromptConfig.labelKey] || "";
+      const activePromptElement = document.querySelector("[data-active-prompt]");
+      if (activePromptElement) activePromptElement.textContent = copy[activePrompt] || "";
+    }
+
+    function renderCopy(language) {
+      const copy = pageCopy[language];
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const value = copy[element.dataset.i18n];
+        if (value) element.textContent = value;
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((element) => {
+        const value = copy[element.dataset.i18nHtml];
+        if (value) element.innerHTML = value;
+      });
+      document.querySelectorAll(".copy").forEach((button) => {
+        button.textContent = copy.copyIdle;
+        button.setAttribute("aria-label", copy.copyIdle);
+      });
+
+      const feedbackMessage = document.querySelector("[data-feedback-message]");
+      if (feedbackMessage) feedbackMessage.setAttribute("placeholder", copy.feedbackMessagePlaceholder);
+      const feedbackEmail = document.querySelector("[data-feedback-email]");
+      if (feedbackEmail) feedbackEmail.setAttribute("placeholder", copy.feedbackEmailPlaceholder);
+    }
+
+    function applyLanguage(language, persist = false) {
+      if (!supportedLanguages.includes(language)) return;
+      currentLanguage = language;
+      const copy = pageCopy[language];
+
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      setMetaContent('meta[name="description"]', copy.description);
+      setMetaContent('meta[property="og:description"]', copy.description);
+      setMetaContent('meta[property="og:title"]', copy.title);
+      renderCopy(language);
+      renderInstallCommands(language);
+      updateLanguageButtons(language);
+      if (persist) writeStoredLanguage(language);
+    }
+
+    function trackInstallEvent(eventName, properties = {}) {
+      const event = {
+        event: eventName,
+        language: currentLanguage,
+        path: window.location.pathname || "/",
+        ...properties
+      };
+      const { event: _eventName, ...eventProperties } = event;
+
+      if (!Array.isArray(window.dataLayer)) {
+        window.dataLayer = [];
+      }
+      window.dataLayer.push(event);
+
+      if (!Array.isArray(window.uxrulerInstallEvents)) {
+        window.uxrulerInstallEvents = [];
+      }
+      window.uxrulerInstallEvents.push(event);
+
+      if (typeof CustomEvent === "function") {
+        window.dispatchEvent(new CustomEvent("uxruler:install-event", { detail: event }));
+      }
+
+      if (window.posthog && typeof window.posthog.capture === "function") {
+        window.posthog.capture(eventName, eventProperties);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.top = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } finally {
+        textArea.remove();
+      }
+      return copied;
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch {
+          return fallbackCopy(text);
+        }
+      }
+
+      return fallbackCopy(text);
+    }
+
+    function setCopiedState(button, copied) {
+      const copy = pageCopy[currentLanguage];
+      button.textContent = copied ? copy.copyDone : copy.copyFallback;
+      button.setAttribute("aria-label", copied ? copy.copyDone : copy.copyFallback);
+      setTimeout(() => {
+        button.textContent = copy.copyIdle;
+        button.setAttribute("aria-label", copy.copyIdle);
+      }, 1400);
+    }
+
+    function installTargetFromHash() {
+      const target = window.location.hash.replace(/^#/, "");
+      return ["codex", "claude", "projectSkill"].includes(target) ? target : "";
+    }
+
+    function updateTargetHash(target) {
+      if (!window.history || !window.history.replaceState) return;
+      window.history.replaceState(null, "", `#${target}`);
+    }
+
+    function selectInstallTarget(target, source = "unknown") {
+      if (!installTargetConfig[target]) return;
+      activeInstallTarget = target;
+      updateTargetHash(target);
+      renderFlow();
+      trackInstallEvent("install_target_selected", {
+        install_target: target,
+        source
+      });
+    }
+
+    function goToFlowStep(step, source = "unknown") {
+      if (!flowSteps.includes(step)) return;
+      activeFlowStep = step;
+      renderFlow();
+      trackInstallEvent("install_flow_step_viewed", {
+        flow_step: step,
+        install_target: activeInstallTarget,
+        prompt_target: activePrompt,
+        source
+      });
+    }
+
+    function scrollToFlow() {
+      const target = document.querySelector("[data-install-flow]");
+      if (!target) return;
+      const jump = () => {
+        const topbarHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--topbar-height")) || 48;
+        const top = target.getBoundingClientRect().top + window.scrollY - topbarHeight - 24;
+        const previousBehavior = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = "auto";
+        window.scrollTo({ top: Math.max(0, top), left: 0, behavior: "auto" });
+        document.documentElement.style.scrollBehavior = previousBehavior;
+      };
+      requestAnimationFrame(() => requestAnimationFrame(jump));
+      window.addEventListener("load", jump, { once: true });
+    }
+
+    document.querySelectorAll(".lang-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const previousLanguage = currentLanguage;
+        applyLanguage(button.dataset.lang, true);
+        if (button.dataset.lang !== previousLanguage) {
+          trackInstallEvent("install_language_switched", {
+            from_language: previousLanguage,
+            to_language: button.dataset.lang
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-flow-step-button]").forEach((button) => {
+      button.addEventListener("click", () => {
+        goToFlowStep(button.dataset.flowStepButton, "progress_button");
+      });
+    });
+
+    document.querySelectorAll("[data-flow-next]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const currentIndex = flowSteps.indexOf(activeFlowStep);
+        goToFlowStep(flowSteps[Math.min(flowSteps.length - 1, currentIndex + 1)], "next_button");
+      });
+    });
+
+    document.querySelectorAll("[data-flow-back]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const currentIndex = flowSteps.indexOf(activeFlowStep);
+        goToFlowStep(flowSteps[Math.max(0, currentIndex - 1)], "back_button");
+      });
+    });
+
+    const copyActiveCommand = document.querySelector("[data-copy-active-command]");
+    if (copyActiveCommand) {
+      copyActiveCommand.addEventListener("click", async () => {
+        const command = currentInstallCommands[activeInstallTarget] || "";
+        const copied = await copyText(command);
+        setCopiedState(copyActiveCommand, copied);
+        trackInstallEvent("install_instruction_copied", {
+          install_target: activeInstallTarget,
+          copied,
+          text_length: command.length
+        });
+      });
+    }
+
+    const copyActivePrompt = document.querySelector("[data-copy-active-prompt]");
+    if (copyActivePrompt) {
+      copyActivePrompt.addEventListener("click", async () => {
+        const prompt = pageCopy[currentLanguage][activePrompt] || "";
+        const copied = await copyText(prompt);
+        setCopiedState(copyActivePrompt, copied);
+        trackInstallEvent("install_prompt_copied", {
+          prompt_target: activePrompt,
+          copied,
+          text_length: prompt.length
+        });
+      });
+    }
+
+    const feedbackForm = document.querySelector("[data-feedback-form]");
+    if (feedbackForm) {
+      feedbackForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const feedback = (document.querySelector("[data-feedback-message]") || {}).value || "";
+        const email = (document.querySelector("[data-feedback-email]") || {}).value || "";
+        const cleanFeedback = feedback.trim();
+        const cleanEmail = email.trim();
+        const status = document.querySelector("[data-feedback-status]");
+
+        if (!cleanFeedback && !cleanEmail) {
+          if (status) status.textContent = pageCopy[currentLanguage].feedbackRequired;
+          return;
+        }
+
+        const eventProperties = {
+          feedback_length: cleanFeedback.length,
+          has_contact_email: Boolean(cleanEmail)
+        };
+        if (cleanFeedback) eventProperties.feedback = cleanFeedback;
+        if (cleanEmail) eventProperties.contact_email = cleanEmail;
+
+        trackInstallEvent("install_feedback_sent", eventProperties);
+        if (status) status.textContent = pageCopy[currentLanguage].feedbackSent;
+        feedbackForm.reset();
+      });
+    }
+
+    const initialTarget = installTargetFromHash();
+    if (initialTarget) {
+      activeInstallTarget = initialTarget;
+      activeFlowStep = "command";
+    }
+
+    applyLanguage(readStoredLanguage() || readPreferredLanguage());
+    if (initialTarget) scrollToFlow();
+
+    trackInstallEvent("install_page_viewed", {
+      hash_target: installTargetFromHash() || ""
+    });
+
+    if (initialTarget) {
+      trackInstallEvent("install_target_selected", {
+        install_target: initialTarget,
+        source: "initial_hash"
+      });
+    }
+    trackInstallEvent("install_flow_step_viewed", {
+      flow_step: activeFlowStep,
+      install_target: activeInstallTarget,
+      prompt_target: activePrompt,
+      source: "initial_state"
+    });
+  </script>
+</body>
+</html>
