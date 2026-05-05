@@ -19,16 +19,18 @@ Use this first for early products, prototypes, small open source projects, and r
 /
   AGENTS.md
   PRODUCT.md
+  ROADMAP.md
   README.md
 ```
 
 Recommended default:
 
 - `PRODUCT.md`: one readable map of mission, audience, user need, infrastructure/product surface, value, assumptions, risks, metrics, UX test, and next validation step.
+- `ROADMAP.md`: create or update once the mission or product direction is decided; keep it to now/next/later and tie every item to a problem, evidence, and signal.
 - `AGENTS.md`: only when coding agents need persistent repo instructions and update rules.
 - `README.md`: link to the product map and explain when to use it.
 
-Do not split `PRODUCT.md` into stage files until the split would make the repo easier to understand.
+Do not create `ROADMAP.md` before a direction is chosen. Do not split `PRODUCT.md` into stage files until the split would make the repo easier to understand.
 
 ## Expanded Canonical Structure
 

@@ -1,13 +1,13 @@
 ---
 name: uxruler
-description: Open source UX process for humans and agents with a conversational product and UX strategy workflow for turning a mission or product idea into verified insights, real usage evidence, product decisions, rollout plans, compact repo artifacts, or product audits. Use when the user asks to plan, evaluate, research, or improve a digital product, UX strategy, product discovery, market/user needs, value proposition, feature prioritization, infrastructure-to-experience mapping, design systems, rollout, usability feedback, real app usage, analytics, repo-connected data, product decisions, product metrics, repository documentation, or UX RULER-style product guidance for teams and agents.
+description: Open source UX process for humans and agents. Use when the user wants to plan, check, research, or improve a digital product, feature, repo, UX strategy, product decision, metric, rollout, audience, user need, usage evidence, docs, empty repo, blank project start, or lightweight product memory.
 ---
 
 # UX RULER
 
 Technical skill ID: `uxruler`.
 
-Use this skill as an open source UX process for humans and agents. Help the user move from a product mission to delivered user value through conversation, focused research, and decision-ready insights. Do not start from screens or features unless the user already has a narrow feature brief. Prefer the sequence:
+Use this skill as an open source UX process for humans and agents. Help the user move from an idea or mission to delivered user value through simple questions, focused research, and clear next steps. Do not start from screens or features unless the user already has a narrow feature brief. Prefer the sequence:
 
 `conversation -> mission -> audience/market -> user -> need -> research -> infrastructure -> product -> value -> decision & measurement -> UX test`
 
@@ -16,9 +16,11 @@ Respond in the user's language. If the user writes in Polish, use Polish termino
 ## Operating Principles
 
 - Treat UX as the design of rules and conditions that create a user's experience, not as interface polish.
-- Start conversationally. If the user's context is incomplete, ask 1 to 3 high-leverage questions before producing a full map or artifact.
+- Use plain language first. Ask short questions, explain what to do next, and replace process terms with everyday wording when possible. Use the wording rule of thumb below as the default style. If a UX or product term is needed, add a short explanation.
+- Start conversationally. If the user's context is incomplete, ask 1 to 3 focused, useful questions before producing a full map or file.
 - If the user gave enough context to proceed, state your working assumptions and move forward instead of interrogating them.
-- For ambiguous repo requests such as "use this skill on this repo", do not immediately produce a full audit or create files. First ask what decision the user wants to make, or explicitly state the decision you will assume if you proceed.
+- For ambiguous repo requests such as "use this skill on this repo", do not immediately produce a full audit or create files. First ask what the user wants to decide after the repo check, or explicitly state the decision you will assume if you proceed.
+- If the repo is empty or only contains default/placeholder files, treat it as a new product start. Help the user define the mission instead of only asking for it: name what can be inferred, offer 2 to 3 draft product directions or fill-in statements, and ask the user to choose or refine one with the smallest missing context.
 - If the market is unknown, begin with mission/product thesis. Do not ask the user to choose a user task before market context exists.
 - If the market is known, move quickly to the target audience and user needs.
 - Keep audience validation separate from user validation. Audience/market asks how many potential adopters exist, how reachable they are, who buys or blocks, and whether demand signals exist. User validation asks what concrete users do, feel, need, and struggle with.
@@ -26,13 +28,37 @@ Respond in the user's language. If the user writes in Polish, use Polish termino
 - Verify important claims with agentic research when sources are available: inspect the repo, read provided materials, gather real usage or repo-connected data available to the agent, search the web for current market/competitor evidence when relevant, and separate evidence from inference.
 - Before asking the user for traction or usage evidence, look for agent-accessible signals such as analytics/event plans, telemetry schemas, logs, databases, dashboards, issue trackers, support exports, feedback notes, release history, monitoring data, app-store or marketplace reviews, and code paths that show what is actually tracked.
 - If real usage data or repo-connected data is unavailable, inaccessible, private, or not connected to the current agent, say exactly what is missing and ask for the smallest useful input: an export, screenshot, metric summary, feedback sample, interview notes, or permission/tool access. Do not invent usage.
-- Present insights before artifacts. The user should understand what changed in your understanding, what looks risky, and what decision follows.
+- Say what you learned before creating files or templates. The user should understand what changed in your understanding, what looks risky, and what decision follows.
 - Keep the scope concrete. For execution work, narrow to one product, feature, process, or user decision.
+- Before changing files, give a short execution plan: the decision or outcome the edit supports, the files you expect to touch, why those files matter, and the checks you will run.
 - When information is missing, state assumptions and propose the smallest validation step instead of pretending certainty.
 - Tie every proposed feature to a real need, a product experience, and a way to measure delivered value.
 - Preserve product decisions and measurement logic as durable repo artifacts when the user wants agents or a team to continue the work.
-- Default to the smallest comprehensible artifact. For repo work, prefer one compact `PRODUCT.md` plus optional `AGENTS.md` before creating a folder tree.
+- Default to the smallest clear file set. For repo work, prefer one compact `PRODUCT.md`, add a compact `ROADMAP.md` as soon as the mission or product direction is decided and there is a next move to sequence, and add `AGENTS.md` when coding agents need persistent instructions. Do not create a folder tree by default.
 - Treat "too many files" or "hard to comprehend" feedback as a signal to consolidate, summarize, and make expansion optional.
+
+## Wording Rule Of Thumb
+
+UX RULER should sound like a helpful product partner, not a worksheet or framework. Keep the product rigor, but use wording that tells the user what to do next.
+
+Use wording like:
+
+- `What do you want to decide after I look at this?`
+- `Here is what I found.`
+- `Here is what is still missing.`
+- `Here is what I suggest next.`
+- `I can check the audience, draft the research questions, or update PRODUCT.md. Which helps most?`
+
+Prefer everyday wording:
+
+- `what to build next` instead of `product direction`;
+- `whether this is ready to release` instead of `release readiness`;
+- `what docs are missing` instead of `repo artifact structure`;
+- `who this is for` instead of `audience segmentation`;
+- `how we will know it worked` instead of `measurement strategy`;
+- `what evidence would change the decision` instead of `validation criteria`.
+
+Use UX RULER terms when they help, but pair them with plain meaning. Example: `audience, meaning the people or market you need to reach`.
 
 ## Conversational Research Loop
 
@@ -42,7 +68,7 @@ Use this loop before producing recommendations or repo artifacts unless the user
 
 Restate the user's goal in one sentence, name the product stage you think they are in, and identify the biggest unknowns.
 
-Ask only the questions needed to unblock useful work. Prefer questions about:
+Ask only the questions needed to unblock useful work. Use simple words and prefer questions about:
 
 - product mission and current stage;
 - target audience, buyer, market size, or user;
@@ -54,25 +80,43 @@ Ask only the questions needed to unblock useful work. Prefer questions about:
 
 Do not ask for information you can reasonably infer from a repo, provided files, or public sources.
 
+#### Empty repo or blank project starts
+
+When repo inspection shows no meaningful product, code, documentation, research, analytics, or usage evidence, treat the likely decision as `define the initial product direction` unless the user explicitly asked for an audit or another decision.
+
+Start by helping shape the mission, not by only asking "what is the project?" or "who is the audience?" Produce:
+
+- what can be inferred from the repo name, folder name, domain, provided prompt, or visible placeholders;
+- what cannot be inferred yet;
+- 2 to 3 draft product directions using:
+  `We believe [audience] needs a better way to [problem area], because [change / tension / market opportunity].`
+- 1 to 3 focused questions that let the user choose, reject, or combine the drafts.
+
+Do not invent a mission as fact. Label drafts as options. If there is no seed context at all, offer neutral starting points such as audience-first, problem-first, and change-first, then ask which path is closest.
+
+Example:
+
+`This repo is blank, so there is no product evidence to check yet. I will treat the next step as choosing the product direction. Here are three draft directions: audience-first, problem-first, or market-change-first. Which one feels closest, and what real-world problem made you create this repo?`
+
 #### Ambiguous repo requests
 
-When the user says something broad like "use UX RULER on this repo", "use this skill on the repo", or "map this repo" without naming the desired output, start with a short decision-framing response instead of a full audit.
+When the user says something broad like "use UX RULER on this repo", "use this skill on the repo", or "map this repo" without naming the desired output, start with a short plain-language response instead of a full audit.
 
-Ask one high-leverage question:
+Ask one simple question:
 
-`What decision do you want this repo pass to support: product direction, repo artifact structure, skill behavior, release readiness, or something else?`
+`What do you want to decide after I look at this repo? For example: what to build next, whether it is ready to release, how to improve the skill, what docs are missing, who it is for, or how to explain it.`
 
 If the user appears to expect action now, continue only after stating the assumption:
 
-`I will assume you want a compact repo/product audit, not file edits. I will inspect the repo, identify evidence-backed insights, call out unknowns, and recommend the smallest next decision.`
+`I will assume you want a short repo/product check, not file edits. I will inspect the repo, show what I found, name what is still unknown, and suggest the smallest next step.`
 
 For this case:
 
 - do not edit files unless the user explicitly asks for repo changes;
-- show a tiny research plan before inspecting;
+- show a short check plan before inspecting;
 - separate repo evidence from inference and unknowns;
 - explain whether external research is needed for the decision;
-- end with the decision the repo is ready to support and the next validation step.
+- end with what decision the repo can support now and the next validation step.
 
 ### 2. Research
 
@@ -99,7 +143,7 @@ Return insights, not just collected facts. Separate:
 - **What real usage or repo-connected data shows**
 - **What is inferred**
 - **What remains unknown**
-- **What decision this supports**
+- **What this helps decide**
 
 Prefer 3 to 7 strong insights over a long report.
 
@@ -113,16 +157,30 @@ End with the smallest next validation step, the signal that would change the dec
 
 ### 5. Artifact
 
-Only after the conversation and research produce a useful direction, create or update the smallest artifact that preserves the decision. For most repo work, start with one compact `PRODUCT.md` map.
+Only after the conversation and research produce a useful direction, create or update the smallest file that preserves the decision. For most repo work, start with one compact `PRODUCT.md` map.
 
-### 6. Offer Next-Step Help
+When the user and agent have decided on a mission, product direction, or first validated direction, create or update a compact root-level `ROADMAP.md` unless the user asks not to. Keep it as `now / next / later`, link it back to `PRODUCT.md`, and make every item answer: what problem or evidence justifies this, what signal would show progress, and when should it be reviewed. Do not create `ROADMAP.md` before a direction is chosen, and do not turn it into a feature backlog.
+
+### 6. Close Out File Or Artifact Changes
+
+When you create or update `PRODUCT.md`, a roadmap, a measurement plan, website copy, templates, or any product artifact, do not finish with only a changelog. Close the loop in plain language:
+
+- what changed;
+- why it changed and what decision it supports;
+- what is now measurable, testable, or easier to decide;
+- what is still missing or not connected;
+- the smallest next action and the signal that would show whether it worked.
+
+For measurement plans and event instrumentation, be explicit about the handoff from plan to evidence. Say what is tracked, where the event is emitted, whether a real collection sink is configured, who or what will review the signal, and which product decision the signal should inform.
+
+### 7. Offer Next-Step Help
 
 Every UX RULER response should end by asking how the agent can help with the next step. Make the offer specific to the decision just made, not generic.
 
 Good endings:
 
 - `I can help next by sizing the audience, drafting the research plan, or turning this into a compact PRODUCT.md update. Which would help most?`
-- `Do you want me to validate audience reachability, prepare the 5-user interview script, or update the repo artifact?`
+- `Do you want me to check audience reachability, prepare the 5-user interview script, or update PRODUCT.md?`
 - `I can now inspect competitors, define the north-star metric, or write the rollout validation checklist. Where should I continue?`
 
 Avoid vague endings like `Let me know if you need anything else.`
@@ -167,7 +225,7 @@ Polish:
 
 Use when the user gives an idea, product, repo, or feature but the context is still incomplete or unverified.
 
-- **Question:** What decision are we trying to make, and what evidence would make that decision smarter?
+- **Question:** What are we trying to decide, and what evidence would help?
 - **Action:** Ask focused context questions, inspect available materials, gather agent-accessible usage or repo-connected data, verify important external claims, and synthesize evidence into insights.
 - **Artifact:** Research-backed insight summary or compact product map.
 - **Decision:** Is there enough confidence to define the product direction, or should the team research/prototype first?
@@ -276,6 +334,8 @@ Decision and measurement is the control layer for the whole UX RULER workflow. I
 
 This layer should answer four questions for each meaningful product move: what do we assume, what evidence supports it, what decision follows, and what signal will tell us we were right or wrong?
 
+If you add metrics, analytics events, or a tracking plan, also explain the next handoff: how the signal will be collected, when it will be reviewed, and what decision it is meant to change. A planned or locally emitted event is not real usage evidence until it is captured or reviewed.
+
 ## Repo Artifact Blueprint
 
 When the user asks to map the UX RULER to repository folders, create project documentation, or prepare agent-readable product context, use `references/repo-artifact-blueprint.md`.
@@ -313,6 +373,15 @@ If usefulness fails, do not beautify the feature. If only usefulness passes, the
 
 Choose the smallest useful output for the user's context.
 
+For an empty repo or blank product start, produce:
+
+1. Repo read: what is present, absent, and inferable
+2. Assumed decision: initial product direction unless the user says otherwise
+3. 2 to 3 draft product directions, clearly labeled as drafts
+4. 1 to 3 questions that help the user choose or refine the mission
+5. What the next answer will unlock: audience hypothesis, user need, first value metric, compact `PRODUCT.md`, and compact `ROADMAP.md` once direction is chosen
+6. Specific offer to continue by drafting the product thesis, sizing the audience, or creating the compact `PRODUCT.md` and `ROADMAP.md` files
+
 For a new product idea, produce:
 
 1. Mission/product thesis
@@ -321,6 +390,7 @@ For a new product idea, produce:
 4. Top needs to validate
 5. First prototype or research step
 6. Key risks and evidence needed
+7. If the direction is decided enough for repo memory, compact `PRODUCT.md` plus compact `ROADMAP.md`
 
 For conversational product discovery, produce:
 
@@ -332,9 +402,26 @@ For conversational product discovery, produce:
 6. Recommended decision and smallest next validation step
 7. Specific offer to help with the next step
 
+For execution work that changes product files, produce:
+
+1. Short execution plan before editing: outcome, likely files, reason, and checks
+2. What changed after editing
+3. What decision the change supports
+4. What is now measurable or verifiable
+5. What is still missing or not connected
+6. Smallest next action and 2 to 3 concrete options for continuing
+
+For a compact roadmap, use root-level `ROADMAP.md` and produce:
+
+1. Direction link: the mission or product direction from `PRODUCT.md`
+2. `Now`: 1 to 3 active moves with problem/evidence and signal
+3. `Next`: 1 to 3 likely moves after the current signal
+4. `Later`: deferred moves or maturity layers
+5. Review rule: when to update, defer, remove, or promote items
+
 For an ambiguous repo request, produce either:
 
-1. One decision-framing question and the likely default assumption
+1. One plain decision question and the likely default assumption
 
 Or, if proceeding with an explicit assumption:
 
@@ -356,7 +443,7 @@ For a team using UX RULER, produce:
 2. Fill-in statements for mission, problem, and feature/product decision
 3. The 8-stage map from mission to decision and measurement
 4. Role ownership
-5. Concrete artifacts to create
+5. Concrete files or notes to create
 6. Minimum validation plan
 7. Four-dimensional UX test
 
@@ -387,11 +474,11 @@ Keep these pages compact. The goal is to make each stage easy to complete, not t
 When useful, offer the user concise prompts they can reuse:
 
 ```text
-Analyze this product idea through mission, market, user, need, infrastructure, product, value, decision & measurement, and UX test. Identify assumptions, missing evidence, decision points, metrics, and the smallest next validation step.
+Analyze this product idea through mission, market, user, need, infrastructure, product, value, decision & measurement, and UX test. Use simple language. Identify assumptions, missing evidence, decision points, metrics, and the smallest next validation step.
 ```
 
 ```text
-Use $uxruler as an open source UX process for humans and agents. Ask me for the missing context first, then research and verify the market, audience, alternatives, and user need before presenting insights and recommendations.
+Use $uxruler as an open source UX process for humans and agents. Use simple language. Ask me only for missing context first, then research and verify the market, audience, alternatives, and user need before presenting clear findings and recommendations.
 ```
 
 ```text
@@ -399,7 +486,7 @@ Use $uxruler to audit this product with real usage evidence. First inspect any r
 ```
 
 ```text
-Audit this feature. Show whether it traces back to a real audience, user need, infrastructure capability, product experience, measurable delivered value, and a decision/measurement artifact.
+Audit this feature. Use simple language. Show whether it comes from a real audience, user need, infrastructure capability, product experience, measurable delivered value, and a recorded decision.
 ```
 
 ```text
@@ -411,7 +498,15 @@ Map this existing repo with UX RULER, but keep it compact: create one PRODUCT.md
 ```
 
 ```text
-Use $uxruler on this repo. First ask what decision I want the repo pass to support, then inspect the repo and present evidence-backed insights before recommending any artifact changes.
+Use $uxruler on this repo. First ask what I want to decide after you look at the repo, then inspect it and explain in simple language what is known, what is missing, and what to do next.
+```
+
+```text
+Use $uxruler on this empty repo. Use simple language. Help me define the project mission first: inspect what little context is available, offer 2 to 3 draft product directions, ask me to choose or refine one, then turn the chosen direction into audience, user need, first metric, compact PRODUCT.md, and compact ROADMAP.md when ready.
+```
+
+```text
+Use $uxruler on this repo. Once we decide the mission or product direction, create or update compact PRODUCT.md and ROADMAP.md. Keep the roadmap to now, next, later, and tie every item to a problem, evidence, and signal.
 ```
 
 ## Quality Bar
@@ -419,12 +514,18 @@ Use $uxruler on this repo. First ask what decision I want the repo pass to suppo
 Before finishing, ensure the output:
 
 - Starts conversationally when context is missing and asks only the few questions needed to proceed.
-- For broad repo requests, asks the decision-framing question or states the assumed decision before auditing.
+- Uses the wording rule of thumb: plain language, short questions, and clear next-step guidance. Explains unavoidable UX or product terms.
+- For broad repo requests, asks the plain decision question or states the assumed decision before auditing.
+- For empty repos or blank project starts, helps define the mission with thesis options before asking the user to supply all product context.
 - Starts from mission if market is unknown.
 - Verifies important claims with available research and labels unverified assumptions clearly.
 - Checks agent-accessible real usage and repo-connected data before asking the user for usage evidence.
 - If usage data is unavailable, asks for the smallest missing source instead of making unsupported claims.
-- Presents synthesized insights before artifacts or recommendations.
+- Presents what it learned before files, templates, or recommendations.
+- Before file edits, states the short execution plan and expected checks.
+- After file edits, explains what changed, what decision the change supports, what is measurable or verifiable now, and what is still missing.
+- Creates or updates compact `ROADMAP.md` once the mission or product direction is decided, keeps it tied to `PRODUCT.md`, and avoids turning it into a feature backlog.
+- For measurement plans or events, distinguishes local instrumentation from real captured evidence and names the next handoff.
 - Includes fill-in statements for mission/product thesis and problem statement when useful.
 - Separates audience/market from user.
 - Validates audience through market size, segment reachability, buyer/adopter context, and demand signals rather than only user interviews.
@@ -434,6 +535,6 @@ Before finishing, ensure the output:
 - Creates `DESIGN.md` only in the Google Labs Code format, with YAML design tokens and canonical section order, and validates it when the linter is available.
 - Treats value as rollout plus feedback, not just release.
 - Includes decisions, assumptions, risks, metrics, and feedback loops when the work should continue across a team, repo, or agents.
-- Keeps repo artifacts comprehensible; one compact artifact is preferred over many files until expansion is clearly justified.
+- Keeps repo files comprehensible; `PRODUCT.md` plus early `ROADMAP.md` is the compact direction set, and further expansion needs a clear reason.
 - Ends with a concrete next action and validation method.
 - Asks how it can help with the next step, using 2 to 3 concrete options grounded in the output.

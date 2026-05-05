@@ -1053,6 +1053,8 @@
         --mobile-topline-height: calc(var(--topbar-height) + 12px);
         --mobile-nav-height: 48px;
         --mobile-ruler-height: var(--topbar-height);
+        --mobile-ruler-track-width: calc(100vw + 320px);
+        --mobile-ruler-offset: 0px;
         --mobile-header-height: calc(var(--topbar-height) + var(--mobile-topline-height) + var(--mobile-nav-height) + var(--mobile-ruler-height));
         --h1-line: 48px;
         --footer-title-line: 48px;
@@ -1152,21 +1154,37 @@
         left: 0;
         right: 0;
         width: 100%;
-        height: var(--mobile-nav-height);
-        min-height: var(--mobile-nav-height);
+        height: calc(var(--mobile-nav-height) + var(--mobile-ruler-height));
+        min-height: calc(var(--mobile-nav-height) + var(--mobile-ruler-height));
         border: 0;
+        background: transparent;
         overflow-x: hidden;
         overflow-y: hidden;
         scrollbar-width: none;
       }
 
+      .hero-rail::before {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        top: var(--mobile-nav-height);
+        right: 0;
+        left: 0;
+        height: var(--mobile-ruler-height);
+        pointer-events: none;
+        background: rgba(255, 255, 255, 0.62);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+      }
+
       .hero-rail::after {
         content: "";
-        position: fixed;
-        top: calc(var(--topbar-height) + var(--mobile-topline-height) + var(--mobile-nav-height));
-        left: 100vw;
+        position: absolute;
+        z-index: 1;
+        top: var(--mobile-nav-height);
+        left: calc(var(--mobile-ruler-offset) + var(--mobile-ruler-track-width));
         width: var(--mobile-ruler-height);
-        height: 100vw;
+        height: var(--mobile-ruler-track-width);
         pointer-events: none;
         background-image: url("assets/ruler.svg");
         background-repeat: repeat-y;
@@ -1181,7 +1199,9 @@
         display: block;
         width: 100%;
         min-width: 0;
-        height: 100%;
+        height: var(--mobile-nav-height);
+        background: var(--black);
+        z-index: 2;
       }
 
       .rail-nav-link {
@@ -1295,6 +1315,13 @@
       }
     }
   </style>
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_wjAEaf2HYu9seYjiNruZYWiKmqTqHaDJjQsdApcJ9wnz', {
+      api_host: 'https://eu.i.posthog.com',
+      defaults: '2026-01-30'
+    });
+  </script>
 </head>
 <body>
   <header class="topbar" aria-label="Nawigacja strony">
@@ -1317,7 +1344,7 @@
       <div class="hero-rail">
         <nav class="rail-nav" aria-label="Sekcje strony">
           <a class="rail-nav-link" href="#about" data-section="about">Proces</a>
-          <a class="rail-nav-link" href="#repo" data-section="repo">Repo</a>
+          <a class="rail-nav-link" href="#repo" data-section="repo">Workflow</a>
           <a class="rail-nav-link" href="#install" data-section="install">Instalacja</a>
           <a class="rail-nav-link" href="#prompty" data-section="prompty">Prompty</a>
         </nav>
@@ -1328,8 +1355,8 @@
           <h1>Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h1>
           <p class="hero-lead">Open source'owy proces UX dla ludzi i agentów. Pomaga przejść od misji, rynku i potrzeby użytkownika do decyzji, metryk, ewaluacji UX i lekkiej pamięci produktu w repo.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#install">Zainstaluj skill</a>
-            <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer">Współtwórz</a>
+            <a class="button primary" href="#install" data-track="landing_install_cta_clicked" data-track-location="hero" data-track-target="install">Zainstaluj skill</a>
+            <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="landing_github_cta_clicked" data-track-location="hero" data-track-target="github">Współtwórz</a>
           </div>
         </div>
       </div>
@@ -1581,7 +1608,7 @@
       <div class="shell">
         <div class="section-head">
           <div>
-            <div class="kicker">Repo jako pamięć produktu</div>
+            <div class="kicker">Workflow</div>
             <h2>Dwa tryby pracy: start produktu albo audyt istniejącego repo</h2>
           </div>
           <p>UX RULER nie kończy się na rozmowie. Zapisuje najważniejszą logikę produktu tak, żeby mogli do niej wracać ludzie i agenci: najpierw w jednym pliku, dopiero później w większej strukturze.</p>
@@ -1590,12 +1617,12 @@
         <div class="split">
           <article class="panel">
             <h3>Nowe repo</h3>
-            <p>Skill działa jak starter systemu pracy nad produktem. Zaczyna od jednego zrozumiałego artefaktu, zanim zespół zacznie kodować.</p>
+            <p>Skill działa jak starter systemu pracy nad produktem. Gdy repo jest puste, najpierw pomaga zdefiniować misję przez kilka kierunków produktu, zanim zespół zacznie kodować.</p>
             <ul class="bullets">
-              <li>Formułuje tezę produktową i pierwsze założenia.</li>
+              <li>Pomaga wybrać lub połączyć tezę produktową i pierwsze założenia.</li>
               <li>Mapuje rynek, użytkownika i potrzebę przed wyborem funkcji.</li>
               <li>Ustala pierwszą metrykę wartości, ryzyka i krok walidacyjny.</li>
-              <li>Daje agentom kontekst w `PRODUCT.md` i opcjonalnie `AGENTS.md`.</li>
+              <li>Daje agentom kontekst w `PRODUCT.md`, wczesny plan w `ROADMAP.md` i opcjonalnie instrukcje w `AGENTS.md`.</li>
             </ul>
           </article>
 
@@ -1618,26 +1645,26 @@
         <div>
           <div class="kicker">Struktura repo</div>
           <h2>Pełna struktura, minimum na czarno</h2>
-          <p class="wide-copy">Czarne wiersze to domyślny zestaw startowy. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.</p>
+          <p class="wide-copy">Czarne wiersze to domyślny zestaw startowy po ustaleniu kierunku produktu. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.</p>
         </div>
 
         <div class="structure-accordion" aria-label="Docelowa struktura plików">
           <details class="structure-group is-minimum" open>
-            <summary><span>Minimalny root</span><span class="tag">3 pliki</span></summary>
+            <summary><span>Minimalny root</span><span class="tag">4 pliki</span></summary>
             <ul class="file-list">
               <li class="is-minimal"><span class="path">AGENTS.md</span><span class="tag">agent</span></li>
               <li class="is-minimal"><span class="path">PRODUCT.md</span><span class="tag">mapa</span></li>
+              <li class="is-minimal"><span class="path">ROADMAP.md</span><span class="tag">plan</span></li>
               <li class="is-minimal"><span class="path">README.md</span><span class="tag">link</span></li>
             </ul>
           </details>
 
           <details class="structure-group">
-            <summary><span>Root jako warstwa dojrzałości</span><span class="tag">8 plików</span></summary>
+            <summary><span>Root jako warstwa dojrzałości</span><span class="tag">7 plików</span></summary>
             <ul class="file-list">
               <li><span class="path">CLAUDE.md</span><span class="tag">agent</span></li>
               <li><span class="path">DESIGN.md</span><span class="tag">design</span></li>
               <li><span class="path">tokens.json</span><span class="tag">tokens</span></li>
-              <li><span class="path">ROADMAP.md</span><span class="tag">plan</span></li>
               <li><span class="path">CHANGELOG.md</span><span class="tag">release</span></li>
               <li><span class="path">SECURITY.md</span><span class="tag">risk</span></li>
               <li><span class="path">CODEOWNERS</span><span class="tag">owner</span></li>
@@ -1832,7 +1859,7 @@
             <div class="kicker">Startowe prompty</div>
             <h2>Jak uruchomić UX RULER</h2>
           </div>
-          <p>Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, insighty i decyzję.</p>
+          <p>Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać prostym językiem o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, wnioski i decyzję.</p>
         </div>
 
         <div class="prompt-strip">
@@ -1841,21 +1868,21 @@
               <span>Nowy produkt</span>
               <button class="copy" data-copy="promptOpenSource">Kopiuj</button>
             </div>
-            <code id="promptOpenSource">Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Najpierw zapytaj mnie o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj wielkość rynku, dostępność odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw insighty i rekomendacje.</code>
+            <code id="promptOpenSource">Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Używaj prostego języka. Jeśli repo jest puste, pomóż mi najpierw zdefiniować misję przez 2-3 kierunki produktu. Gdy zdecydujemy misję lub kierunek, utwórz albo zaktualizuj kompaktowe PRODUCT.md i ROADMAP.md. W przeciwnym razie zapytaj mnie tylko o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj rynek, odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw wnioski i rekomendacje.</code>
           </div>
           <div class="prompt">
             <div class="prompt-head">
               <span>Audyt funkcji</span>
               <button class="copy" data-copy="promptAudit">Kopiuj</button>
             </div>
-            <code id="promptAudit">Użyj $uxruler do audytu tej funkcji. Pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i artefaktu decyzji.</code>
+            <code id="promptAudit">Użyj $uxruler do audytu tej funkcji. Prostym językiem pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i zapisanej decyzji.</code>
           </div>
           <div class="prompt">
             <div class="prompt-head">
               <span>Przegląd repo</span>
               <button class="copy" data-copy="promptRepo">Kopiuj</button>
             </div>
-            <code id="promptRepo">Użyj $uxruler na tym repo. Najpierw zapytaj, jaką decyzję ma wesprzeć ten przegląd repo, potem sprawdź repo i przedstaw insighty oparte na dowodach, zanim zarekomendujesz zmiany w artefaktach.</code>
+            <code id="promptRepo">Użyj $uxruler na tym repo. Najpierw zapytaj, co chcę zdecydować po przeglądzie repo, potem sprawdź repo i pokaż prostym językiem, co wiadomo, czego brakuje i co zrobić dalej. Jeśli misja lub kierunek są już zdecydowane, utwórz albo zaktualizuj kompaktowy ROADMAP.md.</code>
           </div>
         </div>
       </div>
@@ -1866,8 +1893,8 @@
     <div class="shell">
       <h2 class="footer-title">Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h2>
       <div class="hero-actions footer-actions">
-        <a class="button primary" href="#install">Zainstaluj skill</a>
-        <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer">Współtwórz</a>
+        <a class="button primary" href="#install" data-track="landing_install_cta_clicked" data-track-location="footer" data-track-target="install">Zainstaluj skill</a>
+        <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="landing_github_cta_clicked" data-track-location="footer" data-track-target="github">Współtwórz</a>
       </div>
     </div>
   </footer>
@@ -1885,9 +1912,9 @@
         copyDone: "Skopiowano",
         copyFallback: "Zaznacz tekst",
         langSwitcherAria: "Wybór języka",
-        promptOpenSource: "Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Najpierw zapytaj mnie o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj wielkość rynku, dostępność odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw insighty i rekomendacje.",
-        promptAudit: "Użyj $uxruler do audytu tej funkcji. Pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i artefaktu decyzji.",
-        promptRepo: "Użyj $uxruler na tym repo. Najpierw zapytaj, jaką decyzję ma wesprzeć ten przegląd repo, potem sprawdź repo i przedstaw insighty oparte na dowodach, zanim zarekomendujesz zmiany w artefaktach."
+        promptOpenSource: "Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Używaj prostego języka. Jeśli repo jest puste, pomóż mi najpierw zdefiniować misję przez 2-3 kierunki produktu. Gdy zdecydujemy misję lub kierunek, utwórz albo zaktualizuj kompaktowe PRODUCT.md i ROADMAP.md. W przeciwnym razie zapytaj mnie tylko o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj rynek, odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw wnioski i rekomendacje.",
+        promptAudit: "Użyj $uxruler do audytu tej funkcji. Prostym językiem pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i zapisanej decyzji.",
+        promptRepo: "Użyj $uxruler na tym repo. Najpierw zapytaj, co chcę zdecydować po przeglądzie repo, potem sprawdź repo i pokaż prostym językiem, co wiadomo, czego brakuje i co zrobić dalej. Jeśli misja lub kierunek są już zdecydowane, utwórz albo zaktualizuj kompaktowy ROADMAP.md."
       },
       en: {
         title: "UX RULER",
@@ -1898,9 +1925,9 @@
         copyDone: "Copied",
         copyFallback: "Select text",
         langSwitcherAria: "Language",
-        promptOpenSource: "Use $uxruler as an open source UX process for humans and agents. Ask me for missing context first, then inspect any real usage or repo-connected data available to the agent, research and verify market size, audience reachability, alternatives, and user need before presenting insights and recommendations.",
-        promptAudit: "Use $uxruler to audit this feature. Show whether it traces back to a real audience, user need, infrastructure capability, product experience, measurable value, and a decision artifact.",
-        promptRepo: "Use $uxruler on this repo. First ask what decision I want the repo pass to support, then inspect the repo and present evidence-backed insights before recommending any artifact changes."
+        promptOpenSource: "Use $uxruler as an open source UX process for humans and agents. Use simple language. If this repo is empty, help me define the mission first by offering 2 to 3 draft product directions. Once we decide the mission or direction, create or update compact PRODUCT.md and ROADMAP.md. Otherwise, ask me only for missing context first, then inspect any real usage or repo-connected data, check the market, audience, alternatives, and user need, and then present clear findings and recommendations.",
+        promptAudit: "Use $uxruler to audit this feature. In simple language, show whether it comes from a real audience, user need, infrastructure capability, product experience, measurable value, and a recorded decision.",
+        promptRepo: "Use $uxruler on this repo. First ask what I want to decide after you look at the repo, then inspect it and explain in simple language what is known, what is missing, and what to do next. If the mission or direction is already decided, create or update a compact ROADMAP.md."
       }
     };
 
@@ -1970,11 +1997,11 @@
       "Dwa tryby pracy: start produktu albo audyt istniejącego repo": "Two modes: starting a product or auditing an existing repo",
       "UX RULER nie kończy się na rozmowie. Zapisuje najważniejszą logikę produktu tak, żeby mogli do niej wracać ludzie i agenci: najpierw w jednym pliku, dopiero później w większej strukturze.": "UX RULER does not end with the conversation. It records the most important product logic so humans and agents can return to it: first in one file, later in a larger structure.",
       "Nowe repo": "New repo",
-      "Skill działa jak starter systemu pracy nad produktem. Zaczyna od jednego zrozumiałego artefaktu, zanim zespół zacznie kodować.": "The skill acts as a product operating starter. It starts with one understandable artifact before the team begins coding.",
-      "Formułuje tezę produktową i pierwsze założenia.": "It formulates the product thesis and first assumptions.",
+      "Skill działa jak starter systemu pracy nad produktem. Gdy repo jest puste, najpierw pomaga zdefiniować misję przez kilka kierunków produktu, zanim zespół zacznie kodować.": "The skill acts as a product operating starter. When the repo is empty, it first helps define the mission through a few product directions before the team begins coding.",
+      "Pomaga wybrać lub połączyć tezę produktową i pierwsze założenia.": "It helps choose or combine the product thesis and first assumptions.",
       "Mapuje rynek, użytkownika i potrzebę przed wyborem funkcji.": "It maps the market, user, and need before feature selection.",
       "Ustala pierwszą metrykę wartości, ryzyka i krok walidacyjny.": "It sets the first value metric, risks, and validation step.",
-      "Daje agentom kontekst w `PRODUCT.md` i opcjonalnie `AGENTS.md`.": "It gives agents context in `PRODUCT.md` and optionally `AGENTS.md`.",
+      "Daje agentom kontekst w `PRODUCT.md`, wczesny plan w `ROADMAP.md` i opcjonalnie instrukcje w `AGENTS.md`.": "It gives agents context in `PRODUCT.md`, an early plan in `ROADMAP.md`, and optional instructions in `AGENTS.md`.",
       "Istniejący produkt": "Existing product",
       "Skill działa jak audyt UX i produktowe due diligence. Rekonstruuje logikę produktu po fakcie i pokazuje luki.": "The skill acts as UX audit and product due diligence. It reconstructs product logic after the fact and shows the gaps.",
       "Sprawdza, czy funkcje wynikają z realnych potrzeb.": "It checks whether features trace back to real needs.",
@@ -1983,11 +2010,12 @@
       "Pomaga ustalić, co naprawić najpierw, żeby produkt rozwijał się w oparciu o potrzeby, decyzje i metryki.": "It helps decide what to fix first so the product evolves around needs, decisions, and metrics.",
       "Struktura repo": "Repo structure",
       "Pełna struktura, minimum na czarno": "Full structure, minimum in black",
-      "Czarne wiersze to domyślny zestaw startowy. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.": "Black rows are the default starter set. The rest is a target artifact library, added only when a decision, risk, or measurement needs its own file.",
+      "Czarne wiersze to domyślny zestaw startowy po ustaleniu kierunku produktu. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.": "Black rows are the default starter set after the product direction is chosen. The rest is a target artifact library, added only when a decision, risk, or measurement needs its own file.",
       "Minimalny root": "Minimal root",
       "3 pliki": "3 files",
       "mapa": "map",
       "Root jako warstwa dojrzałości": "Root as maturity layer",
+      "7 plików": "7 files",
       "8 plików": "8 files",
       "Instrukcje narzędzi": "Tool instructions",
       "4 pliki": "4 files",
@@ -2018,10 +2046,10 @@
       "Wariant dla zespołu: skill jest częścią konkretnego repo i można go commitować razem z projektem.": "A team option: the skill becomes part of a specific repo and can be committed with the project.",
       "Startowe prompty": "Starter prompts",
       "Jak uruchomić UX RULER": "How to start UX RULER",
-      "Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, insighty i decyzję.": "After installation, start with a conversation: give the agent a sketch of the idea, let it ask for context, inspect available usage and repo data, then ask for research, insights, and a decision.",
+      "Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać prostym językiem o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, wnioski i decyzję.": "After installation, start with a conversation: give the agent a sketch of the idea, let it ask for context in simple language, inspect available usage and repo data, then ask for research, findings, and a decision.",
       "Nowy produkt": "New product",
       "Audyt funkcji": "Feature audit",
-      "Przegląd repo": "Repo pass",
+      "Przegląd repo": "Repo check",
       "Kopiuj": "Copy"
     };
 
@@ -2036,6 +2064,34 @@
 
     const localizedTextNodes = [];
     let currentLanguage = "pl";
+
+    function trackLandingEvent(eventName, properties = {}) {
+      const event = {
+        event: eventName,
+        language: currentLanguage,
+        path: window.location.pathname || "/",
+        ...properties
+      };
+      const { event: _eventName, ...eventProperties } = event;
+
+      if (!Array.isArray(window.dataLayer)) {
+        window.dataLayer = [];
+      }
+      window.dataLayer.push(event);
+
+      if (!Array.isArray(window.uxrulerLandingEvents)) {
+        window.uxrulerLandingEvents = [];
+      }
+      window.uxrulerLandingEvents.push(event);
+
+      if (typeof CustomEvent === "function") {
+        window.dispatchEvent(new CustomEvent("uxruler:landing-event", { detail: event }));
+      }
+
+      if (window.posthog && typeof window.posthog.capture === "function") {
+        window.posthog.capture(eventName, eventProperties);
+      }
+    }
 
     function normalizedText(value) {
       return value.replace(/\s+/g, " ").trim();
@@ -2200,6 +2256,12 @@
           return;
         }
 
+        const stepNumber = (step.querySelector(".process-step-number") || {}).textContent || "";
+        const stepTitle = (step.querySelector(".process-step-title") || {}).textContent || "";
+        trackLandingEvent("landing_process_step_opened", {
+          step_number: stepNumber.trim(),
+          step_title: stepTitle.trim()
+        });
         activateProcessStep(step);
       });
     });
@@ -2209,6 +2271,10 @@
       groups.forEach((group) => {
         group.addEventListener("toggle", () => {
           if (!group.open) return;
+          const groupLabel = (group.querySelector("summary span:first-child") || {}).textContent || "";
+          trackLandingEvent("landing_structure_group_opened", {
+            group_label: groupLabel.trim()
+          });
           groups.forEach((otherGroup) => {
             if (otherGroup !== group) {
               otherGroup.open = false;
@@ -2293,6 +2359,17 @@
       scales[activeIndex] = maxScale - (maxScale - 1) * progress;
       if (nextIndex < allLinks.length) {
         scales[nextIndex] = 1 + (maxScale - 1) * progress;
+      }
+
+      const mobileRail = document.querySelector(".hero-rail");
+      if (mobileRail) {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const rulerSpeed = 0.2;
+        const rulerTrackWidth = Math.round(Math.max(navWidth + 480, maxScroll * rulerSpeed + navWidth + 96));
+        const rulerOffset = -Math.round(window.scrollY * rulerSpeed);
+
+        mobileRail.style.setProperty("--mobile-ruler-track-width", `${rulerTrackWidth}px`);
+        mobileRail.style.setProperty("--mobile-ruler-offset", `${rulerOffset}px`);
       }
 
       const labelWidths = allLinks.map((link, index) => link.offsetWidth * scales[index]);
@@ -2592,7 +2669,26 @@
 
     document.querySelectorAll(".lang-button").forEach((button) => {
       button.addEventListener("click", () => {
-        applyLanguage(button.dataset.lang, true);
+        const previousLanguage = currentLanguage;
+        const nextLanguage = button.dataset.lang;
+        applyLanguage(nextLanguage, true);
+
+        if (nextLanguage !== previousLanguage) {
+          trackLandingEvent("landing_language_switched", {
+            from_language: previousLanguage,
+            to_language: nextLanguage
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-track]").forEach((element) => {
+      element.addEventListener("click", () => {
+        trackLandingEvent(element.dataset.track, {
+          location: element.dataset.trackLocation || "unknown",
+          target: element.dataset.trackTarget || element.getAttribute("href") || "",
+          label: normalizedText(element.textContent || "")
+        });
       });
     });
 
@@ -2628,11 +2724,24 @@
       return fallbackCopy(text);
     }
 
+    function copyGroupFor(targetId) {
+      if (["codex", "claude", "projectSkill"].includes(targetId)) return "install";
+      if (targetId && targetId.startsWith("prompt")) return "prompt";
+      return "unknown";
+    }
+
     document.querySelectorAll(".copy").forEach((button) => {
       button.addEventListener("click", async () => {
         const target = document.getElementById(button.dataset.copy);
         const text = target ? target.innerText.trim() : "";
         const copied = await copyText(text);
+        trackLandingEvent("landing_copy_clicked", {
+          copy_target: button.dataset.copy || "unknown",
+          copy_group: copyGroupFor(button.dataset.copy),
+          copied,
+          text_length: text.length
+        });
+
         if (copied) {
           button.textContent = pageCopy[currentLanguage].copyDone;
           setTimeout(() => {

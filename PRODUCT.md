@@ -1,6 +1,6 @@
 # Product Map
 
-This is the compact UX RULER map for this repository. It keeps the product logic in one readable place. Use the full artifact blueprint in `uxruler/references/repo-artifact-blueprint.md` only when the project has enough usage, risk, or collaborators to justify more files.
+This is the compact UX RULER map for this repository. It keeps the product logic in one readable place. `ROADMAP.md` sequences the next product moves once the mission or direction is decided. Use the full artifact blueprint in `uxruler/references/repo-artifact-blueprint.md` only when the project has enough usage, risk, or collaborators to justify more files.
 
 ## Product Thesis
 
@@ -31,6 +31,7 @@ Core surfaces:
 
 - `uxruler/SKILL.md`: the workflow and operating rules.
 - `uxruler/references/`: optional artifact blueprint and templates.
+- `ROADMAP.md`: compact now/next/later sequence for decided product direction.
 - `index.html`: bilingual public explanation, process map, install commands, and starter prompts.
 - `.github/`: issue and PR templates for contributions.
 
@@ -42,15 +43,35 @@ Core surfaces:
 | Compact artifacts remain important, but they should come after insight. | Repo now uses `PRODUCT.md` instead of a generated `product/` tree. | High | Keep `PRODUCT.md` as the default artifact and expand only when needed. |
 | Agentic research is a differentiator over static UX worksheets. | User explicitly asked the skill to verify context and present insights. | Medium | Add research planning, source verification, confidence labels, and insight synthesis to the workflow. |
 | Broad repo requests need decision framing before audit output. | User tested `use SKILL.md on this repo`; the output was compact and evidence-backed, but it did not ask what decision the audit should support. | High | Add an explicit ambiguous-repo-request rule to the skill. |
+| UX RULER needs a reusable plain-language wording pattern. | User feedback with screenshot: the question "What decision do you want this pass to support?" used abstract process language; follow-up clarified this should be a general rule of thumb and use wording like "what do you want to decide after I look?" | High | Add a wording rule of thumb to the skill: ask what to decide, say what was found, name what is missing, and suggest what to do next. |
 | Audience validation should not be reduced to testing with a few users. | User feedback: the audience row suggested testing with target users, but audience should validate how many potential users exist. | High | Separate market sizing and reachability from user-need validation in the skill. |
 | Real usage and repo-connected data should be checked before asking the user for evidence. | User asked the skill to gather real app usage or any other repo-connected data available to agents, and to ask for information when that is not possible. | High | Add a usage-data discovery rule and fallback question pattern to the skill workflow. |
+| Measurement work needs an explicit handoff from instrumentation to decisions. | User feedback: the landing-page run added measurement events and updated this product map, but ended as an implementation report instead of explaining what the events make decidable or what should happen next. | High | Add skill rules for post-artifact closeout, measurement handoff, and transparent execution plans before file edits. |
+| A decided mission needs an early roadmap, not only a product map. | User feedback: concern that no roadmap file exists yet and that a roadmap should be created as soon as a skill user decides on a mission or direction. | High | Add compact `ROADMAP.md` as the sequencing companion to `PRODUCT.md`, and teach the skill to create or update it after direction is chosen. |
 | Standards-backed repo artifacts need executable templates, not only source names. | User feedback: UX RULER-created `design.md` was not compatible with Google Labs Code `design.md`; upstream expects YAML design tokens plus ordered markdown rationale. | High | Add a compliant `DESIGN.md` template and lint expectation before recommending or creating that artifact. |
+| Empty repo starts need guided mission definition, not a generic request for context. | User tested UX RULER on an empty repo; the response asked what to evaluate and who the audience is, but did not help shape the mission. | High | Add an explicit empty-repo branch that offers mission lenses or thesis drafts before asking for details. |
 
 ## Value
 
 UX RULER is useful when it helps a person and agent have a better product conversation, verify important assumptions with available usage/repo evidence, make a clearer product decision, narrow a feature, create durable repo context, or define a validation step before implementation.
 
 North-star signal: validated UX RULER applications, meaning real uses where the conversation and research change or clarify a product decision, metric, assumption, risk, or next validation step.
+
+Landing page measurement plan:
+
+| Event | Signal | Decision Supported |
+|---|---|---|
+| `landing_install_cta_clicked` | Visitor clicks the hero or footer install CTA. | Whether the page creates enough intent to try the skill. |
+| `landing_copy_clicked` with `copy_group: install` | Visitor copies a Codex, Claude Code, or project-local install command. | Whether the install section is discoverable and usable. |
+| `landing_copy_clicked` with `copy_group: prompt` | Visitor copies a starter prompt. | Whether the page helps users start a UX RULER conversation after install. |
+| `landing_language_switched` | Visitor switches between Polish and English. | Whether bilingual support is being used enough to keep maintaining both paths. |
+| `landing_github_cta_clicked` | Visitor clicks through to GitHub from hero or footer. | Whether contribution/source-code intent is visible. |
+| `landing_process_step_opened` | Visitor opens a UX RULER process step. | Which parts of the process visitors inspect before install or prompt-copy intent. |
+| `landing_structure_group_opened` | Visitor opens a repo artifact structure group. | Whether the repo-memory section helps or distracts before adoption. |
+
+Implementation note: the static page keeps a local debug copy in `window.uxrulerLandingEvents`, pushes the same event into `window.dataLayer`, dispatches a `uxruler:landing-event` browser event, and sends events to PostHog when `window.posthog.capture` is available.
+
+Review cadence and decision rule: review PostHog weekly during early release. If visitors click install but do not copy an install command or starter prompt, simplify the install section. If visitors explore process/repo sections but do not click install, add a concrete applied repo example before the repo-structure section. If language switching is low for several weeks, keep bilingual support but avoid expanding Polish-only content.
 
 ## Current Assumptions
 
@@ -59,7 +80,11 @@ North-star signal: validated UX RULER applications, meaning real uses where the 
 | AI-assisted product builders need repo-native product context. | Medium | Watch whether users apply UX RULER to real repos, not just read it. |
 | There are enough potential AI coding-agent product builders to justify the skill. | Medium | Estimate audience size and reachability using public agent adoption signals, GitHub/search interest, communities, and comparable tool ecosystems. |
 | Users want UX RULER to ask clarifying questions before producing artifacts. | High | Test whether conversational starts feel clearer than one-shot outputs. |
-| Ambiguous repo requests should not default silently to a full audit. | High | In future tests, check whether UX RULER asks the decision-framing question or states an explicit assumed decision. |
+| Plain-language wording makes UX RULER easier to use without weakening product rigor. | High | Test whether users understand what the agent is asking, what the agent found, what is missing, and what can happen next. |
+| Users need artifact updates to explain the next move, not only list changed files. | High | Test whether UX RULER closes file-edit work by naming the supported decision, measurable signal, missing handoff, and 2 to 3 concrete next options. |
+| A compact roadmap will improve follow-through after the mission is decided. | High | In the next 3 UX RULER repo applications, check whether `ROADMAP.md` makes the next product move easier to choose without creating document bloat. |
+| Ambiguous repo requests should not default silently to a full audit. | High | In future tests, check whether UX RULER asks the plain decision question or states an explicit assumed decision. |
+| Empty repo users need mission scaffolding before research or artifacts. | High | Test whether an empty-repo run offers useful thesis options and asks only for the smallest mission-shaping input. |
 | Agentic research makes UX RULER more useful than a static worksheet. | Medium | Compare outputs with and without repo/web/source verification. |
 | Agents can often discover useful usage signals from repo-connected tools or artifacts before asking the user. | Medium | Test UX RULER on repos with analytics configs, issues, feedback exports, logs, and connected tools; check whether it asks only for missing evidence. |
 | A compact artifact set is more useful than scaffolding many files. | High | Keep this repo to `PRODUCT.md` unless a specific decision needs a separate artifact. |
@@ -70,12 +95,15 @@ North-star signal: validated UX RULER applications, meaning real uses where the 
 
 | Risk | Response |
 |---|---|
-| UX RULER feels like product theory instead of practical agent tooling. | Add examples that show real repo decisions. |
-| UX RULER asks too many questions and slows the user down. | Ask only 1 to 3 high-leverage questions, then proceed with stated assumptions. |
+| UX RULER feels like product theory instead of practical agent tooling. | Use plain language and add examples that show real repo decisions. |
+| UX RULER asks too many questions and slows the user down. | Ask only 1 to 3 focused questions, then proceed with stated assumptions. |
+| UX RULER asks for mission context but leaves the user to invent the mission alone. | For empty repos, offer draft mission directions first, then ask the user to choose or refine. |
 | Research looks authoritative even when evidence is weak. | Separate user claims, verified evidence, inference, and unknowns. |
 | UX RULER may imply access to private usage data the current agent cannot actually see. | Require agents to name what they can access and ask for the smallest missing export, summary, or tool access instead of inventing evidence. |
 | UX RULER outputs can stop at a decision without helping the user move. | End each use by asking how the agent can help with the next step, offering concrete options. |
+| Measurement plans can look complete before any data is actually collected. | Require a measurement handoff: where events are emitted, whether a collector exists, who reviews the signal, and what decision the data should change. |
 | The workflow creates document bloat. | Default to one compact product map; expand only for real decisions. |
+| Roadmaps can turn into feature backlogs disconnected from evidence. | Keep `ROADMAP.md` compact, use now/next/later, and tie each item to a problem, evidence, and signal. |
 | Referenced artifact standards drift or get applied loosely. | Keep source-pattern notes, compliant templates, and validation commands for standards-backed artifacts such as `DESIGN.md`. |
 | Install instructions drift as tools change. | Verify install examples when changing repo URL or folder layout. |
 | Website and skill wording drift apart. | Update `README.md`, `index.html`, and `uxruler/SKILL.md` together when the workflow changes. |
@@ -85,10 +113,10 @@ North-star signal: validated UX RULER applications, meaning real uses where the 
 | Dimension | Current Read | Next Improvement |
 |---|---|---|
 | Usefulness | Strong promise, still needs external evidence. | Validate with 3 real applications. |
-| Ergonomics | Compact skill and website, but examples would help. | Add one applied example. |
+| Ergonomics | Compact skill and website, but some skill questions still need simpler wording, clearer next-step guidance, guided empty-repo mission scaffolding, early roadmap handoff, and better post-edit handoffs. | Test the plain-language repo question, test artifact closeouts after file edits, test whether `ROADMAP.md` helps choose the next move, test the empty-repo mission-definition path, and add one applied example. |
 | Attractiveness | Distinct process map and clear visual system. | Keep visual clarity while avoiding extra decoration. |
 | Identity | Positions users as thoughtful builders who use AI without skipping product judgment. | Keep artifacts lightweight so the identity does not feel bureaucratic. |
 
 ## Next Validation Step
 
-First validate audience scale and reachability: estimate how many potential AI coding-agent product builders exist, where they gather, and what demand signals suggest interest in product/UX strategy workflows. Then run 5 to 8 user sessions to test whether UX RULER changes a decision, metric, risk, or next validation step.
+Use `ROADMAP.md` to sequence the next work. First validate audience scale and reachability: estimate how many potential AI coding-agent product builders exist, where they gather, and what demand signals suggest interest in product/UX strategy workflows. Then run 5 to 8 user sessions to test whether UX RULER changes a decision, metric, risk, or next validation step.

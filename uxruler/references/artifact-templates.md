@@ -183,6 +183,44 @@ components:
 - Don't [specific pitfall to avoid].
 ```
 
+## Roadmap
+
+Path: `ROADMAP.md`
+
+Use this once the mission or product direction is decided. Keep it compact and evidence-linked; it is a sequencing artifact, not a feature backlog.
+
+```md
+# Roadmap
+
+This roadmap sequences the next product moves for [product name]. `PRODUCT.md` remains the product memory: mission, audience, user need, assumptions, risks, metrics, and UX evaluation.
+
+## Direction
+
+[One or two sentences that restate the decided mission or product direction.]
+
+## Now
+
+| Item | Problem Or Evidence | Signal |
+|---|---|---|
+| [Current move] | [Why this matters now] | [What would show progress] |
+
+## Next
+
+| Item | Problem Or Evidence | Signal |
+|---|---|---|
+| [Likely next move] | [Evidence, risk, or dependency] | [What would make this worth doing] |
+
+## Later
+
+| Item | Problem Or Evidence | Signal |
+|---|---|---|
+| [Deferred move] | [Why not now] | [What would make this relevant] |
+
+## Review Rule
+
+Review this roadmap when `PRODUCT.md` changes, when a validation signal arrives, or when a roadmap item is completed, deferred, or invalidated.
+```
+
 ## Product Thesis
 
 Path: `product/00-mission/product-thesis.md`
