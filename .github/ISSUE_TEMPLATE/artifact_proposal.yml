@@ -1,5 +1,5 @@
 name: Artifact proposal
-description: Propose a new product, UX, research, metric, or decision artifact.
+description: Propose an artifact for the open source UX process for humans and agents.
 title: "[Artifact]: "
 labels:
   - artifact
@@ -8,7 +8,7 @@ body:
   - type: textarea
     id: stage
     attributes:
-      label: Which UXRuler stage does this support?
+      label: Which UX RULER stage does this support?
       description: Mission, audience, user, need, infrastructure, product, value, evaluation, or decision/measurement.
     validations:
       required: true
@@ -16,7 +16,7 @@ body:
     id: purpose
     attributes:
       label: What decision does it improve?
-      description: UXRuler artifacts should help teams or agents make better decisions.
+      description: UX RULER artifacts should help teams or agents make evidence-backed product decisions.
     validations:
       required: true
   - type: textarea

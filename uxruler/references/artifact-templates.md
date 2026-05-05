@@ -1,6 +1,187 @@
 # Artifact Templates
 
-Use this reference when the user asks for copyable template sections, starter files, or a repo scaffold based on UXRuler. Keep generated files compact. Replace placeholders with project-specific content and remove unused sections.
+Use this reference when the user asks for copyable template sections, starter files, or a repo scaffold based on UX RULER. Keep generated files compact. Replace placeholders with project-specific content and remove unused sections. Start with `PRODUCT.md` unless the user explicitly asks for a fuller artifact tree.
+
+## Product Map
+
+Path: `PRODUCT.md`
+
+```md
+# Product Map
+
+## Product Thesis
+
+We believe [audience] needs a better way to [problem area], because [change / tension / market opportunity].
+
+## Audience
+
+[Who may care, buy, approve, influence adoption, or use the product. Include estimated audience size, reachable channels, buyer/adopter roles, demand signals, and confidence.]
+
+| Segment | Estimated size | Reachable channels | Demand signal | Confidence |
+|---|---|---|---|---|
+| [Audience segment] | [Rough size or unknown] | [Where they can be reached] | [Search/GitHub/community/competitor/sales signal] | [Low/Medium/High] |
+
+## User Need
+
+The user wants [gain], so they try to [job], but they run into [pain].
+
+## Product
+
+[What the product is, what surfaces exist, and what infrastructure enables the experience.]
+
+## Research Insights
+
+| Insight | Evidence | Confidence | Decision implication |
+|---|---|---|---|
+| [What seems true] | [Source, file, interview, observation, or search result] | [Low/Medium/High] | [What this changes] |
+
+## Value
+
+[The user value the product must deliver and how it reaches the user.]
+
+## Current Assumptions
+
+| Assumption | Confidence | Validation |
+|---|---|---|
+| [Assumption] | [Low/Medium/High] | [Smallest validation step] |
+
+## Risks
+
+| Risk | Response |
+|---|---|
+| [Risk] | [Mitigation or decision rule] |
+
+## UX Test
+
+| Dimension | Current read | Next improvement |
+|---|---|---|
+| Usefulness | [Does it solve a real problem?] | [Action] |
+| Ergonomics | [Can users do the job easily?] | [Action] |
+| Attractiveness | [Is it clear, engaging, and memorable?] | [Action] |
+| Identity | [Does it fit who users want to be?] | [Action] |
+
+## Next Validation Step
+
+[Smallest action that can reduce uncertainty.]
+
+## How The Agent Can Help Next
+
+- [Concrete option 1]
+- [Concrete option 2]
+- [Concrete option 3]
+```
+
+## Design System
+
+Path: `DESIGN.md`
+
+Use this only when the user explicitly asks for a design-system source of truth or when a real product decision needs one. Follow the Google Labs Code `design.md` format: YAML front matter at the top for normative tokens, then markdown rationale with `##` sections in the canonical order. Replace the sample values with project-specific tokens, keep color values as hex codes, and run `npx @google/design.md lint DESIGN.md` when possible.
+
+```md
+---
+version: alpha
+name: ProductName
+description: "A concise description of the product visual identity."
+colors:
+  primary: "#111827"
+  secondary: "#4B5563"
+  tertiary: "#1D4ED8"
+  neutral: "#F9FAFB"
+  surface: "#FFFFFF"
+  on-surface: "#111827"
+  on-tertiary: "#FFFFFF"
+typography:
+  headline-lg:
+    fontFamily: Inter
+    fontSize: 40px
+    fontWeight: 700
+    lineHeight: 1.1
+    letterSpacing: 0em
+  body-md:
+    fontFamily: Inter
+    fontSize: 16px
+    fontWeight: 400
+    lineHeight: 1.5
+    letterSpacing: 0em
+  label-md:
+    fontFamily: Inter
+    fontSize: 14px
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: 0em
+rounded:
+  sm: 4px
+  md: 8px
+  lg: 12px
+spacing:
+  xs: 4px
+  sm: 8px
+  md: 16px
+  lg: 24px
+  xl: 32px
+components:
+  page:
+    backgroundColor: "{colors.neutral}"
+    textColor: "{colors.on-surface}"
+  card:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.on-surface}"
+    rounded: "{rounded.md}"
+    padding: 16px
+  button-primary:
+    backgroundColor: "{colors.tertiary}"
+    textColor: "{colors.on-tertiary}"
+    typography: "{typography.label-md}"
+    rounded: "{rounded.md}"
+    padding: 12px
+  link:
+    textColor: "{colors.primary}"
+    typography: "{typography.body-md}"
+  metadata:
+    textColor: "{colors.secondary}"
+    typography: "{typography.label-md}"
+---
+
+# DESIGN.md
+
+## Overview
+
+[Describe the visual identity, brand personality, audience, and intended emotional response.]
+
+## Colors
+
+[Explain the palette roles and how colors should be applied.]
+
+- **Primary (#111827):** [Role and rationale.]
+- **Secondary (#4B5563):** [Role and rationale.]
+- **Tertiary (#1D4ED8):** [Role and rationale.]
+- **Neutral (#F9FAFB):** [Role and rationale.]
+
+## Typography
+
+[Explain type families, hierarchy, weights, readability, and any data or label treatments.]
+
+## Layout
+
+[Describe grid, density, spacing rhythm, responsive behavior, and containment rules.]
+
+## Elevation & Depth
+
+[Describe how hierarchy is created: shadows, borders, tonal layers, or flat composition.]
+
+## Shapes
+
+[Describe radius rules and the shape language for interactive elements and containers.]
+
+## Components
+
+[Describe key component variants, states, and how the component tokens should be used.]
+
+## Do's and Don'ts
+
+- Do [specific design rule].
+- Don't [specific pitfall to avoid].
+```
 
 ## Product Thesis
 

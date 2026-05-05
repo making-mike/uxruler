@@ -3,32 +3,55 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UXRuler</title>
-  <meta name="description" content="UXRuler is an open source product and UX strategy skill that turns a mission into market, user, need, product, value, metrics, and repo artifacts.">
-  <meta name="theme-color" content="#101820">
+  <title>UX RULER</title>
+  <meta name="description" content="UX RULER to proces UX open source dla ludzi i agentów.">
+  <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://uxruler.com/">
-  <meta property="og:title" content="UXRuler">
-  <meta property="og:description" content="An open source UXRuler skill for building digital products from mission to measurable user value.">
+  <meta property="og:title" content="UX RULER">
+  <meta property="og:description" content="UX RULER to proces UX open source dla ludzi i agentów.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://uxruler.com/">
   <meta name="twitter:card" content="summary">
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23101820"/><circle cx="22" cy="22" r="7" fill="%2366e3cc"/><circle cx="42" cy="42" r="7" fill="%23fbbf24"/><path d="M18 44 44 18" stroke="white" stroke-width="5" stroke-linecap="round"/></svg>'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Kalam:wght@700&family=Permanent+Marker&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="black"/><path d="M8 8h48v48H8z" fill="white"/><path d="M14 14h36v36H14z" fill="black"/><path d="M20 20h24v24H20z" fill="white"/></svg>'>
   <style>
     :root {
-      --ink: #111827;
-      --muted: #5b6472;
-      --paper: #f7f9fb;
-      --surface: #ffffff;
-      --line: #d8dee8;
-      --teal: #0f766e;
-      --blue: #2563eb;
-      --rose: #e11d48;
-      --amber: #b45309;
-      --green-soft: #dff5ef;
-      --blue-soft: #e5efff;
-      --rose-soft: #ffe6eb;
-      --amber-soft: #fff0d3;
-      --shadow: 0 18px 60px rgba(17, 24, 39, 0.12);
+      --black: #000;
+      --white: #fff;
+      --heading-font: "Space Grotesk", "Fragment Mono", ui-monospace, monospace;
+      --emphasis-font: "Kalam", "Fragment Mono", ui-monospace, monospace;
+      --grid-line: rgba(0, 0, 0, 0.035);
+      --grid-size: 4px;
+      --ruler-major: 32px;
+      --small-line: 16px;
+      --meta-line: 20px;
+      --text-line: 24px;
+      --h1-line: 88px;
+      --h2-line: 40px;
+      --h3-line: 24px;
+      --footer-title-line: 80px;
+      --muted: #000;
+      --soft: #fff;
+      --line: #000;
+      --content-min-width: 760px;
+      --rail-width: clamp(96px, calc(100vw - var(--content-min-width)), 346px);
+      --topbar-height: clamp(13px, calc(13.8728vw - 105.434px), 48px);
+      --nav-font-size: clamp(10px, calc(4.6243vw - 35.145px), 16px);
+      --nav-gap: clamp(8px, calc(5.7803vw - 43.930px), 20px);
+      --ruler-width: var(--topbar-height);
+      --ruler-start-gap: calc(var(--topbar-height) / 12);
+      --ruler-top-trim: calc(var(--ruler-width) / 12);
+      --rail-label-size: clamp(10px, calc(var(--topbar-height) * 0.4167), 20px);
+      --rail-label-scale-max: 2.35;
+      --rail-nav-offset: calc(var(--topbar-height) / 3);
+      --rail-about-offset: calc(var(--topbar-height) * 2.5);
+      --rail-label-x: max(22px, calc(var(--rail-width) - var(--rail-label-size) - var(--rail-nav-offset)));
+      --content-gutter-left: clamp(74px, 8.2vw, 132px);
+      --content-gutter-right: clamp(18px, 5vw, 72px);
+      --shell: min(1160px, calc(100% - 120px));
+      --topbar-columns: var(--rail-width) minmax(0, 1fr);
     }
 
     * {
@@ -40,11 +63,44 @@
     }
 
     body {
+      position: relative;
       margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.55;
+      background: var(--white);
+      color: var(--black);
+      font-family: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      line-height: var(--text-line);
+      text-rendering: geometricPrecision;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      z-index: 12;
+      top: calc(var(--topbar-height) + var(--ruler-start-gap));
+      bottom: 0;
+      left: var(--rail-width);
+      width: var(--ruler-width);
+      pointer-events: none;
+      background-image: url("assets/ruler.svg");
+      background-position: left calc(0px - var(--ruler-top-trim));
+      background-repeat: repeat-y;
+      background-size: var(--ruler-width) auto;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      z-index: 11;
+      top: calc(var(--topbar-height) + var(--ruler-start-gap));
+      right: 0;
+      bottom: 0;
+      left: var(--rail-width);
+      pointer-events: none;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      background-position: 0 0;
     }
 
     a {
@@ -52,133 +108,113 @@
     }
 
     .shell {
-      width: min(1160px, calc(100% - 40px));
-      margin: 0 auto;
+      width: auto;
+      margin: 0 var(--content-gutter-right) 0 var(--content-gutter-left);
     }
 
     .topbar {
       position: fixed;
-      z-index: 20;
+      z-index: 30;
       top: 0;
       left: 0;
       right: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      background: rgba(12, 18, 28, 0.78);
-      backdrop-filter: blur(16px);
-      color: #fff;
+      color: var(--white);
+      font-size: var(--nav-font-size);
+      line-height: var(--small-line);
     }
 
     .topbar .shell {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      min-height: 64px;
+      display: grid;
+      grid-template-columns: var(--topbar-columns);
+      width: 100%;
+      margin: 0;
+      min-height: var(--topbar-height);
     }
 
     .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 750;
-    }
-
-    .brand-mark {
-      width: 28px;
-      height: 28px;
-      border: 2px solid rgba(255, 255, 255, 0.88);
-      border-radius: 8px;
-      position: relative;
-    }
-
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #66e3cc;
-    }
-
-    .brand-mark::before {
-      left: 5px;
-      top: 5px;
-    }
-
-    .brand-mark::after {
-      right: 5px;
-      bottom: 5px;
-      background: #fbbf24;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 14px;
-      color: rgba(255, 255, 255, 0.82);
-    }
-
-    nav a {
+      display: block;
+      width: var(--rail-width);
+      height: var(--topbar-height);
+      background: var(--black);
+      overflow: hidden;
       text-decoration: none;
     }
 
-    nav a:hover {
-      color: #fff;
+    .brand img {
+      display: block;
+      width: 100%;
+      height: var(--topbar-height);
+      object-fit: fill;
     }
 
-    .hero {
-      position: relative;
-      min-height: 86vh;
-      overflow: hidden;
-      color: #fff;
-      background: #101820;
+    .topline {
+      min-height: var(--topbar-height);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .topline {
       display: flex;
       align-items: center;
-      padding: 96px 0 56px;
-    }
-
-    #processCanvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.88;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(16, 24, 32, 0.94), rgba(16, 24, 32, 0.74) 48%, rgba(16, 24, 32, 0.2)),
-        linear-gradient(180deg, rgba(16, 24, 32, 0), rgba(16, 24, 32, 0.55));
-      pointer-events: none;
-    }
-
-    .hero-content {
+      justify-content: center;
       position: relative;
-      z-index: 1;
-      max-width: 760px;
-      padding-top: 20px;
+      padding: 0 clamp(64px, calc(27.7456vw - 194.868px), 112px);
+      overflow: visible;
+      text-align: center;
+      white-space: nowrap;
     }
 
-    .eyebrow {
+    .topline-text {
+      min-width: 0;
+      overflow: visible;
+      text-overflow: clip;
+    }
+
+    .language-switcher {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #b8fff0;
-      font-size: 14px;
-      font-weight: 720;
-      margin-bottom: 18px;
+      align-items: stretch;
+      padding: 4px 4px 4px 0;
+      border: 0;
+      background: transparent;
     }
 
-    .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 2px;
-      background: #66e3cc;
+    .lang-button {
+      display: inline-grid;
+      place-items: center;
+      min-width: clamp(28px, calc(3.4682vw - 4.358px), 34px);
+      height: auto;
+      border: 0;
+      border-radius: 0;
+      background: var(--black);
+      color: var(--white);
+      font: inherit;
+      font-size: clamp(8px, calc(1.1561vw - 2.786px), 10px);
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lang-button + .lang-button {
+      border-left: 0;
+      box-shadow: inset 2px 0 0 var(--white);
+    }
+
+    .lang-button.is-active {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .lang-button:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 3px;
+    }
+
+    .rail-nav-link:hover,
+    .rail-nav-link:focus-visible {
+      outline: none;
     }
 
     h1,
@@ -188,92 +224,266 @@
       margin-top: 0;
     }
 
+    p,
+    li {
+      line-height: var(--text-line);
+    }
+
+    h1,
+    h2,
+    h3,
+    strong {
+      font-weight: 400;
+    }
+
+    h1,
+    h2,
+    h3,
+    .footer-title,
+    .process-step-title {
+      font-family: var(--heading-font);
+      font-weight: 600;
+    }
+
+    em {
+      position: relative;
+      display: inline-block;
+      font-family: var(--emphasis-font);
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    em::after {
+      content: "";
+      position: absolute;
+      left: -0.06em;
+      right: -0.04em;
+      bottom: -0.02em;
+      height: 0.13em;
+      border-radius: 999px;
+      background: currentColor;
+      pointer-events: none;
+      transform: rotate(-1.1deg);
+      transform-origin: left center;
+    }
+
+    em.marker-reveal::after {
+      opacity: 0;
+      transform: rotate(-1.1deg) scaleX(0);
+    }
+
+    em.marker-reveal.is-marker-visible::after {
+      animation: marker-sweep 640ms ease-out forwards;
+    }
+
+    @keyframes marker-sweep {
+      from {
+        opacity: 0.64;
+        transform: rotate(-1.1deg) scaleX(0);
+      }
+
+      to {
+        opacity: 1;
+        transform: rotate(-1.1deg) scaleX(1);
+      }
+    }
+
+    .hero {
+      margin-left: var(--rail-width);
+      padding: 0;
+      overflow: hidden;
+      background: var(--white);
+      color: var(--black);
+      scroll-margin-top: var(--topbar-height);
+    }
+
+    .hero-stage {
+      width: 100%;
+    }
+
+    .hero-rail {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      width: var(--rail-width);
+      height: 100svh;
+      background: var(--black);
+    }
+
+    .rail-nav {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .rail-nav-link {
+      position: absolute;
+      left: var(--rail-label-x);
+      top: 0;
+      display: inline-block;
+      color: var(--white);
+      font-size: var(--rail-label-size);
+      line-height: var(--meta-line);
+      text-decoration: none;
+      transform: rotate(-90deg) scale(var(--rail-scale, 1));
+      transform-origin: left top;
+      white-space: nowrap;
+    }
+
+    .rail-nav-link.is-active {
+      text-decoration: none;
+    }
+
+    .hero-panel {
+      position: relative;
+      display: grid;
+      min-width: 0;
+      margin-top: var(--topbar-height);
+      overflow: hidden;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .hero-ruler {
+      display: none;
+    }
+
+    .hero-content {
+      position: relative;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      width: min(calc(100% - var(--content-gutter-left) - var(--content-gutter-right)), 1120px);
+      max-width: none;
+      margin: 0 auto;
+      padding: 96px 0 104px;
+      text-align: center;
+    }
+
     h1 {
-      max-width: 820px;
-      margin-bottom: 20px;
-      font-size: 64px;
-      line-height: 1.04;
+      max-width: 16em;
+      margin-bottom: 32px;
+      font-size: clamp(38px, 5.2vw, 76px);
+      line-height: var(--h1-line);
       letter-spacing: 0;
+      transform: translateY(-10px);
     }
 
     .hero-lead {
-      max-width: 680px;
-      color: rgba(255, 255, 255, 0.84);
-      font-size: 20px;
-      margin-bottom: 30px;
+      max-width: 56rem;
+      margin-bottom: 40px;
+      color: var(--muted);
+      font-size: clamp(18px, 1.6vw, 24px);
+      line-height: 32px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      justify-content: center;
+    }
+
+    .hero-actions .button {
+      min-height: 64px;
+      padding: 0 32px;
+      font-size: 20px;
+      line-height: var(--text-line);
+    }
+
+    .footer-actions {
+      justify-content: flex-start;
+      margin-top: 32px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      border-radius: 8px;
-      padding: 0 18px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-weight: 730;
+      min-height: 40px;
+      border: 2px solid currentColor;
+      border-radius: 0;
+      padding: 0 16px;
+      color: var(--black);
+      background: var(--white);
+      font: inherit;
+      font-size: 12px;
+      line-height: var(--small-line);
       text-decoration: none;
     }
 
     .button.primary {
-      background: #66e3cc;
-      color: #09201b;
-      border-color: #66e3cc;
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
     }
 
     .button.secondary {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--black);
+    }
+
+    .button:hover,
+    .button:focus-visible,
+    .copy:hover,
+    .copy:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 4px;
     }
 
     main {
-      background: var(--paper);
+      margin-left: var(--rail-width);
+      background: var(--white);
     }
 
-    section {
+    main section {
       padding: 76px 0;
+      scroll-margin-top: var(--topbar-height);
     }
 
     .section-head {
       display: grid;
-      grid-template-columns: minmax(0, 0.85fr) minmax(260px, 0.55fr);
-      gap: 48px;
-      align-items: end;
-      margin-bottom: 36px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      align-items: start;
+      margin-bottom: 32px;
     }
 
     .kicker {
-      color: var(--teal);
-      font-size: 13px;
-      font-weight: 800;
+      display: inline-block;
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--black);
+      color: var(--black);
+      font-size: 12px;
+      line-height: var(--small-line);
       text-transform: uppercase;
     }
 
     h2 {
-      margin-bottom: 14px;
-      font-size: 38px;
-      line-height: 1.14;
+      margin-bottom: 16px;
+      font-size: clamp(20px, 2.6vw, 32px);
+      line-height: var(--h2-line);
       letter-spacing: 0;
     }
 
     .section-head p,
     .wide-copy {
       color: var(--muted);
-      font-size: 18px;
+      font-size: 16px;
+      line-height: var(--text-line);
+    }
+
+    .section-head p {
+      max-width: 46rem;
     }
 
     .process-graph {
       overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: var(--shadow);
+      border: 2px solid var(--line);
+      border-radius: 0;
+      background: var(--white);
     }
 
     .process-graph-header {
@@ -281,265 +491,333 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--line);
-      background: #f8fafc;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--line);
+      background: var(--white);
+      color: var(--black);
     }
 
     .process-graph-header strong {
-      color: #0b3f3a;
-      font-size: 15px;
+      font-size: 14px;
+      line-height: var(--meta-line);
     }
 
     .process-graph-header span {
-      color: var(--muted);
-      font-size: 14px;
+      font-size: 12px;
+      line-height: var(--small-line);
     }
 
     .process-graph-frame {
       overflow: hidden;
-      padding: 22px;
+      padding: 0;
     }
 
-    .graph-board {
+    .process-accordion {
+      display: grid;
+    }
+
+    .process-step {
+      border-bottom: 2px solid var(--line);
+      background: var(--white);
+    }
+
+    .process-step:last-child {
+      border-bottom: 0;
+    }
+
+    .process-step-trigger {
       position: relative;
       display: grid;
-      gap: 48px;
-    }
-
-    .graph-connectors {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
+      grid-template-columns: 40px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
       width: 100%;
-      height: 100%;
-      overflow: visible;
-      pointer-events: none;
+      border: 0;
+      border-radius: 0;
+      padding: 16px 64px 16px 24px;
+      background: var(--white);
+      color: var(--black);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
     }
 
-    .graph-row {
-      position: relative;
-      z-index: 1;
+    .process-step-trigger:hover,
+    .process-step-trigger:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: -6px;
+    }
+
+    .process-step.is-active .process-step-trigger {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .process-step-number {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 2px solid currentColor;
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .process-step.is-active .process-step-number {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .process-step-title {
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    .process-step-icon {
+      position: absolute;
+      top: 50%;
+      right: 24px;
+      font-size: 20px;
+      line-height: var(--text-line);
+      transform: translateY(-50%);
+    }
+
+    .process-step-panel {
+      display: none;
+      border-top: 2px solid var(--line);
+      padding: 24px;
+    }
+
+    .process-step.is-active .process-step-panel {
       display: grid;
+      grid-template-columns: minmax(0, 0.45fr) minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    .process-step-summary,
+    .process-detail-grid {
+      min-width: 0;
+    }
+
+    .process-step-summary p {
+      margin-bottom: 0;
+      font-size: 20px;
+      line-height: 32px;
+    }
+
+    .process-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(12rem, 1fr));
       gap: 16px;
     }
 
-    .stages-row {
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-      align-items: stretch;
-    }
-
-    .decision-row {
-      grid-template-columns: minmax(220px, 1.25fr) repeat(4, minmax(0, 1fr));
-      align-items: stretch;
-    }
-
-    .statements-row {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .graph-card {
+    .process-detail-card {
       min-width: 0;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+      border: 2px solid var(--line);
+      padding: 16px;
+      background: var(--white);
       overflow-wrap: anywhere;
     }
 
-    .stage-card {
-      min-height: 220px;
-      padding: 18px 16px;
+    .process-detail-card strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
     }
 
-    .stage-card.green {
-      border-color: rgba(15, 118, 110, 0.28);
-      background: var(--green-soft);
-    }
-
-    .stage-card.blue {
-      border-color: rgba(37, 99, 235, 0.24);
-      background: var(--blue-soft);
-    }
-
-    .stage-card.rose {
-      border-color: rgba(225, 29, 72, 0.22);
-      background: var(--rose-soft);
-    }
-
-    .stage-card.amber {
-      border-color: rgba(180, 83, 9, 0.28);
-      background: var(--amber-soft);
-    }
-
-    .stage-card .num {
-      display: inline-grid;
-      place-items: center;
-      width: 38px;
-      height: 38px;
-      margin-bottom: 22px;
-      border-radius: 50%;
-      background: rgba(17, 24, 39, 0.08);
-      font-weight: 820;
-    }
-
-    .stage-card h3,
-    .decision-card h3,
-    .statement-card h3 {
-      margin-bottom: 10px;
-      line-height: 1.18;
-      font-size: 21px;
-    }
-
-    .stage-card h3 {
-      font-size: 18px;
-    }
-
-    .stage-card p,
-    .decision-card p,
-    .statement-card p {
+    .process-detail-card p {
       margin-bottom: 0;
-      color: #4d5665;
-      font-size: 16px;
-      line-height: 1.45;
-    }
-
-    .stage-card p {
-      font-size: 15px;
-    }
-
-    .decision-card {
-      padding: 18px;
-      border-color: rgba(15, 118, 110, 0.24);
-    }
-
-    .decision-summary {
-      border-color: rgba(15, 118, 110, 0.34);
-      background: #effaf7;
-    }
-
-    .decision-summary h3 {
-      color: #0b3f3a;
-    }
-
-    .decision-question {
-      display: grid;
-      align-content: center;
-      min-height: 92px;
-      color: #183f3b;
-      font-weight: 790;
-    }
-
-    .statement-card {
-      padding: 20px;
-      border-color: #111827;
-      background: #111827;
-      color: #fff;
-    }
-
-    .statement-card h3 {
-      color: #66e3cc;
-      font-size: 18px;
-    }
-
-    .statement-card p {
-      color: rgba(255, 255, 255, 0.84);
-      font-size: 15px;
+      font-size: 14px;
+      line-height: var(--meta-line);
     }
 
     .split {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(2, minmax(18rem, 1fr));
+      gap: 24px;
     }
 
     .ux-layers {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(12rem, 1fr));
       gap: 16px;
       margin-top: 28px;
     }
 
     .ux-layer {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 22px;
-      background: var(--surface);
-      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.06);
+      display: flex;
+      flex-direction: column;
+      border: 2px solid var(--line);
+      border-radius: 0;
+      padding: 0;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .ux-layer:nth-child(even) {
+      background: var(--white);
+      color: var(--black);
     }
 
     .ux-layer strong {
       display: block;
-      margin-bottom: 10px;
+      margin-bottom: 0;
+      padding: 16px 20px;
+      background: var(--black);
+      color: var(--white);
       font-size: 20px;
+      line-height: 32px;
     }
 
     .ux-layer p {
-      margin-bottom: 18px;
+      margin: 0;
+      padding: 20px 20px 16px;
       color: var(--muted);
+    }
+
+    .ux-layer:nth-child(even) p {
+      color: var(--black);
     }
 
     .ux-layer .question {
       display: block;
-      padding-top: 14px;
-      border-top: 1px solid var(--line);
-      color: #263140;
-      font-weight: 720;
+      margin: auto 20px 20px;
+      padding-top: 16px;
+      border-top: 2px solid var(--black);
       font-size: 14px;
+      line-height: var(--meta-line);
     }
 
     .panel {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 26px;
-      background: var(--surface);
-      box-shadow: 0 10px 36px rgba(17, 24, 39, 0.06);
+      border: 2px solid var(--line);
+      border-radius: 0;
+      padding: 24px;
+      background: var(--white);
     }
 
     .panel h3 {
-      margin-bottom: 12px;
-      font-size: 24px;
+      margin-bottom: 16px;
+      font-size: 16px;
+      line-height: var(--h3-line);
     }
 
     .panel p {
       color: var(--muted);
     }
 
+    .split .panel {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .split .panel h3 {
+      margin: 0;
+      padding: 16px 20px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 22px;
+      line-height: 32px;
+    }
+
+    .split .panel p {
+      margin: 0;
+      padding: 24px 24px 0;
+    }
+
+    .split .panel .bullets {
+      margin: 24px;
+    }
+
     .bullets {
       display: grid;
-      gap: 10px;
+      gap: 8px;
       padding: 0;
-      margin: 20px 0 0;
+      margin: 24px 0 0;
       list-style: none;
     }
 
     .bullets li {
       position: relative;
       padding-left: 24px;
-      color: #394150;
+      color: var(--black);
     }
 
     .bullets li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 10px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--teal);
+      top: 12px;
+      width: 10px;
+      height: 2px;
+      background: var(--black);
     }
 
     .repo-map {
       display: grid;
-      grid-template-columns: 0.9fr 1.1fr;
-      gap: 26px;
+      grid-template-columns: minmax(18rem, 0.9fr) minmax(18rem, 1.1fr);
+      gap: 24px;
       align-items: start;
+    }
+
+    .structure-accordion {
+      display: grid;
+      gap: 8px;
+    }
+
+    .structure-group {
+      border: 2px solid var(--black);
+      background: var(--white);
+    }
+
+    .structure-group summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 12px;
+      align-items: center;
+      min-height: 44px;
+      padding: 10px 12px;
+      cursor: pointer;
+      list-style: none;
+      color: var(--black);
+      font-size: 14px;
+      line-height: var(--meta-line);
+    }
+
+    .structure-group summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .structure-group summary::after {
+      content: "+";
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border: 1px solid currentColor;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .structure-group[open] summary::after {
+      content: "-";
+    }
+
+    .structure-group.is-minimum summary {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .structure-group .file-list {
+      border-top: 2px solid var(--black);
+      padding: 8px;
     }
 
     .file-list {
       display: grid;
-      gap: 10px;
+      gap: 4px;
       padding: 0;
       margin: 0;
       list-style: none;
@@ -550,33 +828,59 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 13px 14px;
-      border-radius: 8px;
-      background: #eef3f8;
-      color: #263140;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size: 14px;
+      min-height: 40px;
+      padding: 8px 12px 8px calc(12px + var(--depth, 0) * 16px);
+      border: 2px solid var(--black);
+      background: var(--white);
+      color: var(--black);
+      font-size: 12px;
+      line-height: var(--meta-line);
+    }
+
+    .file-list li.is-minimal {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .file-list li.is-folder {
+      min-height: 32px;
+      border-style: dashed;
+      font-weight: 600;
+    }
+
+    .file-list .depth-1 {
+      --depth: 1;
+    }
+
+    .file-list .depth-2 {
+      --depth: 2;
+    }
+
+    .file-list .depth-3 {
+      --depth: 3;
+    }
+
+    .path {
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
 
     .tag {
       flex: 0 0 auto;
-      border-radius: 999px;
-      padding: 3px 8px;
-      background: #fff;
-      color: var(--muted);
-      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      border: 1px solid currentColor;
+      padding: 4px 8px;
+      color: inherit;
       font-size: 12px;
-      font-weight: 760;
+      line-height: var(--small-line);
     }
 
     .code-block {
       position: relative;
       overflow: hidden;
-      border-radius: 8px;
-      border: 1px solid #263140;
-      background: #0e1724;
-      color: #d8fff5;
-      box-shadow: var(--shadow);
+      border: 2px solid var(--black);
+      border-radius: 0;
+      background: var(--black);
+      color: var(--white);
     }
 
     .code-head {
@@ -584,193 +888,359 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 12px 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      color: #9fb1c7;
-      font-size: 13px;
-      font-weight: 740;
+      padding: 12px 16px;
+      border-bottom: 2px solid var(--white);
+      color: var(--white);
+      font-size: 12px;
+      line-height: var(--small-line);
     }
 
     .copy {
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      padding: 6px 10px;
+      border: 2px solid var(--white);
+      border-radius: 0;
+      background: var(--black);
+      color: var(--white);
+      padding: 8px 12px;
       font: inherit;
+      font-size: 12px;
+      line-height: var(--small-line);
       cursor: pointer;
     }
 
     pre {
       margin: 0;
-      padding: 18px;
+      padding: 16px;
       overflow-x: auto;
-      font-size: 14px;
-      line-height: 1.55;
+      font-size: 12px;
+      line-height: var(--meta-line);
     }
 
     code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-family: inherit;
     }
 
     .install-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .repo-input {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 12px;
-      align-items: end;
-      margin-bottom: 22px;
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--surface);
-      box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
-    }
-
-    .repo-input label {
-      display: grid;
-      gap: 7px;
-      color: #263140;
-      font-weight: 760;
-    }
-
-    .repo-input span {
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 14px;
-    }
-
-    .repo-input input {
-      width: 100%;
-      min-height: 44px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 0 12px;
-      color: var(--ink);
-      background: #f8fafc;
-      font: inherit;
+      grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+      gap: 16px;
     }
 
     .install-card {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      display: grid;
+      grid-template-rows: auto minmax(96px, auto) minmax(0, 1fr);
+      gap: 16px;
+      align-content: stretch;
       min-height: 100%;
     }
 
+    .install-card h3,
+    .install-card p {
+      margin-bottom: 0;
+    }
+
     .install-card .code-block {
-      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-self: stretch;
+      min-height: 100%;
     }
 
     .install-card pre {
+      flex: 1;
       min-height: 172px;
-      font-size: 13px;
     }
 
     .prompt-strip {
       display: grid;
-      gap: 14px;
-      margin-top: 22px;
+      gap: 16px;
+      margin-top: 24px;
     }
 
     .prompt {
-      border-left: 4px solid var(--teal);
-      border-radius: 8px;
-      background: #fff;
-      padding: 18px;
-      color: #2c3645;
-      box-shadow: 0 8px 26px rgba(17, 24, 39, 0.05);
+      display: grid;
+      gap: 16px;
+      border: 2px solid var(--black);
+      background: var(--black);
+      padding: 16px;
+      color: var(--white);
+    }
+
+    .prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--white);
+      font-size: 12px;
+      line-height: var(--small-line);
     }
 
     .footer {
-      padding: 34px 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
+      margin-left: var(--rail-width);
+      min-height: 0;
+      padding: 48px 0 80px;
+      background: var(--white);
+      color: var(--black);
       font-size: 14px;
+      line-height: var(--meta-line);
     }
 
-    @media (max-width: 1060px) {
+    .footer .shell {
+      min-height: 0;
+    }
+
+    .footer-title {
+      max-width: 10em;
+      margin: 0;
+      color: var(--black);
+      font-size: clamp(32px, 5vw, 72px);
+      line-height: var(--footer-title-line);
+    }
+
+    @media (max-width: 1160px) {
+      :root {
+        --h1-line: 72px;
+        --footer-title-line: 64px;
+      }
+
       .install-grid,
       .ux-layers {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(16rem, 1fr));
       }
+    }
 
-      .repo-input {
+    @media (max-width: 1400px) {
+      .process-step.is-active .process-step-panel,
+      .process-detail-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 800px) {
-      .shell {
-        width: min(100% - 28px, 1160px);
+    @media (max-width: 900px) {
+      .process-step.is-active .process-step-panel,
+      .process-detail-grid {
+        grid-template-columns: 1fr;
       }
 
-      .topbar {
-        position: absolute;
-      }
-
-      .topbar .shell {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 14px 0;
-      }
-
-      nav {
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .hero {
-        min-height: 82vh;
-        padding: 148px 0 42px;
-      }
-
-      h1 {
-        font-size: 42px;
-        line-height: 1.08;
-      }
-
-      h2 {
-        font-size: 30px;
-      }
-
-      .hero-lead,
-      .section-head p,
-      .wide-copy {
-        font-size: 17px;
-      }
-
-      .section-head,
       .split,
       .repo-map {
         grid-template-columns: 1fr;
       }
 
-      .process-graph-frame {
-        padding: 14px;
+    }
+
+    @media (max-width: 600px) {
+      :root {
+        --rail-width: 173px;
+        --topbar-height: 24px;
+        --mobile-topline-height: calc(var(--topbar-height) + 12px);
+        --mobile-nav-height: 48px;
+        --mobile-ruler-height: var(--topbar-height);
+        --mobile-header-height: calc(var(--topbar-height) + var(--mobile-topline-height) + var(--mobile-nav-height) + var(--mobile-ruler-height));
+        --h1-line: 48px;
+        --footer-title-line: 48px;
       }
 
-      .graph-board {
-        gap: 18px;
-      }
-
-      .graph-connectors {
+      body::before {
         display: none;
       }
 
-      .stages-row,
-      .decision-row,
-      .statements-row {
+      body::after {
+        left: 0;
+      }
+
+      .shell {
+        width: min(100% - 28px, 1160px);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: fixed;
+        background: var(--black);
+        font-size: 10px;
+      }
+
+      .topbar .shell {
+        width: 100%;
+        grid-template-columns: 1fr;
+        position: relative;
+      }
+
+      .brand {
+        margin-left: 0;
+      }
+
+      .topbar .shell::after {
+        content: "";
+        position: absolute;
+        top: calc(var(--topbar-height) - 2px);
+        right: 0;
+        left: calc(var(--rail-width) - 2px);
+        height: 2px;
+        pointer-events: none;
+        background: var(--white);
+      }
+
+      .topline {
+        justify-content: center;
+        min-height: var(--mobile-topline-height);
+        border-top: 0;
+        border-bottom: 0;
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+
+      .topline::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        pointer-events: none;
+        background: var(--white);
+      }
+
+      .language-switcher {
+        position: fixed;
+        z-index: 31;
+        top: 0;
+        right: 0;
+        bottom: auto;
+        height: var(--topbar-height);
+        padding: 0 0 2px;
+        transform: none;
+      }
+
+      .lang-button {
+        min-width: 42px;
+      }
+
+      .hero {
+        min-height: auto;
+        margin-left: 0;
+        padding-top: var(--mobile-header-height);
+        scroll-margin-top: var(--mobile-header-height);
+      }
+
+      .hero-stage {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-rail {
+        position: fixed;
+        z-index: 29;
+        top: calc(var(--topbar-height) + var(--mobile-topline-height));
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: var(--mobile-nav-height);
+        min-height: var(--mobile-nav-height);
+        border: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        scrollbar-width: none;
+      }
+
+      .hero-rail::after {
+        content: "";
+        position: fixed;
+        top: calc(var(--topbar-height) + var(--mobile-topline-height) + var(--mobile-nav-height));
+        left: 100vw;
+        width: var(--mobile-ruler-height);
+        height: 100vw;
+        pointer-events: none;
+        background-image: url("assets/ruler.svg");
+        background-repeat: repeat-y;
+        background-position: left top;
+        background-size: var(--mobile-ruler-height) auto;
+        transform: rotate(90deg);
+        transform-origin: top left;
+      }
+
+      .rail-nav {
+        position: relative;
+        display: block;
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+      }
+
+      .rail-nav-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        min-width: max-content;
+        height: 100%;
+        padding: 0;
+        border-right: 0;
+        font-size: 12px;
+        line-height: var(--small-line);
+        transform: scale(var(--rail-scale, 1));
+        transform-origin: left center;
+      }
+
+      .hero-rail::-webkit-scrollbar {
+        display: none;
+      }
+
+      .hero-panel {
+        min-height: 68svh;
+        margin-top: 0;
+      }
+
+      .hero-ruler {
+        top: 0;
+        bottom: 0;
+      }
+
+      .hero-content {
+        display: grid;
+        align-content: center;
+        width: min(100% - 40px, 54rem);
+        max-width: none;
+        margin: 0 auto;
+        padding: 44px 0 48px;
+      }
+
+      h1 {
+        font-size: clamp(28px, 9vw, 44px);
+      }
+
+      .section-head,
+      .split,
+      .repo-map,
+      .install-grid,
+      .ux-layers {
         grid-template-columns: 1fr;
       }
 
-      .stage-card {
-        min-height: 0;
+      main,
+      .footer {
+        margin-left: 0;
+      }
+
+      .process-step-trigger {
+        grid-template-columns: 40px minmax(0, 1fr);
+        padding: 16px 56px 16px 16px;
+      }
+
+      .process-step-icon {
+        right: 16px;
+      }
+
+      .process-step-title {
+        font-size: 20px;
+        line-height: var(--h3-line);
+      }
+
+      .process-step-panel {
+        padding: 16px;
       }
 
       .panel,
@@ -789,8 +1259,9 @@
         min-height: 0;
       }
 
-      section {
+      main section {
         padding: 56px 0;
+        scroll-margin-top: var(--mobile-header-height);
       }
     }
 
@@ -798,36 +1269,51 @@
       html {
         scroll-behavior: auto;
       }
+
+      em.marker-reveal::after,
+      em.marker-reveal.is-marker-visible::after {
+        opacity: 1;
+        transform: rotate(-1.1deg) scaleX(1);
+        animation: none;
+      }
     }
   </style>
 </head>
 <body>
   <header class="topbar" aria-label="Nawigacja strony">
     <div class="shell">
-      <div class="brand" aria-label="UXRuler">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>UXRuler</span>
+      <a class="brand" href="#about" aria-label="UX RULER">
+        <img src="assets/logo.svg" alt="">
+      </a>
+      <div class="topline">
+        <span class="topline-text">Proces UX open source dla ludzi i agentów</span>
+        <div class="language-switcher" aria-label="Wybór języka">
+          <button class="lang-button is-active" type="button" data-lang="pl" aria-pressed="true">PL</button>
+          <button class="lang-button" type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
       </div>
-      <nav>
-        <a href="#mapa">Mapa</a>
-        <a href="#repo">Repo</a>
-        <a href="#install">Instalacja</a>
-        <a href="#prompty">Prompty</a>
-        <a href="https://github.com/making-mike/uxruler" rel="noreferrer">GitHub</a>
-      </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <canvas id="processCanvas" aria-hidden="true"></canvas>
-    <div class="shell">
-      <div class="hero-content">
-        <div class="eyebrow">uxruler.com</div>
-        <h1>UXRuler porządkuje drogę od misji do mierzalnej wartości</h1>
-        <p class="hero-lead">Open source skill prowadzi produkt od pierwszej tezy przez rynek, potrzeby użytkownika, infrastrukturę, doświadczenie, rollout, metryki i decyzje. Dzięki temu człowiek albo agent nie zaczyna od ekranu, tylko od sensu.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#install">Zainstaluj skill</a>
-          <a class="button secondary" href="#mapa">Zobacz UXRuler</a>
+  <section class="hero" id="about">
+    <div class="hero-stage">
+      <div class="hero-rail">
+        <nav class="rail-nav" aria-label="Sekcje strony">
+          <a class="rail-nav-link" href="#about" data-section="about">Proces</a>
+          <a class="rail-nav-link" href="#repo" data-section="repo">Repo</a>
+          <a class="rail-nav-link" href="#install" data-section="install">Instalacja</a>
+          <a class="rail-nav-link" href="#prompty" data-section="prompty">Prompty</a>
+        </nav>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-ruler" aria-hidden="true"></div>
+        <div class="hero-content">
+          <h1>Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h1>
+          <p class="hero-lead">Open source'owy proces UX dla ludzi i agentów. Pomaga przejść od misji, rynku i potrzeby użytkownika do decyzji, metryk, ewaluacji UX i lekkiej pamięci produktu w repo.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#install">Zainstaluj skill</a>
+            <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer">Współtwórz</a>
+          </div>
         </div>
       </div>
     </div>
@@ -836,91 +1322,200 @@
   <main>
     <section id="mapa">
       <div class="shell">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Mapa procesu</div>
-            <h2>Od tezy produktowej do ewaluacji UX</h2>
-          </div>
-          <p>Każdy etap odpowiada na inne pytanie. Razem tworzą ścieżkę, która chroni przed budowaniem funkcji bez rynku, UI bez potrzeby i release’u bez wartości.</p>
-        </div>
-
-        <div class="process-graph" aria-label="Responsywny wykres UXRuler">
+        <div class="process-graph" aria-label="Mapa procesu UX RULER">
           <div class="process-graph-header">
-            <strong>Etapy, decyzje, metryki i statements w jednym grafie</strong>
-            <span>Responsywny graf z warstwą decyzyjną</span>
+            <strong>Mapa procesu</strong>
           </div>
           <div class="process-graph-frame">
-            <div class="graph-board" id="uxrulerGraph">
-              <svg class="graph-connectors" aria-hidden="true"></svg>
+            <div class="process-accordion" id="uxrulerProcess">
+              <article class="process-step is-active">
+                <button class="process-step-trigger" type="button" aria-expanded="true" aria-controls="process-step-0">
+                  <span class="process-step-number">0</span>
+                  <span class="process-step-title">Misja</span>
+                  <span class="process-step-icon" aria-hidden="true">-</span>
+                </button>
+                <div class="process-step-panel" id="process-step-0">
+                  <div class="process-step-summary">
+                    <p>Określ, jaką zmianę produkt ma wywołać, dla kogo może mieć znaczenie i dlaczego warto sprawdzić ją teraz.</p>
+                  </div>
+                  <div class="process-detail-grid">
+                    <div class="process-detail-card">
+                      <strong>Pytanie</strong>
+                      <p>Jaką zmianę chcemy wywołać, dla kogo może być ważna i dlaczego teraz?</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Artefakt</strong>
+                      <p>Teza produktowa: odbiorcy, obszar problemu, napięcie albo okazja i powód działania.</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Sygnał</strong>
+                      <p>Widać napięcie rynkowe, powtarzalny problem, słabe alternatywy albo dobry moment.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
 
-              <div class="graph-row statements-row" aria-label="Statements do uzupełnienia">
-                <article class="graph-card statement-card" data-node="thesis">
-                  <h3>Product thesis</h3>
-                  <p>Wierzymy, że [odbiorcy] potrzebują lepszego sposobu na [problem], ponieważ [okazja].</p>
-                </article>
-                <article class="graph-card statement-card" data-node="problem">
-                  <h3>Problem statement</h3>
-                  <p>Użytkownik chce [korzyść], dlatego próbuje [zadanie], ale napotyka [bolączkę].</p>
-                </article>
-                <article class="graph-card statement-card" data-node="feature">
-                  <h3>Feature statement</h3>
-                  <p>Zbudujemy [funkcję / flow], żeby pomóc [użytkownikowi] osiągnąć [korzyść].</p>
-                </article>
-              </div>
+              <article class="process-step">
+                <button class="process-step-trigger" type="button" aria-expanded="false" aria-controls="process-step-1">
+                  <span class="process-step-number">1</span>
+                  <span class="process-step-title">Odbiorcy</span>
+                  <span class="process-step-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="process-step-panel" id="process-step-1">
+                  <div class="process-step-summary">
+                    <p>Określ rynek, kupujących, adopterów, blokujących, kanały i sygnały popytu, zanim przejdziesz do osoby wykonującej zadanie.</p>
+                  </div>
+                  <div class="process-detail-grid">
+                    <div class="process-detail-card">
+                      <strong>Pytanie</strong>
+                      <p>Czy istnieje wystarczająco duży i osiągalny segment z powodem, budżetem albo wpływem na adopcję?</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Artefakt</strong>
+                      <p>Mapa rynku: segmenty, wielkość, kanały, role kupna i adopcji, alternatywy oraz pozycjonowanie.</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Sygnał</strong>
+                      <p>Da się oszacować wielkość segmentu, dotarcie, popyt albo koszt obecnych alternatyw.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
 
-              <div class="graph-row stages-row" aria-label="Etapy UXRuler">
-                <article class="graph-card stage-card green" data-node="mission">
-                  <span class="num">0</span>
-                  <h3>Misja</h3>
-                  <p>Co chcemy zmienić i dlaczego teraz warto to sprawdzić?</p>
-                </article>
-                <article class="graph-card stage-card blue" data-node="audience">
-                  <span class="num">1</span>
-                  <h3>Odbiorcy</h3>
-                  <p>Rynek, segmenty, buyerzy, kanały i kontekst adopcji.</p>
-                </article>
-                <article class="graph-card stage-card rose" data-node="user">
-                  <span class="num">2</span>
-                  <h3>Użytkownik</h3>
-                  <p>Konkretna osoba, jej zadania, bolączki, korzyści i kontekst.</p>
-                </article>
-                <article class="graph-card stage-card amber" data-node="need">
-                  <span class="num">3</span>
-                  <h3>Potrzeba</h3>
-                  <p>Most od badań do funkcji: co naprawdę uzasadnia budowę?</p>
-                </article>
-                <article class="graph-card stage-card green" data-node="infra">
-                  <span class="num">4</span>
-                  <h3>Infrastruktura</h3>
-                  <p>Technologia, dane, bezpieczeństwo, analityka i operacje.</p>
-                </article>
-                <article class="graph-card stage-card blue" data-node="product">
-                  <span class="num">5</span>
-                  <h3>Produkt</h3>
-                  <p>Architektura informacji, interfejs, interakcje i design system.</p>
-                </article>
-                <article class="graph-card stage-card rose" data-node="value">
-                  <span class="num">6</span>
-                  <h3>Wartość</h3>
-                  <p>Rollout, onboarding, komunikacja, feedback i iteracja.</p>
-                </article>
-                <article class="graph-card stage-card amber" data-node="evaluation">
-                  <span class="num">7</span>
-                  <h3>Ewaluacja</h3>
-                  <p>Użyteczność, ergonomia, atrakcyjność i tożsamość.</p>
-                </article>
-              </div>
+              <article class="process-step">
+                <button class="process-step-trigger" type="button" aria-expanded="false" aria-controls="process-step-2">
+                  <span class="process-step-number">2</span>
+                  <span class="process-step-title">Użytkownik</span>
+                  <span class="process-step-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="process-step-panel" id="process-step-2">
+                  <div class="process-step-summary">
+                    <p>Zbadaj konkretną osobę wykonującą zadanie: co robi, co ją blokuje, czego chce i w jakich warunkach działa.</p>
+                  </div>
+                  <div class="process-detail-grid">
+                    <div class="process-detail-card">
+                      <strong>Pytanie</strong>
+                      <p>Co konkretny użytkownik próbuje zrobić i co go blokuje albo frustruje?</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Artefakt</strong>
+                      <p>Profil użytkownika: zadania, bolączki, korzyści, kontekst i obecne obejścia.</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Sygnał</strong>
+                      <p>Zachowanie, feedback, wywiady, logi albo support pokazują częstotliwość i koszt problemu.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
 
-              <div class="graph-row decision-row" aria-label="Warstwa decyzji i metryk">
-                <article class="graph-card decision-card decision-summary" data-node="decisionSummary">
-                  <h3>Decyzje i metryki są przekrojowe</h3>
-                  <p>To sposób przechodzenia przez każdy etap: od misji aż po ewaluację.</p>
-                </article>
-                <article class="graph-card decision-card decision-question" data-node="assumption">Co zakładamy?</article>
-                <article class="graph-card decision-card decision-question" data-node="evidence">Jakie mamy dowody?</article>
-                <article class="graph-card decision-card decision-question" data-node="decision">Jaką decyzję podejmujemy?</article>
-                <article class="graph-card decision-card decision-question" data-node="measure">Po czym poznamy, że mieliśmy rację?</article>
-              </div>
+              <article class="process-step">
+                <button class="process-step-trigger" type="button" aria-expanded="false" aria-controls="process-step-3">
+                  <span class="process-step-number">3</span>
+                  <span class="process-step-title">Potrzeba</span>
+                  <span class="process-step-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="process-step-panel" id="process-step-3">
+                  <div class="process-step-summary">
+                    <p>Wyprowadź potrzebę z dowodów użytkownika i zdecyduj, czy uzasadnia funkcję, prototyp albo dalszy research.</p>
+                  </div>
+                  <div class="process-detail-grid">
+                    <div class="process-detail-card">
+                      <strong>Pytanie</strong>
+                      <p>Która potrzeba jest na tyle silna, żeby uzasadnić budowę, prototyp albo dalszy research?</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Artefakt</strong>
+                      <p>Opis potrzeby: użytkownik chce [korzyść], próbuje [zadanie], ale blokuje go [bolączka].</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Sygnał</strong>
+                      <p>Da się wskazać siłę potrzeby, wpływ na zadanie, poziom pewności i decyzję.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="process-step">
+                <button class="process-step-trigger" type="button" aria-expanded="false" aria-controls="process-step-4">
+                  <span class="process-step-number">4</span>
+                  <span class="process-step-title">Infrastruktura</span>
+                  <span class="process-step-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="process-step-panel" id="process-step-4">
+                  <div class="process-step-summary">
+                    <p>Przygotuj bezpieczne i stabilne środowisko oraz integracje, które muszą istnieć, żeby dostarczyć obiecaną wartość.</p>
+                  </div>
+                  <div class="process-detail-grid">
+                    <div class="process-detail-card">
+                      <strong>Pytanie</strong>
+                      <p>Co technicznie musi działać, żeby wartość była niezawodna, bezpieczna i mierzalna?</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Artefakt</strong>
+                      <p>Plan techniczny: dane, architektura, integracje, jakość, ryzyka i wymagania operacyjne.</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Sygnał</strong>
+                      <p>Dane, wydajność, niezawodność, bezpieczeństwo i koszt wspierają potrzebę użytkownika.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="process-step">
+                <button class="process-step-trigger" type="button" aria-expanded="false" aria-controls="process-step-5">
+                  <span class="process-step-number">5</span>
+                  <span class="process-step-title">Produkt</span>
+                  <span class="process-step-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="process-step-panel" id="process-step-5">
+                  <div class="process-step-summary">
+                    <p>Zamień potwierdzoną potrzebę w interakcję, architekturę i interfejs na podstawie design systemu, tak żeby użytkownik mógł je zrozumieć i wykorzystać.</p>
+                  </div>
+                  <div class="process-detail-grid">
+                    <div class="process-detail-card">
+                      <strong>Pytanie</strong>
+                      <p>Jak użytkownik odkryje, zrozumie, wykona i zapamięta rozwiązanie?</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Artefakt</strong>
+                      <p>Mapa produktu: przepływ użytkownika, prototyp, kluczowa interakcja, copy i kierunek design systemu.</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Sygnał</strong>
+                      <p>Test lub prototyp pokazuje zrozumienie, ukończenie zadania, niski wysiłek i zaufanie.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="process-step">
+                <button class="process-step-trigger" type="button" aria-expanded="false" aria-controls="process-step-6">
+                  <span class="process-step-number">6</span>
+                  <span class="process-step-title">Wartość</span>
+                  <span class="process-step-icon" aria-hidden="true">+</span>
+                </button>
+                <div class="process-step-panel" id="process-step-6">
+                  <div class="process-step-summary">
+                    <p>Zaplanuj wdrożenie, onboarding, komunikację, feedback i metryki, które pokażą, czy wartość naprawdę dotarła do użytkownika.</p>
+                  </div>
+                  <div class="process-detail-grid">
+                    <div class="process-detail-card">
+                      <strong>Pytanie</strong>
+                      <p>Jak dostarczymy, zakomunikujemy i sprawdzimy wartość po wdrożeniu?</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Artefakt</strong>
+                      <p>Plan wartości: rollout, komunikat, onboarding, feedback, test użyteczności i iteracje.</p>
+                    </div>
+                    <div class="process-detail-card">
+                      <strong>Sygnał</strong>
+                      <p>Adopcja, retencja, ukończenie zadania, satysfakcja i feedback mówią, co utrzymać albo zmienić.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
         </div>
@@ -932,7 +1527,7 @@
         <div class="section-head">
           <div>
             <div class="kicker">4 warstwy UX</div>
-            <h2>UXRuler prowadzi do ewaluacji jakości doświadczenia</h2>
+            <h2>Każda decyzja przechodzi przez cztery warstwy UX</h2>
           </div>
           <p>Każdy etap procesu powinien ostatecznie wzmacniać jedną z czterech warstw. Jeżeli produkt nie przechodzi tego testu, problem nie zawsze leży w interfejsie. Czasem trzeba wrócić do potrzeby, rynku, infrastruktury albo sposobu dostarczenia wartości.</p>
         </div>
@@ -959,7 +1554,7 @@
           <article class="ux-layer">
             <strong>Tożsamość</strong>
             <p>Produkt pasuje do tego, kim użytkownik chce być, jak chce pracować i jak chce podejmować decyzje.</p>
-            <span class="question">Czy produkt wzmacnia obraz użytkownika o sobie?</span>
+            <span class="question">Czy produkt pasuje do sposobu, w jaki użytkownik chce pracować i podejmować decyzje?</span>
           </article>
         </div>
       </div>
@@ -970,31 +1565,31 @@
         <div class="section-head">
           <div>
             <div class="kicker">Repo jako pamięć produktu</div>
-            <h2>Nowe repo i istniejący produkt dostają inne tryby pracy</h2>
+            <h2>Dwa tryby pracy: start produktu albo audyt istniejącego repo</h2>
           </div>
-          <p>Skill nie tylko opisuje UX. On zamienia UX w pliki, które mogą czytać ludzie i agenci: instrukcje, decyzje, metryki, szablony, badania i design system.</p>
+          <p>UX RULER nie kończy się na rozmowie. Zapisuje najważniejszą logikę produktu tak, żeby mogli do niej wracać ludzie i agenci: najpierw w jednym pliku, dopiero później w większej strukturze.</p>
         </div>
 
         <div class="split">
           <article class="panel">
             <h3>Nowe repo</h3>
-            <p>Skill działa jak product operating system starter. Tworzy minimalny zestaw artefaktów, zanim zespół zacznie kodować.</p>
+            <p>Skill działa jak starter systemu pracy nad produktem. Zaczyna od jednego zrozumiałego artefaktu, zanim zespół zacznie kodować.</p>
             <ul class="bullets">
               <li>Formułuje tezę produktową i pierwsze założenia.</li>
               <li>Mapuje rynek, użytkownika i potrzebę przed wyborem funkcji.</li>
-              <li>Ustala pierwszą metrykę wartości i log decyzji.</li>
-              <li>Daje agentom kontekst w `AGENTS.md`, `DESIGN.md` i folderach `product/`.</li>
+              <li>Ustala pierwszą metrykę wartości, ryzyka i krok walidacyjny.</li>
+              <li>Daje agentom kontekst w `PRODUCT.md` i opcjonalnie `AGENTS.md`.</li>
             </ul>
           </article>
 
           <article class="panel">
             <h3>Istniejący produkt</h3>
-            <p>Skill działa jak audyt UX i product due diligence. Rekonstruuje logikę produktu po fakcie i pokazuje luki.</p>
+            <p>Skill działa jak audyt UX i produktowe due diligence. Rekonstruuje logikę produktu po fakcie i pokazuje luki.</p>
             <ul class="bullets">
               <li>Sprawdza, czy funkcje wynikają z realnych potrzeb.</li>
-              <li>Łączy feedback, analytics, architekturę i rollout z decyzjami.</li>
-              <li>Wskazuje brakujące artefakty: metryki, research, decision log, UX scorecard.</li>
-              <li>Pomaga ustalić, co naprawić najpierw, żeby produkt rozwijał się bardziej UX-owo.</li>
+              <li>Łączy dostępne dane użycia, feedback, analytics, architekturę i rollout z decyzjami.</li>
+              <li>Wskazuje brakujące decyzje, metryki, research i UX scorecard bez tworzenia plików na zapas.</li>
+              <li>Pomaga ustalić, co naprawić najpierw, żeby produkt rozwijał się w oparciu o potrzeby, decyzje i metryki.</li>
             </ul>
           </article>
         </div>
@@ -1004,22 +1599,162 @@
     <section>
       <div class="shell repo-map">
         <div>
-          <div class="kicker">Minimalny zestaw</div>
-          <h2>Pliki, od których warto zacząć</h2>
-          <p class="wide-copy">Nie trzeba tworzyć całej biblioteki dokumentów od razu. Skill zaczyna od małego zestawu, który daje agentom i zespołowi najwięcej kontekstu za najmniejszy koszt.</p>
+          <div class="kicker">Struktura repo</div>
+          <h2>Pełna struktura, minimum na czarno</h2>
+          <p class="wide-copy">Czarne wiersze to domyślny zestaw startowy. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.</p>
         </div>
 
-        <ul class="file-list" aria-label="Minimalny zestaw plików">
-          <li><span>AGENTS.md</span><span class="tag">agent</span></li>
-          <li><span>DESIGN.md</span><span class="tag">design</span></li>
-          <li><span>product/00-mission/product-thesis.md</span><span class="tag">misja</span></li>
-          <li><span>product/01-audience/market-map.md</span><span class="tag">rynek</span></li>
-          <li><span>product/02-user/jobs-pains-gains.md</span><span class="tag">user</span></li>
-          <li><span>product/03-need/problem-statement.md</span><span class="tag">potrzeba</span></li>
-          <li><span>product/05-product/design-system.md</span><span class="tag">produkt</span></li>
-          <li><span>product/08-decision-measurement/north-star-metric.md</span><span class="tag">metryka</span></li>
-          <li><span>product/08-decision-measurement/decision-log.md</span><span class="tag">decyzje</span></li>
-        </ul>
+        <div class="structure-accordion" aria-label="Docelowa struktura plików">
+          <details class="structure-group is-minimum" open>
+            <summary><span>Minimalny root</span><span class="tag">3 pliki</span></summary>
+            <ul class="file-list">
+              <li class="is-minimal"><span class="path">AGENTS.md</span><span class="tag">agent</span></li>
+              <li class="is-minimal"><span class="path">PRODUCT.md</span><span class="tag">mapa</span></li>
+              <li class="is-minimal"><span class="path">README.md</span><span class="tag">link</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>Root jako warstwa dojrzałości</span><span class="tag">8 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">CLAUDE.md</span><span class="tag">agent</span></li>
+              <li><span class="path">DESIGN.md</span><span class="tag">design</span></li>
+              <li><span class="path">tokens.json</span><span class="tag">tokens</span></li>
+              <li><span class="path">ROADMAP.md</span><span class="tag">plan</span></li>
+              <li><span class="path">CHANGELOG.md</span><span class="tag">release</span></li>
+              <li><span class="path">SECURITY.md</span><span class="tag">risk</span></li>
+              <li><span class="path">CODEOWNERS</span><span class="tag">owner</span></li>
+              <li><span class="path">CONTRIBUTING.md</span><span class="tag">open</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>Instrukcje narzędzi</span><span class="tag">4 pliki</span></summary>
+            <ul class="file-list">
+              <li><span class="path">.cursor/rules/product-ux.mdc</span><span class="tag">Cursor</span></li>
+              <li><span class="path">.github/copilot-instructions.md</span><span class="tag">Copilot</span></li>
+              <li><span class="path">.github/ISSUE_TEMPLATE/feedback.yml</span><span class="tag">feedback</span></li>
+              <li><span class="path">.github/ISSUE_TEMPLATE/feature_request.yml</span><span class="tag">request</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/00-mission</span><span class="tag">5 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">mission.md</span><span class="tag">why</span></li>
+              <li><span class="path">product-thesis.md</span><span class="tag">teza</span></li>
+              <li><span class="path">principles.md</span><span class="tag">zasady</span></li>
+              <li><span class="path">assumptions.md</span><span class="tag">ryzyko</span></li>
+              <li><span class="path">non-goals.md</span><span class="tag">granice</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/01-audience</span><span class="tag">5 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">market-map.md</span><span class="tag">mapa</span></li>
+              <li><span class="path">segments.md</span><span class="tag">segmenty</span></li>
+              <li><span class="path">competitors.md</span><span class="tag">alternatywy</span></li>
+              <li><span class="path">positioning.md</span><span class="tag">pozycja</span></li>
+              <li><span class="path">channels.md</span><span class="tag">dotarcie</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/02-user</span><span class="tag">5 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">research-plan.md</span><span class="tag">research</span></li>
+              <li><span class="path">interview-guide.md</span><span class="tag">guide</span></li>
+              <li><span class="path">user-profile.md</span><span class="tag">profil</span></li>
+              <li><span class="path">jobs-pains-gains.md</span><span class="tag">JTBD</span></li>
+              <li><span class="path">insights.md</span><span class="tag">insight</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/03-need</span><span class="tag">4 pliki</span></summary>
+            <ul class="file-list">
+              <li><span class="path">problem-statement.md</span><span class="tag">problem</span></li>
+              <li><span class="path">opportunities.md</span><span class="tag">szanse</span></li>
+              <li><span class="path">feature-hypotheses.md</span><span class="tag">hipotezy</span></li>
+              <li><span class="path">prd.md</span><span class="tag">zakres</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/04-infrastructure</span><span class="tag">12 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">architecture.md</span><span class="tag">arch</span></li>
+              <li><span class="path">data-model.md</span><span class="tag">data</span></li>
+              <li><span class="path">permissions.md</span><span class="tag">auth</span></li>
+              <li><span class="path">openapi.yaml</span><span class="tag">api</span></li>
+              <li><span class="path">asyncapi.yaml</span><span class="tag">events</span></li>
+              <li><span class="path">schemas/</span><span class="tag">folder</span></li>
+              <li><span class="path">observability.md</span><span class="tag">ops</span></li>
+              <li><span class="path">slo.md</span><span class="tag">slo</span></li>
+              <li><span class="path">runbooks/</span><span class="tag">folder</span></li>
+              <li><span class="path">threat-model.md</span><span class="tag">risk</span></li>
+              <li><span class="path">adr/</span><span class="tag">decyzje</span></li>
+              <li><span class="path">adr/0001-template.md</span><span class="tag">ADR</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/05-product</span><span class="tag">9 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">information-architecture.md</span><span class="tag">IA</span></li>
+              <li><span class="path">flows.md</span><span class="tag">flow</span></li>
+              <li><span class="path">interaction-patterns.md</span><span class="tag">UI</span></li>
+              <li><span class="path">design-system.md</span><span class="tag">system</span></li>
+              <li><span class="path">accessibility.md</span><span class="tag">a11y</span></li>
+              <li><span class="path">content-guidelines.md</span><span class="tag">copy</span></li>
+              <li><span class="path">empty-states.md</span><span class="tag">state</span></li>
+              <li><span class="path">error-states.md</span><span class="tag">state</span></li>
+              <li><span class="path">onboarding.md</span><span class="tag">start</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/06-value</span><span class="tag">6 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">rollout.md</span><span class="tag">rollout</span></li>
+              <li><span class="path">release-notes.md</span><span class="tag">release</span></li>
+              <li><span class="path">feedback-plan.md</span><span class="tag">feedback</span></li>
+              <li><span class="path">usability-test.md</span><span class="tag">test</span></li>
+              <li><span class="path">survey.md</span><span class="tag">survey</span></li>
+              <li><span class="path">analytics-events.md</span><span class="tag">events</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/07-ux-test</span><span class="tag">3 pliki</span></summary>
+            <ul class="file-list">
+              <li><span class="path">ux-scorecard.md</span><span class="tag">score</span></li>
+              <li><span class="path">test-plan.md</span><span class="tag">plan</span></li>
+              <li><span class="path">metrics.md</span><span class="tag">metrics</span></li>
+            </ul>
+          </details>
+
+          <details class="structure-group">
+            <summary><span>product/08-decision-measurement</span><span class="tag">14 plików</span></summary>
+            <ul class="file-list">
+              <li><span class="path">assumptions.md</span><span class="tag">założenia</span></li>
+              <li><span class="path">non-goals.md</span><span class="tag">granice</span></li>
+              <li><span class="path">decision-log.md</span><span class="tag">log</span></li>
+              <li><span class="path">risk-register.md</span><span class="tag">risk</span></li>
+              <li><span class="path">north-star-metric.md</span><span class="tag">NSM</span></li>
+              <li><span class="path">metrics-tree.md</span><span class="tag">tree</span></li>
+              <li><span class="path">experiments/</span><span class="tag">tests</span></li>
+              <li><span class="path">experiments/0001-template.md</span><span class="tag">exp</span></li>
+              <li><span class="path">flags.json</span><span class="tag">flags</span></li>
+              <li><span class="path">analytics/</span><span class="tag">data</span></li>
+              <li><span class="path">analytics/tracking-plan.yaml</span><span class="tag">plan</span></li>
+              <li><span class="path">analytics/events/</span><span class="tag">folder</span></li>
+              <li><span class="path">feedback/usability-test.md</span><span class="tag">test</span></li>
+              <li><span class="path">feedback/survey.qmd</span><span class="tag">survey</span></li>
+            </ul>
+          </details>
+        </div>
       </div>
     </section>
 
@@ -1030,15 +1765,7 @@
             <div class="kicker">Instalacja</div>
             <h2>Dodaj skill do swojego agenta</h2>
           </div>
-          <p>UXRuler jest open source'owym folderem skilla z plikiem `SKILL.md` i referencjami. Folder `uxruler/` powinien być dostępny w publicznym repo, żeby każdy mógł zainstalować go z internetu.</p>
-        </div>
-
-        <div class="repo-input">
-          <label for="repoUrl">
-            Publiczne repo UXRuler
-            <span>Repo powinno zawierać folder `uxruler/` w katalogu głównym. Domyślny URL możesz zmienić, jeżeli hostujesz fork.</span>
-          </label>
-          <input id="repoUrl" type="url" value="https://github.com/making-mike/uxruler.git" spellcheck="false">
+          <p>UX RULER instaluje się jako folder skilla z workflow i referencjami. Wybierz ścieżkę dla swojego narzędzia: osobista instalacja w agencie albo kopia lokalna w repo projektu.</p>
         </div>
 
         <div class="install-grid">
@@ -1086,20 +1813,32 @@
         <div class="section-head">
           <div>
             <div class="kicker">Startowe prompty</div>
-            <h2>Jak uruchomić UXRuler</h2>
+            <h2>Jak uruchomić UX RULER</h2>
           </div>
-          <p>Po instalacji najlepiej zacząć od jednego konkretnego zadania: nowy produkt, audyt feature’a albo mapowanie istniejącego repo.</p>
+          <p>Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, insighty i decyzję.</p>
         </div>
 
         <div class="prompt-strip">
           <div class="prompt">
-            <code>Use $uxruler to turn this product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan.</code>
+            <div class="prompt-head">
+              <span>Nowy produkt</span>
+              <button class="copy" data-copy="promptOpenSource">Kopiuj</button>
+            </div>
+            <code id="promptOpenSource">Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Najpierw zapytaj mnie o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj wielkość rynku, dostępność odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw insighty i rekomendacje.</code>
           </div>
           <div class="prompt">
-            <code>Use $uxruler to audit this feature. Show whether it traces back to a real audience, user need, infrastructure capability, product experience, measurable value, and a decision artifact.</code>
+            <div class="prompt-head">
+              <span>Audyt funkcji</span>
+              <button class="copy" data-copy="promptAudit">Kopiuj</button>
+            </div>
+            <code id="promptAudit">Użyj $uxruler do audytu tej funkcji. Pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i artefaktu decyzji.</code>
           </div>
           <div class="prompt">
-            <code>Use $uxruler to map this existing repo into product artifacts and identify missing assumptions, metrics, decisions, UX evaluation, and rollout feedback loops.</code>
+            <div class="prompt-head">
+              <span>Przegląd repo</span>
+              <button class="copy" data-copy="promptRepo">Kopiuj</button>
+            </div>
+            <code id="promptRepo">Użyj $uxruler na tym repo. Najpierw zapytaj, jaką decyzję ma wesprzeć ten przegląd repo, potem sprawdź repo i przedstaw insighty oparte na dowodach, zanim zarekomendujesz zmiany w artefaktach.</code>
           </div>
         </div>
       </div>
@@ -1108,230 +1847,660 @@
 
   <footer class="footer">
     <div class="shell">
-      UXRuler pomaga budować produkt jako system doświadczenia: od misji, przez potrzeby i design system, po decyzje, metryki i feedback. Open source na licencji MIT.
+      <h2 class="footer-title">Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h2>
+      <div class="hero-actions footer-actions">
+        <a class="button primary" href="#install">Zainstaluj skill</a>
+        <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer">Współtwórz</a>
+      </div>
     </div>
   </footer>
 
   <script>
-    const canvas = document.getElementById("processCanvas");
-    const ctx = canvas.getContext("2d");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const colors = ["#66e3cc", "#7aa7ff", "#ff6f8f", "#fbbf24"];
-    let nodes = [];
-    let width = 0;
-    let height = 0;
-    let pointer = { x: 0, y: 0, active: false };
+    const supportedLanguages = ["pl", "en"];
+    const fallbackLanguage = "en";
+    const pageCopy = {
+      pl: {
+        title: "UX RULER",
+        description: "UX RULER to proces UX open source dla ludzi i agentów.",
+        heroTitle: "Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.",
+        footerTitle: "Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.",
+        copyIdle: "Kopiuj",
+        copyDone: "Skopiowano",
+        copyFallback: "Zaznacz tekst",
+        langSwitcherAria: "Wybór języka",
+        promptOpenSource: "Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Najpierw zapytaj mnie o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj wielkość rynku, dostępność odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw insighty i rekomendacje.",
+        promptAudit: "Użyj $uxruler do audytu tej funkcji. Pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i artefaktu decyzji.",
+        promptRepo: "Użyj $uxruler na tym repo. Najpierw zapytaj, jaką decyzję ma wesprzeć ten przegląd repo, potem sprawdź repo i przedstaw insighty oparte na dowodach, zanim zarekomendujesz zmiany w artefaktach."
+      },
+      en: {
+        title: "UX RULER",
+        description: "UX RULER is an open source UX process for humans and agents.",
+        heroTitle: "Guide a product from mission to measurable value for <em>users</em>.",
+        footerTitle: "Guide a product from mission to measurable value for <em>users</em>.",
+        copyIdle: "Copy",
+        copyDone: "Copied",
+        copyFallback: "Select text",
+        langSwitcherAria: "Language",
+        promptOpenSource: "Use $uxruler as an open source UX process for humans and agents. Ask me for missing context first, then inspect any real usage or repo-connected data available to the agent, research and verify market size, audience reachability, alternatives, and user need before presenting insights and recommendations.",
+        promptAudit: "Use $uxruler to audit this feature. Show whether it traces back to a real audience, user need, infrastructure capability, product experience, measurable value, and a decision artifact.",
+        promptRepo: "Use $uxruler on this repo. First ask what decision I want the repo pass to support, then inspect the repo and present evidence-backed insights before recommending any artifact changes."
+      }
+    };
 
-    function resize() {
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      width = canvas.offsetWidth;
-      height = canvas.offsetHeight;
-      canvas.width = Math.floor(width * ratio);
-      canvas.height = Math.floor(height * ratio);
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      createNodes();
-      draw(0);
+    const textTranslations = {
+      "Proces UX open source dla ludzi i agentów": "Open source UX process for humans and agents",
+      "Proces": "Process",
+      "Instalacja": "Install",
+      "Prompty": "Prompts",
+      "Open source'owy proces UX dla ludzi i agentów. Pomaga przejść od misji, rynku i potrzeby użytkownika do decyzji, metryk, ewaluacji UX i lekkiej pamięci produktu w repo.": "An open source UX process for humans and agents. It helps move from mission, market, and user need to decisions, metrics, UX evaluation, and lightweight product memory in the repo.",
+      "Zainstaluj skill": "Install skill",
+      "Współtwórz": "Contribute",
+      "Mapa procesu": "Process map",
+      "Misja": "Mission",
+      "Określ, jaką zmianę produkt ma wywołać, dla kogo może mieć znaczenie i dlaczego warto sprawdzić ją teraz.": "Define the change the product should create, who it may matter to, and why it is worth testing now.",
+      "Pytanie": "Question",
+      "Jaką zmianę chcemy wywołać, dla kogo może być ważna i dlaczego teraz?": "What change do we want to create, who might it matter to, and why now?",
+      "Artefakt": "Artifact",
+      "Teza produktowa: odbiorcy, obszar problemu, napięcie albo okazja i powód działania.": "Product thesis: audience, problem area, tension or opportunity, and reason to act.",
+      "Sygnał": "Signal",
+      "Widać napięcie rynkowe, powtarzalny problem, słabe alternatywy albo dobry moment.": "Market tension, a repeated problem, weak alternatives, or strong timing are visible.",
+      "Odbiorcy": "Audience",
+      "Określ rynek, kupujących, adopterów, blokujących, kanały i sygnały popytu, zanim przejdziesz do osoby wykonującej zadanie.": "Define the market, buyers, adopters, blockers, channels, and demand signals before moving to the person doing the task.",
+      "Czy istnieje wystarczająco duży i osiągalny segment z powodem, budżetem albo wpływem na adopcję?": "Is there a large and reachable enough segment with a reason, budget, or influence over adoption?",
+      "Mapa rynku: segmenty, wielkość, kanały, role kupna i adopcji, alternatywy oraz pozycjonowanie.": "Market map: segments, size, channels, buying and adoption roles, alternatives, and positioning.",
+      "Da się oszacować wielkość segmentu, dotarcie, popyt albo koszt obecnych alternatyw.": "Segment size, reach, demand, or the cost of current alternatives can be estimated.",
+      "Użytkownik": "User",
+      "Zbadaj konkretną osobę wykonującą zadanie: co robi, co ją blokuje, czego chce i w jakich warunkach działa.": "Research the concrete person doing the task: what they do, what blocks them, what they want, and what conditions they work in.",
+      "Co konkretny użytkownik próbuje zrobić i co go blokuje albo frustruje?": "What is the concrete user trying to do, and what blocks or frustrates them?",
+      "Profil użytkownika: zadania, bolączki, korzyści, kontekst i obecne obejścia.": "User profile: jobs, pains, gains, context, and current workarounds.",
+      "Zachowanie, feedback, wywiady, logi albo support pokazują częstotliwość i koszt problemu.": "Behavior, feedback, interviews, logs, or support show the problem's frequency and cost.",
+      "Potrzeba": "Need",
+      "Wyprowadź potrzebę z dowodów użytkownika i zdecyduj, czy uzasadnia funkcję, prototyp albo dalszy research.": "Derive the need from user evidence and decide whether it justifies a feature, prototype, or more research.",
+      "Która potrzeba jest na tyle silna, żeby uzasadnić budowę, prototyp albo dalszy research?": "Which need is strong enough to justify building, prototyping, or more research?",
+      "Opis potrzeby: użytkownik chce [korzyść], próbuje [zadanie], ale blokuje go [bolączka].": "Need statement: the user wants [gain], tries to [job], but is blocked by [pain].",
+      "Da się wskazać siłę potrzeby, wpływ na zadanie, poziom pewności i decyzję.": "Need strength, task impact, confidence level, and the decision can be named.",
+      "Infrastruktura": "Infrastructure",
+      "Przygotuj bezpieczne i stabilne środowisko oraz integracje, które muszą istnieć, żeby dostarczyć obiecaną wartość.": "Prepare the secure, stable environment and integrations that must exist to deliver the promised value.",
+      "Co technicznie musi działać, żeby wartość była niezawodna, bezpieczna i mierzalna?": "What must work technically for value to be reliable, secure, and measurable?",
+      "Plan techniczny: dane, architektura, integracje, jakość, ryzyka i wymagania operacyjne.": "Technical plan: data, architecture, integrations, quality, risks, and operational requirements.",
+      "Dane, wydajność, niezawodność, bezpieczeństwo i koszt wspierają potrzebę użytkownika.": "Data, performance, reliability, security, and cost support the user need.",
+      "Produkt": "Product",
+      "Zamień potwierdzoną potrzebę w interakcję, architekturę i interfejs na podstawie design systemu, tak żeby użytkownik mógł je zrozumieć i wykorzystać.": "Turn the validated need into interaction, architecture, and interface based on the design system, so the user can understand and use them.",
+      "Jak użytkownik odkryje, zrozumie, wykona i zapamięta rozwiązanie?": "How will the user discover, understand, operate, and remember the solution?",
+      "Mapa produktu: przepływ użytkownika, prototyp, kluczowa interakcja, copy i kierunek design systemu.": "Product map: user flow, prototype, key interaction, copy, and design system direction.",
+      "Test lub prototyp pokazuje zrozumienie, ukończenie zadania, niski wysiłek i zaufanie.": "A test or prototype shows comprehension, task completion, low effort, and trust.",
+      "Wartość": "Value",
+      "Zaplanuj wdrożenie, onboarding, komunikację, feedback i metryki, które pokażą, czy wartość naprawdę dotarła do użytkownika.": "Plan launch, onboarding, communication, feedback, and metrics that show whether value truly reached the user.",
+      "Jak dostarczymy, zakomunikujemy i sprawdzimy wartość po wdrożeniu?": "How will we deliver, communicate, and verify value after launch?",
+      "Plan wartości: rollout, komunikat, onboarding, feedback, test użyteczności i iteracje.": "Value plan: rollout, message, onboarding, feedback, usability test, and iterations.",
+      "Adopcja, retencja, ukończenie zadania, satysfakcja i feedback mówią, co utrzymać albo zmienić.": "Adoption, retention, task completion, satisfaction, and feedback show what to keep or change.",
+      "4 warstwy UX": "4 UX layers",
+      "Każda decyzja przechodzi przez cztery warstwy UX": "Every decision passes through four UX layers",
+      "Każdy etap procesu powinien ostatecznie wzmacniać jedną z czterech warstw. Jeżeli produkt nie przechodzi tego testu, problem nie zawsze leży w interfejsie. Czasem trzeba wrócić do potrzeby, rynku, infrastruktury albo sposobu dostarczenia wartości.": "Every process stage should ultimately strengthen one of the four layers. If a product fails this test, the problem is not always in the interface. Sometimes you need to return to the need, market, infrastructure, or the way value is delivered.",
+      "Użyteczność": "Usefulness",
+      "Produkt rozwiązuje realny problem i odpowiada na potrzebę wynikającą z badań, a nie tylko na pomysł funkcji.": "The product solves a real problem and responds to a researched need, not only to a feature idea.",
+      "Czy użytkownik dostaje wartość, której naprawdę potrzebuje?": "Does the user get value they truly need?",
+      "Ergonomia": "Ergonomics",
+      "Doświadczenie pozwala wykonać zadanie szybko, zrozumiale i bez zbędnego wysiłku poznawczego.": "The experience lets the user complete the task quickly, clearly, and without unnecessary cognitive effort.",
+      "Czy najważniejsze zadanie da się zrobić bez tarcia?": "Can the most important task be completed without friction?",
+      "Atrakcyjność": "Attractiveness",
+      "Produkt jest klarowny, angażujący i zapamiętywalny, a design system wzmacnia zaufanie do rozwiązania.": "The product is clear, engaging, and memorable, and the design system strengthens trust in the solution.",
+      "Czy użytkownik chce wrócić do tego doświadczenia?": "Does the user want to return to this experience?",
+      "Tożsamość": "Identity",
+      "Produkt pasuje do tego, kim użytkownik chce być, jak chce pracować i jak chce podejmować decyzje.": "The product fits who the user wants to be, how they want to work, and how they want to make decisions.",
+      "Czy produkt pasuje do sposobu, w jaki użytkownik chce pracować i podejmować decyzje?": "Does the product fit the way the user wants to work and make decisions?",
+      "Repo jako pamięć produktu": "Repo as product memory",
+      "Dwa tryby pracy: start produktu albo audyt istniejącego repo": "Two modes: starting a product or auditing an existing repo",
+      "UX RULER nie kończy się na rozmowie. Zapisuje najważniejszą logikę produktu tak, żeby mogli do niej wracać ludzie i agenci: najpierw w jednym pliku, dopiero później w większej strukturze.": "UX RULER does not end with the conversation. It records the most important product logic so humans and agents can return to it: first in one file, later in a larger structure.",
+      "Nowe repo": "New repo",
+      "Skill działa jak starter systemu pracy nad produktem. Zaczyna od jednego zrozumiałego artefaktu, zanim zespół zacznie kodować.": "The skill acts as a product operating starter. It starts with one understandable artifact before the team begins coding.",
+      "Formułuje tezę produktową i pierwsze założenia.": "It formulates the product thesis and first assumptions.",
+      "Mapuje rynek, użytkownika i potrzebę przed wyborem funkcji.": "It maps the market, user, and need before feature selection.",
+      "Ustala pierwszą metrykę wartości, ryzyka i krok walidacyjny.": "It sets the first value metric, risks, and validation step.",
+      "Daje agentom kontekst w `PRODUCT.md` i opcjonalnie `AGENTS.md`.": "It gives agents context in `PRODUCT.md` and optionally `AGENTS.md`.",
+      "Istniejący produkt": "Existing product",
+      "Skill działa jak audyt UX i produktowe due diligence. Rekonstruuje logikę produktu po fakcie i pokazuje luki.": "The skill acts as UX audit and product due diligence. It reconstructs product logic after the fact and shows the gaps.",
+      "Sprawdza, czy funkcje wynikają z realnych potrzeb.": "It checks whether features trace back to real needs.",
+      "Łączy dostępne dane użycia, feedback, analytics, architekturę i rollout z decyzjami.": "It connects available usage data, feedback, analytics, architecture, and rollout to decisions.",
+      "Wskazuje brakujące decyzje, metryki, research i UX scorecard bez tworzenia plików na zapas.": "It points out missing decisions, metrics, research, and UX scorecards without creating files in advance.",
+      "Pomaga ustalić, co naprawić najpierw, żeby produkt rozwijał się w oparciu o potrzeby, decyzje i metryki.": "It helps decide what to fix first so the product evolves around needs, decisions, and metrics.",
+      "Struktura repo": "Repo structure",
+      "Pełna struktura, minimum na czarno": "Full structure, minimum in black",
+      "Czarne wiersze to domyślny zestaw startowy. Reszta jest docelową biblioteką artefaktów, którą dodaje się dopiero, gdy decyzja, ryzyko albo pomiar wymagają osobnego pliku.": "Black rows are the default starter set. The rest is a target artifact library, added only when a decision, risk, or measurement needs its own file.",
+      "Minimalny root": "Minimal root",
+      "3 pliki": "3 files",
+      "mapa": "map",
+      "Root jako warstwa dojrzałości": "Root as maturity layer",
+      "8 plików": "8 files",
+      "Instrukcje narzędzi": "Tool instructions",
+      "4 pliki": "4 files",
+      "5 plików": "5 files",
+      "12 plików": "12 files",
+      "9 plików": "9 files",
+      "6 plików": "6 files",
+      "14 plików": "14 files",
+      "teza": "thesis",
+      "zasady": "principles",
+      "ryzyko": "risk",
+      "granice": "boundaries",
+      "segmenty": "segments",
+      "alternatywy": "alternatives",
+      "pozycja": "positioning",
+      "dotarcie": "reach",
+      "profil": "profile",
+      "szanse": "opportunities",
+      "hipotezy": "hypotheses",
+      "zakres": "scope",
+      "decyzje": "decisions",
+      "założenia": "assumptions",
+      "Dodaj skill do swojego agenta": "Add the skill to your agent",
+      "UX RULER instaluje się jako folder skilla z workflow i referencjami. Wybierz ścieżkę dla swojego narzędzia: osobista instalacja w agencie albo kopia lokalna w repo projektu.": "UX RULER installs as a skill folder with a workflow and references. Choose the path for your tool: personal installation in the agent or a local copy in the project repo.",
+      "Najprostsza ścieżka: użyj wbudowanego `skill-installer` i podaj URL do folderu skilla w publicznym repo.": "The simplest path: use the built-in `skill-installer` and provide the URL to the skill folder in the public repo.",
+      "Instalacja jako personal skill. Claude wykrywa skille z `~/.claude/skills/` po restarcie Claude Code.": "Install as a personal skill. Claude detects skills from `~/.claude/skills/` after restarting Claude Code.",
+      "Projektowo": "Per project",
+      "Wariant dla zespołu: skill jest częścią konkretnego repo i można go commitować razem z projektem.": "A team option: the skill becomes part of a specific repo and can be committed with the project.",
+      "Startowe prompty": "Starter prompts",
+      "Jak uruchomić UX RULER": "How to start UX RULER",
+      "Po instalacji najlepiej zacząć od rozmowy: daj agentowi szkic pomysłu, pozwól mu dopytać o kontekst, sprawdzić dostępne dane użycia i repo, a potem poproś o research, insighty i decyzję.": "After installation, start with a conversation: give the agent a sketch of the idea, let it ask for context, inspect available usage and repo data, then ask for research, insights, and a decision.",
+      "Nowy produkt": "New product",
+      "Audyt funkcji": "Feature audit",
+      "Przegląd repo": "Repo pass",
+      "Kopiuj": "Copy"
+    };
+
+    const ariaTranslations = [
+      [".topbar", "Nawigacja strony", "Page navigation"],
+      [".language-switcher", "Wybór języka", "Language"],
+      [".rail-nav", "Sekcje strony", "Page sections"],
+      [".process-graph", "Mapa procesu UX RULER", "UX RULER process map"],
+      [".ux-layers", "Cztery warstwy UX", "Four UX layers"],
+      [".structure-accordion", "Docelowa struktura plików", "Target file structure"]
+    ];
+
+    const localizedTextNodes = [];
+    let currentLanguage = "pl";
+
+    function normalizedText(value) {
+      return value.replace(/\s+/g, " ").trim();
     }
 
-    function createNodes() {
-      const count = width < 760 ? 42 : 72;
-      nodes = Array.from({ length: count }, (_, index) => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.28,
-        vy: (Math.random() - 0.5) * 0.28,
-        r: 2 + Math.random() * 3,
-        color: colors[index % colors.length]
-      }));
+    function collectLocalizedTextNodes() {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          if (node.parentElement && node.parentElement.closest("script, style, code, pre")) {
+            return NodeFilter.FILTER_REJECT;
+          }
 
-      const path = [
-        [0.16, 0.34], [0.26, 0.42], [0.36, 0.31], [0.46, 0.49],
-        [0.56, 0.38], [0.66, 0.54], [0.76, 0.43], [0.86, 0.58]
-      ];
-
-      path.forEach((point, index) => {
-        if (nodes[index]) {
-          nodes[index].x = width * point[0];
-          nodes[index].y = height * point[1];
-          nodes[index].r = 5;
+          return textTranslations[normalizedText(node.nodeValue)]
+            ? NodeFilter.FILTER_ACCEPT
+            : NodeFilter.FILTER_REJECT;
         }
+      });
+
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        localizedTextNodes.push({
+          node,
+          key: normalizedText(node.nodeValue),
+          leading: node.nodeValue.match(/^\s*/)[0],
+          trailing: node.nodeValue.match(/\s*$/)[0]
+        });
+      }
+    }
+
+    function normalizeSupportedLanguage(language) {
+      if (!language) return null;
+      const primaryLanguage = String(language).toLowerCase().split("-")[0];
+      return supportedLanguages.includes(primaryLanguage) ? primaryLanguage : null;
+    }
+
+    function readStoredLanguage() {
+      try {
+        const stored = window.localStorage.getItem("uxruler-language");
+        return normalizeSupportedLanguage(stored);
+      } catch {
+        return null;
+      }
+    }
+
+    function readPreferredLanguage() {
+      const browserLanguages = Array.isArray(navigator.languages) && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language];
+
+      for (const language of browserLanguages) {
+        const supportedLanguage = normalizeSupportedLanguage(language);
+        if (supportedLanguage) return supportedLanguage;
+      }
+
+      return fallbackLanguage;
+    }
+
+    function readInitialLanguage() {
+      return readStoredLanguage() || readPreferredLanguage();
+    }
+
+    function writeStoredLanguage(language) {
+      try {
+        window.localStorage.setItem("uxruler-language", language);
+      } catch {
+        // Language persistence is a small enhancement; switching still works without storage.
+      }
+    }
+
+    function setMetaContent(selector, value) {
+      const element = document.querySelector(selector);
+      if (element) element.setAttribute("content", value);
+    }
+
+    function renderPromptTexts(language) {
+      ["promptOpenSource", "promptAudit", "promptRepo"].forEach((id) => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = pageCopy[language][id];
       });
     }
 
-    function draw(time) {
-      ctx.clearRect(0, 0, width, height);
+    function updateLanguageButtons(language) {
+      document.querySelectorAll(".lang-button").forEach((button) => {
+        const isActive = button.dataset.lang === language;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+    }
 
-      ctx.strokeStyle = "rgba(255,255,255,0.045)";
-      ctx.lineWidth = 1;
-      for (let x = 0; x < width; x += 72) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
-      for (let y = 0; y < height; y += 72) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
+    function resetCopyButtons(language) {
+      document.querySelectorAll(".copy").forEach((button) => {
+        button.textContent = pageCopy[language].copyIdle;
+      });
+    }
 
-      nodes.forEach((node, index) => {
-        if (!reducedMotion) {
-          node.x += node.vx;
-          node.y += node.vy;
+    function applyLanguage(language, persist = false) {
+      if (!supportedLanguages.includes(language)) return;
 
-          if (node.x < 0 || node.x > width) node.vx *= -1;
-          if (node.y < 0 || node.y > height) node.vy *= -1;
+      currentLanguage = language;
+      const copy = pageCopy[language];
+      document.documentElement.lang = language;
+      document.title = copy.title;
+      setMetaContent('meta[name="description"]', copy.description);
+      setMetaContent('meta[property="og:description"]', copy.description);
 
-          if (pointer.active) {
-            const dx = pointer.x - node.x;
-            const dy = pointer.y - node.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 150) {
-              node.x -= dx * 0.0018;
-              node.y -= dy * 0.0018;
+      const heroTitle = document.querySelector("h1");
+      if (heroTitle) heroTitle.innerHTML = copy.heroTitle;
+
+      const footerTitle = document.querySelector(".footer-title");
+      if (footerTitle) footerTitle.innerHTML = copy.footerTitle;
+
+      localizedTextNodes.forEach((entry) => {
+        const value = language === "pl" ? entry.key : textTranslations[entry.key];
+        entry.node.nodeValue = `${entry.leading}${value}${entry.trailing}`;
+      });
+      resetCopyButtons(language);
+
+      ariaTranslations.forEach(([selector, pl, en]) => {
+        document.querySelectorAll(selector).forEach((element) => {
+          element.setAttribute("aria-label", language === "pl" ? pl : en);
+        });
+      });
+
+      const languageSwitcher = document.querySelector(".language-switcher");
+      if (languageSwitcher) languageSwitcher.setAttribute("aria-label", copy.langSwitcherAria);
+
+      renderInstallCommands(language);
+      renderPromptTexts(language);
+      updateLanguageButtons(language);
+      if (persist) writeStoredLanguage(language);
+
+      setupMarkerAnimation();
+      renderRailNav();
+      requestAnimationFrame(renderRailNav);
+    }
+
+    const processSteps = Array.from(document.querySelectorAll(".process-step"));
+
+    function activateProcessStep(activeStep) {
+      processSteps.forEach((step) => {
+        const isActive = step === activeStep;
+        const trigger = step.querySelector(".process-step-trigger");
+        const icon = step.querySelector(".process-step-icon");
+
+        step.classList.toggle("is-active", isActive);
+        if (trigger) trigger.setAttribute("aria-expanded", String(isActive));
+        if (icon) icon.textContent = isActive ? "-" : "+";
+      });
+    }
+
+    processSteps.forEach((step) => {
+      const trigger = step.querySelector(".process-step-trigger");
+      if (!trigger) return;
+
+      trigger.addEventListener("click", () => {
+        if (step.classList.contains("is-active")) {
+          step.classList.remove("is-active");
+          trigger.setAttribute("aria-expanded", "false");
+          const icon = step.querySelector(".process-step-icon");
+          if (icon) icon.textContent = "+";
+          return;
+        }
+
+        activateProcessStep(step);
+      });
+    });
+
+    document.querySelectorAll(".structure-accordion").forEach((accordion) => {
+      const groups = Array.from(accordion.querySelectorAll(".structure-group"));
+      groups.forEach((group) => {
+        group.addEventListener("toggle", () => {
+          if (!group.open) return;
+          groups.forEach((otherGroup) => {
+            if (otherGroup !== group) {
+              otherGroup.open = false;
             }
-          }
-        }
-
-        for (let j = index + 1; j < nodes.length; j += 1) {
-          const other = nodes[j];
-          const dx = node.x - other.x;
-          const dy = node.y - other.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 138) {
-            ctx.strokeStyle = `rgba(255,255,255,${0.15 - dist / 980})`;
-            ctx.beginPath();
-            ctx.moveTo(node.x, node.y);
-            ctx.lineTo(other.x, other.y);
-            ctx.stroke();
-          }
-        }
-
-        ctx.fillStyle = node.color;
-        ctx.globalAlpha = 0.78;
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
+          });
+        });
       });
+    });
 
-      if (!reducedMotion) {
-        requestAnimationFrame(draw);
+    const railLinks = Array.from(document.querySelectorAll(".rail-nav-link"));
+    const sectionRailLinks = railLinks.filter((link) => link.dataset.section);
+    const externalRailLinks = railLinks.filter((link) => link.dataset.external);
+    let cssLengthProbe = null;
+
+    function readCssPixelVariable(name, fallback) {
+      const value = getComputedStyle(document.documentElement).getPropertyValue(name);
+      const parsed = parseFloat(value);
+      if (Number.isFinite(parsed) && /^[-+]?(\d|\.\d)/.test(value.trim())) {
+        return parsed;
       }
+
+      if (!cssLengthProbe) {
+        cssLengthProbe = document.createElement("div");
+        cssLengthProbe.style.position = "absolute";
+        cssLengthProbe.style.visibility = "hidden";
+        cssLengthProbe.style.pointerEvents = "none";
+        cssLengthProbe.style.height = "0";
+        document.body.appendChild(cssLengthProbe);
+      }
+
+      cssLengthProbe.style.width = `var(${name})`;
+      const resolved = parseFloat(getComputedStyle(cssLengthProbe).width);
+      cssLengthProbe.style.width = "0";
+      return Number.isFinite(resolved) ? resolved : fallback;
     }
 
-    window.addEventListener("resize", resize);
-    window.addEventListener("pointermove", (event) => {
-      pointer = { x: event.clientX, y: event.clientY, active: true };
-    });
-    window.addEventListener("pointerleave", () => {
-      pointer.active = false;
-    });
+    function railTargetFor(link) {
+      if (link.dataset.external) {
+        return document.querySelector(".footer");
+      }
 
-    function renderProcessGraph() {
-      const board = document.getElementById("uxrulerGraph");
-      if (!board) return;
-      const svg = board.querySelector(".graph-connectors");
-      if (!svg) return;
+      if (link.dataset.section === "about") {
+        return document.querySelector(".hero-content h1") || document.getElementById("about");
+      }
 
-      const boardBox = board.getBoundingClientRect();
-      svg.setAttribute("viewBox", `0 0 ${boardBox.width} ${boardBox.height}`);
-      svg.setAttribute("width", boardBox.width);
-      svg.setAttribute("height", boardBox.height);
-      svg.innerHTML = `
-        <defs>
-          <marker id="graphArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#0f766e"></path>
-          </marker>
-        </defs>
-      `;
+      return document.getElementById(link.dataset.section);
+    }
 
-      const node = (name) => board.querySelector(`[data-node="${name}"]`);
-      const point = (name, anchor) => {
-        const el = node(name);
-        if (!el) return null;
-        const box = el.getBoundingClientRect();
-        const x = box.left - boardBox.left;
-        const y = box.top - boardBox.top;
-        const points = {
-          left: [x, y + box.height / 2],
-          right: [x + box.width, y + box.height / 2],
-          top: [x + box.width / 2, y],
-          bottom: [x + box.width / 2, y + box.height],
-          center: [x + box.width / 2, y + box.height / 2]
-        };
-        return points[anchor];
-      };
+    function clamp01(value) {
+      return Math.max(0, Math.min(1, value));
+    }
 
-      const path = (fromName, fromAnchor, toName, toAnchor, options = {}) => {
-        const from = point(fromName, fromAnchor);
-        const to = point(toName, toAnchor);
-        if (!from || !to) return;
+    function renderMobileRailNav() {
+      const allLinks = sectionRailLinks.concat(externalRailLinks);
+      const headerHeight = readCssPixelVariable("--mobile-header-height", 111);
+      const navWidth = window.innerWidth;
+      const leftEdge = 18;
+      const rightEdge = navWidth - 18;
+      const labelGap = 28;
+      const maxScale = 1.32;
+      const transitionDistance = 180;
+      const activationLine = headerHeight + 72;
+      const targetTops = allLinks.map((link, index) => {
+        if (index === 0) return 0;
+        const target = railTargetFor(link);
+        return target ? target.getBoundingClientRect().top : window.innerHeight;
+      });
+      let activeIndex = 0;
 
-        const [x1, y1] = from;
-        const [x2, y2] = to;
-        const dx = Math.max(28, Math.abs(x2 - x1) * 0.45);
-        const dy = Math.max(26, Math.abs(y2 - y1) * 0.35);
-        let d;
-
-        if (fromAnchor === "right" && toAnchor === "left") {
-          d = `M ${x1} ${y1} C ${x1 + dx} ${y1}, ${x2 - dx} ${y2}, ${x2} ${y2}`;
-        } else if (fromAnchor === "bottom" && toAnchor === "top") {
-          d = `M ${x1} ${y1} C ${x1} ${y1 + dy}, ${x2} ${y2 - dy}, ${x2} ${y2}`;
-        } else {
-          d = `M ${x1} ${y1} C ${x1} ${(y1 + y2) / 2}, ${x2} ${(y1 + y2) / 2}, ${x2} ${y2}`;
+      targetTops.forEach((targetTop, index) => {
+        if (targetTop <= activationLine) {
+          activeIndex = index;
         }
-
-        const line = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        line.setAttribute("d", d);
-        line.setAttribute("fill", "none");
-        line.setAttribute("stroke", "#0f766e");
-        line.setAttribute("stroke-width", options.width || "2");
-        line.setAttribute("stroke-linecap", "round");
-        line.setAttribute("opacity", options.opacity || "0.72");
-        line.setAttribute("marker-end", "url(#graphArrow)");
-        if (options.dashed) line.setAttribute("stroke-dasharray", "5 7");
-        svg.appendChild(line);
-      };
-
-      const stages = ["mission", "audience", "user", "need", "infra", "product", "value", "evaluation"];
-      stages.slice(0, -1).forEach((stage, index) => {
-        path(stage, "right", stages[index + 1], "left", { width: "2.2", opacity: "0.82" });
       });
 
-      [
-        ["mission", "assumption"], ["audience", "assumption"],
-        ["user", "evidence"], ["need", "evidence"],
-        ["infra", "decision"], ["product", "decision"],
-        ["value", "measure"], ["evaluation", "measure"]
-      ].forEach(([from, to]) => path(from, "bottom", to, "top", { dashed: true, opacity: "0.5" }));
+      const nextIndex = activeIndex + 1;
+      const distanceToNext = targetTops[nextIndex] ?? Infinity;
+      const progress = Number.isFinite(distanceToNext)
+        ? clamp01(1 - (distanceToNext - activationLine) / transitionDistance)
+        : 0;
+      const scales = allLinks.map(() => 1);
+      scales[activeIndex] = maxScale - (maxScale - 1) * progress;
+      if (nextIndex < allLinks.length) {
+        scales[nextIndex] = 1 + (maxScale - 1) * progress;
+      }
 
-      [
-        ["thesis", "mission"], ["thesis", "audience"],
-        ["problem", "user"], ["problem", "need"],
-        ["feature", "need"], ["feature", "product"], ["feature", "value"]
-      ].forEach(([from, to]) => path(from, "bottom", to, "top", { dashed: true, opacity: "0.38", width: "1.7" }));
+      const labelWidths = allLinks.map((link, index) => link.offsetWidth * scales[index]);
+      const totalLabelWidth = labelWidths.reduce((sum, width) => sum + width, 0);
+      const availableWidth = navWidth - leftEdge * 2;
+      const minimumGap = 18;
+      const compactGap = allLinks.length > 1
+        ? (availableWidth - totalLabelWidth) / (allLinks.length - 1)
+        : 0;
+      const canShowAll = totalLabelWidth + minimumGap * Math.max(0, allLinks.length - 1) <= availableWidth;
+
+      if (canShowAll) {
+        const visibleGap = allLinks.length > 1
+          ? Math.min(labelGap, Math.max(minimumGap, compactGap))
+          : 0;
+        const rightLefts = {};
+        let rightCursor = rightEdge;
+
+        for (let index = allLinks.length - 1; index >= 1; index -= 1) {
+          rightCursor -= labelWidths[index];
+          rightLefts[index] = rightCursor;
+          rightCursor -= visibleGap;
+        }
+
+        const settledLefts = { 0: leftEdge };
+        for (let index = 1; index < allLinks.length; index += 1) {
+          settledLefts[index] = settledLefts[index - 1] + labelWidths[index - 1] + visibleGap;
+        }
+
+        const movementProgress = allLinks.map((_, index) => {
+          if (index === 0) return 1;
+          return clamp01(1 - (targetTops[index] - activationLine) / transitionDistance);
+        });
+
+        allLinks.forEach((link, index) => {
+          const scale = scales[index];
+          const startX = rightLefts[index] ?? settledLefts[index];
+          const endX = settledLefts[index];
+          const x = startX * (1 - movementProgress[index]) + endX * movementProgress[index];
+
+          link.style.top = "0";
+          link.style.left = `${Math.round(x)}px`;
+          link.style.setProperty("--rail-scale", scale.toFixed(3));
+          link.style.zIndex = index === activeIndex || index === nextIndex ? "2" : "1";
+          link.classList.toggle("is-active", scale > 1.01);
+        });
+        return;
+      }
+
+      const rightStackLefts = {};
+      let cursor = rightEdge;
+
+      for (let index = allLinks.length - 1; index > activeIndex; index -= 1) {
+        cursor -= labelWidths[index];
+        rightStackLefts[index] = cursor;
+        cursor -= labelGap;
+      }
+
+      allLinks.forEach((link, index) => {
+        const scale = scales[index];
+        let x;
+
+        if (index < activeIndex) {
+          x = leftEdge - (activeIndex - index) * (labelWidths[index] + labelGap);
+        } else if (index === activeIndex) {
+          x = leftEdge - progress * (labelWidths[index] + labelGap);
+        } else if (index === nextIndex) {
+          x = (rightStackLefts[index] ?? rightEdge - labelWidths[index]) * (1 - progress) + leftEdge * progress;
+        } else {
+          x = rightStackLefts[index] ?? rightEdge + labelGap;
+        }
+
+        link.style.top = "0";
+        link.style.left = `${Math.round(x)}px`;
+        link.style.setProperty("--rail-scale", scale.toFixed(3));
+        link.style.zIndex = index === activeIndex || index === nextIndex ? "2" : "1";
+        link.classList.toggle("is-active", scale > 1.01);
+      });
     }
 
-    let graphFrame = 0;
-    function scheduleProcessGraphRender() {
-      cancelAnimationFrame(graphFrame);
-      graphFrame = requestAnimationFrame(renderProcessGraph);
+    function renderRailNav() {
+      if (!sectionRailLinks.length) return;
+
+      if (window.matchMedia("(max-width: 600px)").matches) {
+        renderMobileRailNav();
+        return;
+      }
+
+      const topbarHeight = readCssPixelVariable("--topbar-height", 48);
+      const railOffset = readCssPixelVariable("--rail-nav-offset", topbarHeight / 3);
+      const maxScale = readCssPixelVariable("--rail-label-scale-max", 2.35);
+      const railWidth = readCssPixelVariable("--rail-width", 346);
+      const allLinks = sectionRailLinks.concat(externalRailLinks);
+      const railHeight = window.innerHeight;
+      const labelGap = 24;
+      const topPadding = railOffset;
+      const bottomPadding = railOffset;
+      const labelLengths = allLinks.map((link) => link.offsetWidth);
+      const labelDepths = allLinks.map((link) => link.offsetHeight);
+      const aboutTarget = sectionRailLinks[0] ? railTargetFor(sectionRailLinks[0]) : null;
+      const aboutTop = aboutTarget
+        ? firstLineBaselineTop(aboutTarget)
+        : topbarHeight + topPadding;
+
+      function firstLineBaselineTop(element) {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        const fontSize = parseFloat(style.fontSize) || 16;
+        const lineHeight = parseFloat(style.lineHeight) || fontSize * 1.2;
+        const leading = Math.max(0, lineHeight - fontSize) / 2;
+        let ascent = fontSize * 0.78;
+
+        if (!firstLineBaselineTop.canvas) {
+          firstLineBaselineTop.canvas = document.createElement("canvas");
+        }
+
+        const context = firstLineBaselineTop.canvas.getContext("2d");
+        if (context) {
+          context.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+          const metrics = context.measureText(element.textContent || "H");
+          if (metrics.actualBoundingBoxAscent) {
+            ascent = metrics.actualBoundingBoxAscent;
+          }
+        }
+
+        return rect.top + window.scrollY + leading + ascent;
+      }
+
+      function railTargetFor(link) {
+        if (link.dataset.external) {
+          return document.querySelector(".footer");
+        }
+
+        if (link.dataset.section === "about") {
+          return document.querySelector(".hero-content h1") || document.getElementById("about");
+        }
+
+        return document.getElementById(link.dataset.section);
+      }
+
+      function topStackTops(scales) {
+        const tops = [];
+        let cursor = aboutTop;
+
+        allLinks.forEach((link, index) => {
+          tops[index] = cursor;
+          cursor += labelLengths[index] * scales[index] + labelGap;
+        });
+
+        return tops;
+      }
+
+      function bottomStackTops(scales) {
+        const tops = [];
+        let cursor = railHeight - bottomPadding;
+
+        for (let index = allLinks.length - 1; index >= 0; index -= 1) {
+          tops[index] = cursor - labelLengths[index] * scales[index];
+          cursor -= labelLengths[index] * scales[index] + labelGap;
+        }
+
+        return tops;
+      }
+
+      const triggerTops = topStackTops(allLinks.map(() => 1));
+      const targetTops = allLinks.map((link, index) => {
+        if (link.dataset.section === "about") {
+          return triggerTops[index];
+        }
+
+        const target = railTargetFor(link);
+        return target ? target.getBoundingClientRect().top : railHeight;
+      });
+      const linkScales = allLinks.map(() => 1);
+      const scaleRange = maxScale - 1;
+      let activeIndex = 0;
+
+      targetTops.forEach((targetTop, index) => {
+        if (targetTop <= triggerTops[index]) {
+          activeIndex = index;
+        }
+      });
+
+      if (allLinks.length) {
+        linkScales[activeIndex] = maxScale;
+
+        const nextLink = allLinks[activeIndex + 1];
+        if (nextLink) {
+          const transitionDistance = Math.max(52, Math.min(160, labelLengths[activeIndex + 1] * 0.8));
+          const distanceToNextSlot = targetTops[activeIndex + 1] - triggerTops[activeIndex + 1];
+          const progress = Math.max(0, Math.min(1, 1 - distanceToNextSlot / transitionDistance));
+
+          if (progress > 0) {
+            linkScales[activeIndex] = maxScale - scaleRange * progress;
+            linkScales[activeIndex + 1] = 1 + scaleRange * progress;
+          }
+        }
+      }
+
+      const minTops = topStackTops(linkScales);
+      const maxTops = bottomStackTops(linkScales);
+
+      allLinks.forEach((link, index) => {
+        const linkScale = linkScales[index];
+        const minTop = minTops[index];
+        const maxTop = Math.max(minTop, maxTops[index]);
+        const visualTop = Math.max(minTop, Math.min(maxTop, targetTops[index]));
+        const originTop = visualTop + labelLengths[index] * linkScale;
+        const fixedRightEdge = railWidth - railOffset;
+        const scaledDepth = labelDepths[index] * linkScale;
+
+        link.style.top = `${originTop}px`;
+        link.style.left = `${Math.max(22, fixedRightEdge - scaledDepth)}px`;
+        link.style.setProperty("--rail-scale", linkScale.toFixed(3));
+        link.style.zIndex = "";
+        link.classList.toggle("is-active", linkScale > 1.01);
+      });
     }
 
-    window.addEventListener("resize", scheduleProcessGraphRender);
-    window.addEventListener("load", scheduleProcessGraphRender);
-    if (document.fonts) {
-      document.fonts.ready.then(scheduleProcessGraphRender);
-    }
-    if ("ResizeObserver" in window) {
-      new ResizeObserver(scheduleProcessGraphRender).observe(document.getElementById("uxrulerGraph"));
-    }
-    scheduleProcessGraphRender();
+    window.addEventListener("scroll", renderRailNav, { passive: true });
+    window.addEventListener("resize", renderRailNav);
+    window.addEventListener("load", renderRailNav);
+    renderRailNav();
 
-    const repoInput = document.getElementById("repoUrl");
+    const defaultRepoUrl = "https://github.com/making-mike/uxruler.git";
 
     function repoToFolderUrl(repoUrl) {
       const clean = repoUrl.trim().replace(/\/$/, "");
@@ -1343,16 +2512,22 @@
       return value.replace(/"/g, '\\"');
     }
 
-    function renderInstallCommands() {
-      const repoUrl = repoInput.value.trim() || "https://github.com/making-mike/uxruler.git";
+    function renderInstallCommands(language = currentLanguage) {
+      const repoUrl = defaultRepoUrl;
       const folderUrl = repoToFolderUrl(repoUrl);
       const escapedRepo = shellEscape(repoUrl);
 
-      const commands = {
-        codex: `Use $skill-installer to install this skill:\n${folderUrl}\n\nThen restart Codex to pick up new skills.`,
-        claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# restart Claude Code`,
-        projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/uxruler`
-      };
+      const commands = language === "pl"
+        ? {
+            codex: `Użyj $skill-installer, żeby zainstalować ten skill:\n${folderUrl}\n\nUruchom ponownie Codex, żeby załadować nowe skille.`,
+            claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# uruchom ponownie Claude Code`,
+            projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/uxruler`
+          }
+        : {
+            codex: `Use $skill-installer to install this skill:\n${folderUrl}\n\nThen restart Codex to pick up new skills.`,
+            claude: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p ~/.claude/skills\nrm -rf ~/.claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" ~/.claude/skills/\nrm -rf "$TMP_DIR"\n\n# restart Claude Code`,
+            projectSkill: `REPO="${escapedRepo}"\nTMP_DIR="$(mktemp -d)"\ngit clone --depth 1 "$REPO" "$TMP_DIR/uxruler-repo"\nmkdir -p .claude/skills\nrm -rf .claude/skills/uxruler\ncp -R "$TMP_DIR/uxruler-repo/uxruler" .claude/skills/\nrm -rf "$TMP_DIR"\n\ngit add .claude/skills/uxruler`
+          };
 
       Object.entries(commands).forEach(([id, command]) => {
         const block = document.querySelector(`#${id} code`);
@@ -1360,29 +2535,98 @@
       });
     }
 
-    repoInput.addEventListener("input", renderInstallCommands);
-    renderInstallCommands();
+    let markerObserver = null;
+
+    function setupMarkerAnimation() {
+      const markers = Array.from(document.querySelectorAll("em"));
+      if (!markers.length) return;
+
+      if (markerObserver) {
+        markerObserver.disconnect();
+        markerObserver = null;
+      }
+
+      markers.forEach((marker) => {
+        marker.classList.remove("marker-reveal", "is-marker-visible");
+        marker.classList.add("marker-reveal");
+      });
+
+      if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        markers.forEach((marker) => marker.classList.add("is-marker-visible"));
+        return;
+      }
+
+      markerObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-marker-visible");
+          observer.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.55
+      });
+
+      markers.forEach((marker) => markerObserver.observe(marker));
+    }
+
+    collectLocalizedTextNodes();
+    applyLanguage(readInitialLanguage());
+
+    document.querySelectorAll(".lang-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        applyLanguage(button.dataset.lang, true);
+      });
+    });
+
+    function fallbackCopy(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.top = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } finally {
+        textArea.remove();
+      }
+      return copied;
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch {
+          return fallbackCopy(text);
+        }
+      }
+
+      return fallbackCopy(text);
+    }
 
     document.querySelectorAll(".copy").forEach((button) => {
       button.addEventListener("click", async () => {
         const target = document.getElementById(button.dataset.copy);
         const text = target ? target.innerText.trim() : "";
-        try {
-          await navigator.clipboard.writeText(text);
-          button.textContent = "Skopiowano";
+        const copied = await copyText(text);
+        if (copied) {
+          button.textContent = pageCopy[currentLanguage].copyDone;
           setTimeout(() => {
-            button.textContent = "Kopiuj";
+            button.textContent = pageCopy[currentLanguage].copyIdle;
           }, 1400);
-        } catch {
-          button.textContent = "Zaznacz tekst";
+        } else {
+          button.textContent = pageCopy[currentLanguage].copyFallback;
         }
       });
     });
 
-    resize();
-    if (!reducedMotion) {
-      requestAnimationFrame(draw);
-    }
   </script>
 </body>
 </html>

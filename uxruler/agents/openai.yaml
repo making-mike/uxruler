@@ -1,4 +1,4 @@
 interface:
-  display_name: "UXRuler"
-  short_description: "Turn product ideas into UX and repo artifacts"
-  default_prompt: "Use $uxruler to turn my product idea into a mission, market, user, need, infrastructure, product, value, metrics, and repo artifact plan."
+  display_name: "UX RULER"
+  short_description: "Open source UX process for humans and agents"
+  default_prompt: "Use $uxruler as an open source UX process for humans and agents. Ask me for missing context first, then inspect any real usage or repo-connected data available to the agent, research and verify market size, audience reachability, alternatives, and user need before presenting insights, recommendations, metrics, and any compact repo artifact."

@@ -1,21 +1,43 @@
 # Repo Artifact Blueprint
 
-Use this reference when the user wants UXRuler to become repository folders, agent context, product documentation, or a persistent product operating system.
+Use this reference when the user wants UX RULER to become repository folders, agent context, product documentation, or a persistent product operating system.
 
 ## Selection Rules
 
-- Do not create every file by default. Recommend a minimum viable artifact set, then add maturity layers.
+- Do not create every file by default. Start with a compact product map, then add maturity layers only when they solve a concrete comprehension, ownership, risk, or measurement problem.
 - Prefer open standards and widely recognized repo conventions when they exist.
 - When no strong standard exists, use a compact custom Markdown format inspired by ADR, RFC, and KEP templates.
 - Each artifact should make an agent or team better at one of four things: choosing, building, measuring, or learning.
-- Put tool-discovered files at the repo root. Put product-stage artifacts under `product/`. Put durable decision and measurement artifacts under `product/08-decision-measurement/`.
+- Put tool-discovered files at the repo root. Use `PRODUCT.md` as the default product memory. Put product-stage artifacts under `product/` only when the compact map becomes too dense or needs separate ownership.
 - For copyable Markdown/YAML/JSON templates, load `artifact-templates.md` alongside this blueprint.
 
-## Canonical Structure
+## Default Compact Structure
+
+Use this first for early products, prototypes, small open source projects, and repos where the user asked for product context but did not explicitly ask for a full documentation scaffold.
 
 ```text
 /
   AGENTS.md
+  PRODUCT.md
+  README.md
+```
+
+Recommended default:
+
+- `PRODUCT.md`: one readable map of mission, audience, user need, infrastructure/product surface, value, assumptions, risks, metrics, UX test, and next validation step.
+- `AGENTS.md`: only when coding agents need persistent repo instructions and update rules.
+- `README.md`: link to the product map and explain when to use it.
+
+Do not split `PRODUCT.md` into stage files until the split would make the repo easier to understand.
+
+## Expanded Canonical Structure
+
+Use this as a maturity layer, not as the default output.
+
+```text
+/
+  AGENTS.md
+  PRODUCT.md
   CLAUDE.md
   DESIGN.md
   tokens.json
@@ -114,29 +136,42 @@ Use this reference when the user wants UXRuler to become repository folders, age
         survey.qmd
 ```
 
-## Minimum Viable Artifact Set
+## Expansion Triggers
 
-For an early product or agent-ready prototype, start with:
+Add focused files from the expanded structure when at least one trigger is true:
 
-```text
-AGENTS.md
-DESIGN.md
-product/00-mission/product-thesis.md
-product/01-audience/market-map.md
-product/02-user/jobs-pains-gains.md
-product/03-need/problem-statement.md
-product/04-infrastructure/architecture.md
-product/05-product/flows.md
-product/05-product/design-system.md
-product/06-value/rollout.md
-product/08-decision-measurement/assumptions.md
-product/08-decision-measurement/north-star-metric.md
-product/08-decision-measurement/decision-log.md
-```
+- The product map is too long to scan.
+- Different people own mission, research, design, engineering, rollout, or metrics.
+- A decision needs audit history.
+- A feature, experiment, or rollout has real user or business risk.
+- The product handles regulated, sensitive, or security-relevant data.
+- Multiple agents or tools need different instruction surfaces.
+- The repo has a recurring release process.
 
-Add the rest when the product has more users, more contributors, higher security risk, regulated data, multiple agents, or a real release process.
+When expanding, add only the file needed for the current decision. Do not create a full `product/` tree as a placeholder.
 
 ## Root Agent And Repo Files
+
+### `PRODUCT.md`
+
+Purpose: compact product memory for a repo.
+
+Source pattern: UX RULER one-page product map.
+
+Include:
+
+- product thesis;
+- audience and user distinction;
+- primary user need;
+- product and infrastructure surface;
+- research insights with evidence and confidence;
+- value and north-star signal;
+- current assumptions;
+- key risks;
+- four-dimensional UX test;
+- next validation step.
+
+Keep this file readable in one sitting. If a section becomes too large, split that section into a focused artifact and link to it.
 
 ### `AGENTS.md`
 
@@ -147,7 +182,7 @@ Source pattern: OpenAI Codex AGENTS.md guidance.
 Include:
 
 - product mission and current product stage;
-- how to use the UXRuler folders;
+- how to use `PRODUCT.md` and any expanded UX RULER folders;
 - build, test, lint, and verification commands;
 - rules for updating assumptions, decisions, metrics, and artifacts;
 - files agents should read before touching product or UX work;
@@ -165,7 +200,7 @@ Include:
 - recurring commands;
 - architecture and design conventions;
 - product decision rules;
-- links to product-stage files that Claude should treat as context.
+- links to `PRODUCT.md` or product-stage files that Claude should treat as context.
 
 ### `.cursor/rules/product-ux.mdc`
 
@@ -201,10 +236,14 @@ Source pattern: Google Labs Code `design.md`.
 
 Include:
 
-- YAML frontmatter describing product/design-system metadata;
-- brand foundations inside the design system;
-- tokens, components, layout, content, interaction, accessibility, and rationale;
-- links to `tokens.json`, `product/05-product/design-system.md`, flows, and accessibility rules.
+- YAML front matter at the top. When tokens are present, use the Google Labs Code schema: optional `version: alpha`, `name`, optional `description`, `colors`, `typography`, `rounded`, `spacing`, and `components`;
+- color tokens as sRGB hex values such as `"#111827"`;
+- typography tokens as objects with properties such as `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, and `letterSpacing`;
+- component tokens that reference existing tokens with `{path.to.token}` and use supported properties such as `backgroundColor`, `textColor`, `typography`, `rounded`, `padding`, `size`, `height`, and `width`;
+- markdown rationale using `##` sections in this order: `Overview`, `Colors`, `Typography`, `Layout`, `Elevation & Depth`, `Shapes`, `Components`, `Do's and Don'ts`;
+- brand foundations, content guidance, interaction guidance, accessibility notes, and links to `tokens.json`, `product/05-product/design-system.md`, flows, or accessibility rules inside the canonical sections or in additional sections after the canonical sections.
+
+Do not duplicate section headings or put custom sections between canonical sections if it changes their order. When possible, validate with `npx @google/design.md lint DESIGN.md`.
 
 ### `tokens.json`
 
@@ -228,7 +267,7 @@ Include:
 - who it is for;
 - how to run it;
 - where product context lives;
-- links to `AGENTS.md`, `DESIGN.md`, and the UXRuler folders.
+- links to `PRODUCT.md`, `AGENTS.md`, and any expanded UX RULER folders.
 
 ### `ROADMAP.md`
 
@@ -400,6 +439,9 @@ Custom format. Include:
 
 - market definition;
 - segments;
+- audience-size estimate;
+- reachable channels or communities;
+- demand signals;
 - buyers, users, blockers, influencers;
 - alternatives and substitutes;
 - channels;
@@ -412,6 +454,7 @@ Purpose: segment hypotheses and prioritization.
 Include:
 
 - segment;
+- estimated size;
 - trigger;
 - current alternative;
 - urgency;

@@ -1,6 +1,6 @@
 # Security Policy
 
-UXRuler is mostly documentation, templates, a static website, and an installable agent skill. Security reports are still welcome, especially if they involve unsafe install instructions, malicious links, supply-chain risk, or guidance that could cause agents to expose secrets.
+UX RULER is mostly documentation, templates, a static website, and an installable agent skill. Security reports are still welcome, especially if they involve unsafe install instructions, malicious links, supply-chain risk, or guidance that could cause agents to expose secrets.
 
 ## Supported Versions
 
@@ -36,4 +36,4 @@ Out of scope:
 
 - product strategy disagreements;
 - spelling or style issues;
-- vulnerability reports for third-party tools that UXRuler links to but does not maintain.
+- vulnerability reports for third-party tools that UX RULER links to but does not maintain.

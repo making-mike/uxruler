@@ -1,6 +1,6 @@
-# Contributing To UXRuler
+# Contributing To UX RULER
 
-Thanks for helping improve UXRuler. The project is intentionally small: one installable agent skill with supporting references. Keep contributions focused, readable, and useful for people building real digital products.
+Thanks for helping improve UX RULER, an open source UX process for humans and agents. The project is intentionally small: one installable agent skill with supporting references. Keep contributions focused, readable, and useful for people building real digital products.
 
 ## Good Contributions
 
@@ -8,7 +8,7 @@ Thanks for helping improve UXRuler. The project is intentionally small: one inst
 - Better artifact templates for product teams and agents.
 - Fixes to installation instructions for Codex, Claude Code, or project-local usage.
 - Source corrections in `uxruler/references/`.
-- Examples that show how UXRuler works in a real repository.
+- Examples that show how UX RULER works in a real repository.
 
 ## Before You Open A Pull Request
 
@@ -19,7 +19,7 @@ Thanks for helping improve UXRuler. The project is intentionally small: one inst
 
 ## Writing Style
 
-- Be concrete. UXRuler should help people make decisions, not just describe product theory.
+- Be concrete. UX RULER should help people make evidence-backed product decisions, not just describe product theory.
 - Tie features to market, user need, infrastructure, product experience, value, metrics, and feedback.
 - Use durable artifacts: assumptions, decision logs, research notes, metrics, rollout plans, and UX evaluation.
 - Keep templates copyable and compact.

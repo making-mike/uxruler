@@ -1,6 +1,6 @@
 # Code Of Conduct
 
-UXRuler is a project for people who care about building better products. Product work benefits from disagreement, but only when disagreement stays useful.
+UX RULER is a project for people who care about building better products. Product work benefits from disagreement, but only when disagreement stays useful.
 
 ## Expected Behavior
 

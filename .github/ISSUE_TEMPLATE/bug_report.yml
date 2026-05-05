@@ -1,12 +1,12 @@
 name: Bug report
-description: Report something broken in the skill, templates, or installation docs.
+description: Report something broken in the skill, templates, installation docs, or decision guidance.
 title: "[Bug]: "
 labels:
   - bug
 body:
   - type: markdown
     attributes:
-      value: Thanks for helping improve UXRuler.
+      value: Thanks for helping improve UX RULER.
   - type: textarea
     id: what-happened
     attributes:
