@@ -1,4 +1,4 @@
-# UXRuler
+# UX RULER
 
 UXRuler is an open source product and UX strategy skill for AI coding agents. It helps turn a mission or product idea into a clear chain of market, user, need, infrastructure, product, value, decisions, metrics, and UX evaluation artifacts.
 
