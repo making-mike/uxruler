@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Feedback UX RULER</title>
+  <meta name="description" content="Napisz, co w UX RULER jest niejasne, brakujące albo warte przetestowania jako pierwsze.">
+  <meta name="theme-color" content="#000000">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+  <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+  <link rel="canonical" href="https://uxruler.com/feedback.html">
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+  <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+  <link rel="manifest" href="assets/favicon/manifest.json">
+  <meta property="og:title" content="Feedback UX RULER">
+  <meta property="og:description" content="Napisz, co w UX RULER jest niejasne, brakujące albo warte przetestowania jako pierwsze.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://uxruler.com/feedback.html">
+  <meta name="twitter:card" content="summary">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fragment-mono-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fragment-mono-latin-ext.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/space-grotesk-latin-ext.woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Fragment Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("assets/fonts/fragment-mono-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Fragment Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("assets/fonts/fragment-mono-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "Space Grotesk";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: block;
+      src: url("assets/fonts/space-grotesk-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    @font-face {
+      font-family: "Space Grotesk";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: block;
+      src: url("assets/fonts/space-grotesk-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    :root {
+      --black: #000;
+      --white: #fff;
+      --ink-soft: #737373;
+      --grid-line: rgba(0, 0, 0, 0.04);
+      --grid-size: 4px;
+      --heading-font: "Space Grotesk", "Fragment Mono", ui-monospace, monospace;
+      --mono-font: "Fragment Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --small-line: 16px;
+      --meta-line: 20px;
+      --text-line: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100svh;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--white);
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: var(--grid-size) var(--grid-size);
+      color: var(--black);
+      font-family: var(--mono-font);
+      line-height: var(--text-line);
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      min-height: 100svh;
+      place-items: center;
+      padding: clamp(48px, 7vw, 96px) 24px;
+    }
+
+    .feedback-card {
+      width: 100%;
+      max-width: 840px;
+      min-width: 0;
+    }
+
+    .feedback-head {
+      display: grid;
+      gap: 24px;
+      min-width: 0;
+      padding: clamp(28px, 4.2vw, 40px);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .kicker {
+      margin: 0;
+      font-size: 20px;
+      line-height: var(--text-line);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 17em;
+      margin: 0;
+      overflow-wrap: anywhere;
+      font-family: var(--heading-font);
+      font-size: clamp(38px, 4vw, 48px);
+      font-weight: 600;
+      line-height: clamp(48px, 4.8vw, 56px);
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 28em;
+      margin: 0;
+      overflow-wrap: anywhere;
+      font-size: clamp(20px, 2.4vw, 28px);
+      line-height: clamp(32px, 3.4vw, 40px);
+    }
+
+    .feedback-form,
+    .feedback-success {
+      min-width: 0;
+      border: 3px solid var(--black);
+      border-top: 0;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--black);
+    }
+
+    .feedback-fields {
+      display: grid;
+      gap: 26px;
+      padding: clamp(28px, 4.2vw, 40px);
+    }
+
+    .feedback-fields[hidden],
+    .feedback-success[hidden] {
+      display: none;
+    }
+
+    .field {
+      display: grid;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .field span {
+      font-size: 20px;
+      line-height: var(--text-line);
+      text-transform: uppercase;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      border: 3px solid var(--black);
+      border-radius: 0;
+      background: var(--white);
+      color: var(--black);
+      outline: none;
+    }
+
+    textarea {
+      min-height: 272px;
+      padding: 28px;
+      resize: vertical;
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 36px;
+    }
+
+    input {
+      min-height: 88px;
+      padding: 0 28px;
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 36px;
+    }
+
+    textarea::placeholder,
+    input::placeholder {
+      color: var(--ink-soft);
+      opacity: 1;
+    }
+
+    textarea:focus-visible,
+    input:focus-visible,
+    .button:focus-visible,
+    .copy-link:focus-visible {
+      outline: 3px solid var(--black);
+      outline-offset: 5px;
+    }
+
+    textarea[aria-invalid="true"] {
+      box-shadow: inset 0 0 0 3px var(--black);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 96px;
+      border: 3px solid var(--black);
+      border-radius: 0;
+      padding: 0 38px;
+      background: var(--black);
+      color: var(--white);
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: var(--text-line);
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      min-height: 56px;
+      padding: 0 18px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: var(--meta-line);
+    }
+
+    .status {
+      flex: 1 1 16rem;
+      min-width: 0;
+      margin: 0;
+      overflow-wrap: anywhere;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .feedback-success {
+      display: grid;
+      gap: 22px;
+      min-height: 420px;
+      align-content: center;
+      padding: clamp(28px, 4.2vw, 40px);
+    }
+
+    .success-mark {
+      position: relative;
+      display: grid;
+      width: 72px;
+      height: 72px;
+      place-items: center;
+      border: 3px solid var(--black);
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .success-mark::before {
+      content: "";
+      width: 30px;
+      height: 17px;
+      border-bottom: 5px solid var(--black);
+      border-left: 5px solid var(--black);
+      transform: rotate(-45deg) translate(2px, -1px);
+      transform-origin: center;
+    }
+
+    .feedback-success h2 {
+      margin: 0;
+      font-family: var(--heading-font);
+      font-size: clamp(32px, 4vw, 44px);
+      line-height: clamp(40px, 4.4vw, 52px);
+    }
+
+    .feedback-success p {
+      max-width: 34rem;
+      margin: 0;
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .copy-link {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      z-index: 4;
+      display: grid;
+      width: 72px;
+      height: 72px;
+      place-items: center;
+      border: 3px solid var(--black);
+      border-radius: 50%;
+      background: #303030;
+      color: var(--white);
+      cursor: pointer;
+      box-shadow: inset 0 0 0 2px #666;
+      transform: translateY(-50%);
+    }
+
+    .copy-link-icon {
+      position: relative;
+      display: block;
+      width: 28px;
+      height: 28px;
+    }
+
+    .copy-link-icon::before,
+    .copy-link-icon::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      width: 22px;
+      height: 3px;
+      background: currentColor;
+    }
+
+    .copy-link-icon::before {
+      top: 6px;
+      box-shadow: 0 8px 0 currentColor;
+    }
+
+    .copy-link-icon::after {
+      bottom: 3px;
+      width: 12px;
+      height: 12px;
+      border: 3px solid currentColor;
+      border-radius: 50%;
+      background: transparent;
+      box-shadow: none;
+      transform: translateX(-17px);
+    }
+
+    .copy-link-tooltip {
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      display: none;
+      width: max-content;
+      max-width: 220px;
+      border: 2px solid var(--black);
+      padding: 8px 10px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+      transform: translateY(-50%);
+    }
+
+    .copy-link:hover .copy-link-tooltip,
+    .copy-link:focus-visible .copy-link-tooltip {
+      display: block;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        display: block;
+        align-items: start;
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+        padding: 28px 14px 96px;
+      }
+
+      .feedback-card {
+        width: calc(100vw - 28px);
+        max-width: calc(100vw - 28px);
+      }
+
+      .feedback-head,
+      .feedback-fields,
+      .feedback-success {
+        padding: 22px;
+      }
+
+      .kicker,
+      .field span {
+        font-size: 16px;
+        line-height: var(--meta-line);
+      }
+
+      h1 {
+        font-size: clamp(30px, 9vw, 38px);
+        line-height: 42px;
+      }
+
+      .intro {
+        font-size: 18px;
+        line-height: 28px;
+      }
+
+      textarea {
+        min-height: 220px;
+      }
+
+      textarea,
+      input {
+        padding: 18px;
+        font-size: 18px;
+        line-height: 28px;
+      }
+
+      input {
+        min-height: 68px;
+      }
+
+      .button {
+        width: 100%;
+        min-height: 72px;
+        padding: 0 20px;
+        font-size: 18px;
+      }
+
+      .button.secondary {
+        width: auto;
+        min-height: 48px;
+        font-size: 12px;
+      }
+
+      .copy-link {
+        top: 16px;
+        right: 16px;
+        bottom: auto;
+        width: 52px;
+        height: 52px;
+        transform: none;
+      }
+
+      .copy-link-tooltip {
+        top: calc(100% + 10px);
+        right: 0;
+        bottom: auto;
+        transform: none;
+      }
+    }
+  </style>
+  <script>
+    if (/(^|\.)uxruler\.com$/.test(window.location.hostname)) {
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_wjAEaf2HYu9seYjiNruZYWiKmqTqHaDJjQsdApcJ9wnz', {
+        api_host: 'https://eu.i.posthog.com',
+        defaults: '2026-01-30',
+        autocapture: false,
+        rageclick: false,
+        capture_pageview: true,
+        capture_pageleave: 'if_capture_pageview',
+        disable_session_recording: true,
+        disable_surveys: true,
+        disable_external_dependency_loading: true,
+        advanced_disable_flags: true,
+        advanced_disable_toolbar_metrics: true,
+        capture_performance: false,
+        capture_heatmaps: false,
+        capture_dead_clicks: false,
+        capture_exceptions: false
+      });
+    }
+  </script>
+</head>
+<body>
+  <main class="page">
+    <section class="feedback-card" aria-labelledby="feedbackTitle">
+      <div class="feedback-head">
+        <p class="kicker">Feedback</p>
+        <h1 id="feedbackTitle">Co powinniśmy sprawdzić?</h1>
+        <p class="intro">Napisz, co w UX RULER jest niejasne, brakujące albo warte przetestowania jako pierwsze.</p>
+      </div>
+
+      <form class="feedback-form" data-feedback-form novalidate>
+        <div class="feedback-fields">
+          <label class="field">
+            <span>Twój feedback</span>
+            <textarea data-feedback-message placeholder="Jedno zdanie wystarczy..." rows="6" required></textarea>
+          </label>
+          <label class="field">
+            <span>Email do kontaktu (opcjonalnie)</span>
+            <input type="email" data-feedback-email placeholder="email@example.com">
+          </label>
+          <div class="actions">
+            <button class="button" type="submit">Wyślij feedback</button>
+            <p class="status" data-feedback-status aria-live="polite"></p>
+          </div>
+        </div>
+      </form>
+
+      <div class="feedback-success" data-feedback-success hidden>
+        <span class="success-mark" aria-hidden="true"></span>
+        <h2>Feedback wysłany</h2>
+        <p>Dzięki. To pomoże zdecydować, co w UX RULER poprawić albo przetestować jako następne.</p>
+        <div class="actions">
+          <button class="button secondary" type="button" data-feedback-new>Wyślij kolejny feedback</button>
+          <a class="button secondary" href="index.html">Wróć na stronę główną</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="copy-link" type="button" data-copy-link>
+    <span class="copy-link-icon" aria-hidden="true"></span>
+    <span class="copy-link-tooltip" data-copy-link-tooltip>Kopiuj link</span>
+    <span class="visually-hidden">Kopiuj link do ankiety</span>
+  </button>
+
+  <script>
+    const feedbackSurface = "dedicated_page";
+    const requiredMessage = "Dodaj krótki feedback przed wysłaniem.";
+    const sentMessage = "Dzięki. Feedback wysłany.";
+    const copyIdle = "Kopiuj link";
+    const copyDone = "Link skopiowany";
+    const copyFallback = "Zaznacz adres w pasku";
+
+    function feedbackSource() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get("source") || params.get("utm_source") || "";
+    }
+
+    function trackFeedbackEvent(eventName, properties = {}) {
+      const event = {
+        event: eventName,
+        language: document.documentElement.lang || "pl",
+        path: window.location.pathname || "/feedback.html",
+        feedback_surface: feedbackSurface,
+        source: feedbackSource(),
+        ...properties
+      };
+      const { event: _eventName, ...eventProperties } = event;
+
+      if (!Array.isArray(window.dataLayer)) {
+        window.dataLayer = [];
+      }
+      window.dataLayer.push(event);
+
+      if (!Array.isArray(window.uxrulerFeedbackEvents)) {
+        window.uxrulerFeedbackEvents = [];
+      }
+      window.uxrulerFeedbackEvents.push(event);
+
+      if (typeof CustomEvent === "function") {
+        window.dispatchEvent(new CustomEvent("uxruler:feedback-event", { detail: event }));
+      }
+
+      if (window.posthog && typeof window.posthog.capture === "function") {
+        window.posthog.capture(eventName, eventProperties);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.top = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } finally {
+        textArea.remove();
+      }
+      return copied;
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext && window.location.protocol !== "file:") {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch {
+          return fallbackCopy(text);
+        }
+      }
+
+      return fallbackCopy(text);
+    }
+
+    function shareUrl() {
+      return window.location.protocol === "file:"
+        ? "https://uxruler.com/feedback.html"
+        : window.location.href;
+    }
+
+    function setStatus(message) {
+      const status = document.querySelector("[data-feedback-status]");
+      if (status) status.textContent = message;
+    }
+
+    function showSuccess() {
+      const form = document.querySelector("[data-feedback-form]");
+      const success = document.querySelector("[data-feedback-success]");
+      if (form) form.hidden = true;
+      if (success) success.hidden = false;
+
+      const nextButton = document.querySelector("[data-feedback-new]");
+      if (nextButton) nextButton.focus();
+    }
+
+    function resetFeedback() {
+      const form = document.querySelector("[data-feedback-form]");
+      const success = document.querySelector("[data-feedback-success]");
+      const message = document.querySelector("[data-feedback-message]");
+
+      if (form) {
+        form.hidden = false;
+        if (typeof form.reset === "function") form.reset();
+      }
+      if (success) success.hidden = true;
+      if (message) {
+        message.removeAttribute("aria-invalid");
+        message.focus();
+      }
+      setStatus("");
+    }
+
+    const form = document.querySelector("[data-feedback-form]");
+    if (form) {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const message = document.querySelector("[data-feedback-message]");
+        const email = document.querySelector("[data-feedback-email]");
+        const cleanFeedback = message ? message.value.trim() : "";
+        const cleanEmail = email ? email.value.trim() : "";
+
+        if (!cleanFeedback) {
+          if (message) {
+            message.setAttribute("aria-invalid", "true");
+            message.focus();
+          }
+          setStatus(requiredMessage);
+          return;
+        }
+
+        if (message) message.removeAttribute("aria-invalid");
+
+        const eventProperties = {
+          feedback_length: cleanFeedback.length,
+          has_contact_email: Boolean(cleanEmail)
+        };
+        if (cleanFeedback) eventProperties.feedback = cleanFeedback;
+        if (cleanEmail) eventProperties.contact_email = cleanEmail;
+
+        trackFeedbackEvent("feedback_page_sent", eventProperties);
+        setStatus(sentMessage);
+        if (typeof form.reset === "function") form.reset();
+        showSuccess();
+      });
+    }
+
+    const newFeedbackButton = document.querySelector("[data-feedback-new]");
+    if (newFeedbackButton) {
+      newFeedbackButton.addEventListener("click", resetFeedback);
+    }
+
+    const feedbackMessage = document.querySelector("[data-feedback-message]");
+    if (feedbackMessage) {
+      feedbackMessage.addEventListener("input", () => {
+        feedbackMessage.removeAttribute("aria-invalid");
+        setStatus("");
+      });
+    }
+
+    const copyLinkButton = document.querySelector("[data-copy-link]");
+    if (copyLinkButton) {
+      copyLinkButton.addEventListener("click", async () => {
+        const tooltip = document.querySelector("[data-copy-link-tooltip]");
+        const copied = await copyText(shareUrl());
+        if (tooltip) tooltip.textContent = copied ? copyDone : copyFallback;
+        trackFeedbackEvent("feedback_page_link_copied", {
+          copied
+        });
+        window.setTimeout(() => {
+          if (tooltip) tooltip.textContent = copyIdle;
+        }, 1600);
+      });
+    }
+
+    trackFeedbackEvent("feedback_page_viewed", {
+      referrer: document.referrer || ""
+    });
+  </script>
+</body>
+</html>

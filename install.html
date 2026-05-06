@@ -107,6 +107,9 @@
       --rail-width: clamp(96px, calc(100vw - var(--content-min-width)), 346px);
       --topbar-height: clamp(13px, calc(13.8728vw - 105.434px), 48px);
       --nav-font-size: clamp(10px, calc(4.6243vw - 35.145px), 16px);
+      --ruler-width: var(--topbar-height);
+      --ruler-start-gap: calc(var(--topbar-height) / 12);
+      --ruler-top-trim: calc(var(--ruler-width) / 12);
       --content-gutter-left: clamp(74px, 8.2vw, 132px);
       --content-gutter-right: clamp(18px, 5vw, 72px);
       --topbar-columns: var(--rail-width) minmax(0, 1fr);
@@ -251,12 +254,51 @@
       align-items: center;
       justify-content: center;
       min-height: var(--topbar-height);
-      padding: 0 clamp(64px, calc(27.7456vw - 194.868px), 112px);
+      padding: 0;
       overflow: visible;
       background: var(--black);
       color: var(--white);
       text-align: center;
       white-space: nowrap;
+    }
+
+    .topline-info {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0 clamp(64px, calc(27.7456vw - 194.868px), 112px);
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topline-info:hover,
+    .topline-info:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: -4px;
+    }
+
+    .topline-github-mark {
+      display: grid;
+      place-items: center;
+      width: calc(var(--topbar-height) - 8px);
+      height: calc(var(--topbar-height) - 8px);
+      flex: 0 0 auto;
+    }
+
+    .topline-github-icon {
+      display: block;
+      width: clamp(12px, calc(var(--topbar-height) * 0.42), 18px);
+      height: clamp(12px, calc(var(--topbar-height) * 0.42), 18px);
+      fill: currentColor;
+    }
+
+    .topline-text {
+      min-width: 0;
+      overflow: visible;
+      text-overflow: clip;
     }
 
     .language-switcher {
@@ -298,15 +340,15 @@
     .page-ruler {
       position: fixed;
       z-index: 1;
-      top: calc(var(--topbar-height) + 4px);
+      top: calc(var(--topbar-height) + var(--ruler-start-gap));
       bottom: 0;
       left: var(--rail-width);
-      width: var(--topbar-height);
+      width: var(--ruler-width);
       pointer-events: none;
       background-image: url("assets/ruler.svg");
-      background-position: left top;
+      background-position: left calc(0px - var(--ruler-top-trim));
       background-repeat: repeat-y;
-      background-size: var(--topbar-height) auto;
+      background-size: var(--ruler-width) auto;
     }
 
     .page {
@@ -359,6 +401,7 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
+      justify-content: flex-end;
     }
 
     .button,
@@ -567,6 +610,50 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
+      justify-content: flex-end;
+    }
+
+    .install-reminder {
+      display: grid;
+      gap: 10px;
+      border: 2px solid var(--black);
+      padding: 18px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .install-reminder-kicker {
+      width: max-content;
+      border-bottom: 2px solid currentColor;
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+    }
+
+    .install-reminder-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: baseline;
+      font-family: var(--heading-font);
+      font-size: clamp(18px, 2vw, 26px);
+      line-height: var(--text-line);
+    }
+
+    .install-reminder-target {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      border: 2px solid var(--white);
+      padding: 2px 10px;
+      color: var(--black);
+      background: var(--white);
+    }
+
+    .install-reminder p {
+      margin: 0;
+      font-size: 14px;
+      line-height: var(--meta-line);
     }
 
     .step-list {
@@ -620,6 +707,10 @@
       border-color: var(--white);
     }
 
+    .code-head .button {
+      border-color: var(--white);
+    }
+
     pre {
       margin: 0;
       max-height: 360px;
@@ -628,6 +719,11 @@
       overflow: auto;
       font-size: 12px;
       line-height: var(--meta-line);
+    }
+
+    .flow-panel[data-flow-panel="tool"] pre {
+      max-height: 180px;
+      min-height: 120px;
     }
 
     code {
@@ -709,6 +805,26 @@
       text-transform: uppercase;
     }
 
+    .snackbar {
+      position: fixed;
+      z-index: 60;
+      right: 24px;
+      bottom: 24px;
+      max-width: min(420px, calc(100vw - 48px));
+      border: 2px solid var(--black);
+      padding: 14px 16px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-transform: uppercase;
+      box-shadow: 6px 6px 0 var(--white), 8px 8px 0 var(--black);
+    }
+
+    .snackbar[hidden] {
+      display: none;
+    }
+
     .footer {
       position: relative;
       z-index: 1;
@@ -757,19 +873,19 @@
         order: 2;
       }
 
-      .flow-step[data-flow-step-button="command"] {
+      .flow-step[data-flow-step-button="start"] {
         order: 3;
       }
 
-      .flow-panel[data-flow-panel="command"] {
+      .flow-panel[data-flow-panel="start"] {
         order: 4;
       }
 
-      .flow-step[data-flow-step-button="prompt"] {
+      .flow-step[data-flow-step-button="use"] {
         order: 5;
       }
 
-      .flow-panel[data-flow-panel="prompt"] {
+      .flow-panel[data-flow-panel="use"] {
         order: 6;
       }
 
@@ -833,12 +949,16 @@
       }
 
       .topline {
+        justify-content: center;
         min-height: var(--mobile-topline-height);
         border-top: 0;
         border-bottom: 0;
-        padding: 6px 12px;
+        padding: 0;
         font-size: 13px;
-        white-space: normal;
+      }
+
+      .topline-info {
+        padding: 6px 12px;
       }
 
       .topline::after {
@@ -920,7 +1040,14 @@
         <img src="assets/logo.svg" alt="">
       </a>
       <div class="topline">
-        <span data-i18n="topline">Otwarty proces UX dla ludzi i agentów</span>
+        <a class="topline-info" href="https://github.com/making-mike/uxruler" rel="noreferrer" aria-label="GitHub: Open-source’owy skill UX dla agentów AI">
+          <span class="topline-github-mark" aria-hidden="true">
+            <svg class="topline-github-icon" viewBox="0 0 16 16" focusable="false">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"></path>
+            </svg>
+          </span>
+          <span class="topline-text" data-i18n="topline">Open-source’owy skill UX dla agentów AI</span>
+        </a>
         <div class="language-switcher" aria-label="Wybór języka">
           <button class="lang-button is-active" type="button" data-lang="pl" aria-pressed="true">PL</button>
           <button class="lang-button" type="button" data-lang="en" aria-pressed="false">EN</button>
@@ -936,7 +1063,7 @@
       <section class="install-hero" aria-labelledby="installTitle">
         <div>
           <span class="eyebrow" data-i18n="eyebrow">Instalacja</span>
-          <h1 id="installTitle" data-i18n-html="heroTitle">Zainstaluj <em>UX RULER</em></h1>
+          <h1 id="installTitle" data-i18n-html="heroTitle">Zacznij używać <em>skilla</em></h1>
           <p class="lead" data-i18n="heroLead">Wybierz narzędzie, skopiuj instrukcję i uruchom skill na realnej decyzji produktowej. Feedback jest na końcu, więc nie przeszkadza w instalacji.</p>
         </div>
       </section>
@@ -947,13 +1074,13 @@
             <span>01</span>
             <strong data-i18n="flowStepTool">Narzędzie</strong>
           </button>
-          <button class="flow-step" type="button" data-flow-step-button="command">
+          <button class="flow-step" type="button" data-flow-step-button="start">
             <span>02</span>
-            <strong data-i18n="flowStepCommand">Instalacja</strong>
+            <strong data-i18n="flowStepStart">Start</strong>
           </button>
-          <button class="flow-step" type="button" data-flow-step-button="prompt">
+          <button class="flow-step" type="button" data-flow-step-button="use">
             <span>03</span>
-            <strong data-i18n="flowStepPrompt">Start</strong>
+            <strong data-i18n="flowStepUse">Use</strong>
           </button>
           <button class="flow-step" type="button" data-flow-step-button="feedback">
             <span>04</span>
@@ -964,7 +1091,7 @@
         <section class="flow-panel" data-flow-panel="tool" aria-labelledby="flowTitle">
           <div class="flow-panel-head">
             <h2 id="flowTitle" data-i18n="flowToolTitle">Gdzie chcesz używać UX RULER?</h2>
-            <p data-i18n="flowToolIntro">Wybierz jedną ścieżkę. Następny krok pokaże tylko właściwą instrukcję, bez reszty komend.</p>
+            <p data-i18n="flowToolIntro">Wybierz jedną ścieżkę. Po prawej masz od razu właściwą instrukcję.</p>
           </div>
           <div class="flow-layout">
             <div class="target-options" data-target-options></div>
@@ -974,41 +1101,43 @@
                 <h3 data-selected-target-title>Codex</h3>
                 <p data-selected-target-intro></p>
               </article>
+              <div class="code-block">
+                <div class="code-head">
+                  <span data-active-command-label>Instrukcja</span>
+                  <button class="button primary" type="button" data-copy-active-command data-i18n="copyInstruction">Kopiuj instrukcję</button>
+                </div>
+                <pre><code data-active-command></code></pre>
+              </div>
               <div class="flow-actions">
-                <button class="button primary" type="button" data-flow-next data-i18n="continueToInstall">Pokaż instrukcję</button>
+                <button class="button primary" type="button" data-flow-next data-i18n="continueToStart">Dalej</button>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="flow-panel" data-flow-panel="command" hidden>
+        <section class="flow-panel" data-flow-panel="start" hidden>
           <div class="flow-panel-head">
-            <h2 data-i18n="flowCommandTitle">Skopiuj instrukcję instalacji</h2>
-            <p data-i18n="flowCommandIntro">To jest jedyna komenda, której potrzebujesz dla wybranej ścieżki.</p>
+            <h2 data-i18n="flowStartTitle">Dokończ instalację w wybranej ścieżce</h2>
+            <p data-i18n="flowStartIntro">Wklej albo uruchom skopiowaną instrukcję w miejscu wskazanym niżej. Potwierdź dopiero, gdy instalacja jest gotowa.</p>
           </div>
-          <div class="flow-layout">
-            <article class="flow-summary-card">
-              <span class="active-label" data-current-target-label>Codex</span>
-              <ol class="step-list" data-active-steps></ol>
-            </article>
-            <div class="code-block">
-              <div class="code-head">
-                <span data-active-command-label>Instrukcja</span>
-                <button class="copy" type="button" data-copy-active-command>Kopiuj</button>
-              </div>
-              <pre><code data-active-command></code></pre>
+          <aside class="install-reminder" aria-live="polite">
+            <span class="install-reminder-kicker" data-i18n="installReminderKicker">Najpierw dokończ instalację</span>
+            <div class="install-reminder-line">
+              <span data-i18n="installReminderBefore">Najpierw wklej albo uruchom skopiowaną instrukcję instalacji tutaj:</span>
+              <strong class="install-reminder-target" data-install-reminder-target>Codex</strong>
             </div>
-          </div>
+            <p data-i18n="installReminderAfter">Gdy instalacja się skończy, przejdź dalej do promptu startowego.</p>
+          </aside>
           <div class="flow-actions">
-            <button class="button secondary" type="button" data-flow-back data-i18n="backButton">Wstecz</button>
-            <button class="button primary" type="button" data-flow-next data-i18n="continueToPrompt">Dalej do promptu</button>
+            <button class="button secondary" type="button" data-flow-back data-i18n="backButtonStart">Wstecz</button>
+            <button class="button primary" type="button" data-flow-next data-i18n="confirmInstalled">Zainstalowałem</button>
           </div>
         </section>
 
-        <section class="flow-panel" data-flow-panel="prompt" hidden>
+        <section class="flow-panel" data-flow-panel="use" hidden>
           <div class="flow-panel-head">
-            <h2 data-i18n="flowPromptTitle">Uruchom pierwszy użyteczny prompt</h2>
-            <p data-i18n="flowPromptIntro">Po instalacji zacznij od realnej decyzji. Wybierz sytuację, a potem skopiuj jeden prompt.</p>
+            <h2 data-i18n="flowUseTitle">Uruchom pierwszy użyteczny prompt</h2>
+            <p data-i18n="flowUseIntro">Wybierz sytuację, skopiuj prompt i wklej go do narzędzia z zainstalowanym UX RULER.</p>
           </div>
           <div class="flow-layout">
             <div class="prompt-options" data-prompt-options></div>
@@ -1021,7 +1150,7 @@
                 <pre><code data-active-prompt></code></pre>
               </div>
               <div class="flow-actions">
-                <button class="button secondary" type="button" data-flow-back data-i18n="backButtonPrompt">Wstecz</button>
+                <button class="button secondary" type="button" data-flow-back data-i18n="backButtonUse">Wstecz</button>
                 <button class="button primary" type="button" data-flow-next data-i18n="continueToFeedback">Dalej</button>
               </div>
             </div>
@@ -1030,8 +1159,8 @@
 
         <section class="flow-panel" data-flow-panel="feedback" hidden>
           <div class="flow-panel-head">
-            <h2 data-i18n="feedbackTitle">Co sprawdzić po pierwszym użyciu?</h2>
-            <p data-i18n="feedbackIntro">Po instalacji i pierwszym użyciu zostaw krótki sygnał. Najbardziej pomaga informacja, czy UX RULER zmienił decyzję, metrykę, ryzyko albo następny krok.</p>
+            <h2 data-i18n="feedbackTitle">Daj znać po pierwszym użyciu</h2>
+            <p data-i18n="feedbackIntro">Po instalacji napisz krótko, czy UX RULER pomógł Ci podjąć decyzję, doprecyzować metrykę, zauważyć ryzyko albo wybrać następny krok.</p>
           </div>
           <form class="feedback-form" data-feedback-form>
             <label class="field">
@@ -1053,11 +1182,7 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="shell">
-      <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer">GitHub</a>
-    </div>
-  </footer>
+  <div class="snackbar" data-snackbar role="status" aria-live="polite" hidden>Instrukcja skopiowana</div>
 
   <script>
     const supportedLanguages = ["pl", "en"];
@@ -1069,32 +1194,39 @@
     let activeFlowStep = "tool";
     let activeInstallTarget = "codex";
     let activePrompt = "promptOpenSource";
+    let snackbarTimer = null;
 
     const pageCopy = {
       pl: {
         title: "Instalacja UX RULER",
         description: "Zainstaluj UX RULER w Codex, Claude Code albo lokalnie w repo projektu.",
-        topline: "Otwarty proces UX dla ludzi i agentów",
+        topline: "Open-source’owy skill UX dla agentów AI",
         eyebrow: "Instalacja",
-        heroTitle: "Zainstaluj <em>UX RULER</em>",
+        heroTitle: "Zacznij używać <em>skilla</em>",
         heroLead: "Wybierz narzędzie, skopiuj instrukcję i uruchom skill na realnej decyzji produktowej. Feedback jest na końcu, więc nie przeszkadza w instalacji.",
         flowStepTool: "Narzędzie",
-        flowStepCommand: "Instalacja",
-        flowStepPrompt: "Start",
+        flowStepStart: "Start",
+        flowStepUse: "Use",
         flowStepFeedback: "Feedback",
         flowToolTitle: "Gdzie chcesz używać UX RULER?",
-        flowToolIntro: "Wybierz jedną ścieżkę. Następny krok pokaże tylko właściwą instrukcję, bez reszty komend.",
+        flowToolIntro: "Wybierz jedną ścieżkę. Po prawej masz od razu właściwą instrukcję.",
         selectedPathLabel: "Wybrana ścieżka",
-        continueToInstall: "Pokaż instrukcję",
-        flowCommandTitle: "Skopiuj instrukcję instalacji",
-        flowCommandIntro: "To jest jedyna komenda, której potrzebujesz dla wybranej ścieżki.",
-        flowPromptTitle: "Uruchom pierwszy użyteczny prompt",
-        flowPromptIntro: "Po instalacji zacznij od realnej decyzji. Wybierz sytuację, a potem skopiuj jeden prompt.",
+        copyInstruction: "Kopiuj instrukcję",
+        instructionCopied: "Instrukcja skopiowana",
+        flowStartTitle: "Dokończ instalację w wybranej ścieżce",
+        flowStartIntro: "Wklej albo uruchom skopiowaną instrukcję w miejscu wskazanym niżej. Potwierdź dopiero, gdy instalacja jest gotowa.",
+        flowUseTitle: "Uruchom pierwszy użyteczny prompt",
+        flowUseIntro: "Wybierz sytuację, skopiuj prompt i wklej go do narzędzia z zainstalowanym UX RULER.",
+        installReminderKicker: "Najpierw dokończ instalację",
+        installReminderBefore: "Wklej albo uruchom skopiowaną instrukcję instalacji tutaj:",
+        installReminderAfter: "Gdy instalacja się skończy, przejdź dalej do promptu startowego.",
         backButton: "Wstecz",
-        backButtonPrompt: "Wstecz",
+        backButtonStart: "Wstecz",
+        backButtonUse: "Wstecz",
         backButtonFeedback: "Wstecz",
-        continueToPrompt: "Dalej do promptu",
+        continueToStart: "Dalej",
         continueToFeedback: "Dalej",
+        confirmInstalled: "Zainstalowałem",
         codexChoiceHint: "Osobista instalacja w Codex przez skill-installer.",
         codexIntro: "Najprostsza ścieżka: użyj wbudowanego skill-installer i podaj publiczny URL folderu skilla.",
         codexTag: "Prompt",
@@ -1114,6 +1246,9 @@
         projectStepThree: "Commituj skill razem z repo, jeśli ma być wspólny dla zespołu.",
         terminalTag: "Terminal",
         terminalTagProject: "Terminal",
+        codexReminderTarget: "Codex",
+        claudeReminderTarget: "Claude Code",
+        projectReminderTarget: "terminal repo projektu",
         instructionLabel: "Instrukcja",
         instructionLabelClaude: "Instrukcja",
         instructionLabelProject: "Instrukcja",
@@ -1121,13 +1256,13 @@
         promptsTitle: "Po instalacji zacznij od decyzji",
         promptsIntro: "Najlepszy pierwszy krok to nie prośba o dokument. Daj agentowi decyzję, którą chcesz podjąć, i pozwól UX RULER sprawdzić kontekst, dane oraz brakujące dowody.",
         promptNewLabel: "Nowy produkt",
-        promptNewDescription: "Gdy zaczynasz od pomysłu, pustego repo albo misji do doprecyzowania.",
+        promptNewDescription: "Start od pomysłu albo pustego repo.",
         promptAuditLabel: "Audyt funkcji",
-        promptAuditDescription: "Gdy chcesz sprawdzić, czy funkcja wynika z realnej potrzeby.",
+        promptAuditDescription: "Sprawdzenie funkcji przed dalszą budową.",
         promptRepoLabel: "Przegląd repo",
-        promptRepoDescription: "Gdy chcesz, żeby agent najpierw zapytał, co masz zdecydować po przeglądzie.",
-        feedbackTitle: "Co sprawdzić po pierwszym użyciu?",
-        feedbackIntro: "Po instalacji i pierwszym użyciu zostaw krótki sygnał. Najbardziej pomaga informacja, czy UX RULER zmienił decyzję, metrykę, ryzyko albo następny krok.",
+        promptRepoDescription: "Decyzja o kolejnym najlepszym kroku dla wartości użytkownika.",
+        feedbackTitle: "Daj znać po pierwszym użyciu",
+        feedbackIntro: "Po instalacji napisz krótko, czy UX RULER pomógł Ci podjąć decyzję, doprecyzować metrykę, zauważyć ryzyko albo wybrać następny krok.",
         feedbackMessageLabel: "Twój feedback",
         feedbackMessagePlaceholder: "Napisz krótko...",
         feedbackEmailLabel: "Email do kontaktu (opcjonalnie)",
@@ -1138,34 +1273,40 @@
         copyIdle: "Kopiuj",
         copyDone: "Skopiowano",
         copyFallback: "Zaznacz tekst",
-        promptOpenSource: "Użyj $uxruler jako procesu UX open source dla ludzi i agentów. Używaj prostego języka. Jeśli repo jest puste, pomóż mi najpierw zdefiniować misję przez 2-3 kierunki produktu. Gdy zdecydujemy misję lub kierunek, utwórz albo zaktualizuj kompaktowe PRODUCT.md i ROADMAP.md. W przeciwnym razie zapytaj mnie tylko o brakujący kontekst, potem sprawdź dostępne dane użycia lub dane repo, zweryfikuj rynek, odbiorców, alternatywy i potrzebę użytkownika, a dopiero potem przedstaw wnioski i rekomendacje.",
-        promptAudit: "Użyj $uxruler do audytu tej funkcji. Prostym językiem pokaż, czy wynika z realnych odbiorców, potrzeby użytkownika, możliwości infrastruktury, doświadczenia produktu, mierzalnej wartości i zapisanej decyzji.",
-        promptRepo: "Użyj $uxruler na tym repo. Najpierw zapytaj, co chcę zdecydować po przeglądzie repo, potem sprawdź repo i pokaż prostym językiem, co wiadomo, czego brakuje i co zrobić dalej. Jeśli misja lub kierunek są już zdecydowane, utwórz albo zaktualizuj kompaktowy ROADMAP.md."
+        promptOpenSource: "Użyj $uxruler. Mam pomysł na produkt i chcę zdecydować, od czego zacząć.",
+        promptAudit: "Użyj $uxruler do sprawdzenia tej funkcji. Pomóż mi zdecydować, czy warto ją rozwijać.",
+        promptRepo: "Użyj $uxruler na tym repo. Pomóż mi zdecydować, jaki jest kolejny najlepszy krok, żeby dostarczyć wartość użytkownikowi."
       },
       en: {
         title: "Install UX RULER",
         description: "Install UX RULER in Codex, Claude Code, or a project repo.",
-        topline: "Open source UX process for humans and agents",
+        topline: "Open-source UX skill for AI agents",
         eyebrow: "Install",
-        heroTitle: "Install <em>UX RULER</em>",
+        heroTitle: "Start using <em>the skill</em>",
         heroLead: "Choose your tool, copy the instruction, and run the skill on a real product decision. Feedback lives at the end, so it does not interrupt installation.",
         flowStepTool: "Tool",
-        flowStepCommand: "Install",
-        flowStepPrompt: "Start",
+        flowStepStart: "Start",
+        flowStepUse: "Use",
         flowStepFeedback: "Feedback",
         flowToolTitle: "Where do you want to use UX RULER?",
-        flowToolIntro: "Choose one path. The next step shows only the matching instruction, not the whole command list.",
+        flowToolIntro: "Choose one path. The matching instruction is ready on the right.",
         selectedPathLabel: "Selected path",
-        continueToInstall: "Show instruction",
-        flowCommandTitle: "Copy the install instruction",
-        flowCommandIntro: "This is the only command you need for the selected path.",
-        flowPromptTitle: "Run the first useful prompt",
-        flowPromptIntro: "After installing, start with a real decision. Choose a situation, then copy one prompt.",
+        copyInstruction: "Copy instruction",
+        instructionCopied: "Instruction copied",
+        flowStartTitle: "Finish the install in the selected path",
+        flowStartIntro: "Paste or run the copied instruction in the place shown below. Confirm only when installation is ready.",
+        flowUseTitle: "Run the first useful prompt",
+        flowUseIntro: "Choose a situation, copy the prompt, and paste it into the tool with UX RULER installed.",
+        installReminderKicker: "Finish the install first",
+        installReminderBefore: "Paste or run the copied install instruction here:",
+        installReminderAfter: "When installation finishes, continue to the starter prompt.",
         backButton: "Back",
-        backButtonPrompt: "Back",
+        backButtonStart: "Back",
+        backButtonUse: "Back",
         backButtonFeedback: "Back",
-        continueToPrompt: "Next: prompt",
+        continueToStart: "Next",
         continueToFeedback: "Next",
+        confirmInstalled: "I installed it",
         codexChoiceHint: "Personal Codex install through skill-installer.",
         codexIntro: "The simplest path: use the built-in skill-installer and provide the public URL to the skill folder.",
         codexTag: "Prompt",
@@ -1185,6 +1326,9 @@
         projectStepThree: "Commit the skill with the repo if it should be shared by the team.",
         terminalTag: "Terminal",
         terminalTagProject: "Terminal",
+        codexReminderTarget: "Codex",
+        claudeReminderTarget: "Claude Code",
+        projectReminderTarget: "project repo terminal",
         instructionLabel: "Instruction",
         instructionLabelClaude: "Instruction",
         instructionLabelProject: "Instruction",
@@ -1192,13 +1336,13 @@
         promptsTitle: "After installing, start with a decision",
         promptsIntro: "The best first step is not asking for a document. Give the agent the decision you need to make, then let UX RULER check context, data, and missing evidence.",
         promptNewLabel: "New product",
-        promptNewDescription: "When you are starting from an idea, blank repo, or mission that needs shape.",
+        promptNewDescription: "Start from an idea or an empty repo.",
         promptAuditLabel: "Feature audit",
-        promptAuditDescription: "When you want to check whether a feature comes from a real need.",
+        promptAuditDescription: "Check a feature before building more.",
         promptRepoLabel: "Repo check",
-        promptRepoDescription: "When you want the agent to ask what you need to decide before reviewing the repo.",
-        feedbackTitle: "What should we check after first use?",
-        feedbackIntro: "After installation and first use, leave a short signal. The most useful feedback says whether UX RULER changed a decision, metric, risk, or next step.",
+        promptRepoDescription: "Decide the best next step for delivering user value.",
+        feedbackTitle: "Tell us how the first use went",
+        feedbackIntro: "After installation, write a short note about whether UX RULER helped you make a decision, clarify a metric, notice a risk, or choose the next step.",
         feedbackMessageLabel: "Your feedback",
         feedbackMessagePlaceholder: "Write a short note...",
         feedbackEmailLabel: "Contact email (optional)",
@@ -1209,13 +1353,13 @@
         copyIdle: "Copy",
         copyDone: "Copied",
         copyFallback: "Select text",
-        promptOpenSource: "Use $uxruler as an open source UX process for humans and agents. Use simple language. If this repo is empty, help me define the mission first by offering 2 to 3 draft product directions. Once we decide the mission or direction, create or update compact PRODUCT.md and ROADMAP.md. Otherwise, ask me only for missing context first, then inspect any real usage or repo-connected data, check the market, audience, alternatives, and user need, and then present clear findings and recommendations.",
-        promptAudit: "Use $uxruler to audit this feature. In simple language, show whether it comes from a real audience, user need, infrastructure capability, product experience, measurable value, and a recorded decision.",
-        promptRepo: "Use $uxruler on this repo. First ask what I want to decide after you look at the repo, then inspect it and explain in simple language what is known, what is missing, and what to do next. If the mission or direction is already decided, create or update a compact ROADMAP.md."
+        promptOpenSource: "Use $uxruler. I have a product idea and want to decide where to start.",
+        promptAudit: "Use $uxruler to check this feature. Help me decide whether it is worth developing.",
+        promptRepo: "Use $uxruler on this repo. Help me decide the best next step to deliver value to users."
       }
     };
 
-    const flowSteps = ["tool", "command", "prompt", "feedback"];
+    const flowSteps = ["tool", "start", "use", "feedback"];
     const installTargetConfig = {
       codex: {
         title: "Codex",
@@ -1223,7 +1367,8 @@
         choiceHintKey: "codexChoiceHint",
         tagKey: "codexTag",
         steps: ["codexStepOne", "codexStepTwo", "codexStepThree"],
-        commandLabelKey: "instructionLabel"
+        commandLabelKey: "instructionLabel",
+        reminderTargetKey: "codexReminderTarget"
       },
       claude: {
         title: "Claude Code",
@@ -1231,7 +1376,8 @@
         choiceHintKey: "claudeChoiceHint",
         tagKey: "terminalTag",
         steps: ["claudeStepOne", "claudeStepTwo", "claudeStepThree"],
-        commandLabelKey: "instructionLabelClaude"
+        commandLabelKey: "instructionLabelClaude",
+        reminderTargetKey: "claudeReminderTarget"
       },
       projectSkill: {
         titleKey: "projectTitle",
@@ -1239,7 +1385,8 @@
         choiceHintKey: "projectChoiceHint",
         tagKey: "terminalTagProject",
         steps: ["projectStepOne", "projectStepTwo", "projectStepThree"],
-        commandLabelKey: "instructionLabelProject"
+        commandLabelKey: "instructionLabelProject",
+        reminderTargetKey: "projectReminderTarget"
       }
     };
     const promptConfig = [
@@ -1414,9 +1561,6 @@
       const selectedIntro = document.querySelector("[data-selected-target-intro]");
       if (selectedIntro) selectedIntro.textContent = copy[targetConfig.introKey] || "";
 
-      const currentTarget = document.querySelector("[data-current-target-label]");
-      if (currentTarget) currentTarget.textContent = targetTitle(activeInstallTarget);
-
       const activeSteps = document.querySelector("[data-active-steps]");
       if (activeSteps) {
         clearElement(activeSteps);
@@ -1431,6 +1575,9 @@
       if (commandLabel) commandLabel.textContent = copy[targetConfig.commandLabelKey] || copy.instructionLabel;
       const command = document.querySelector("[data-active-command]");
       if (command) command.textContent = currentInstallCommands[activeInstallTarget] || "";
+
+      const reminderTarget = document.querySelector("[data-install-reminder-target]");
+      if (reminderTarget) reminderTarget.textContent = copy[targetConfig.reminderTargetKey] || targetTitle(activeInstallTarget);
 
       const promptLabel = document.querySelector("[data-selected-prompt-label]");
       if (promptLabel) promptLabel.textContent = copy[activePromptConfig.labelKey] || "";
@@ -1535,6 +1682,18 @@
       return fallbackCopy(text);
     }
 
+    function showSnackbar(message) {
+      const snackbar = document.querySelector("[data-snackbar]");
+      if (!snackbar) return;
+
+      snackbar.textContent = message;
+      snackbar.hidden = false;
+      if (snackbarTimer) window.clearTimeout(snackbarTimer);
+      snackbarTimer = window.setTimeout(() => {
+        snackbar.hidden = true;
+      }, 2600);
+    }
+
     function setCopiedState(button, copied) {
       const copy = pageCopy[currentLanguage];
       button.textContent = copied ? copy.copyDone : copy.copyFallback;
@@ -1631,12 +1790,15 @@
       copyActiveCommand.addEventListener("click", async () => {
         const command = currentInstallCommands[activeInstallTarget] || "";
         const copied = await copyText(command);
-        setCopiedState(copyActiveCommand, copied);
         trackInstallEvent("install_instruction_copied", {
           install_target: activeInstallTarget,
           copied,
           text_length: command.length
         });
+        showSnackbar(copied ? pageCopy[currentLanguage].instructionCopied : pageCopy[currentLanguage].copyFallback);
+        if (copied) {
+          goToFlowStep("start", "copy_instruction_button");
+        }
       });
     }
 
@@ -1651,6 +1813,9 @@
           copied,
           text_length: prompt.length
         });
+        if (copied) {
+          goToFlowStep("feedback", "copy_prompt_button");
+        }
       });
     }
 
@@ -1685,7 +1850,7 @@
     const initialTarget = installTargetFromHash();
     if (initialTarget) {
       activeInstallTarget = initialTarget;
-      activeFlowStep = "command";
+      activeFlowStep = "tool";
     }
 
     applyLanguage(readStoredLanguage() || readPreferredLanguage());
