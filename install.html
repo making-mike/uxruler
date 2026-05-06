@@ -356,6 +356,7 @@
       z-index: 1;
       margin-left: var(--rail-width);
       padding-top: calc(var(--topbar-height) + 72px);
+      padding-bottom: clamp(72px, 8vw, 128px);
       background: transparent;
     }
 
@@ -1117,16 +1118,16 @@
 
         <section class="flow-panel" data-flow-panel="start" hidden>
           <div class="flow-panel-head">
-            <h2 data-i18n="flowStartTitle">Dokończ instalację w wybranej ścieżce</h2>
-            <p data-i18n="flowStartIntro">Wklej albo uruchom skopiowaną instrukcję w miejscu wskazanym niżej. Potwierdź dopiero, gdy instalacja jest gotowa.</p>
+            <h2 data-i18n="flowStartTitle">Dokończ instalację</h2>
+            <p data-i18n="flowStartIntro">Wykonaj instrukcję z poprzedniego kroku w wybranym narzędziu. Potem potwierdź, że instalacja jest gotowa.</p>
           </div>
           <aside class="install-reminder" aria-live="polite">
-            <span class="install-reminder-kicker" data-i18n="installReminderKicker">Najpierw dokończ instalację</span>
+            <span class="install-reminder-kicker" data-i18n="installReminderKicker">Wybrana ścieżka</span>
             <div class="install-reminder-line">
-              <span data-i18n="installReminderBefore">Najpierw wklej albo uruchom skopiowaną instrukcję instalacji tutaj:</span>
+              <span data-i18n="installReminderBefore">Instalujesz w:</span>
               <strong class="install-reminder-target" data-install-reminder-target>Codex</strong>
             </div>
-            <p data-i18n="installReminderAfter">Gdy instalacja się skończy, przejdź dalej do promptu startowego.</p>
+            <p data-i18n="installReminderAfter">Jeśli potrzebujesz instrukcji jeszcze raz, wróć do kroku 01.</p>
           </aside>
           <div class="flow-actions">
             <button class="button secondary" type="button" data-flow-back data-i18n="backButtonStart">Wstecz</button>
@@ -1195,6 +1196,21 @@
     let activeInstallTarget = "codex";
     let activePrompt = "promptOpenSource";
     let snackbarTimer = null;
+    const feedbackSurvey = {
+      id: "019dfcac-4e80-0000-546a-8647548e2977",
+      questions: [
+        {
+          id: "8bc0dd5a-bedd-450c-adc7-0711c5ec2859",
+          type: "open",
+          question: "Co powinniśmy poprawić?"
+        },
+        {
+          id: "0bf2985e-6400-42b3-92a3-1d9271af83f4",
+          type: "open",
+          question: "E-mail do kontaktu"
+        }
+      ]
+    };
 
     const pageCopy = {
       pl: {
@@ -1213,13 +1229,13 @@
         selectedPathLabel: "Wybrana ścieżka",
         copyInstruction: "Kopiuj instrukcję",
         instructionCopied: "Instrukcja skopiowana",
-        flowStartTitle: "Dokończ instalację w wybranej ścieżce",
-        flowStartIntro: "Wklej albo uruchom skopiowaną instrukcję w miejscu wskazanym niżej. Potwierdź dopiero, gdy instalacja jest gotowa.",
+        flowStartTitle: "Dokończ instalację",
+        flowStartIntro: "Wykonaj instrukcję z poprzedniego kroku w wybranym narzędziu. Potem potwierdź, że instalacja jest gotowa.",
         flowUseTitle: "Uruchom pierwszy użyteczny prompt",
         flowUseIntro: "Wybierz sytuację, skopiuj prompt i wklej go do narzędzia z zainstalowanym UX RULER.",
-        installReminderKicker: "Najpierw dokończ instalację",
-        installReminderBefore: "Wklej albo uruchom skopiowaną instrukcję instalacji tutaj:",
-        installReminderAfter: "Gdy instalacja się skończy, przejdź dalej do promptu startowego.",
+        installReminderKicker: "Wybrana ścieżka",
+        installReminderBefore: "Instalujesz w:",
+        installReminderAfter: "Jeśli potrzebujesz instrukcji jeszcze raz, wróć do kroku 01.",
         backButton: "Wstecz",
         backButtonStart: "Wstecz",
         backButtonUse: "Wstecz",
@@ -1293,13 +1309,13 @@
         selectedPathLabel: "Selected path",
         copyInstruction: "Copy instruction",
         instructionCopied: "Instruction copied",
-        flowStartTitle: "Finish the install in the selected path",
-        flowStartIntro: "Paste or run the copied instruction in the place shown below. Confirm only when installation is ready.",
+        flowStartTitle: "Finish the install",
+        flowStartIntro: "Run the instruction from the previous step in the selected tool. Then confirm when installation is ready.",
         flowUseTitle: "Run the first useful prompt",
         flowUseIntro: "Choose a situation, copy the prompt, and paste it into the tool with UX RULER installed.",
-        installReminderKicker: "Finish the install first",
-        installReminderBefore: "Paste or run the copied install instruction here:",
-        installReminderAfter: "When installation finishes, continue to the starter prompt.",
+        installReminderKicker: "Selected path",
+        installReminderBefore: "Installing in:",
+        installReminderAfter: "Need the instruction again? Go back to step 01.",
         backButton: "Back",
         backButtonStart: "Back",
         backButtonUse: "Back",
@@ -1650,6 +1666,26 @@
       }
     }
 
+    function feedbackSurveyProperties(feedback, email, properties = {}) {
+      const cleanFeedback = feedback.trim();
+      const cleanEmail = email.trim();
+      const [feedbackQuestion, emailQuestion] = feedbackSurvey.questions;
+
+      return {
+        ...properties,
+        $survey_id: feedbackSurvey.id,
+        $survey_questions: feedbackSurvey.questions.map((question) => ({
+          id: question.id,
+          question: question.question,
+          type: question.type
+        })),
+        $survey_response: cleanFeedback,
+        $survey_response_1: cleanEmail,
+        [`$survey_response_${feedbackQuestion.id}`]: cleanFeedback,
+        [`$survey_response_${emailQuestion.id}`]: cleanEmail
+      };
+    }
+
     function fallbackCopy(text) {
       const textArea = document.createElement("textarea");
       textArea.value = text;
@@ -1842,6 +1878,11 @@
         if (cleanEmail) eventProperties.contact_email = cleanEmail;
 
         trackInstallEvent("install_feedback_sent", eventProperties);
+        trackInstallEvent("survey sent", feedbackSurveyProperties(cleanFeedback, cleanEmail, {
+          survey_stage: "feedback",
+          survey_trigger: "install_feedback_form",
+          feedback_surface: "install"
+        }));
         if (status) status.textContent = pageCopy[currentLanguage].feedbackSent;
         feedbackForm.reset();
       });

@@ -3181,6 +3181,21 @@
     const localizedTextNodes = [];
     let currentLanguage = "pl";
     let currentInstallCommands = {};
+    const feedbackSurvey = {
+      id: "019dfcac-4e80-0000-546a-8647548e2977",
+      questions: [
+        {
+          id: "8bc0dd5a-bedd-450c-adc7-0711c5ec2859",
+          type: "open",
+          question: "Co powinniśmy poprawić?"
+        },
+        {
+          id: "0bf2985e-6400-42b3-92a3-1d9271af83f4",
+          type: "open",
+          question: "E-mail do kontaktu"
+        }
+      ]
+    };
 
     function trackLandingEvent(eventName, properties = {}) {
       const event = {
@@ -3208,6 +3223,26 @@
       if (window.posthog && typeof window.posthog.capture === "function") {
         window.posthog.capture(eventName, eventProperties);
       }
+    }
+
+    function feedbackSurveyProperties(feedback, email, properties = {}) {
+      const cleanFeedback = feedback.trim();
+      const cleanEmail = email.trim();
+      const [feedbackQuestion, emailQuestion] = feedbackSurvey.questions;
+
+      return {
+        ...properties,
+        $survey_id: feedbackSurvey.id,
+        $survey_questions: feedbackSurvey.questions.map((question) => ({
+          id: question.id,
+          question: question.question,
+          type: question.type
+        })),
+        $survey_response: cleanFeedback,
+        $survey_response_1: cleanEmail,
+        [`$survey_response_${feedbackQuestion.id}`]: cleanFeedback,
+        [`$survey_response_${emailQuestion.id}`]: cleanEmail
+      };
     }
 
     function normalizedText(value) {
@@ -4103,6 +4138,11 @@
       if (cleanEmail) eventProperties.contact_email = cleanEmail;
 
       trackLandingEvent("landing_feedback_sent", eventProperties);
+      trackLandingEvent("survey sent", feedbackSurveyProperties(cleanFeedback, cleanEmail, {
+        survey_stage: "feedback",
+        survey_trigger: "footer_feedback_form",
+        feedback_surface: "footer"
+      }));
       setFooterFeedbackStatus("");
 
       const form = document.querySelector("[data-footer-feedback-form]");
