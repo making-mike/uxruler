@@ -367,7 +367,7 @@ After mapping the work, evaluate the product or feature across four dimensions:
 - **Attraction:** Why would the intended audience choose, remember, trust, or return to this instead of alternatives?
 - **Identity:** Does it fit who the user wants to be and how they want to make decisions?
 
-Attraction is not a default demand for visual polish, but visual design can be a strategic attraction lever when the audience, category, trust problem, or product surface makes it matter. For agent-first, API, data, infrastructure, or workflow products, attraction can also come from a distinctive job, credible evidence, fast time-to-value, reliability, integration fit, explainability, trust, or a memorable core object. Choose the attraction lever deliberately and avoid UI-first language such as "beautiful card" unless a visible interface is the product surface being evaluated.
+Attraction is not a default demand for polish. It is a strategic choice about what creates pull. Depending on the audience, category, trust problem, or product surface, the form of the experience can be part of that pull. For agent-first, API, data, infrastructure, or workflow products, attraction can also come from a distinctive job, credible evidence, fast time-to-value, reliability, integration fit, explainability, trust, or a memorable core object. Choose the attraction lever deliberately and avoid UI-first language such as "beautiful card" unless the interface is the primary product surface being evaluated.
 
 If usefulness fails, do not beautify the feature. If only usefulness passes, the product may be correct but the UX is not yet strong.
 
