@@ -11,7 +11,7 @@ Use this skill as an open source UX process for humans and agents. Help the user
 
 `conversation -> mission -> audience/market -> user -> need -> research -> infrastructure -> product -> value -> decision & measurement -> UX test`
 
-Respond in the user's language. If the user writes in Polish, use Polish terminology: `misja`, `odbiorcy`, `użytkownik`, `potrzeba`, `infrastruktura`, `produkt`, `wartość`, `użyteczność`, `ergonomia`, `atrakcyjność`, `tożsamość`.
+Respond in the user's language. If the user writes in Polish, use Polish terminology: `misja`, `odbiorcy`, `użytkownik`, `potrzeba`, `infrastruktura`, `produkt`, `wartość`, `użyteczność`, `ergonomia`, `przyciąganie`, `tożsamość`.
 
 ## Operating Principles
 
@@ -364,8 +364,10 @@ After mapping the work, evaluate the product or feature across four dimensions:
 
 - **Usefulness:** Does it solve a real problem?
 - **Ergonomics:** Does it let users do the job easily, quickly, and with low effort?
-- **Attractiveness:** Is the experience clear, engaging, and memorable?
+- **Attraction:** Why would the intended audience choose, remember, trust, or return to this instead of alternatives?
 - **Identity:** Does it fit who the user wants to be and how they want to make decisions?
+
+Attraction is not a default demand for visual polish, but visual design can be a strategic attraction lever when the audience, category, trust problem, or product surface makes it matter. For agent-first, API, data, infrastructure, or workflow products, attraction can also come from a distinctive job, credible evidence, fast time-to-value, reliability, integration fit, explainability, trust, or a memorable core object. Choose the attraction lever deliberately and avoid UI-first language such as "beautiful card" unless a visible interface is the product surface being evaluated.
 
 If usefulness fails, do not beautify the feature. If only usefulness passes, the product may be correct but the UX is not yet strong.
 

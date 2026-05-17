@@ -17,7 +17,7 @@ The installable skill lives in `uxruler/`.
 - Audit an existing product or feature against real users, needs, infrastructure, rollout, and measurable value.
 - Create compact agent-readable product files inside a repository.
 - Keep UX decisions connected to evidence, metrics, and feedback loops.
-- Evaluate product quality through four UX dimensions: usefulness, ergonomics, attractiveness, and identity.
+- Evaluate product quality through four UX dimensions: usefulness, ergonomics, attraction, and identity.
 
 ## Process
 

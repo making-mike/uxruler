@@ -57,7 +57,7 @@ The user wants [gain], so they try to [job], but they run into [pain].
 |---|---|---|
 | Usefulness | [Does it solve a real problem?] | [Action] |
 | Ergonomics | [Can users do the job easily?] | [Action] |
-| Attractiveness | [Is it clear, engaging, and memorable?] | [Action] |
+| Attraction | [Why would the audience choose, remember, trust, or return to this, and what strategic lever creates that pull?] | [Action] |
 | Identity | [Does it fit who users want to be?] | [Action] |
 
 ## Next Validation Step
@@ -480,7 +480,7 @@ Path: `product/07-ux-test/ux-scorecard.md`
 |---|---:|---|---|---|---|---|
 | Usefulness | [1-5] | [Evidence] | [Risk] | [Action] | [Owner] | [Date] |
 | Ergonomics | [1-5] | [Evidence] | [Risk] | [Action] | [Owner] | [Date] |
-| Attractiveness | [1-5] | [Evidence] | [Risk] | [Action] | [Owner] | [Date] |
+| Attraction | [1-5] | [Evidence] | [Risk] | [Action] | [Owner] | [Date] |
 | Identity | [1-5] | [Evidence] | [Risk] | [Action] | [Owner] | [Date] |
 
 ## Decision

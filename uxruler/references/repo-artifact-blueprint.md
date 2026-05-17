@@ -1033,7 +1033,7 @@ Include:
 
 ### `product/07-ux-test/ux-scorecard.md`
 
-Purpose: evaluate usefulness, ergonomics, attractiveness, and identity.
+Purpose: evaluate usefulness, ergonomics, attraction, and identity.
 
 Custom format.
 

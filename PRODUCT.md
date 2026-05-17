@@ -56,6 +56,7 @@ Core surfaces:
 | A decided mission needs an early roadmap, not only a product map. | User feedback: concern that no roadmap file exists yet and that a roadmap should be created as soon as a skill user decides on a mission or direction. | High | Add compact `ROADMAP.md` as the sequencing companion to `PRODUCT.md`, and teach the skill to create or update it after direction is chosen. |
 | Standards-backed repo artifacts need executable templates, not only source names. | User feedback: UX RULER-created `design.md` was not compatible with Google Labs Code `design.md`; upstream expects YAML design tokens plus ordered markdown rationale. | High | Add a compliant `DESIGN.md` template and lint expectation before recommending or creating that artifact. |
 | Empty repo starts need guided mission definition, not a generic request for context. | User tested UX RULER on an empty repo; the response asked what to evaluate and who the audience is, but did not help shape the mission. | High | Add an explicit empty-repo branch that offers mission lenses or thesis drafts before asking for details. |
+| The four-dimensional UX test should not push agent-first products toward UI polish. | User feedback: in an agent-first product assessment, "beautiful forecast card" made the old wording feel too visual and less aligned with agent-first value; follow-up clarified that visual design can still drive attraction when chosen strategically. | High | Rename the English dimension to Attraction and define it as the strategic reason a product stands out, gets chosen, trusted, remembered, or returned to, including visual design when it is the right lever and non-visual pull when it is not. |
 
 ## Value
 
@@ -126,6 +127,7 @@ Review cadence and decision rule: review PostHog weekly during early release. If
 | The workflow creates document bloat. | Default to one compact product map; expand only for real decisions. |
 | Roadmaps can turn into feature backlogs disconnected from evidence. | Keep `ROADMAP.md` compact, use now/next/later, and tie each item to a problem, evidence, and signal. |
 | Referenced artifact standards drift or get applied loosely. | Keep source-pattern notes, compliant templates, and validation commands for standards-backed artifacts such as `DESIGN.md`. |
+| UX RULER may accidentally frame agent-first, API, data, or infrastructure products as if their main experience is a visible UI. | Define Attraction as standout value and adoption pull; treat visual design as a strategic lever when the audience, category, trust problem, or product surface makes it matter, not as the default answer. |
 | Install instructions drift as tools change. | Verify install examples when changing repo URL or folder layout. |
 | Website and skill wording drift apart. | Update `README.md`, `index.html`, and `uxruler/SKILL.md` together when the workflow changes. |
 
@@ -135,7 +137,7 @@ Review cadence and decision rule: review PostHog weekly during early release. If
 |---|---|---|
 | Usefulness | Strong promise, still needs external evidence. | Validate with 3 real applications. |
 | Ergonomics | Compact skill and website, but some skill questions still need simpler wording, clearer next-step guidance, guided empty-repo mission scaffolding, early roadmap handoff, and better post-edit handoffs. | Test the plain-language repo question, test artifact closeouts after file edits, test whether `ROADMAP.md` helps choose the next move, test the empty-repo mission-definition path, and add one applied example. |
-| Attractiveness | Distinct process map and clear visual system. | Keep visual clarity while avoiding extra decoration. |
+| Attraction | Distinct process map, plain-language workflow, agent-readable product memory, and a visual system that supports the open source process identity. | Test whether users remember and choose UX RULER for clearer agent product judgment, and whether the visual character helps that strategic pull instead of becoming decoration. |
 | Identity | Positions users as thoughtful builders who use AI without skipping product judgment. | Keep artifacts lightweight so the identity does not feel bureaucratic. |
 
 ## Next Validation Step
