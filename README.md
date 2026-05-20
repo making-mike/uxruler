@@ -41,6 +41,7 @@ This repository also uses UX RULER on itself. Start with:
 - `AGENTS.md` for agent instructions and update expectations.
 - `PRODUCT.md` for the compact product thesis, audience, user need, value, assumptions, risks, metrics, and UX test.
 - `ROADMAP.md` for the compact now/next/later sequence once the product direction is decided.
+- `story/` for the founder portfolio story and draft case studies that explain where the skill came from.
 
 The full artifact blueprint lives in `uxruler/references/repo-artifact-blueprint.md`, but this repo intentionally keeps product memory in `PRODUCT.md` and next-move sequencing in `ROADMAP.md` until a specific decision needs more structure.
 
@@ -115,6 +116,19 @@ git add .claude/skills/uxruler
 ├── index.html
 ├── install.html
 ├── feedback.html
+├── story/
+│   ├── index.html
+│   ├── story.css
+│   ├── story.js
+│   ├── posthog.js
+│   ├── lendi/
+│   ├── jasne-ai/
+│   ├── morizon/
+│   ├── interblue/
+│   ├── millennium/
+│   ├── autotrader/
+│   ├── citi-bank/
+│   └── h-drony/
 ├── .github/
 ├── README.md
 ├── LICENSE

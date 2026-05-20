@@ -203,9 +203,12 @@
       top: 0;
       left: 0;
       right: 0;
+      min-height: var(--topbar-height);
+      background: var(--black);
       color: var(--white);
       font-size: var(--nav-font-size);
       line-height: var(--small-line);
+      isolation: isolate;
     }
 
     .topbar .shell {
@@ -217,15 +220,19 @@
     }
 
     .brand {
+      position: relative;
+      z-index: 2;
       display: block;
       width: var(--rail-width);
       height: var(--topbar-height);
-      background: var(--black);
+      background: var(--black) url("assets/logo.svg") left top / 100% 100% no-repeat;
       overflow: hidden;
       text-decoration: none;
     }
 
     .brand img {
+      position: relative;
+      z-index: 1;
       display: block;
       width: 100%;
       height: var(--topbar-height);
@@ -233,6 +240,8 @@
     }
 
     .topline {
+      position: relative;
+      z-index: 1;
       min-height: var(--topbar-height);
       background: var(--black);
       color: var(--white);
@@ -242,7 +251,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
       padding: 0;
       overflow: visible;
       text-align: center;
@@ -460,6 +468,7 @@
       min-width: 0;
       margin-top: var(--topbar-height);
       overflow: hidden;
+      isolation: isolate;
       background: var(--white);
       color: var(--black);
     }
@@ -468,8 +477,102 @@
       display: none;
     }
 
+    .hero-stickers {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-sticker {
+      position: absolute;
+      top: var(--top, auto);
+      right: var(--right, auto);
+      bottom: var(--bottom, auto);
+      left: var(--left, auto);
+      display: grid;
+      width: var(--sticker-size, 56px);
+      height: var(--sticker-size, 56px);
+      place-items: center;
+      pointer-events: auto;
+    }
+
+    .hero-sticker-art {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      place-items: center;
+      border: 2px solid var(--black);
+      border-radius: 12px;
+      padding: 3px;
+      background: var(--white);
+      box-shadow: 4px 4px 0 var(--black);
+      transform: rotate(var(--rotate, 0deg));
+      transform-origin: center;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .hero-sticker img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .hero-sticker::after {
+      content: attr(data-label);
+      position: absolute;
+      z-index: 5;
+      top: calc(100% + 9px);
+      left: 50%;
+      max-width: min(42vw, 220px);
+      border: 2px solid var(--black);
+      padding: 5px 8px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 12px;
+      line-height: var(--small-line);
+      opacity: 0;
+      pointer-events: none;
+      text-align: center;
+      transform: translate(-50%, 4px);
+      transition: opacity 140ms ease, transform 140ms ease;
+      white-space: nowrap;
+    }
+
+    .hero-sticker.is-label-above::after {
+      top: auto;
+      bottom: calc(100% + 9px);
+      transform: translate(-50%, -4px);
+    }
+
+    .hero-sticker:hover,
+    .hero-sticker:focus-visible {
+      z-index: 4;
+      outline: 0;
+    }
+
+    .hero-sticker:hover .hero-sticker-art,
+    .hero-sticker:focus-visible .hero-sticker-art {
+      box-shadow: 6px 6px 0 var(--black);
+      transform: translateY(-4px) rotate(var(--rotate, 0deg));
+    }
+
+    .hero-sticker:focus-visible .hero-sticker-art {
+      outline: 2px solid var(--black);
+      outline-offset: 5px;
+    }
+
+    .hero-sticker:hover::after,
+    .hero-sticker:focus-visible::after {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
     .hero-content {
       position: relative;
+      z-index: 2;
       display: grid;
       align-content: center;
       justify-items: center;
@@ -477,7 +580,12 @@
       max-width: none;
       margin: 0 auto;
       padding: 96px 0 104px;
+      pointer-events: none;
       text-align: center;
+    }
+
+    .hero-content > * {
+      pointer-events: auto;
     }
 
     h1 {
@@ -1793,6 +1901,61 @@
     }
 
     @media (max-width: 900px) {
+      .hero-sticker {
+        width: calc(var(--sticker-size, 56px) * 0.86);
+        height: calc(var(--sticker-size, 56px) * 0.86);
+      }
+
+      .hero-sticker[data-sticker="posthog"] {
+        --top: 8%;
+        --left: 6%;
+      }
+
+      .hero-sticker[data-sticker="google-analytics"] {
+        --top: 8%;
+        --right: 8%;
+      }
+
+      .hero-sticker[data-sticker="figma"] {
+        --top: 43%;
+        --left: 4%;
+      }
+
+      .hero-sticker[data-sticker="codex"] {
+        --top: 43%;
+        --right: 4%;
+      }
+
+      .hero-sticker[data-sticker="creative-cloud"] {
+        --bottom: 8%;
+        --left: 12%;
+      }
+
+      .hero-sticker[data-sticker="rive"] {
+        --top: 24%;
+        --right: 20%;
+      }
+
+      .hero-sticker[data-sticker="spline"] {
+        --right: 12%;
+        --bottom: 8%;
+      }
+
+      .hero-sticker[data-sticker="affinity"] {
+        --top: 25%;
+        --left: 18%;
+      }
+
+      .hero-sticker[data-sticker="claude"] {
+        --right: 24%;
+        --bottom: 26%;
+      }
+
+      .hero-sticker[data-sticker="generative-ai-leader"] {
+        --bottom: 5%;
+        --left: 44%;
+      }
+
       .process-step.is-active .process-step-panel,
       .process-detail-grid {
         grid-template-columns: 1fr;
@@ -2025,6 +2188,97 @@
         padding: 44px 0 48px;
       }
 
+      .hero-sticker {
+        width: calc(var(--sticker-size, 56px) * 0.68);
+        height: calc(var(--sticker-size, 56px) * 0.68);
+      }
+
+      .hero-sticker-art {
+        border-width: 2px;
+        border-radius: 10px;
+        padding: 2px;
+        box-shadow: 3px 3px 0 var(--black);
+      }
+
+      .hero-sticker img {
+        border-radius: 7px;
+      }
+
+      .hero-sticker::after {
+        max-width: 56vw;
+        font-size: 11px;
+      }
+
+      .hero-sticker[data-sticker="posthog"] {
+        --top: 5%;
+        --right: auto;
+        --bottom: auto;
+        --left: 4%;
+      }
+
+      .hero-sticker[data-sticker="google-analytics"] {
+        --top: 5%;
+        --right: 4%;
+        --bottom: auto;
+        --left: auto;
+      }
+
+      .hero-sticker[data-sticker="figma"] {
+        --top: 24%;
+        --right: auto;
+        --bottom: auto;
+        --left: 3%;
+      }
+
+      .hero-sticker[data-sticker="codex"] {
+        --top: 24%;
+        --right: 3%;
+        --bottom: auto;
+        --left: auto;
+      }
+
+      .hero-sticker[data-sticker="rive"] {
+        --top: 48%;
+        --right: 3%;
+        --bottom: auto;
+        --left: auto;
+      }
+
+      .hero-sticker[data-sticker="spline"] {
+        --top: auto;
+        --right: 3%;
+        --bottom: 20%;
+        --left: auto;
+      }
+
+      .hero-sticker[data-sticker="affinity"] {
+        --top: 48%;
+        --right: auto;
+        --bottom: auto;
+        --left: 3%;
+      }
+
+      .hero-sticker[data-sticker="creative-cloud"] {
+        --top: auto;
+        --right: auto;
+        --bottom: 20%;
+        --left: 3%;
+      }
+
+      .hero-sticker[data-sticker="claude"] {
+        --top: auto;
+        --right: auto;
+        --bottom: 5%;
+        --left: 23%;
+      }
+
+      .hero-sticker[data-sticker="generative-ai-leader"] {
+        --top: auto;
+        --right: 23%;
+        --bottom: 5%;
+        --left: auto;
+      }
+
       .footer-feedback {
         width: 100%;
       }
@@ -2201,6 +2455,7 @@
           <p class="hero-lead">Konwersacyjny skill UX dla agentów AI, który pomaga rozwijać produkty tak, żeby każda decyzja prowadziła do realnej wartości dla użytkownika.</p>
           <div class="hero-actions">
             <a class="button primary" href="install.html" data-track="landing_install_cta_clicked" data-track-location="hero" data-track-target="install_page">Zainstaluj skill</a>
+            <a class="button secondary" href="story/" data-track="landing_story_cta_clicked" data-track-location="hero" data-track-target="story">Historia twórcy</a>
             <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="landing_github_cta_clicked" data-track-location="hero" data-track-target="github">
               <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"></path>
@@ -2798,6 +3053,7 @@
         <h2 class="footer-title">Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.</h2>
         <div class="hero-actions footer-actions">
           <a class="button primary" href="install.html" data-track="landing_install_cta_clicked" data-track-location="footer" data-track-target="install_page">Zainstaluj skill</a>
+          <a class="button secondary" href="story/" data-track="landing_story_cta_clicked" data-track-location="footer" data-track-target="story">Historia twórcy</a>
           <a class="button secondary" href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="landing_github_cta_clicked" data-track-location="footer" data-track-target="github">
             <svg class="button-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
               <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"></path>
@@ -3058,6 +3314,7 @@
       "Konwersacyjny skill UX dla agentów AI, który pomaga rozwijać produkty tak, żeby każda decyzja prowadziła do realnej wartości dla użytkownika.": "A conversational UX skill for AI agents that helps develop products so every decision leads to real value for users.",
       "Zainstaluj skill": "Install skill",
       "Instaluj": "Install",
+      "Historia twórcy": "Founder story",
       "Współtwórz": "Contribute",
       "Mapa procesu": "Process map",
       "Misja": "Mission",

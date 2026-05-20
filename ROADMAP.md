@@ -15,6 +15,7 @@ UX RULER should help humans and agents make better product decisions inside a re
 | Make artifact handoffs explicit. | Recent landing-page measurement work added events and product-map updates, but the response ended as an implementation report instead of naming what to do next. | A future product-file edit closes with what changed, what decision it supports, what is measurable, what is missing, and 2 to 3 next options. |
 | Create a roadmap once mission or direction is decided. | User feedback: a decided product direction needs an early visible sequence, not only a product map. | A new repo run creates or updates compact `PRODUCT.md` and `ROADMAP.md` after the mission or direction is chosen. |
 | Turn landing-page events into reviewed product evidence. | The page emits install, copy, language, and GitHub-intent events, but the product decision needs a review cadence and decision rule. | Events are reviewed against the landing-page decision: can visitors find the install path and starter prompt? |
+| Fill the first story case study. | `/story` now creates a founder-evidence portfolio surface, but each case study intentionally uses mockup scaffolding until the project content is discussed. | One selected project has real narrative, media, evidence, and a clear UX RULER lesson. |
 
 ## Next
 

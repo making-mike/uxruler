@@ -219,9 +219,12 @@
       top: 0;
       left: 0;
       right: 0;
+      min-height: var(--topbar-height);
+      background: var(--black);
       color: var(--white);
       font-size: var(--nav-font-size);
       line-height: var(--small-line);
+      isolation: isolate;
     }
 
     .topbar .shell {
@@ -233,15 +236,19 @@
     }
 
     .brand {
+      position: relative;
+      z-index: 2;
       display: block;
       width: var(--rail-width);
       height: var(--topbar-height);
-      background: var(--black);
+      background: var(--black) url("assets/logo.svg") left top / 100% 100% no-repeat;
       overflow: hidden;
       text-decoration: none;
     }
 
     .brand img {
+      position: relative;
+      z-index: 1;
       display: block;
       width: 100%;
       height: var(--topbar-height);
@@ -250,6 +257,7 @@
 
     .topline {
       position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1161,7 +1169,7 @@
         <section class="flow-panel" data-flow-panel="feedback" hidden>
           <div class="flow-panel-head">
             <h2 data-i18n="feedbackTitle">Daj znać po pierwszym użyciu</h2>
-            <p data-i18n="feedbackIntro">Po instalacji napisz krótko, czy UX RULER pomógł Ci podjąć decyzję, doprecyzować metrykę, zauważyć ryzyko albo wybrać następny krok.</p>
+            <p data-i18n="feedbackIntro">Po pierwszym użyciu skilla napisz krótko, czy UX RULER pomógł Ci podjąć decyzję, doprecyzować metrykę, zauważyć ryzyko albo wybrać następny krok.</p>
           </div>
           <form class="feedback-form" data-feedback-form>
             <label class="field">
@@ -1174,10 +1182,12 @@
             </label>
             <div class="feedback-actions">
               <button class="button primary" type="submit" data-i18n="feedbackSend">Wyślij feedback</button>
-              <button class="button secondary" type="button" data-flow-back data-i18n="backButtonFeedback">Wstecz</button>
               <p class="status" data-feedback-status aria-live="polite"></p>
             </div>
           </form>
+          <div class="flow-actions">
+            <button class="button secondary" type="button" data-flow-back data-i18n="backButtonFeedback">Wstecz</button>
+          </div>
         </section>
       </section>
     </div>
@@ -1278,16 +1288,17 @@
         promptRepoLabel: "Przegląd repo",
         promptRepoDescription: "Decyzja o kolejnym najlepszym kroku dla wartości użytkownika.",
         feedbackTitle: "Daj znać po pierwszym użyciu",
-        feedbackIntro: "Po instalacji napisz krótko, czy UX RULER pomógł Ci podjąć decyzję, doprecyzować metrykę, zauważyć ryzyko albo wybrać następny krok.",
+        feedbackIntro: "Po pierwszym użyciu skilla napisz krótko, czy UX RULER pomógł Ci podjąć decyzję, doprecyzować metrykę, zauważyć ryzyko albo wybrać następny krok.",
         feedbackMessageLabel: "Twój feedback",
         feedbackMessagePlaceholder: "Napisz krótko...",
         feedbackEmailLabel: "Email do kontaktu (opcjonalnie)",
         feedbackEmailPlaceholder: "email@example.com",
         feedbackSend: "Wyślij feedback",
         feedbackRequired: "Dodaj krótki feedback albo email przed wysłaniem.",
-        feedbackSent: "Dzięki. To pomoże sprawdzić, czy instalacja prowadzi do realnego użycia.",
+        feedbackSent: "Dzięki. To pomoże sprawdzić, czy UX RULER pomaga po pierwszym użyciu.",
         copyIdle: "Kopiuj",
         copyDone: "Skopiowano",
+        promptCopied: "Prompt skopiowany do schowka",
         copyFallback: "Zaznacz tekst",
         promptOpenSource: "Użyj $uxruler. Mam pomysł na produkt i chcę zdecydować, od czego zacząć.",
         promptAudit: "Użyj $uxruler do sprawdzenia tej funkcji. Pomóż mi zdecydować, czy warto ją rozwijać.",
@@ -1358,16 +1369,17 @@
         promptRepoLabel: "Repo check",
         promptRepoDescription: "Decide the best next step for delivering user value.",
         feedbackTitle: "Tell us how the first use went",
-        feedbackIntro: "After installation, write a short note about whether UX RULER helped you make a decision, clarify a metric, notice a risk, or choose the next step.",
+        feedbackIntro: "After the first skill use, write a short note about whether UX RULER helped you make a decision, clarify a metric, notice a risk, or choose the next step.",
         feedbackMessageLabel: "Your feedback",
         feedbackMessagePlaceholder: "Write a short note...",
         feedbackEmailLabel: "Contact email (optional)",
         feedbackEmailPlaceholder: "email@example.com",
         feedbackSend: "Send feedback",
         feedbackRequired: "Add short feedback or an email before sending.",
-        feedbackSent: "Thanks. This helps check whether installation leads to real use.",
+        feedbackSent: "Thanks. This helps check whether UX RULER helps after first use.",
         copyIdle: "Copy",
         copyDone: "Copied",
+        promptCopied: "Prompt copied to clipboard",
         copyFallback: "Select text",
         promptOpenSource: "Use $uxruler. I have a product idea and want to decide where to start.",
         promptAudit: "Use $uxruler to check this feature. Help me decide whether it is worth developing.",
@@ -1844,6 +1856,7 @@
         const prompt = pageCopy[currentLanguage][activePrompt] || "";
         const copied = await copyText(prompt);
         setCopiedState(copyActivePrompt, copied);
+        showSnackbar(copied ? pageCopy[currentLanguage].promptCopied : pageCopy[currentLanguage].copyFallback);
         trackInstallEvent("install_prompt_copied", {
           prompt_target: activePrompt,
           copied,

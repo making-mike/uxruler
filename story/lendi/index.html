@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lendi product ecosystem | UX RULER story</title>
+  <meta name="description" content="Portfolio case notes for Lendi: scaling a mortgage comparison tool into a product ecosystem for experts, clients, operations, real estate, and insurance.">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://www.uxruler.com/story/lendi/">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
+  <link rel="shortcut icon" href="../../assets/favicon/favicon.ico">
+  <link rel="stylesheet" href="../story.css?v=20260520-lendi-scroll-preview">
+  <script src="../posthog.js" defer></script>
+  <script src="../story.js?v=20260520-lendi-scroll-preview" defer></script>
+</head>
+<body data-story-page-type="case_study" data-case-id="lendi">
+  <header class="topbar" aria-label="Story navigation">
+    <a class="brand" href="../../index.html#about" aria-label="UX RULER">
+      <img src="../../assets/logo.svg" alt="">
+    </a>
+    <div class="topline">
+      <nav class="topline-current breadcrumbs" aria-label="Breadcrumb">
+        <a href="../">Story</a>
+        <span aria-hidden="true">/</span>
+        <a href="./" aria-current="page">Lendi</a>
+        <span aria-hidden="true">/</span>
+        <span>Deep case</span>
+      </nav>
+      <nav class="topnav" aria-label="Main links">
+        <a href="../">Story</a>
+        <a href="../../index.html#about">UX RULER</a>
+        <a href="../../install.html">Install</a>
+        <a href="mailto:michal@drozdzynski.pl" data-track="story_contact_clicked" data-track-location="topbar" data-track-target="email">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page case-board-page">
+    <section class="hero case-hero lendi-case-hero" aria-labelledby="case-title">
+      <div class="shell case-board-hero-grid">
+        <div class="case-title-stack">
+          <div class="case-title-actions">
+            <a class="button back-link" href="../" data-track="story_back_clicked" data-track-location="case_hero" data-track-target="story_index">Back to story</a>
+            <span class="case-title-label">Head of UX</span>
+          </div>
+          <div class="title-note case-title-note lendi-title-note">
+            <div class="case-title-copy">
+              <span class="kicker">Ongoing / deep case</span>
+              <h1 id="case-title">Lendi product ecosystem.</h1>
+              <p class="lead">From a B2B mortgage comparison tool to a full advisory ecosystem connecting experts, clients, operations, real estate, and insurance.</p>
+            </div>
+            <figure class="lendi-title-media">
+              <div class="lendi-title-media-frame" data-lendi-title-scroll tabindex="0" aria-label="Scrollable Lendi onboarding flow preview">
+                <img src="../../assets/lendi/homebuying-toolkit-onboarding.png" alt="Lendi homebuying toolkit onboarding, registration, and login flows in light and dark modes.">
+              </div>
+              <figcaption>Onboarding flow</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="case-hero-side">
+          <button
+            class="case-pdf-stack"
+            type="button"
+            data-lendi-pdf-stack
+            data-pdf-page-count="3"
+            data-pdf-page-base="../../assets/lendi-pdf-pages/page-"
+            data-pdf-page-extension=".png"
+            aria-label="Show next Lendi consultation screen. Current page 1 of 3."
+          >
+            <span class="case-pdf-page case-pdf-page-back" aria-hidden="true">
+              <img src="../../assets/lendi-pdf-pages/page-03.png" alt="" data-pdf-page-image data-pdf-page-offset="2">
+            </span>
+            <span class="case-pdf-page case-pdf-page-middle" aria-hidden="true">
+              <img src="../../assets/lendi-pdf-pages/page-02.png" alt="" data-pdf-page-image data-pdf-page-offset="1">
+            </span>
+            <span class="case-pdf-page case-pdf-page-front">
+              <img src="../../assets/lendi-pdf-pages/page-01.png" alt="Lendi consultation screen page 1 of 3" data-pdf-page-image data-pdf-page-offset="0">
+            </span>
+            <span class="case-pdf-magnifier" data-pdf-magnifier aria-hidden="true"></span>
+          </button>
+
+          <aside class="sticky-note sticky-note-blue case-scope-note" aria-label="Case summary">
+            <strong>Homebuying Toolkit</strong>
+            <span>Onboarding, registration, login, property search, customer panel, meetings, applications, and expert handoff.</span>
+            <span class="depth-badge">B2B &amp; B2C</span>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="lendi-sticker-summary-section" aria-label="Lendi case notes">
+      <div class="shell">
+        <div class="case-summary lendi-sticker-summary" aria-label="Lendi case notes">
+          <div class="case-meta">
+            <span class="case-meta-label">Role</span>
+            <p>Head of UX: design process, product-system architecture, and recruiting the design team.</p>
+          </div>
+          <div class="case-meta">
+            <span class="case-meta-label">Starting point</span>
+            <p>A B2B mortgage comparison tool used by intermediaries before Lendi became a broker itself.</p>
+          </div>
+          <div class="case-meta">
+            <span class="case-meta-label">System</span>
+            <p>CRM, lead handling, customer panel, meetings, applications, call center, administration, real estate, and insurance.</p>
+          </div>
+          <div class="case-meta">
+            <span class="case-meta-label">Scale</span>
+            <p>Public Lendi materials describe a 3,000+ expert network and market-leader scale in Polish mortgage advisory.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lendi-map-section" aria-labelledby="lendi-map-title">
+      <div class="shell">
+        <div class="board-heading">
+          <h2 id="lendi-map-title">What the platform had to connect.</h2>
+        </div>
+
+        <div class="lendi-flow-board lendi-node-board" data-design-base="../../assets/lendi-process-base.svg">
+          <div class="node-graph-toolbar">
+            <div class="node-graph-actions">
+              <div class="node-graph-zoom-controls" aria-label="Graph zoom controls">
+                <button class="node-graph-zoom-button" type="button" data-graph-zoom-out aria-label="Zoom out" title="Zoom out">-</button>
+                <button class="node-graph-zoom-button node-graph-zoom-reset" type="button" data-graph-zoom-reset aria-label="Reset zoom" title="Reset zoom">
+                  <span data-graph-zoom-value>100%</span>
+                </button>
+                <button class="node-graph-zoom-button" type="button" data-graph-zoom-in aria-label="Zoom in" title="Zoom in">+</button>
+              </div>
+              <button
+                class="node-graph-fullscreen-button"
+                type="button"
+                data-graph-fullscreen-toggle
+                aria-controls="lendi-node-graph"
+                aria-expanded="false"
+                aria-label="Expand graph fullscreen"
+              >
+                Fullscreen
+              </button>
+            </div>
+          </div>
+          <div
+            class="node-graph-viewport"
+            data-graph-viewport
+            tabindex="0"
+            aria-label="Draggable Lendi ecosystem graph"
+          >
+            <div class="node-graph-zoom-surface" data-graph-zoom-surface>
+              <div
+                id="lendi-node-graph"
+                class="lendi-node-graph"
+                data-lendi-node-graph
+                aria-label="Lendi ecosystem node graph"
+              ></div>
+            </div>
+          </div>
+          <script type="application/json" id="lendi-graph-data">
+            {
+              "nodes": [
+                {
+                  "id": "lead-sources",
+                  "type": "card",
+                  "label": "Lead sources",
+                  "tone": "green",
+                  "className": "node-card-clients",
+                  "items": [
+                    "Comparison website",
+                    "Calculators",
+                    "Widgets",
+                    "3rd party integrations",
+                    "Blog & tutorials",
+                    "Experts ranking",
+                    "B2B partners"
+                  ]
+                },
+                {
+                  "id": "prospect-created",
+                  "type": "icon",
+                  "title": "Prospect created",
+                  "icon": "client",
+                  "tone": "green",
+                  "className": "node-icon-client"
+                },
+                {
+                  "id": "call-center",
+                  "type": "card",
+                  "label": "Call center",
+                  "tone": "blue",
+                  "className": "node-card-admin",
+                  "items": [
+                    "Support",
+                    "Assistance"
+                  ]
+                },
+                {
+                  "id": "meeting",
+                  "type": "card",
+                  "label": "Meeting",
+                  "tone": "green",
+                  "className": "node-card-meeting",
+                  "items": [
+                    "Online",
+                    "In branch"
+                  ]
+                },
+                {
+                  "id": "customer-app",
+                  "type": "card",
+                  "label": "Customer panel",
+                  "tone": "green",
+                  "className": "node-card-customer",
+                  "items": [
+                    "Property search",
+                    "Notifications",
+                    "Data management",
+                    "Multi-application form"
+                  ]
+                },
+                {
+                  "id": "expert-icon",
+                  "type": "icon",
+                  "title": "Expert",
+                  "icon": "expert",
+                  "tone": "blue",
+                  "className": "node-icon-expert"
+                },
+                {
+                  "id": "tools",
+                  "type": "card",
+                  "label": "Tool for experts",
+                  "tone": "blue",
+                  "className": "node-card-experts",
+                  "items": [
+                    "Fully digitized process",
+                    "Comparison tool",
+                    "Checklists",
+                    "Multi-application form",
+                    "Settlements",
+                    "Support & forum",
+                    "Team & time management",
+                    "Communication & workflow mgm",
+                    "Property offer",
+                    "Leads delegations"
+                  ]
+                },
+                {
+                  "id": "administration",
+                  "type": "card",
+                  "label": "Administration",
+                  "tone": "blue",
+                  "className": "node-card-administration",
+                  "items": [
+                    "Call center panel",
+                    "Provision settings",
+                    "Settlement generator",
+                    "Product panel"
+                  ]
+                }
+              ],
+              "edges": [
+                { "from": "lead-sources", "to": "prospect-created", "tone": "green" },
+                {
+                  "from": "prospect-created",
+                  "to": "call-center",
+                  "tone": "blue",
+                  "sourceAnchor": "top",
+                  "targetAnchor": "left",
+                  "route": "vertical-first"
+                },
+                { "from": "prospect-created", "to": "meeting", "tone": "green" },
+                {
+                  "from": "prospect-created",
+                  "to": "customer-app",
+                  "tone": "green",
+                  "sourceAnchor": "bottom",
+                  "targetAnchor": "top",
+                  "route": "vertical-first"
+                },
+                { "from": "meeting", "to": "expert-icon", "tone": "blue" },
+                {
+                  "from": "expert-icon",
+                  "to": "customer-app",
+                  "tone": "blue",
+                  "sourceAnchor": "bottom",
+                  "targetAnchor": "top",
+                  "route": "vertical-first"
+                },
+                {
+                  "from": "expert-icon",
+                  "to": "tools",
+                  "tone": "blue",
+                  "sourceAnchor": "right",
+                  "targetAnchor": "left",
+                  "route": "straight",
+                  "align": "horizontal"
+                }
+              ]
+            }
+          </script>
+        </div>
+
+        <div class="case-grid lendi-context-grid" aria-labelledby="lendi-context-title">
+          <div class="case-panel">
+            <span class="kicker">Case context</span>
+            <h2 id="lendi-context-title">The product had to become a company operating system.</h2>
+            <p>Lendi started from a mortgage comparison tool used by other intermediaries. The work changed when the company began brokering mortgages directly as Lendi and needed more than a calculator: it needed a system for relationships, leads, meetings, applications, settlements, and customer continuity.</p>
+            <p>My role as Head of UX covered the design process, the architecture of the product ecosystem, and recruiting the team that could keep research, feedback, business goals, and delivery moving together.</p>
+          </div>
+
+          <div class="case-panel">
+            <span class="kicker">Portfolio notes</span>
+            <h2>What this case is really about</h2>
+            <ul>
+              <li><strong>Scaling</strong> a startup from mission and vision into a market-leading operating model.</li>
+              <li><strong>Designing</strong> for two connected users: clients buying a home and experts guiding the financial process.</li>
+              <li><strong>Joining</strong> mortgage, real-estate, insurance, call-center, administration, and bank-facing workflows into one product logic.</li>
+              <li><strong>Building</strong> a design practice where individual research, product judgment, and technical architecture shaped what was built.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lendi-lessons-layout" aria-labelledby="lendi-lessons-title">
+          <div class="lendi-lessons-card">
+            <div class="lendi-lessons-heading">
+              <span class="kicker">Startup scale notes</span>
+              <h2 id="lendi-lessons-title">Things I learned from scaling up a startup</h2>
+            </div>
+
+            <ol class="lendi-lesson-list" aria-label="Startup scale lessons">
+              <li>
+                <span class="lendi-lesson-number">Lesson 01</span>
+                <p>UX starts below the interface. Backend architecture, data models, sales incentives, marketing promises, and operations can enable or block what users experience.</p>
+              </li>
+              <li>
+                <span class="lendi-lesson-number">Lesson 02</span>
+                <p>A design system in code beats one that only lives in Figma. Strong components let frontend teams solve more problems quickly and consistently.</p>
+              </li>
+              <li>
+                <span class="lendi-lesson-number">Lesson 03</span>
+                <p>Not every project should become a product. Research can save the company from building ideas that look strategic but are unrealistic for users to execute.</p>
+              </li>
+              <li>
+                <span class="lendi-lesson-number">Lesson 04</span>
+                <p>Individual conversations beat focus groups when the decision depends on real workflow, hidden workarounds, and details people may not share in a room.</p>
+              </li>
+              <li>
+                <span class="lendi-lesson-number">Lesson 05</span>
+                <p>Feedback needs context. Designers should listen carefully, then protect the whole product from decisions based on one narrow local view.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="lendi-sticker-widget lendi-sticker-rail" aria-label="Lendi sticker stack">
+            <div class="lendi-sticker-stage">
+              <button
+                class="lendi-sticker-stack"
+                type="button"
+                data-lendi-sticker-stack
+                data-sticker-count="73"
+                data-sticker-base="../../assets/lendi-stickers/sticker-"
+                data-sticker-extension=".svg"
+                aria-label="Show next Lendi sticker. Current sticker 1 of 73."
+              >
+                <span class="lendi-sticker-card lendi-sticker-card-back" aria-hidden="true">
+                  <img src="../../assets/lendi-stickers/sticker-03.svg" alt="" data-sticker-image data-sticker-offset="2">
+                </span>
+                <span class="lendi-sticker-card lendi-sticker-card-middle" aria-hidden="true">
+                  <img src="../../assets/lendi-stickers/sticker-02.svg" alt="" data-sticker-image data-sticker-offset="1">
+                </span>
+                <span class="lendi-sticker-card lendi-sticker-card-front">
+                  <img src="../../assets/lendi-stickers/sticker-01.svg" alt="Lendi sticker 1 of 73" data-sticker-image data-sticker-offset="0">
+                </span>
+              </button>
+
+              <div class="lendi-sticker-controls" aria-label="Sticker stack controls">
+                <button class="lendi-sticker-nav" type="button" data-sticker-prev aria-label="Previous Lendi sticker" title="Previous sticker">&#8592;</button>
+                <span class="lendi-sticker-counter" data-sticker-counter aria-live="polite">01 / 73</span>
+                <button class="lendi-sticker-nav" type="button" data-sticker-next aria-label="Next Lendi sticker" title="Next sticker">&#8594;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lendi-comparison-section" id="lendi-offer-comparison" aria-labelledby="lendi-comparison-title">
+      <div class="shell lendi-comparison-layout">
+        <figure
+          class="case-comparison-card lendi-offer-comparison"
+          data-before-after-comparison
+          data-comparison-id="lendi-offer-comparison"
+          style="--comparison-position: 56%;"
+        >
+          <div class="case-comparison-copy">
+            <span class="kicker">Before / after</span>
+            <h2 id="lendi-comparison-title">Offer comparison had to become readable at advisory speed.</h2>
+          </div>
+
+          <div class="case-comparison-frame">
+            <img
+              class="case-comparison-image case-comparison-image-after"
+              src="../../assets/lendi/offer-comparison-after.png"
+              alt="After: updated Lendi mortgage offer comparison with offer cards, a left category rail, and a right parameter panel."
+            >
+            <span class="case-comparison-before" aria-hidden="true">
+              <img
+                class="case-comparison-image"
+                src="../../assets/lendi/offer-comparison-before.png"
+                alt=""
+              >
+            </span>
+            <span class="case-comparison-label case-comparison-label-before">Before</span>
+            <span class="case-comparison-label case-comparison-label-after">After</span>
+            <span class="case-comparison-divider" aria-hidden="true">
+              <span class="case-comparison-handle"></span>
+            </span>
+            <input
+              class="case-comparison-range"
+              type="range"
+              min="0"
+              max="100"
+              value="56"
+              aria-label="Reveal the earlier and updated Lendi offer comparison screens"
+            >
+          </div>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="shell">
+      <p class="footer-title">Next: Jasne.ai</p>
+      <div class="footer-links">
+        <a href="../jasne-ai/" data-track="story_case_opened" data-track-location="case_footer" data-case-target="jasne-ai">Open next case</a>
+        <a href="../">Story index</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

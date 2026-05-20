@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="-44 -44 600 588.381">
+  <defs>
+    <filter id="sticker-outline" x="-44" y="-44" width="600" height="588.381" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="18" result="outline"/>
+      <feFlood flood-color="#000" result="outline-color"/>
+      <feComposite in="outline-color" in2="outline" operator="in" result="outline-fill"/>
+      <feMerge>
+        <feMergeNode in="outline-fill"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <path filter="url(#sticker-outline)" fill="#fff" fill-rule="nonzero" d="M249.849 218.708l-101.35 15.506a13.544 13.544 0 01-10.933-3.187c-5.648-4.923-6.248-13.509-1.324-19.156L316.764 4.64l1.593-1.531c5.762-4.768 14.326-3.961 19.095 1.8L508.923 212.14c2.41 2.989 3.59 6.961 2.866 11.037-1.314 7.344-8.358 12.237-15.702 10.923l-85.896-15.454c-2.09 17.988-6.569 37.621-13.365 57.812-17.709 52.702-51.451 110.049-100.408 153.442-49.434 43.817-114.301 73.504-193.763 70.236-28.942-1.18-59.777-6.765-92.412-17.647-5.286-1.345-9.465-5.824-10.148-11.565-.879-7.437 4.448-14.192 11.885-15.071 100.161-11.937 158.231-50.561 191.942-98.319 30.142-42.689 41.386-93.261 45.927-138.826z"/>
+</svg>
