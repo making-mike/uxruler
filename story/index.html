@@ -21,9 +21,9 @@
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/fragment-mono-latin-ext.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-latin-ext.woff2" crossorigin>
-  <link rel="stylesheet" href="story.css?v=20260520-lendi-mobile-note-smaller">
+  <link rel="stylesheet" href="story.css?v=20260521-featured-case-stack">
   <script src="posthog.js" defer></script>
-  <script src="story.js?v=20260520-portfolio-survey" defer></script>
+  <script src="story.js?v=20260521-visited-case-notes" defer></script>
 </head>
 <body data-story-page-type="story_index">
   <header class="topbar" aria-label="Story navigation">
@@ -31,12 +31,8 @@
       <img src="../assets/logo.svg" alt="">
     </a>
     <div class="topline">
-      <a class="topline-current path-current" href="./" aria-current="page">/story</a>
-      <nav class="topnav" aria-label="Main links">
-        <a href="../index.html#about">UX RULER</a>
-        <a href="../install.html">Install</a>
-        <a href="mailto:michal@drozdzynski.pl" data-track="story_contact_clicked" data-track-location="topbar" data-track-target="email">Contact</a>
-        <a href="https://github.com/making-mike/uxruler" rel="noreferrer" data-track="story_github_clicked" data-track-location="topbar" data-track-target="github">GitHub</a>
+      <nav class="topline-current breadcrumbs" aria-label="Breadcrumb">
+        <span aria-current="page">Story</span>
       </nav>
     </div>
   </header>
@@ -147,25 +143,31 @@
             <span class="depth-badge">deep case</span>
           </a>
 
-          <a class="timeline-item timeline-item-jasne sticky-note sticky-note-green" href="jasne-ai/" data-track="story_case_opened" data-track-location="timeline" data-case-target="jasne-ai">
-            <span class="timeline-time">ongoing</span>
-            <span class="timeline-title">Jasne.ai</span>
-            <span class="timeline-summary">AI-native LMS, employee success apps</span>
-            <span class="depth-badge">medium case</span>
-            <span class="timeline-app-badges" role="img" aria-label="App Store and Google Play badges">
-              <span class="timeline-app-badge timeline-app-badge-ios">
-                <img src="../assets/jasne-ai/app-store-badge.svg" alt="">
-              </span>
-              <span class="timeline-app-badge timeline-app-badge-google">
-                <img src="../assets/jasne-ai/google-play-badge.svg" alt="">
-              </span>
+          <article class="timeline-item timeline-item-jasne sticky-note sticky-note-green">
+            <span class="timeline-jasne-screen" aria-hidden="true">
+              <img src="../assets/jasne-ai/course-list-screen.png?v=20260520-course-card" alt="" loading="eager" decoding="async">
             </span>
-          </a>
+            <a class="timeline-card-main" href="jasne-ai/" data-track="story_case_opened" data-track-location="timeline" data-case-target="jasne-ai">
+              <span class="timeline-time">ongoing</span>
+              <span class="timeline-title">Jasne.ai</span>
+              <span class="timeline-summary">AI-native LMS, employee success apps</span>
+              <span class="depth-badge">medium case</span>
+            </a>
+            <span class="timeline-app-badges" role="group" aria-label="Jasne.ai app store links">
+              <a class="timeline-app-badge timeline-app-badge-ios" href="https://apps.apple.com/pl/app/jasne/id6747730526" target="_blank" rel="noreferrer" aria-label="Download Jasne on the App Store">
+                <img src="../assets/jasne-ai/app-store-badge.svg" alt="">
+              </a>
+              <a class="timeline-app-badge timeline-app-badge-google" href="https://play.google.com/store/apps/details?id=ai.jasne.app" target="_blank" rel="noreferrer" aria-label="Get Jasne on Google Play">
+                <img src="../assets/jasne-ai/google-play-badge.svg" alt="">
+              </a>
+            </span>
+          </article>
 
           <a class="timeline-item polaroid mini-polaroid" href="morizon/" data-track="story_case_opened" data-track-location="timeline" data-case-target="morizon">
             <span class="photo-frame photo-frame-shot photo-frame-morizon" aria-hidden="true">
-              <span class="case-award-sticker" aria-hidden="true">
+              <span class="case-award-sticker" data-label="Best Proptech Solution 2023" role="img" aria-label="Best Proptech Solution 2023">
                 <img src="../assets/morizon/achievement-award-medal-icon.svg?v=20260520-violet" alt="">
+                <span class="case-sticker-hint" aria-hidden="true">Best Proptech Solution 2023</span>
               </span>
             </span>
             <span class="timeline-time">2023</span>
@@ -183,8 +185,9 @@
                 loop
                 playsinline
               ></video>
-              <span class="case-award-sticker case-eye-sticker" aria-hidden="true">
+              <span class="case-award-sticker case-eye-sticker" data-label="Tested with eye tracking" role="img" aria-label="Tested with eye tracking">
                 <img src="../assets/millennium/eye-61.svg?v=20260520-inner-smaller" alt="">
+                <span class="case-sticker-hint" aria-hidden="true">Tested with eye tracking</span>
               </span>
             </span>
             <span class="timeline-time">2019</span>
@@ -195,8 +198,9 @@
 
           <a class="timeline-item polaroid mini-polaroid" href="autotrader/" data-track="story_case_opened" data-track-location="timeline" data-case-target="autotrader">
             <span class="photo-frame photo-frame-shot photo-frame-autotrader" aria-hidden="true">
-              <span class="case-award-sticker case-autotrader-sticker" aria-hidden="true">
+              <span class="case-award-sticker case-autotrader-sticker" data-label="28.58% increase in conversion" role="img" aria-label="28.58% increase in conversion">
                 <img src="../assets/autotrader/curved-arrow-right-to-top-white-icon.svg?v=20260520-outline" alt="">
+                <span class="case-sticker-hint" aria-hidden="true">28.58% increase in conversion</span>
               </span>
             </span>
             <span class="timeline-time">2017</span>
@@ -206,19 +210,21 @@
 
           <a class="timeline-item polaroid mini-polaroid" href="interblue/" data-track="story_case_opened" data-track-location="timeline" data-case-target="interblue">
             <span class="photo-frame photo-frame-shot photo-frame-interblue" aria-hidden="true">
-              <span class="case-award-sticker case-material-sticker" aria-hidden="true">
+              <span class="case-award-sticker case-material-sticker" data-label="Material Design 2 compliant" role="img" aria-label="Material Design 2 compliant">
                 <img src="../assets/interblue/google-material-design-logo.svg" alt="">
+                <span class="case-sticker-hint" aria-hidden="true">Material Design 2 compliant</span>
               </span>
             </span>
             <span class="timeline-time">2017</span>
             <span class="timeline-title">InterBlue</span>
-            <span class="timeline-summary">Bluetooth transmitter data monitoring app</span>
+            <span class="timeline-summary">Transmission data translator</span>
           </a>
 
           <a class="timeline-item timeline-item-citi polaroid mini-polaroid" href="citi-bank/" data-track="story_case_opened" data-track-location="timeline" data-case-target="citi-bank">
             <span class="photo-frame photo-frame-shot photo-frame-citi" aria-hidden="true">
-              <span class="case-award-sticker case-diamond-sticker" aria-hidden="true">
+              <span class="case-award-sticker case-diamond-sticker" data-label="Double-diamond design process" role="img" aria-label="Double-diamond design process">
                 <img src="../assets/citi-bank/double-diamond-outline.svg" alt="">
+                <span class="case-sticker-hint" aria-hidden="true">Double-diamond design process</span>
               </span>
             </span>
             <span class="timeline-time">2015</span>
@@ -284,15 +290,5 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="shell">
-      <p class="footer-title">Michał Drożdżyński / Head of UX</p>
-      <div class="footer-links">
-        <a href="mailto:michal@drozdzynski.pl" data-track="story_contact_clicked" data-track-location="footer" data-track-target="email">Email</a>
-        <a href="https://www.behance.net/making_mike" rel="noreferrer" data-track="story_external_portfolio_clicked" data-track-location="footer" data-track-target="behance">Behance</a>
-        <a href="../index.html#about">UX RULER</a>
-      </div>
-    </div>
-  </footer>
 </body>
 </html>

@@ -128,7 +128,6 @@ git add .claude/skills/uxruler
 │   ├── millennium/
 │   ├── autotrader/
 │   ├── citi-bank/
-│   └── h-drony/
 ├── .github/
 ├── README.md
 ├── LICENSE

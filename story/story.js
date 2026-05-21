@@ -41,7 +41,7 @@
     }
   }
 
-  const riveRuntimeUrl = "https://unpkg.com/@rive-app/canvas@latest";
+  const riveRuntimeUrl = "https://unpkg.com/@rive-app/webgl2@latest";
   let riveRuntimePromise = null;
 
   function loadRiveRuntime() {
@@ -83,13 +83,371 @@
   }
 
   function initRiveAnimations() {
-    const hosts = Array.from(document.querySelectorAll("[data-rive-src]"));
+    const hosts = Array.from(document.querySelectorAll("[data-rive-src]"))
+      .filter((host) => !host.closest("[hidden]"));
 
     if (!hosts.length) {
       return;
     }
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    function parseRiveInputs(value) {
+      if (!value) {
+        return null;
+      }
+
+      try {
+        return JSON.parse(value);
+      } catch {
+        return null;
+      }
+    }
+
+    function coerceRiveInputValue(value) {
+      if (value === "true") {
+        return true;
+      }
+
+      if (value === "false") {
+        return false;
+      }
+
+      const numberValue = Number(value);
+      return Number.isFinite(numberValue) && String(value).trim() !== "" ? numberValue : value;
+    }
+
+    function parseRiveInputNames(value, fallback) {
+      return String(value || fallback || "")
+        .split(",")
+        .map((name) => name.trim())
+        .filter(Boolean);
+    }
+
+    function getStateMachineInputs(host, riveInstance, stateMachine) {
+      if (!stateMachine || typeof riveInstance.stateMachineInputs !== "function") {
+        return [];
+      }
+
+      try {
+        const inputs = riveInstance.stateMachineInputs(stateMachine) || [];
+        host.dataset.riveInputNames = inputs.map((input) => input.name).join(",");
+        return inputs;
+      } catch {
+        host.dataset.riveInputNames = "unavailable";
+        return [];
+      }
+    }
+
+    function findRiveInput(inputs, names) {
+      return names
+        .map((name) => inputs.find((input) => input.name === name))
+        .find(Boolean);
+    }
+
+    function setRiveBooleanInput(input, value) {
+      if (!input) {
+        return false;
+      }
+
+      try {
+        input.value = value;
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    function fireRiveTriggerInput(input) {
+      if (!input || typeof input.fire !== "function") {
+        return false;
+      }
+
+      try {
+        input.fire();
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    function callRiveGetter(target, propertyName) {
+      if (!target) {
+        return null;
+      }
+
+      try {
+        const value = target[propertyName];
+        return typeof value === "function" ? value.call(target) : value;
+      } catch {
+        return null;
+      }
+    }
+
+    function getRiveViewModelInstance(host, riveInstance) {
+      let instance = callRiveGetter(riveInstance, "viewModelInstance");
+
+      if (instance) {
+        describeViewModelInstance(host, instance);
+        host.dataset.riveViewModelBound = "auto";
+        return instance;
+      }
+
+      const viewModelName = host.dataset.riveViewModel;
+
+      if (!viewModelName || typeof riveInstance.viewModelByName !== "function") {
+        host.dataset.riveViewModelBound = "none";
+        return null;
+      }
+
+      try {
+        const viewModel = riveInstance.viewModelByName(viewModelName);
+        instance = viewModel?.defaultInstance?.() || viewModel?.instance?.() || null;
+
+        if (instance && typeof riveInstance.bindViewModelInstance === "function") {
+          riveInstance.bindViewModelInstance(instance);
+          describeViewModelInstance(host, instance);
+          host.dataset.riveViewModelBound = viewModelName;
+          return instance;
+        }
+      } catch {
+        host.dataset.riveViewModelBound = "error";
+        return null;
+      }
+
+      host.dataset.riveViewModelBound = "none";
+      return null;
+    }
+
+    function describeViewModelInstance(host, instance) {
+      const properties = callRiveGetter(instance, "properties");
+
+      if (!Array.isArray(properties)) {
+        return;
+      }
+
+      host.dataset.riveViewModelProperties = properties
+        .map((property) => property.name || property.path || property.key || "")
+        .filter(Boolean)
+        .join(",");
+    }
+
+    function getViewModelProperty(instance, propertyType, names) {
+      if (!instance) {
+        return null;
+      }
+
+      const propertyNames = [
+        propertyType,
+        `${propertyType}Property`
+      ];
+
+      for (const name of names) {
+        for (const propertyName of propertyNames) {
+          const getter = instance[propertyName];
+
+          if (typeof getter !== "function") {
+            continue;
+          }
+
+          try {
+            const property = getter.call(instance, name);
+
+            if (property) {
+              return { name, property };
+            }
+          } catch {
+            // Keep trying compatible property names across Rive runtime versions.
+          }
+        }
+      }
+
+      return null;
+    }
+
+    function setViewModelBoolean(instance, names, value) {
+      const entry = getViewModelProperty(instance, "boolean", names);
+
+      if (!entry) {
+        return null;
+      }
+
+      try {
+        if (typeof entry.property.set === "function") {
+          entry.property.set(value);
+        } else {
+          entry.property.value = value;
+        }
+
+        return entry.name;
+      } catch {
+        return null;
+      }
+    }
+
+    function fireViewModelTrigger(instance, names) {
+      const entry = getViewModelProperty(instance, "trigger", names);
+
+      if (!entry) {
+        return null;
+      }
+
+      try {
+        if (typeof entry.property.trigger === "function") {
+          entry.property.trigger();
+        } else if (typeof entry.property.fire === "function") {
+          entry.property.fire();
+        } else if (typeof entry.property.set === "function") {
+          entry.property.set(true);
+        } else {
+          entry.property.value = true;
+        }
+
+        return entry.name;
+      } catch {
+        return null;
+      }
+    }
+
+    function setViewModelValue(instance, name, value) {
+      if (typeof value === "boolean") {
+        return Boolean(setViewModelBoolean(instance, [name], value));
+      }
+
+      const propertyType = typeof value === "number" ? "number" : "string";
+      const entry = getViewModelProperty(instance, propertyType, [name])
+        || getViewModelProperty(instance, "enum", [name])
+        || getViewModelProperty(instance, "string", [name])
+        || getViewModelProperty(instance, "number", [name]);
+
+      if (!entry) {
+        return false;
+      }
+
+      try {
+        if (typeof entry.property.set === "function") {
+          entry.property.set(value);
+        } else {
+          entry.property.value = value;
+        }
+
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    function applyViewModelValues(host, instance) {
+      const values = parseRiveInputs(host.dataset.riveViewModelValues);
+
+      if (!values || !instance) {
+        return;
+      }
+
+      const appliedValues = [];
+
+      Object.entries(values).forEach(([name, value]) => {
+        if (setViewModelValue(instance, name, value)) {
+          appliedValues.push(name);
+        }
+      });
+
+      host.dataset.riveViewModelValuesApplied = appliedValues.length ? appliedValues.join(",") : "none";
+    }
+
+    function setupRiveHoverPlayback(host, riveInstance, stateMachine) {
+      if (host.dataset.rivePlayOnHover !== "true" || reduceMotion.matches) {
+        return;
+      }
+
+      const targetSelector = host.dataset.riveHoverTarget;
+      const hoverTarget = targetSelector ? host.closest(targetSelector) : host;
+
+      if (!hoverTarget) {
+        return;
+      }
+
+      const inputs = getStateMachineInputs(host, riveInstance, stateMachine);
+      const viewModelInstance = getRiveViewModelInstance(host, riveInstance);
+      applyViewModelValues(host, viewModelInstance);
+      const booleanInputNames = parseRiveInputNames(host.dataset.riveHoverBooleanInput, "isActive");
+      const triggerInputNames = parseRiveInputNames(host.dataset.riveHoverTriggerInput, "Trigger 1");
+      const booleanInput = findRiveInput(
+        inputs,
+        booleanInputNames
+      );
+      const triggerInput = findRiveInput(
+        inputs,
+        triggerInputNames
+      );
+      const pauseDelay = Number(host.dataset.rivePauseDelay || 0);
+      let pauseTimer = null;
+      let activeBooleanName = booleanInput ? booleanInput.name : "";
+      let activeTriggerName = triggerInput ? triggerInput.name : "";
+
+      const play = () => {
+        window.clearTimeout(pauseTimer);
+        host.classList.add("is-rive-hovered");
+        host.dataset.riveHoverActive = "true";
+
+        if (setRiveBooleanInput(booleanInput, true)) {
+          activeBooleanName = booleanInput.name;
+        } else {
+          activeBooleanName = setViewModelBoolean(viewModelInstance, booleanInputNames, true) || "";
+        }
+
+        if (fireRiveTriggerInput(triggerInput)) {
+          activeTriggerName = triggerInput.name;
+        } else {
+          activeTriggerName = fireViewModelTrigger(viewModelInstance, triggerInputNames) || "";
+        }
+
+        host.dataset.riveHoverInputNames = [
+          activeBooleanName,
+          activeTriggerName
+        ].filter(Boolean).join(",");
+
+        if (typeof riveInstance.play === "function") {
+          riveInstance.play();
+        }
+      };
+
+      const deactivate = () => {
+        host.classList.remove("is-rive-hovered");
+        host.dataset.riveHoverActive = "false";
+
+        if (!setRiveBooleanInput(booleanInput, false)) {
+          setViewModelBoolean(viewModelInstance, booleanInputNames, false);
+        }
+
+        if (host.dataset.riveResetOnLeave === "true" && typeof riveInstance.reset === "function") {
+          riveInstance.reset();
+        }
+
+        if (typeof riveInstance.pause === "function") {
+          if (pauseDelay > 0) {
+            pauseTimer = window.setTimeout(() => {
+              riveInstance.pause();
+            }, pauseDelay);
+          } else {
+            riveInstance.pause();
+          }
+        }
+      };
+
+      ["pointerenter", "mouseenter", "pointerover", "focus", "focusin", "click"].forEach((eventName) => {
+        hoverTarget.addEventListener(eventName, play);
+      });
+      ["pointerleave", "mouseleave", "blur", "focusout"].forEach((eventName) => {
+        hoverTarget.addEventListener(eventName, deactivate);
+      });
+      host.dataset.riveHoverReady = "true";
+      host.dataset.riveHoverInputNames = [
+        activeBooleanName,
+        activeTriggerName
+      ].filter(Boolean).join(",");
+      deactivate();
+    }
 
     loadRiveRuntime()
       .then((rive) => {
@@ -102,25 +460,61 @@
 
           const fit = rive.Fit[host.dataset.riveFit || "Cover"] || rive.Fit.Cover;
           const alignment = rive.Alignment[host.dataset.riveAlignment || "Center"] || rive.Alignment.Center;
+          const autoplay = host.dataset.riveAutoplay === "false" ? false : !reduceMotion.matches;
           const options = {
             src: host.dataset.riveSrc,
             canvas,
-            autoplay: !reduceMotion.matches,
+            autoplay,
+            useOffscreenRenderer: true,
             layout: new rive.Layout({ fit, alignment })
           };
+
+          if (host.dataset.riveAutoBind === "true") {
+            options.autoBind = true;
+          }
+
+          if (host.dataset.riveArtboard) {
+            options.artboard = host.dataset.riveArtboard;
+          }
 
           const stateMachine = host.dataset.riveStateMachine;
           if (stateMachine) {
             options.stateMachines = stateMachine;
           }
+          const riveInputValues = parseRiveInputs(host.dataset.riveInputs);
 
           let riveInstance;
           riveInstance = new rive.Rive({
             ...options,
             onLoad: () => {
+              const inputs = getStateMachineInputs(host, riveInstance, stateMachine);
+
+              if (stateMachine && riveInputValues) {
+                const appliedInputs = [];
+
+                Object.entries(riveInputValues).forEach(([inputName, inputValue]) => {
+                  const input = inputs.find((candidate) => candidate.name === inputName);
+
+                  if (!input) {
+                    return;
+                  }
+
+                  if (typeof input.fire === "function" && inputValue === "fire") {
+                    input.fire();
+                  } else {
+                    input.value = coerceRiveInputValue(inputValue);
+                  }
+
+                  appliedInputs.push(inputName);
+                });
+
+                host.dataset.riveInputsApplied = appliedInputs.length ? appliedInputs.join(",") : "none";
+              }
+
               host.dataset.riveReady = "true";
               host.classList.add("is-rive-loaded");
               riveInstance.resizeDrawingSurfaceToCanvas();
+              setupRiveHoverPlayback(host, riveInstance, stateMachine);
             },
             onLoadError: () => {
               host.dataset.riveError = "load";
@@ -379,6 +773,55 @@
       return detailForNodeItem(node, nodeItems(node)[itemIndex]);
     }
 
+    function screenForNodeItem(node, item) {
+      const detail = detailForNodeItem(node, item);
+      const nodeScreens = node && typeof node.screens === "object" && !Array.isArray(node.screens)
+        ? node.screens
+        : {};
+      const directScreen = item && typeof item === "object"
+        ? item.screen || item.screenshot || item.image || null
+        : null;
+      const screen = directScreen
+        || nodeScreens[detail.label]
+        || nodeScreens[slugify(detail.label)]
+        || null;
+
+      if (!screen) {
+        return null;
+      }
+
+      if (typeof screen === "string") {
+        return {
+          src: screen,
+          alt: `${detail.label} screen`,
+          caption: "Product screen"
+        };
+      }
+
+      if (typeof screen === "object" && screen.src) {
+        return {
+          src: screen.src,
+          alt: screen.alt || `${detail.label} screen`,
+          caption: screen.caption || "Product screen"
+        };
+      }
+
+      return null;
+    }
+
+    function createScreenFigure(screen) {
+      const figure = createElement("figure", "node-detail-shot");
+      const image = createElement("img", "node-detail-screen-image");
+      const caption = createElement("figcaption", "node-detail-shot-caption", screen.caption);
+
+      image.src = screen.src;
+      image.alt = screen.alt;
+      image.loading = "lazy";
+      image.decoding = "async";
+      figure.append(image, caption);
+      return figure;
+    }
+
     function createCardPreview(node, activeIndex) {
       const preview = createElement(
         "div",
@@ -400,20 +843,24 @@
 
     function createDetailSection(node, item, itemIndex) {
       const detail = detailForNodeItem(node, item);
+      const screen = screenForNodeItem(node, item);
       const section = createElement("section", "node-detail-section");
       const heading = createElement("div", "node-detail-section-heading");
       const dot = createElement("span", "node-detail-section-dot");
       const title = createElement("h3", "", detail.label);
       const description = createElement("p", "node-detail-description", detail.description);
-      const figure = createElement("figure", "node-detail-shot");
-      const caption = createElement("figcaption", "node-detail-shot-caption", "Process card screenshot");
 
       section.id = `node-detail-${node.id}-${slugify(detail.label)}`;
       section.dataset.nodeItemIndex = String(itemIndex);
       section.tabIndex = -1;
       heading.append(dot, title);
-      figure.append(createCardPreview(node, itemIndex), caption);
-      section.append(heading, description, figure);
+      section.classList.add(screen ? "has-screen" : "is-text-only");
+      section.append(heading, description);
+
+      if (screen) {
+        section.appendChild(createScreenFigure(screen));
+      }
+
       return section;
     }
 
@@ -708,6 +1155,8 @@
       const body = createElement("p", "node-info-popover-copy", detail.description);
       const shot = createElement("div", "node-info-popover-shot");
 
+      shot.hidden = true;
+      shot.setAttribute("aria-hidden", "true");
       clearElement(popover);
       shot.appendChild(createCardPreview(node, itemIndex));
       popover.append(title, body, shot);
@@ -1675,6 +2124,88 @@
     }
   }
 
+  const visitedCaseNotesStorageKey = "uxruler.story.visitedCaseNotes";
+
+  function getVisitedCaseNotesStorage() {
+    try {
+      return window.localStorage;
+    } catch {
+      return null;
+    }
+  }
+
+  function readVisitedCaseNotes() {
+    const storage = getVisitedCaseNotesStorage();
+
+    if (!storage) {
+      return new Set();
+    }
+
+    try {
+      const storedCaseNotes = JSON.parse(storage.getItem(visitedCaseNotesStorageKey) || "[]");
+      return new Set(Array.isArray(storedCaseNotes) ? storedCaseNotes.map(String).filter(Boolean) : []);
+    } catch {
+      return new Set();
+    }
+  }
+
+  function writeVisitedCaseNotes(visitedCaseNotes) {
+    const storage = getVisitedCaseNotesStorage();
+
+    if (!storage) {
+      return;
+    }
+
+    try {
+      storage.setItem(visitedCaseNotesStorageKey, JSON.stringify(Array.from(visitedCaseNotes).sort()));
+    } catch {
+      // Browsers can block localStorage in privacy modes; the visual state is optional.
+    }
+  }
+
+  function getTimelineCaseTarget(timelineItem) {
+    const caseTarget = timelineItem.dataset.caseTarget;
+    const nestedCaseTarget = timelineItem.querySelector("[data-case-target]");
+    return caseTarget || nestedCaseTarget?.dataset.caseTarget || "";
+  }
+
+  function applyVisitedCaseNotes(visitedCaseNotes) {
+    document.querySelectorAll(".timeline.note-wall .timeline-item").forEach((timelineItem) => {
+      const caseTarget = getTimelineCaseTarget(timelineItem);
+      timelineItem.classList.toggle("is-visited-case", Boolean(caseTarget && visitedCaseNotes.has(caseTarget)));
+    });
+  }
+
+  function initVisitedCaseNotes() {
+    const visitedCaseNotes = readVisitedCaseNotes();
+
+    if (caseId) {
+      visitedCaseNotes.add(caseId);
+      writeVisitedCaseNotes(visitedCaseNotes);
+    }
+
+    applyVisitedCaseNotes(visitedCaseNotes);
+
+    document.querySelectorAll('[data-track="story_case_opened"][data-case-target]').forEach((element) => {
+      element.addEventListener("click", () => {
+        const caseTarget = element.dataset.caseTarget;
+
+        if (!caseTarget) {
+          return;
+        }
+
+        visitedCaseNotes.add(caseTarget);
+        writeVisitedCaseNotes(visitedCaseNotes);
+
+        const timelineItem = element.closest(".timeline.note-wall .timeline-item");
+
+        if (timelineItem) {
+          timelineItem.classList.add("is-visited-case");
+        }
+      }, { capture: true });
+    });
+  }
+
   function normalizeSurveySearchText(value) {
     return String(value || "")
       .toLowerCase()
@@ -1691,7 +2222,23 @@
     }));
   }
 
-  function portfolioSurveyEventProperties(rating, feedback, properties) {
+  function portfolioSurveyFormProperties(form) {
+    if (!form || !form.dataset) {
+      return {
+        survey_stage: "portfolio_rating",
+        survey_trigger: "story_case_notes_inline",
+        survey_surface: caseId ? "case_footer" : "story_index"
+      };
+    }
+
+    return {
+      survey_stage: form.dataset.surveyStage || "portfolio_rating",
+      survey_trigger: form.dataset.surveyTrigger || "story_case_notes_inline",
+      survey_surface: form.dataset.surveySurface || (caseId ? "case_footer" : "story_index")
+    };
+  }
+
+  function portfolioSurveyEventProperties(rating, feedback, form, properties) {
     const cleanRating = String(rating || "").trim();
     const cleanFeedback = String(feedback || "").trim();
     const [ratingQuestion, feedbackQuestion] = activePortfolioSurvey.questions;
@@ -1703,12 +2250,10 @@
       [`$survey_response_${ratingQuestion.id}`]: cleanRating,
       [`$survey_response_${feedbackQuestion.id}`]: cleanFeedback,
       survey_source: activePortfolioSurvey.source || "static_story_form",
-      survey_stage: "portfolio_rating",
-      survey_trigger: "story_case_notes_inline",
       portfolio_rating: Number(cleanRating),
       feedback_length: cleanFeedback.length,
       has_feedback: Boolean(cleanFeedback)
-    }, properties || {});
+    }, portfolioSurveyFormProperties(form), properties || {});
 
     if (cleanFeedback) {
       eventProperties.feedback = cleanFeedback;
@@ -1717,14 +2262,12 @@
     return eventProperties;
   }
 
-  function portfolioSurveyLifecycleProperties(properties) {
+  function portfolioSurveyLifecycleProperties(form, properties) {
     return Object.assign({
       $survey_id: activePortfolioSurvey.id,
       $survey_questions: portfolioSurveyQuestionsMetadata(activePortfolioSurvey),
-      survey_source: activePortfolioSurvey.source || "static_story_form",
-      survey_stage: "portfolio_rating",
-      survey_trigger: "story_case_notes_inline"
-    }, properties || {});
+      survey_source: activePortfolioSurvey.source || "static_story_form"
+    }, portfolioSurveyFormProperties(form), properties || {});
   }
 
   function findPortfolioPosthogSurvey(surveys) {
@@ -1792,10 +2335,10 @@
     form.dataset.surveySource = activePortfolioSurvey.source;
 
     if (!window.posthog || typeof window.posthog.getActiveMatchingSurveys !== "function") {
-      trackStoryEvent("story_portfolio_survey_unavailable", {
+      trackStoryEvent("story_portfolio_survey_unavailable", portfolioSurveyLifecycleProperties(form, {
         unavailable_reason: window.posthog ? "survey_api_unavailable" : "posthog_unavailable",
         fallback_survey_id: activePortfolioSurvey.id
-      });
+      }));
       return;
     }
 
@@ -1803,21 +2346,25 @@
       const survey = findPortfolioPosthogSurvey(surveys);
 
       if (!survey || !applyPortfolioPosthogSurvey(survey, form)) {
-        trackStoryEvent("story_portfolio_survey_unavailable", {
+        trackStoryEvent("story_portfolio_survey_unavailable", portfolioSurveyLifecycleProperties(form, {
           unavailable_reason: survey ? "missing_rating_or_feedback_question" : "no_matching_api_survey",
           fallback_survey_id: portfolioSurveyFallback.id
-        });
+        }));
       }
     });
   }
 
   function initPortfolioSurvey() {
-    const form = document.querySelector("[data-portfolio-survey-form]");
+    const forms = Array.from(document.querySelectorAll("[data-portfolio-survey-form]"));
 
-    if (!form) {
+    if (!forms.length) {
       return;
     }
 
+    forms.forEach(initPortfolioSurveyForm);
+  }
+
+  function initPortfolioSurveyForm(form) {
     const ratingInputs = Array.from(form.querySelectorAll('input[name="portfolio-rating"]'));
     const starLabels = Array.from(form.querySelectorAll(".portfolio-star"));
     const followup = form.querySelector("[data-portfolio-survey-followup]");
@@ -1884,8 +2431,8 @@
       }
 
       shownTracked = true;
-      trackStoryEvent("story_portfolio_survey_shown", portfolioSurveyLifecycleProperties());
-      trackStoryEvent("survey shown", portfolioSurveyLifecycleProperties());
+      trackStoryEvent("story_portfolio_survey_shown", portfolioSurveyLifecycleProperties(form));
+      trackStoryEvent("survey shown", portfolioSurveyLifecycleProperties(form));
     }
 
     syncPortfolioPosthogSurvey(form);
@@ -1926,7 +2473,7 @@
       }
 
       const cleanFeedback = feedback && "value" in feedback ? feedback.value.trim() : "";
-      const surveyProperties = portfolioSurveyEventProperties(selectedRating, cleanFeedback);
+      const surveyProperties = portfolioSurveyEventProperties(selectedRating, cleanFeedback, form);
 
       trackStoryEvent("story_portfolio_rating_sent", surveyProperties);
       trackStoryEvent("survey sent", surveyProperties);
@@ -2414,6 +2961,7 @@
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sideBySideLayout = window.matchMedia("(min-width: 1401px)");
 
     frames.forEach((frame) => {
       const image = frame.querySelector("img");
@@ -2425,14 +2973,34 @@
       let direction = 1;
       let isRunning = false;
       let userStopped = false;
+      let rolloutComplete = false;
+      let rolloutTimer = 0;
       const speed = 18;
+      const rolloutAutoscrollDelay = 1490;
+
+      function syncRolloutMetrics() {
+        if (!media) {
+          return;
+        }
+
+        const frameHeight = Math.ceil(frame.getBoundingClientRect().height);
+
+        if (frameHeight > 0) {
+          media.style.setProperty("--lendi-title-frame-height", `${frameHeight}px`);
+          media.style.setProperty("--lendi-title-frame-offset", `${-frameHeight}px`);
+        } else {
+          media.style.removeProperty("--lendi-title-frame-height");
+          media.style.removeProperty("--lendi-title-frame-offset");
+        }
+      }
 
       function syncPreviewSize() {
-        if (!media || !titleNote || !copy || !desktopPointer.matches) {
+        if (!media || !titleNote || !copy || !desktopPointer.matches || !sideBySideLayout.matches) {
           if (media) {
             media.style.removeProperty("--lendi-title-media-height");
             media.style.removeProperty("--lendi-title-media-width");
           }
+          syncRolloutMetrics();
           return;
         }
 
@@ -2449,6 +3017,7 @@
         if (!copyHeight || availableWidth < 120) {
           media.style.removeProperty("--lendi-title-media-height");
           media.style.removeProperty("--lendi-title-media-width");
+          syncRolloutMetrics();
           return;
         }
 
@@ -2460,6 +3029,38 @@
 
         media.style.setProperty("--lendi-title-media-height", `${copyHeight}px`);
         media.style.setProperty("--lendi-title-media-width", `${mediaWidth}px`);
+        syncRolloutMetrics();
+      }
+
+      function startRollout() {
+        if (!media || media.dataset.rolloutReady === "true") {
+          return;
+        }
+
+        media.dataset.rolloutReady = "true";
+        media.classList.add("is-rollout-ready");
+
+        if (reduceMotion.matches) {
+          rolloutComplete = true;
+        }
+      }
+
+      function startAutoscrollAfterRollout() {
+        if (reduceMotion.matches) {
+          rolloutComplete = true;
+          startAutoscroll();
+          return;
+        }
+
+        if (rolloutTimer) {
+          return;
+        }
+
+        rolloutTimer = window.setTimeout(() => {
+          rolloutTimer = 0;
+          rolloutComplete = true;
+          startAutoscroll();
+        }, rolloutAutoscrollDelay);
       }
 
       function maxScroll() {
@@ -2475,6 +3076,11 @@
         isRunning = false;
         frame.classList.add("is-user-controlled");
         frame.dataset.scrollAutoplay = "stopped";
+
+        if (rolloutTimer) {
+          window.clearTimeout(rolloutTimer);
+          rolloutTimer = 0;
+        }
 
         if (animationFrame) {
           window.cancelAnimationFrame(animationFrame);
@@ -2517,7 +3123,7 @@
       }
 
       function startAutoscroll() {
-        if (userStopped || isRunning || reduceMotion.matches || !desktopPointer.matches || maxScroll() <= 2) {
+        if (!rolloutComplete || userStopped || isRunning || reduceMotion.matches || !desktopPointer.matches || !sideBySideLayout.matches || maxScroll() <= 2) {
           return;
         }
 
@@ -2539,11 +3145,13 @@
       if (image && !image.complete) {
         image.addEventListener("load", () => {
           syncPreviewSize();
-          startAutoscroll();
+          startRollout();
+          startAutoscrollAfterRollout();
         }, { once: true });
       } else {
         syncPreviewSize();
-        startAutoscroll();
+        startRollout();
+        startAutoscrollAfterRollout();
       }
 
       if ("ResizeObserver" in window) {
@@ -2574,6 +3182,7 @@
   initLendiTitleScrollPreview();
   initLendiStickerStack();
   initPortfolioSurvey();
+  initVisitedCaseNotes();
   trackStoryEvent("story_page_viewed");
 
   document.querySelectorAll("[data-track]").forEach((element) => {

@@ -9,28 +9,29 @@
   <link rel="canonical" href="https://www.uxruler.com/story/interblue/">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
   <link rel="shortcut icon" href="../../assets/favicon/favicon.ico">
-  <link rel="stylesheet" href="../story.css?v=20260520-interblue-mobile-stack">
+  <link rel="stylesheet" href="../story.css?v=20260521-visited-case-notes">
   <script src="../posthog.js" defer></script>
-  <script src="../story.js?v=20260519-interblue" defer></script>
+  <script src="../story.js?v=20260521-visited-case-notes" defer></script>
 </head>
 <body data-story-page-type="case_study" data-case-id="interblue">
   <header class="topbar" aria-label="Story navigation">
     <a class="brand" href="../../index.html#about" aria-label="UX RULER">
       <img src="../../assets/logo.svg" alt="">
     </a>
-    <nav class="topnav" aria-label="Main links">
-      <a href="../">Story</a>
-      <a href="../../index.html#about">UX RULER</a>
-      <a href="../../install.html">Install</a>
-      <a href="mailto:michal@drozdzynski.pl" data-track="story_contact_clicked" data-track-location="topbar" data-track-target="email">Contact</a>
-    </nav>
+    <div class="topline">
+      <nav class="topline-current breadcrumbs" aria-label="Breadcrumb">
+        <a href="../">Story</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">InterBlue</span>
+      </nav>
+    </div>
   </header>
 
   <main class="page">
     <section class="hero case-hero" aria-labelledby="case-title">
       <div class="shell hero-grid">
         <div>
-          <a class="button back-link" href="../" data-track="story_back_clicked" data-track-location="case_hero" data-track-target="story_index">Back to story</a>
+          <a class="button back-link" href="../#timeline" data-track="story_back_clicked" data-track-location="case_hero" data-track-target="story_case_notes">Back to story</a>
           <h1 id="case-title">InterBlue Bluetooth data monitor.</h1>
           <p class="lead">A mobile app for reading, translating, and monitoring data from standard Bluetooth transmitters connected to measuring devices.</p>
         </div>
@@ -55,13 +56,59 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer case-footer">
     <div class="shell">
-      <p class="footer-title">Next: Citi Bank Handlowy</p>
-      <div class="footer-links">
-        <a href="../citi-bank/" data-track="story_case_opened" data-track-location="case_footer" data-case-target="citi-bank">Open next case</a>
-        <a href="../">Story index</a>
-      </div>
+      <a class="case-footer-link case-footer-prev" href="../autotrader/" aria-label="Previous case: Autotrader.pl" data-track="story_case_opened" data-track-location="case_footer_previous" data-track-target="previous_case" data-case-target="autotrader">Autotrader.pl</a>
+      <form class="portfolio-survey case-footer-rating" data-portfolio-survey-form data-posthog-survey-id="8f7f3e0d-1f6a-4a8d-8f7f-2b02d9a4a9d3" data-survey-surface="case_footer" data-survey-trigger="story_case_footer" data-survey-stage="case_footer_rating" aria-labelledby="case-rating-title-interblue">
+        <div class="portfolio-survey-copy">
+          <h3 id="case-rating-title-interblue">Rate this case</h3>
+        </div>
+        <div class="portfolio-survey-interaction">
+          <fieldset class="portfolio-rating-field">
+            <legend class="visually-hidden">Rate this case</legend>
+            <div class="portfolio-stars" data-portfolio-rating-stars>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="1">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">1 star</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="2">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">2 stars</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="3">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">3 stars</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="4">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">4 stars</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="5">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">5 stars</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="portfolio-survey-followup" data-portfolio-survey-followup hidden>
+            <label for="case-feedback-interblue">Want to add a note?</label>
+            <textarea id="case-feedback-interblue" name="portfolio-feedback" rows="3" maxlength="700" data-portfolio-feedback placeholder="What proof, detail, or ordering would make this case clearer?"></textarea>
+            <div class="portfolio-survey-actions">
+              <button class="button" type="submit">Send</button>
+              <p class="portfolio-survey-status" data-portfolio-survey-status aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="portfolio-survey-success" data-portfolio-survey-success hidden tabindex="-1">
+            <strong>Thanks.</strong>
+            <span>Your rating helps decide which case evidence to improve next.</span>
+          </div>
+        </div>
+      </form>
+      <a class="case-footer-link case-footer-next" href="../citi-bank/" aria-label="Next case: Citi Bank" data-track="story_case_opened" data-track-location="case_footer_next" data-track-target="next_case" data-case-target="citi-bank">Citi Bank</a>
     </div>
   </footer>
 </body>

@@ -9,9 +9,9 @@
   <link rel="canonical" href="https://www.uxruler.com/story/jasne-ai/">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
   <link rel="shortcut icon" href="../../assets/favicon/favicon.ico">
-  <link rel="stylesheet" href="../story.css?v=20260519b">
+  <link rel="stylesheet" href="../story.css?v=20260521-visited-case-notes">
   <script src="../posthog.js" defer></script>
-  <script src="../story.js" defer></script>
+  <script src="../story.js?v=20260521-visited-case-notes" defer></script>
 </head>
 <body data-story-page-type="case_study" data-case-id="jasne-ai">
   <header class="topbar" aria-label="Story navigation">
@@ -19,12 +19,10 @@
       <img src="../../assets/logo.svg" alt="">
     </a>
     <div class="topline">
-      <a class="topline-current" href="./" aria-current="page">Jasne.ai / medium case</a>
-      <nav class="topnav" aria-label="Main links">
+      <nav class="topline-current breadcrumbs" aria-label="Breadcrumb">
         <a href="../">Story</a>
-        <a href="../../index.html#about">UX RULER</a>
-        <a href="../../install.html">Install</a>
-        <a href="mailto:michal@drozdzynski.pl" data-track="story_contact_clicked" data-track-location="topbar" data-track-target="email">Contact</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Jasne.ai</span>
       </nav>
     </div>
   </header>
@@ -33,35 +31,20 @@
     <section class="hero case-hero lendi-case-hero jasne-case-hero" aria-labelledby="case-title">
       <div class="shell case-board-hero-grid">
         <div class="case-title-stack">
-          <a class="button back-link" href="../" data-track="story_back_clicked" data-track-location="case_hero" data-track-target="story_index">Back to story</a>
+          <a class="button back-link" href="../#timeline" data-track="story_back_clicked" data-track-location="case_hero" data-track-target="story_case_notes">Back to story</a>
           <div class="title-note case-title-note jasne-title-note">
             <span class="kicker">Ongoing / medium case</span>
             <h1 id="case-title">Jasne.ai.</h1>
             <p class="lead">An AI-native learning management system and employee-success app direction, shown as a workflow that learns with people instead of a set of static screens.</p>
-            <div class="jasne-store-badges" role="img" aria-label="App Store and Google Play badges">
-              <span class="jasne-store-badge jasne-store-badge-ios">
+            <div class="jasne-store-badges" role="group" aria-label="Jasne.ai app store links">
+              <a class="jasne-store-badge jasne-store-badge-ios" href="https://apps.apple.com/pl/app/jasne/id6747730526" target="_blank" rel="noreferrer" aria-label="Download Jasne on the App Store">
                 <img src="../../assets/jasne-ai/app-store-badge.svg" alt="">
-              </span>
-              <span class="jasne-store-badge jasne-store-badge-google">
+              </a>
+              <a class="jasne-store-badge jasne-store-badge-google" href="https://play.google.com/store/apps/details?id=ai.jasne.app" target="_blank" rel="noreferrer" aria-label="Get Jasne on Google Play">
                 <img src="../../assets/jasne-ai/google-play-badge.svg" alt="">
-              </span>
+              </a>
             </div>
           </div>
-        </div>
-
-        <div class="jasne-screens-board jasne-hero-screens" aria-label="Animated Jasne.ai product screens">
-          <figure class="jasne-phone jasne-phone-left">
-            <img src="../../assets/jasne-ai/iphone-asystent.png" width="1206" height="2622" alt="Jasne.ai AI assistant screen">
-            <figcaption>assistant</figcaption>
-          </figure>
-          <figure class="jasne-phone jasne-phone-center">
-            <img src="../../assets/jasne-ai/iphone-lista-kursow-2.png" width="1206" height="2622" alt="Jasne.ai course list screen">
-            <figcaption>course list</figcaption>
-          </figure>
-          <figure class="jasne-phone jasne-phone-right">
-            <img src="../../assets/jasne-ai/iphone-kurs.png" width="1206" height="2622" alt="Jasne.ai course detail screen">
-            <figcaption>course</figcaption>
-          </figure>
         </div>
 
         <aside class="sticky-note sticky-note-green case-scope-note jasne-scope-note" aria-label="Case summary">
@@ -69,6 +52,102 @@
           <span>Learning content, employee context, AI support, and adoption signals treated as one product system.</span>
           <span class="depth-badge">work in progress</span>
         </aside>
+      </div>
+    </section>
+
+    <section class="lendi-sticker-summary-section jasne-sticker-summary-section" aria-label="Jasne.ai case notes">
+      <div class="shell">
+        <div class="case-summary lendi-sticker-summary jasne-sticker-summary" aria-label="Jasne.ai case notes">
+          <div class="case-meta">
+            <span class="case-meta-label">Role</span>
+            <p>Founder/product designer direction across AI-native learning and employee-success work.</p>
+          </div>
+          <div class="case-meta">
+            <span class="case-meta-label">Product</span>
+            <p>Mobile-first AI-driven LMS and native employee-success apps.</p>
+          </div>
+          <div class="case-meta">
+            <span class="case-meta-label">Stage</span>
+            <p>Ongoing product and workflow exploration.</p>
+          </div>
+          <div class="case-meta">
+            <span class="case-meta-label">UX RULER link</span>
+            <p>AI as collaboration infrastructure, not only content generation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="jasne-steps-section" aria-labelledby="jasne-steps-title">
+      <div class="shell">
+        <div class="jasne-steps-heading">
+          <span class="kicker">Website product loop</span>
+          <h2 id="jasne-steps-title">Every success starts with people.</h2>
+        </div>
+
+        <ol class="jasne-step-list">
+          <li class="jasne-step-card" tabindex="0">
+            <figure class="jasne-step-visual jasne-step-visual-integration">
+              <img class="jasne-step-image-3d" src="../../assets/jasne-ai/feature-integration.avif" width="1274" height="1086" alt="Jasne.ai source upload interface with document, link, and text options">
+              <img class="jasne-step-image-mockup" src="../../assets/jasne-ai/knowledge.png" width="1399" height="956" alt="Jasne.ai generated knowledge blocks from uploaded sources" loading="lazy" decoding="async">
+            </figure>
+            <div class="jasne-step-copy">
+              <span class="jasne-step-number">01</span>
+              <h3>Generate knowledge base</h3>
+              <p>Bring files, images, recordings, and links into one searchable source that is ready for AI-supported work.</p>
+            </div>
+          </li>
+          <li class="jasne-step-card" tabindex="0">
+            <figure class="jasne-step-visual jasne-step-visual-learning">
+              <img class="jasne-step-image-3d" src="../../assets/jasne-ai/feature-learning.avif" width="1536" height="1069" alt="Jasne.ai lesson start button above learning cards">
+              <img class="jasne-step-image-mockup" src="../../assets/jasne-ai/materials.png" width="1399" height="956" alt="Jasne.ai material editor mockup with concept card content" loading="lazy" decoding="async">
+            </figure>
+            <div class="jasne-step-copy">
+              <span class="jasne-step-number">02</span>
+              <h3>Prepare materials</h3>
+              <p>Turn the knowledge base into training materials, scripts, documents, and messages that match daily sales work.</p>
+            </div>
+          </li>
+          <li class="jasne-step-card" tabindex="0">
+            <figure class="jasne-step-visual jasne-step-visual-analytics">
+              <img class="jasne-step-image-3d" src="../../assets/jasne-ai/feature-analytics.avif" width="1536" height="1191" alt="Jasne.ai analytics dashboard illustration with charts and tables">
+              <img class="jasne-step-image-mockup" src="../../assets/jasne-ai/progress.png" width="1399" height="956" alt="Jasne.ai progress mockup with lesson groups and learner badges" loading="lazy" decoding="async">
+            </figure>
+            <div class="jasne-step-copy">
+              <span class="jasne-step-number">03</span>
+              <h3>Monitor results</h3>
+              <p>Track progress, spot knowledge gaps, and adjust support before weak signals turn into sales problems.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="jasne-badge-section" aria-labelledby="jasne-badge-title" hidden>
+      <div class="shell jasne-badge-shell">
+        <h2 id="jasne-badge-title" class="jasne-badge-title">Everyone loves to feel rewarded</h2>
+        <div class="jasne-badge-strip" aria-label="Example Jasne.ai learning badges">
+          <figure class="jasne-badge-card" tabindex="0" aria-label="Bronze bulb badge animation">
+            <span class="jasne-rive-badge" data-rive-src="../../assets/jasne-ai/rive/mobile-assets/badge.riv" data-rive-artboard="badge" data-rive-state-machine="State Machine 1" data-rive-auto-bind="true" data-rive-view-model="badgeVM" data-rive-view-model-values='{"achievementNumber":"1","badgeIcon":"bulb","badgeIconLegacy":"lightbulb","badgeQuality":"bronze","icon":"bulb","iconLegacy":"lightbulb","isActive":false,"quality":"bronze"}' data-rive-autoplay="false" data-rive-play-on-hover="true" data-rive-hover-target=".jasne-badge-card" data-rive-hover-boolean-input="isActive" data-rive-hover-trigger-input="Trigger 1" data-rive-pause-delay="1200" data-rive-fit="Contain" data-rive-alignment="BottomCenter" aria-hidden="true">
+              <canvas width="160" height="260"></canvas>
+            </span>
+          </figure>
+          <figure class="jasne-badge-card" tabindex="0" aria-label="Silver comment badge animation">
+            <span class="jasne-rive-badge" data-rive-src="../../assets/jasne-ai/rive/mobile-assets/badge.riv" data-rive-artboard="badge" data-rive-state-machine="State Machine 1" data-rive-auto-bind="true" data-rive-view-model="badgeVM" data-rive-view-model-values='{"achievementNumber":"3","badgeIcon":"comment","badgeIconLegacy":"baseball","badgeQuality":"silver","icon":"comment","iconLegacy":"baseball","isActive":false,"quality":"silver"}' data-rive-autoplay="false" data-rive-play-on-hover="true" data-rive-hover-target=".jasne-badge-card" data-rive-hover-boolean-input="isActive" data-rive-hover-trigger-input="Trigger 1" data-rive-pause-delay="1200" data-rive-fit="Contain" data-rive-alignment="BottomCenter" aria-hidden="true">
+              <canvas width="160" height="260"></canvas>
+            </span>
+          </figure>
+          <figure class="jasne-badge-card" tabindex="0" aria-label="Gold trophy badge animation">
+            <span class="jasne-rive-badge" data-rive-src="../../assets/jasne-ai/rive/mobile-assets/badge.riv" data-rive-artboard="badge" data-rive-state-machine="State Machine 1" data-rive-auto-bind="true" data-rive-view-model="badgeVM" data-rive-view-model-values='{"achievementNumber":"5","badgeIcon":"trophy","badgeIconLegacy":"basketball","badgeQuality":"gold","icon":"trophy","iconLegacy":"basketball","isActive":false,"quality":"gold"}' data-rive-autoplay="false" data-rive-play-on-hover="true" data-rive-hover-target=".jasne-badge-card" data-rive-hover-boolean-input="isActive" data-rive-hover-trigger-input="Trigger 1" data-rive-pause-delay="1200" data-rive-fit="Contain" data-rive-alignment="BottomCenter" aria-hidden="true">
+              <canvas width="160" height="260"></canvas>
+            </span>
+          </figure>
+          <figure class="jasne-badge-card" tabindex="0" aria-label="Hidden assistant badge animation">
+            <span class="jasne-rive-badge" data-rive-src="../../assets/jasne-ai/rive/mobile-assets/badge.riv" data-rive-artboard="badge" data-rive-state-machine="State Machine 1" data-rive-auto-bind="true" data-rive-view-model="badgeVM" data-rive-view-model-values='{"achievementNumber":"10","badgeIcon":"assistant","badgeIconLegacy":"football","badgeQuality":"hidden","icon":"assistant","iconLegacy":"football","isActive":false,"quality":"hidden"}' data-rive-autoplay="false" data-rive-play-on-hover="true" data-rive-hover-target=".jasne-badge-card" data-rive-hover-boolean-input="isActive" data-rive-hover-trigger-input="Trigger 1" data-rive-pause-delay="1200" data-rive-fit="Contain" data-rive-alignment="BottomCenter" aria-hidden="true">
+              <canvas width="160" height="260"></canvas>
+            </span>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -95,29 +174,10 @@
             ></iframe>
           </div>
         </div>
-
-        <div class="case-summary" aria-label="Case summary">
-          <div class="case-meta">
-            <span class="case-meta-label">Role</span>
-            <p>Founder/product designer direction, based on the CV's AI-native work.</p>
-          </div>
-          <div class="case-meta">
-            <span class="case-meta-label">Product</span>
-            <p>Mobile-first AI-driven LMS and native employee-success apps.</p>
-          </div>
-          <div class="case-meta">
-            <span class="case-meta-label">Stage</span>
-            <p>Ongoing product and workflow exploration.</p>
-          </div>
-          <div class="case-meta">
-            <span class="case-meta-label">UX RULER link</span>
-            <p>AI as collaboration infrastructure, not only content generation.</p>
-          </div>
-        </div>
       </div>
     </section>
 
-    <section aria-labelledby="shape-title">
+    <section hidden aria-labelledby="shape-title">
       <div class="shell case-grid">
         <div class="case-panel">
           <span class="kicker">Draft narrative</span>
@@ -141,13 +201,59 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer case-footer">
     <div class="shell">
-      <p class="footer-title">Next: Morizon</p>
-      <div class="footer-links">
-        <a href="../morizon/" data-track="story_case_opened" data-track-location="case_footer" data-case-target="morizon">Open next case</a>
-        <a href="../">Story index</a>
-      </div>
+      <a class="case-footer-link case-footer-prev" href="../lendi/" aria-label="Previous case: Lendi" data-track="story_case_opened" data-track-location="case_footer_previous" data-track-target="previous_case" data-case-target="lendi">Lendi</a>
+      <form class="portfolio-survey case-footer-rating" data-portfolio-survey-form data-posthog-survey-id="8f7f3e0d-1f6a-4a8d-8f7f-2b02d9a4a9d3" data-survey-surface="case_footer" data-survey-trigger="story_case_footer" data-survey-stage="case_footer_rating" aria-labelledby="case-rating-title-jasne-ai">
+        <div class="portfolio-survey-copy">
+          <h3 id="case-rating-title-jasne-ai">Rate this case</h3>
+        </div>
+        <div class="portfolio-survey-interaction">
+          <fieldset class="portfolio-rating-field">
+            <legend class="visually-hidden">Rate this case</legend>
+            <div class="portfolio-stars" data-portfolio-rating-stars>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="1">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">1 star</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="2">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">2 stars</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="3">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">3 stars</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="4">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">4 stars</span>
+              </label>
+              <label class="portfolio-star">
+                <input type="radio" name="portfolio-rating" value="5">
+                <span aria-hidden="true">★</span>
+                <span class="visually-hidden">5 stars</span>
+              </label>
+            </div>
+          </fieldset>
+          <div class="portfolio-survey-followup" data-portfolio-survey-followup hidden>
+            <label for="case-feedback-jasne-ai">Want to add a note?</label>
+            <textarea id="case-feedback-jasne-ai" name="portfolio-feedback" rows="3" maxlength="700" data-portfolio-feedback placeholder="What proof, detail, or ordering would make this case clearer?"></textarea>
+            <div class="portfolio-survey-actions">
+              <button class="button" type="submit">Send</button>
+              <p class="portfolio-survey-status" data-portfolio-survey-status aria-live="polite"></p>
+            </div>
+          </div>
+          <div class="portfolio-survey-success" data-portfolio-survey-success hidden tabindex="-1">
+            <strong>Thanks.</strong>
+            <span>Your rating helps decide which case evidence to improve next.</span>
+          </div>
+        </div>
+      </form>
+      <a class="case-footer-link case-footer-next" href="../morizon/" aria-label="Next case: Morizon" data-track="story_case_opened" data-track-location="case_footer_next" data-track-target="next_case" data-case-target="morizon">Morizon</a>
     </div>
   </footer>
 </body>
