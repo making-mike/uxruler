@@ -449,6 +449,34 @@
       deactivate();
     }
 
+    function applyRivePlaybackSpeed(host, riveInstance) {
+      const speed = Number(host.dataset.riveSpeed || 1);
+
+      if (!Number.isFinite(speed) || speed <= 0 || speed === 1 || typeof riveInstance.draw !== "function") {
+        return;
+      }
+
+      const drawFrame = riveInstance.draw.bind(riveInstance);
+      let lastFrameTime = 0;
+      let acceleratedTime = 0;
+
+      riveInstance.draw = (time) => {
+        const frameTime = Number(time) || 0;
+
+        if (!lastFrameTime) {
+          acceleratedTime = frameTime;
+        } else {
+          const elapsed = Math.max(0, Math.min(frameTime - lastFrameTime, 100));
+          acceleratedTime += elapsed * speed;
+        }
+
+        lastFrameTime = frameTime;
+        drawFrame(acceleratedTime);
+      };
+
+      host.dataset.riveSpeedApplied = String(speed);
+    }
+
     loadRiveRuntime()
       .then((rive) => {
         hosts.forEach((host) => {
@@ -520,6 +548,8 @@
               host.dataset.riveError = "load";
             }
           });
+
+          applyRivePlaybackSpeed(host, riveInstance);
 
           if ("ResizeObserver" in window) {
             const resizeObserver = new ResizeObserver(() => {
@@ -2206,6 +2236,150 @@
     });
   }
 
+  function initCaseStickerTooltips() {
+    const stickers = Array.from(document.querySelectorAll(".case-award-sticker"));
+
+    if (!stickers.length) {
+      return;
+    }
+
+    const tapTooltipMedia = window.matchMedia("(hover: none), (pointer: coarse)");
+    const tooltip = createElement("span", "case-sticker-floating-tooltip");
+    let activeSticker = null;
+    let suppressNextClick = false;
+    let lastPointerType = "";
+
+    tooltip.hidden = true;
+    tooltip.setAttribute("role", "tooltip");
+    tooltip.setAttribute("aria-hidden", "true");
+    document.body.appendChild(tooltip);
+
+    function closestSticker(target) {
+      return target && typeof target.closest === "function" ? target.closest(".case-award-sticker") : null;
+    }
+
+    function shouldUseTapTooltip(event) {
+      const isMobileLayout = window.innerWidth <= 720;
+
+      if (event.type === "pointerdown") {
+        return event.pointerType !== "mouse" || tapTooltipMedia.matches || isMobileLayout;
+      }
+
+      return tapTooltipMedia.matches || isMobileLayout || (lastPointerType && lastPointerType !== "mouse");
+    }
+
+    function clampValue(value, minimum, maximum) {
+      if (maximum <= minimum) {
+        return minimum;
+      }
+
+      return Math.min(Math.max(value, minimum), maximum);
+    }
+
+    function stickerLabel(sticker) {
+      const inlineHint = sticker.querySelector(".case-sticker-hint");
+      return sticker.dataset.label || sticker.getAttribute("aria-label") || inlineHint?.textContent?.trim() || "";
+    }
+
+    function positionTooltip(sticker) {
+      if (!sticker || tooltip.hidden) {
+        return;
+      }
+
+      const viewportMargin = 10;
+      const stickerRect = sticker.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const maxLeft = window.innerWidth - viewportMargin - tooltipRect.width;
+      const maxTop = window.innerHeight - viewportMargin - tooltipRect.height;
+      const preferredLeft = stickerRect.left + (stickerRect.width / 2) - (tooltipRect.width / 2);
+      const belowTop = stickerRect.bottom + 10;
+      const aboveTop = stickerRect.top - tooltipRect.height - 10;
+      const hasRoomBelow = belowTop + tooltipRect.height <= window.innerHeight - viewportMargin;
+      const hasRoomAbove = aboveTop >= viewportMargin;
+      const preferredTop = hasRoomBelow || !hasRoomAbove ? belowTop : aboveTop;
+
+      tooltip.style.left = `${Math.round(clampValue(preferredLeft, viewportMargin, maxLeft))}px`;
+      tooltip.style.top = `${Math.round(clampValue(preferredTop, viewportMargin, maxTop))}px`;
+    }
+
+    function hideTooltip() {
+      if (activeSticker) {
+        activeSticker.classList.remove("is-tooltip-open");
+      }
+
+      activeSticker = null;
+      tooltip.classList.remove("is-visible");
+      tooltip.hidden = true;
+      tooltip.setAttribute("aria-hidden", "true");
+    }
+
+    function showTooltip(sticker) {
+      const label = stickerLabel(sticker);
+
+      if (!label) {
+        return;
+      }
+
+      if (activeSticker && activeSticker !== sticker) {
+        activeSticker.classList.remove("is-tooltip-open");
+      }
+
+      activeSticker = sticker;
+      activeSticker.classList.add("is-tooltip-open");
+      tooltip.textContent = label;
+      tooltip.hidden = false;
+      tooltip.setAttribute("aria-hidden", "false");
+      positionTooltip(sticker);
+      window.requestAnimationFrame(() => {
+        positionTooltip(sticker);
+        tooltip.classList.add("is-visible");
+      });
+    }
+
+    function stopCaseNavigation(event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    document.addEventListener("pointerdown", (event) => {
+      lastPointerType = event.pointerType || "";
+      const sticker = closestSticker(event.target);
+
+      if (sticker && shouldUseTapTooltip(event)) {
+        suppressNextClick = true;
+        showTooltip(sticker);
+        stopCaseNavigation(event);
+        return;
+      }
+
+      if (activeSticker) {
+        hideTooltip();
+      }
+    }, { capture: true });
+
+    document.addEventListener("click", (event) => {
+      const sticker = closestSticker(event.target);
+
+      if (sticker && (suppressNextClick || shouldUseTapTooltip(event))) {
+        suppressNextClick = false;
+        showTooltip(sticker);
+        stopCaseNavigation(event);
+        return;
+      }
+
+      suppressNextClick = false;
+    }, { capture: true });
+
+    window.addEventListener("resize", () => positionTooltip(activeSticker));
+    window.addEventListener("orientationchange", hideTooltip);
+    window.addEventListener("scroll", hideTooltip, { passive: true });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        hideTooltip();
+      }
+    });
+  }
+
   function normalizeSurveySearchText(value) {
     return String(value || "")
       .toLowerCase()
@@ -2915,20 +3089,27 @@
       const video = figure ? figure.querySelector("video") : null;
       const toggle = group.querySelector('[data-video-control="toggle"]');
       const rewind = group.querySelector('[data-video-control="rewind"]');
+      const scrubber = group.querySelector('[data-video-control="scrub"]');
+      const clickToggle = figure ? figure.querySelector("[data-video-click-toggle]") : null;
       const toggleIcon = toggle ? toggle.querySelector("[data-video-toggle-icon]") : null;
+      let isScrubbing = false;
 
-      if (!video || !toggle || !rewind || !toggleIcon) {
+      if (!video) {
         return;
       }
 
       function syncToggle() {
+        if (!toggle || !toggleIcon) {
+          return;
+        }
+
         const isPaused = video.paused || video.ended;
         toggleIcon.textContent = isPaused ? ">" : "II";
         toggle.setAttribute("aria-label", isPaused ? "Play prototype clip" : "Pause prototype clip");
         toggle.setAttribute("title", isPaused ? "Play prototype clip" : "Pause prototype clip");
       }
 
-      toggle.addEventListener("click", () => {
+      function togglePlayback() {
         if (video.paused || video.ended) {
           video.play().catch(() => {
             syncToggle();
@@ -2938,18 +3119,154 @@
         }
 
         syncToggle();
-      });
+      }
 
-      rewind.addEventListener("click", () => {
-        video.currentTime = 0;
-        syncToggle();
-      });
+      function formatTime(seconds) {
+        if (!Number.isFinite(seconds)) {
+          return "0:00";
+        }
+
+        const wholeSeconds = Math.max(0, Math.floor(seconds));
+        const minutes = Math.floor(wholeSeconds / 60);
+        const remainingSeconds = wholeSeconds % 60;
+        return `${minutes}:${String(remainingSeconds).padStart(2, "0")}`;
+      }
+
+      function syncScrubber() {
+        if (!scrubber || isScrubbing || !Number.isFinite(video.duration) || video.duration <= 0) {
+          return;
+        }
+
+        const max = Number(scrubber.max) || 1000;
+        const progress = Math.max(0, Math.min(1, video.currentTime / video.duration));
+        scrubber.value = String(Math.round(progress * max));
+        scrubber.style.setProperty("--video-progress", `${Math.round(progress * 10000) / 100}%`);
+        scrubber.setAttribute("aria-valuetext", `${formatTime(video.currentTime)} of ${formatTime(video.duration)}`);
+      }
+
+      if (toggle) {
+        toggle.addEventListener("click", togglePlayback);
+      }
+
+      if (rewind) {
+        rewind.addEventListener("click", () => {
+          video.currentTime = 0;
+          syncScrubber();
+          syncToggle();
+        });
+      }
+
+      if (clickToggle) {
+        clickToggle.addEventListener("click", togglePlayback);
+        clickToggle.addEventListener("keydown", (event) => {
+          if (event.key !== "Enter" && event.key !== " ") {
+            return;
+          }
+
+          event.preventDefault();
+          togglePlayback();
+        });
+      }
+
+      if (scrubber) {
+        scrubber.addEventListener("pointerdown", () => {
+          isScrubbing = true;
+        });
+
+        scrubber.addEventListener("pointerup", () => {
+          isScrubbing = false;
+          syncScrubber();
+        });
+
+        scrubber.addEventListener("pointercancel", () => {
+          isScrubbing = false;
+          syncScrubber();
+        });
+
+        scrubber.addEventListener("input", () => {
+          if (!Number.isFinite(video.duration) || video.duration <= 0) {
+            return;
+          }
+
+          const max = Number(scrubber.max) || 1000;
+          const value = Number(scrubber.value) || 0;
+          const progress = Math.max(0, Math.min(1, value / max));
+          video.currentTime = progress * video.duration;
+          scrubber.style.setProperty("--video-progress", `${Math.round(progress * 10000) / 100}%`);
+          scrubber.setAttribute("aria-valuetext", `${formatTime(video.currentTime)} of ${formatTime(video.duration)}`);
+        });
+
+        scrubber.addEventListener("change", () => {
+          isScrubbing = false;
+          syncScrubber();
+        });
+      }
 
       video.addEventListener("play", syncToggle);
       video.addEventListener("pause", syncToggle);
       video.addEventListener("ended", syncToggle);
+      video.addEventListener("loadedmetadata", syncScrubber);
+      video.addEventListener("durationchange", syncScrubber);
+      video.addEventListener("timeupdate", syncScrubber);
       syncToggle();
+      syncScrubber();
     });
+  }
+
+  function initJasneStepMobileHover() {
+    const cards = Array.from(document.querySelectorAll(".jasne-step-card"));
+
+    if (!cards.length) {
+      return;
+    }
+
+    const mobileLayout = window.matchMedia("(max-width: 600px)");
+    let animationFrame = 0;
+
+    function syncCards() {
+      animationFrame = 0;
+
+      if (!mobileLayout.matches) {
+        cards.forEach((card) => card.classList.remove("is-scroll-hovered"));
+        return;
+      }
+
+      const triggerOffset = Math.min(72, window.innerHeight * 0.08);
+      const activationLine = window.innerHeight / 2 + triggerOffset;
+
+      cards.forEach((card) => {
+        const visual = card.querySelector(".jasne-step-visual");
+
+        if (!visual) {
+          return;
+        }
+
+        const cardRect = card.getBoundingClientRect();
+        const visualRect = visual.getBoundingClientRect();
+        const isCrossed = visualRect.bottom <= activationLine
+          && cardRect.bottom > 0
+          && visualRect.top < window.innerHeight;
+
+        card.classList.toggle("is-scroll-hovered", isCrossed);
+      });
+    }
+
+    function scheduleSync() {
+      if (animationFrame) {
+        return;
+      }
+
+      animationFrame = window.requestAnimationFrame(syncCards);
+    }
+
+    syncCards();
+    window.addEventListener("scroll", scheduleSync, { passive: true });
+    window.addEventListener("resize", scheduleSync);
+    if (typeof mobileLayout.addEventListener === "function") {
+      mobileLayout.addEventListener("change", syncCards);
+    } else if (typeof mobileLayout.addListener === "function") {
+      mobileLayout.addListener(syncCards);
+    }
   }
 
   function initLendiTitleScrollPreview() {
@@ -3179,9 +3496,11 @@
   initCaseScreenMagnifiers();
   initBeforeAfterComparisons();
   initCaseVideoControls();
+  initJasneStepMobileHover();
   initLendiTitleScrollPreview();
   initLendiStickerStack();
   initPortfolioSurvey();
+  initCaseStickerTooltips();
   initVisitedCaseNotes();
   trackStoryEvent("story_page_viewed");
 

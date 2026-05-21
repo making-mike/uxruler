@@ -9,9 +9,9 @@
   <link rel="canonical" href="https://www.uxruler.com/story/jasne-ai/">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
   <link rel="shortcut icon" href="../../assets/favicon/favicon.ico">
-  <link rel="stylesheet" href="../story.css?v=20260521-visited-case-notes">
+  <link rel="stylesheet" href="../story.css?v=20260521-app-badge-hover">
   <script src="../posthog.js" defer></script>
-  <script src="../story.js?v=20260521-visited-case-notes" defer></script>
+  <script src="../story.js?v=20260521-jasne-rive-speed" defer></script>
 </head>
 <body data-story-page-type="case_study" data-case-id="jasne-ai">
   <header class="topbar" aria-label="Story navigation">
@@ -44,14 +44,23 @@
                 <img src="../../assets/jasne-ai/google-play-badge.svg" alt="">
               </a>
             </div>
+            <span class="jasne-card-reasoning" data-rive-src="../../assets/jasne-ai/rive/crm-public/logo/jasne_reasoning_lightmode.riv" data-rive-state-machine="State Machine 1" data-rive-speed="2" data-rive-fit="Contain" data-rive-alignment="Center" aria-hidden="true">
+              <canvas width="220" height="220"></canvas>
+            </span>
           </div>
         </div>
 
-        <aside class="sticky-note sticky-note-green case-scope-note jasne-scope-note" aria-label="Case summary">
-          <strong>AI-native LMS</strong>
-          <span>Learning content, employee context, AI support, and adoption signals treated as one product system.</span>
-          <span class="depth-badge">work in progress</span>
-        </aside>
+        <div class="jasne-hero-side">
+          <figure class="jasne-hero-video-card">
+            <div class="jasne-video-frame">
+              <video src="../../assets/jasne-ai/jasne-course-generation.mp4" width="1104" height="716" autoplay muted loop playsinline preload="metadata" aria-label="Jasne.ai course generation workflow preview" data-video-click-toggle tabindex="0"></video>
+            </div>
+            <figcaption class="jasne-video-caption" data-video-controls>
+              <span>Course generation flow</span>
+              <input class="jasne-video-slider" id="jasne-course-video-progress" type="range" min="0" max="1000" value="0" step="1" data-video-control="scrub" aria-label="Course generation flow progress">
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -82,7 +91,7 @@
       <div class="shell">
         <div class="jasne-steps-heading">
           <span class="kicker">Website product loop</span>
-          <h2 id="jasne-steps-title">Every success starts with people.</h2>
+          <h2 id="jasne-steps-title">Learning management system for <em>managers</em></h2>
         </div>
 
         <ol class="jasne-step-list">
