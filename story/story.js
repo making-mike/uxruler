@@ -41,6 +41,52 @@
     }
   }
 
+  function visibleFocusableElements(container) {
+    if (!container) {
+      return [];
+    }
+
+    return Array.from(container.querySelectorAll([
+      "a[href]",
+      "button:not([disabled])",
+      "input:not([disabled])",
+      "select:not([disabled])",
+      "textarea:not([disabled])",
+      "[tabindex]:not([tabindex='-1'])"
+    ].join(","))).filter((element) => {
+      return element instanceof HTMLElement
+        && !element.closest("[hidden]")
+        && element.getClientRects().length > 0
+        && getComputedStyle(element).visibility !== "hidden";
+    });
+  }
+
+  function trapTabFocus(container, event) {
+    const focusable = visibleFocusableElements(container);
+
+    if (!focusable.length) {
+      event.preventDefault();
+      if (container && typeof container.focus === "function") {
+        container.focus();
+      }
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (!container.contains(document.activeElement)) {
+      event.preventDefault();
+      first.focus();
+    } else if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
   const riveRuntimeUrl = "https://unpkg.com/@rive-app/webgl2@latest";
   let riveRuntimePromise = null;
 
@@ -84,7 +130,7 @@
 
   function initRiveAnimations() {
     const hosts = Array.from(document.querySelectorAll("[data-rive-src]"))
-      .filter((host) => !host.closest("[hidden]"));
+      .filter((host) => !host.closest("[hidden]") && !host.dataset.riveSequenceSrcs);
 
     if (!hosts.length) {
       return;
@@ -560,6 +606,131 @@
           }
 
           host.riveInstance = riveInstance;
+        });
+      })
+      .catch(() => {
+        hosts.forEach((host) => {
+          host.dataset.riveError = "runtime";
+        });
+      });
+  }
+
+  function initRiveSequences() {
+    const hosts = Array.from(document.querySelectorAll("[data-rive-sequence-srcs]"))
+      .filter((host) => !host.closest("[hidden]"));
+
+    if (!hosts.length) {
+      return;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    loadRiveRuntime()
+      .then((rive) => {
+        hosts.forEach((host) => {
+          const canvas = host.querySelector("canvas");
+          const sources = String(host.dataset.riveSequenceSrcs || "")
+            .split(",")
+            .map((src) => src.trim())
+            .filter(Boolean);
+
+          if (!canvas || !sources.length || host.dataset.riveSequenceReady === "true") {
+            return;
+          }
+
+          const fit = rive.Fit[host.dataset.riveFit || "Contain"] || rive.Fit.Contain;
+          const alignment = rive.Alignment[host.dataset.riveAlignment || "Center"] || rive.Alignment.Center;
+          const duration = Math.max(900, Number(host.dataset.riveSequenceDuration || 2200));
+          const durations = String(host.dataset.riveSequenceDurations || "")
+            .split(",")
+            .map((value) => Number(value.trim()));
+          const stateMachine = host.dataset.riveStateMachine;
+          let activeIndex = 0;
+          let activeInstance = null;
+          let sequenceTimer = null;
+
+          function getSequenceDuration(index) {
+            const itemDuration = durations[index % durations.length];
+            return Number.isFinite(itemDuration) ? Math.max(900, itemDuration) : duration;
+          }
+
+          function cleanupActiveInstance() {
+            window.clearTimeout(sequenceTimer);
+
+            if (activeInstance && typeof activeInstance.cleanup === "function") {
+              activeInstance.cleanup();
+            } else if (activeInstance && typeof activeInstance.stop === "function") {
+              activeInstance.stop();
+            }
+
+            activeInstance = null;
+          }
+
+          function loadSequenceItem() {
+            cleanupActiveInstance();
+
+            const src = sources[activeIndex % sources.length];
+            const options = {
+              src,
+              canvas,
+              autoplay: !reduceMotion.matches,
+              useOffscreenRenderer: true,
+              layout: new rive.Layout({ fit, alignment })
+            };
+
+            if (stateMachine) {
+              options.stateMachines = stateMachine;
+            }
+
+            if (host.dataset.riveArtboard) {
+              options.artboard = host.dataset.riveArtboard;
+            }
+
+            host.dataset.riveSrc = src;
+            host.dataset.riveSequenceIndex = String(activeIndex % sources.length);
+
+            activeInstance = new rive.Rive({
+              ...options,
+              onLoad: () => {
+                host.dataset.riveSequenceReady = "true";
+                host.dataset.riveReady = "true";
+                host.classList.add("is-rive-loaded");
+                activeInstance.resizeDrawingSurfaceToCanvas();
+
+                if (!reduceMotion.matches && sources.length > 1) {
+                  host.dataset.riveSequenceCurrentDuration = String(getSequenceDuration(activeIndex));
+                  sequenceTimer = window.setTimeout(() => {
+                    activeIndex = (activeIndex + 1) % sources.length;
+                    loadSequenceItem();
+                  }, getSequenceDuration(activeIndex));
+                }
+              },
+              onLoadError: () => {
+                host.dataset.riveError = "sequence-load";
+
+                if (sources.length > 1) {
+                  sequenceTimer = window.setTimeout(() => {
+                    activeIndex = (activeIndex + 1) % sources.length;
+                    loadSequenceItem();
+                  }, 300);
+                }
+              }
+            });
+
+            host.riveInstance = activeInstance;
+          }
+
+          loadSequenceItem();
+
+          if ("ResizeObserver" in window) {
+            const resizeObserver = new ResizeObserver(() => {
+              if (activeInstance && typeof activeInstance.resizeDrawingSurfaceToCanvas === "function") {
+                activeInstance.resizeDrawingSurfaceToCanvas();
+              }
+            });
+            resizeObserver.observe(host);
+            host.riveResizeObserver = resizeObserver;
+          }
         });
       })
       .catch(() => {
@@ -1356,9 +1527,15 @@
       window.addEventListener("resize", hideNodePopover);
 
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && modalState.elements && !modalState.elements.shell.hidden) {
+        if (!modalState.elements || modalState.elements.shell.hidden) {
+          return;
+        }
+
+        if (event.key === "Escape") {
           event.stopImmediatePropagation();
           closeNodeModal("escape");
+        } else if (event.key === "Tab") {
+          trapTabFocus(modalState.elements.panel, event);
         }
       });
     }
@@ -2886,10 +3063,39 @@
         return;
       }
 
+      if (!frame.hasAttribute("tabindex")) {
+        frame.tabIndex = 0;
+      }
+
+      if (!frame.getAttribute("aria-label")) {
+        const fallbackLabel = card.getAttribute("aria-label") || "Product screen preview";
+        frame.setAttribute("aria-label", `${fallbackLabel}. Focus to inspect the screen detail.`);
+      }
+
       function hideMagnifier() {
         card.classList.remove("is-magnifying");
         magnifier.style.opacity = "0";
         magnifier.style.transform = "translate(-50%, -50%) scale(0.92)";
+      }
+
+      function showMagnifierAt(image, imageRect, clientX, clientY) {
+        const frameRect = frame.getBoundingClientRect();
+        const ratioX = (clientX - imageRect.left) / imageRect.width;
+        const ratioY = (clientY - imageRect.top) / imageRect.height;
+        const zoom = 3.2;
+        const lensWidth = magnifier.offsetWidth || 320;
+        const lensHeight = magnifier.offsetHeight || 320;
+        const scaledWidth = imageRect.width * zoom;
+        const scaledHeight = imageRect.height * zoom;
+
+        magnifier.style.left = `${Math.round(clientX - frameRect.left)}px`;
+        magnifier.style.top = `${Math.round(clientY - frameRect.top)}px`;
+        magnifier.style.backgroundImage = `url("${image.currentSrc || image.src}")`;
+        magnifier.style.backgroundSize = `${Math.round(scaledWidth)}px ${Math.round(scaledHeight)}px`;
+        magnifier.style.backgroundPosition = `${Math.round(lensWidth / 2 - ratioX * scaledWidth)}px ${Math.round(lensHeight / 2 - ratioY * scaledHeight)}px`;
+        magnifier.style.opacity = "1";
+        magnifier.style.transform = "translate(-50%, -50%) scale(1)";
+        card.classList.add("is-magnifying");
       }
 
       function updateMagnifier(event) {
@@ -2922,27 +3128,40 @@
           return;
         }
 
-        const frameRect = frame.getBoundingClientRect();
-        const ratioX = (event.clientX - imageRect.left) / imageRect.width;
-        const ratioY = (event.clientY - imageRect.top) / imageRect.height;
-        const zoom = 3.2;
-        const lensWidth = magnifier.offsetWidth || 320;
-        const lensHeight = magnifier.offsetHeight || 320;
-        const scaledWidth = imageRect.width * zoom;
-        const scaledHeight = imageRect.height * zoom;
+        showMagnifierAt(image, imageRect, event.clientX, event.clientY);
+      }
 
-        magnifier.style.left = `${Math.round(event.clientX - frameRect.left)}px`;
-        magnifier.style.top = `${Math.round(event.clientY - frameRect.top)}px`;
-        magnifier.style.backgroundImage = `url("${image.currentSrc || image.src}")`;
-        magnifier.style.backgroundSize = `${Math.round(scaledWidth)}px ${Math.round(scaledHeight)}px`;
-        magnifier.style.backgroundPosition = `${Math.round(lensWidth / 2 - ratioX * scaledWidth)}px ${Math.round(lensHeight / 2 - ratioY * scaledHeight)}px`;
-        magnifier.style.opacity = "1";
-        magnifier.style.transform = "translate(-50%, -50%) scale(1)";
-        card.classList.add("is-magnifying");
+      function showCenteredMagnifier() {
+        if (!canUseMagnifier()) {
+          return;
+        }
+
+        const visibleImages = images
+          .map((candidate) => ({ image: candidate, rect: candidate.getBoundingClientRect() }))
+          .filter(({ rect }) => rect.bottom > 0 && rect.top < window.innerHeight && rect.width > 0 && rect.height > 0);
+        const target = visibleImages.find(({ rect }) => {
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          return centerX >= rect.left && centerX <= rect.right && centerY >= rect.top && centerY <= rect.bottom;
+        }) || visibleImages[0];
+
+        if (!target) {
+          return;
+        }
+
+        const clientX = target.rect.left + target.rect.width / 2;
+        const visibleTop = Math.max(target.rect.top, 0);
+        const visibleBottom = Math.min(target.rect.bottom, window.innerHeight);
+        const clientY = visibleBottom > visibleTop
+          ? (visibleTop + visibleBottom) / 2
+          : target.rect.top + target.rect.height / 2;
+
+        showMagnifierAt(target.image, target.rect, clientX, clientY);
       }
 
       frame.addEventListener("pointermove", updateMagnifier);
       frame.addEventListener("pointerleave", hideMagnifier);
+      frame.addEventListener("focus", showCenteredMagnifier);
       frame.addEventListener("blur", hideMagnifier);
     });
   }
@@ -3210,6 +3429,96 @@
       video.addEventListener("timeupdate", syncScrubber);
       syncToggle();
       syncScrubber();
+    });
+  }
+
+  function initJasneMapMagnifier() {
+    const maps = Array.from(document.querySelectorAll("[data-jasne-map-magnifier]"));
+
+    if (!maps.length) {
+      return;
+    }
+
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    function canUseMagnifier() {
+      return finePointer.matches;
+    }
+
+    function clampRatio(value) {
+      return Math.max(0, Math.min(1, value));
+    }
+
+    maps.forEach((map) => {
+      const image = map.querySelector("[data-jasne-map-magnifier-image]");
+      const lens = map.querySelector("[data-jasne-map-magnifier-lens]");
+
+      if (!image || !lens) {
+        return;
+      }
+
+      const magnifierSource = image.dataset.jasneMapMagnifierSrc || image.currentSrc || image.src;
+
+      function hideMagnifier() {
+        map.classList.remove("is-magnifying");
+      }
+
+      function updateLens(ratioX, ratioY, left, top) {
+        const zoom = Number.parseFloat(getComputedStyle(map).getPropertyValue("--map-zoom")) || 3;
+        const imageRect = image.getBoundingClientRect();
+        const lensWidth = lens.offsetWidth || 160;
+        const lensHeight = lens.offsetHeight || 160;
+        const scaledWidth = imageRect.width * zoom;
+        const scaledHeight = imageRect.height * zoom;
+
+        lens.style.left = `${Math.round(left)}px`;
+        lens.style.top = `${Math.round(top)}px`;
+        lens.style.backgroundImage = `url("${magnifierSource}")`;
+        lens.style.backgroundSize = `${Math.round(scaledWidth)}px ${Math.round(scaledHeight)}px`;
+        lens.style.backgroundPosition = `${Math.round(lensWidth / 2 - ratioX * scaledWidth)}px ${Math.round(lensHeight / 2 - ratioY * scaledHeight)}px`;
+        map.classList.add("is-magnifying");
+      }
+
+      function updateMagnifier(event) {
+        if (!canUseMagnifier()) {
+          hideMagnifier();
+          return;
+        }
+
+        const mapRect = map.getBoundingClientRect();
+        const imageRect = image.getBoundingClientRect();
+        const ratioX = clampRatio((event.clientX - imageRect.left) / imageRect.width);
+        const ratioY = clampRatio((event.clientY - imageRect.top) / imageRect.height);
+
+        updateLens(
+          ratioX,
+          ratioY,
+          event.clientX - mapRect.left,
+          event.clientY - mapRect.top
+        );
+      }
+
+      function showCenteredMagnifier() {
+        if (!canUseMagnifier()) {
+          return;
+        }
+
+        const mapRect = map.getBoundingClientRect();
+        const imageRect = image.getBoundingClientRect();
+
+        updateLens(
+          0.5,
+          0.5,
+          imageRect.left + imageRect.width / 2 - mapRect.left,
+          imageRect.top + imageRect.height / 2 - mapRect.top
+        );
+      }
+
+      map.addEventListener("pointermove", updateMagnifier);
+      map.addEventListener("pointerleave", hideMagnifier);
+      map.addEventListener("pointercancel", hideMagnifier);
+      map.addEventListener("focus", showCenteredMagnifier);
+      map.addEventListener("blur", hideMagnifier);
     });
   }
 
@@ -3492,10 +3801,12 @@
 
   renderLendiGraph();
   initRiveAnimations();
+  initRiveSequences();
   initLendiPdfPageStack();
   initCaseScreenMagnifiers();
   initBeforeAfterComparisons();
   initCaseVideoControls();
+  initJasneMapMagnifier();
   initJasneStepMobileHover();
   initLendiTitleScrollPreview();
   initLendiStickerStack();

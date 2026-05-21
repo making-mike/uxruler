@@ -165,6 +165,29 @@
       color: inherit;
     }
 
+    .skip-link {
+      position: fixed;
+      z-index: 10000;
+      top: 8px;
+      left: 8px;
+      transform: translateY(calc(-100% - 16px));
+      border: 2px solid var(--black);
+      padding: 8px 12px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-decoration: none;
+      transition: transform 120ms ease;
+    }
+
+    .skip-link:focus,
+    .skip-link:focus-visible {
+      transform: translateY(0);
+      outline: 2px solid var(--white);
+      outline-offset: 3px;
+    }
+
     h1,
     h2,
     h3,
@@ -253,6 +276,11 @@
       width: 100%;
       height: var(--topbar-height);
       object-fit: fill;
+    }
+
+    .brand:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: -4px;
     }
 
     .topline {
@@ -1043,6 +1071,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main" data-skip-link>Przejdź do treści</a>
   <header class="topbar" aria-label="Page navigation">
     <div class="shell">
       <a class="brand" href="index.html#about" aria-label="UX RULER">
@@ -1067,7 +1096,7 @@
 
   <div class="page-ruler" aria-hidden="true"></div>
 
-  <main class="page">
+  <main class="page" id="main" tabindex="-1">
     <div class="shell">
       <section class="install-hero" aria-labelledby="installTitle">
         <div>
@@ -1226,6 +1255,7 @@
       pl: {
         title: "Instalacja UX RULER",
         description: "Zainstaluj UX RULER w Codex, Claude Code albo lokalnie w repo projektu.",
+        skipToContent: "Przejdź do treści",
         topline: "Open-source’owy skill UX dla agentów AI",
         eyebrow: "Instalacja",
         heroTitle: "Zacznij używać <em>skilla</em>",
@@ -1307,6 +1337,7 @@
       en: {
         title: "Install UX RULER",
         description: "Install UX RULER in Codex, Claude Code, or a project repo.",
+        skipToContent: "Skip to content",
         topline: "Open-source UX skill for AI agents",
         eyebrow: "Install",
         heroTitle: "Start using <em>the skill</em>",
@@ -1644,6 +1675,8 @@
       setMetaContent('meta[name="description"]', copy.description);
       setMetaContent('meta[property="og:description"]', copy.description);
       setMetaContent('meta[property="og:title"]', copy.title);
+      const skipLink = document.querySelector("[data-skip-link]");
+      if (skipLink) skipLink.textContent = copy.skipToContent;
       renderCopy(language);
       renderInstallCommands(language);
       updateLanguageButtons(language);

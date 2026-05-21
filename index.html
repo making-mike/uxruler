@@ -192,6 +192,29 @@
       color: inherit;
     }
 
+    .skip-link {
+      position: fixed;
+      z-index: 10000;
+      top: 8px;
+      left: 8px;
+      transform: translateY(calc(-100% - 16px));
+      border: 2px solid var(--black);
+      padding: 8px 12px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 12px;
+      line-height: var(--small-line);
+      text-decoration: none;
+      transition: transform 120ms ease;
+    }
+
+    .skip-link:focus,
+    .skip-link:focus-visible {
+      transform: translateY(0);
+      outline: 2px solid var(--white);
+      outline-offset: 3px;
+    }
+
     .shell {
       width: auto;
       margin: 0 var(--content-gutter-right) 0 var(--content-gutter-left);
@@ -237,6 +260,11 @@
       width: 100%;
       height: var(--topbar-height);
       object-fit: fill;
+    }
+
+    .brand:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: -4px;
     }
 
     .topline {
@@ -339,9 +367,14 @@
       outline-offset: 3px;
     }
 
-    .rail-nav-link:hover,
+    .rail-nav-link:hover {
+      text-decoration-thickness: 2px;
+    }
+
     .rail-nav-link:focus-visible {
-      outline: none;
+      outline: 2px solid currentColor;
+      outline-offset: 4px;
+      text-decoration-thickness: 2px;
     }
 
     h1,
@@ -2416,6 +2449,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main" data-skip-link>Przejdź do treści</a>
   <header class="topbar" aria-label="Nawigacja strony">
     <div class="shell">
       <a class="brand" href="#about" aria-label="UX RULER">
@@ -2468,7 +2502,7 @@
     </div>
   </section>
 
-  <main>
+  <main id="main" tabindex="-1">
     <section id="mapa">
       <div class="shell">
         <div class="process-graph" aria-label="Mapa procesu">
@@ -3132,6 +3166,7 @@
       pl: {
         title: "UX RULER",
         description: "UX RULER to open-source’owy skill UX dla agentów AI. Pomaga przejść od pomysłu albo repo do jaśniejszej decyzji, metryki i najlepszego następnego kroku.",
+        skipToContent: "Przejdź do treści",
         heroTitle: "Poprowadź produkt od misji do mierzalnej wartości dla <em>użytkownika</em>.",
         footerFeedbackKicker: "Feedback",
         footerFeedbackTitle: "Przetestuj i powiedz, co realnie pomogło",
@@ -3182,6 +3217,7 @@
       en: {
         title: "UX RULER",
         description: "UX RULER is an open-source UX skill for AI agents. It helps move from an idea or repo to a clearer decision, metric, and best next step.",
+        skipToContent: "Skip to content",
         heroTitle: "Guide a product from mission to measurable value for <em>users</em>.",
         footerFeedbackKicker: "Feedback",
         footerFeedbackTitle: "Test it and tell us what actually helped",
@@ -3781,6 +3817,9 @@
 
       const heroTitle = document.querySelector("h1");
       if (heroTitle) heroTitle.innerHTML = copy.heroTitle;
+
+      const skipLink = document.querySelector("[data-skip-link]");
+      if (skipLink) skipLink.textContent = copy.skipToContent;
 
       const footerTitle = document.querySelector(".footer-title");
       if (footerTitle) footerTitle.innerHTML = copy.footerTitle;
@@ -4620,6 +4659,49 @@
       return url.toString();
     }
 
+    function visibleFocusableElements(container) {
+      if (!container) return [];
+      return Array.from(container.querySelectorAll([
+        "a[href]",
+        "button:not([disabled])",
+        "input:not([disabled])",
+        "select:not([disabled])",
+        "textarea:not([disabled])",
+        "[tabindex]:not([tabindex='-1'])"
+      ].join(","))).filter((element) => {
+        return element instanceof HTMLElement
+          && !element.closest("[hidden]")
+          && element.getClientRects().length > 0
+          && getComputedStyle(element).visibility !== "hidden";
+      });
+    }
+
+    function trapTabFocus(container, event) {
+      const focusable = visibleFocusableElements(container);
+
+      if (!focusable.length) {
+        event.preventDefault();
+        if (container && typeof container.focus === "function") {
+          container.focus();
+        }
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (!container.contains(document.activeElement)) {
+        event.preventDefault();
+        first.focus();
+      } else if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+
     function choiceText(choice) {
       if (choice && typeof choice === "object") {
         return String(choice.label || choice.value || choice.name || "");
@@ -4807,6 +4889,11 @@
           });
         };
       }
+
+      const focusTarget = followUpButton && !followUpButton.hidden ? followUpButton : doneButton;
+      if (focusTarget && typeof focusTarget.focus === "function") {
+        focusTarget.focus();
+      }
     }
 
     function openSurveyModal(survey, stage, context = {}) {
@@ -4968,6 +5055,12 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeSurveyModal("escape");
+      } else if (event.key === "Tab") {
+        const shell = document.querySelector("[data-survey-shell]");
+        const panel = document.querySelector(".survey-panel");
+        if (shell && !shell.hidden && panel) {
+          trapTabFocus(panel, event);
+        }
       }
     });
 

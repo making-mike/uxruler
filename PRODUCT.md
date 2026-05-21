@@ -153,7 +153,7 @@ Review cadence and decision rule: review PostHog weekly during early release. If
 | Dimension | Current Read | Next Improvement |
 |---|---|---|
 | Usefulness | Strong promise, still needs external evidence. | Validate with 3 real applications. |
-| Ergonomics | Compact skill and website, but some skill questions still need simpler wording, clearer next-step guidance, guided empty-repo mission scaffolding, early roadmap handoff, and better post-edit handoffs. | Test the plain-language repo question, test artifact closeouts after file edits, test whether `ROADMAP.md` helps choose the next move, test the empty-repo mission-definition path, and add one applied example. |
+| Ergonomics | Compact skill and website, with keyboard access now supported by skip links, visible focus states, keyboard-usable media widgets, and trapped focus in site dialogs; some skill questions still need simpler wording, clearer next-step guidance, guided empty-repo mission scaffolding, early roadmap handoff, and better post-edit handoffs. | Test the plain-language repo question, test artifact closeouts after file edits, test whether `ROADMAP.md` helps choose the next move, test the empty-repo mission-definition path, and add one applied example. |
 | Attraction | Distinct process map, plain-language workflow, agent-readable product memory, and a recognizable site experience that supports the open source process identity. | Test whether users remember and choose UX RULER for clearer agent product judgment, and whether the site experience helps that strategic pull instead of becoming decoration. |
 | Identity | Positions users as thoughtful builders who use AI without skipping product judgment. | Keep artifacts lightweight so the identity does not feel bureaucratic. |
 

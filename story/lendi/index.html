@@ -9,11 +9,12 @@
   <link rel="canonical" href="https://www.uxruler.com/story/lendi/">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
   <link rel="shortcut icon" href="../../assets/favicon/favicon.ico">
-  <link rel="stylesheet" href="../story.css?v=20260521-lendi-lessons-photo">
+  <link rel="stylesheet" href="../story.css?v=20260521-lendi-graph-title">
   <script src="../posthog.js" defer></script>
   <script src="../story.js?v=20260521-visited-case-notes" defer></script>
 </head>
 <body data-story-page-type="case_study" data-case-id="lendi">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="topbar" aria-label="Story navigation">
     <a class="brand" href="../../index.html#about" aria-label="UX RULER">
       <img src="../../assets/logo.svg" alt="">
@@ -27,7 +28,7 @@
     </div>
   </header>
 
-  <main class="page case-board-page">
+  <main class="page case-board-page" id="main" tabindex="-1">
     <section class="hero case-hero lendi-case-hero" aria-labelledby="case-title">
       <div class="shell case-board-hero-grid">
         <div class="case-title-stack">
@@ -110,11 +111,11 @@
 
     <section class="lendi-map-section" aria-labelledby="lendi-map-title">
       <div class="shell">
-        <div class="board-heading">
-          <h2 id="lendi-map-title">What the platform had to connect.</h2>
-        </div>
-
         <div class="lendi-flow-board lendi-node-board" data-design-base="../../assets/lendi-process-base.svg">
+          <div class="board-heading">
+            <h2 id="lendi-map-title">What the platform had to connect.</h2>
+          </div>
+
           <div class="node-graph-toolbar">
             <div class="node-graph-actions">
               <div class="node-graph-zoom-controls" aria-label="Graph zoom controls">
@@ -296,7 +297,7 @@
           </script>
         </div>
 
-        <div class="case-grid lendi-context-grid" aria-labelledby="lendi-context-title">
+        <div class="case-grid lendi-context-grid" aria-labelledby="lendi-context-title" hidden>
           <div class="case-panel">
             <span class="kicker">Case context</span>
             <h2 id="lendi-context-title">The product had to become a company operating system.</h2>

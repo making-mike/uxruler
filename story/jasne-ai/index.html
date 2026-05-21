@@ -4,16 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jasne.ai case study draft | UX RULER story</title>
-  <meta name="description" content="Draft portfolio case study for Jasne.ai, an AI-native learning management and employee success product direction.">
+  <meta name="description" content="Case study for Jasne.ai, an AI-native learning product that helps sales teams build passion for the products they sell.">
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://www.uxruler.com/story/jasne-ai/">
   <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32x32.png">
   <link rel="shortcut icon" href="../../assets/favicon/favicon.ico">
-  <link rel="stylesheet" href="../story.css?v=20260521-app-badge-hover">
+  <link rel="stylesheet" href="../story.css?v=20260521-jasne-phone-hover">
   <script src="../posthog.js" defer></script>
-  <script src="../story.js?v=20260521-jasne-rive-speed" defer></script>
+  <script src="../story.js?v=20260521-jasne-map-hq-hover" defer></script>
 </head>
 <body data-story-page-type="case_study" data-case-id="jasne-ai">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="topbar" aria-label="Story navigation">
     <a class="brand" href="../../index.html#about" aria-label="UX RULER">
       <img src="../../assets/logo.svg" alt="">
@@ -27,15 +28,18 @@
     </div>
   </header>
 
-  <main class="page case-board-page jasne-case-page">
+  <main class="page case-board-page jasne-case-page" id="main" tabindex="-1">
     <section class="hero case-hero lendi-case-hero jasne-case-hero" aria-labelledby="case-title">
       <div class="shell case-board-hero-grid">
         <div class="case-title-stack">
-          <a class="button back-link" href="../#timeline" data-track="story_back_clicked" data-track-location="case_hero" data-track-target="story_case_notes">Back to story</a>
+          <div class="case-title-actions">
+            <a class="button back-link" href="../#timeline" data-track="story_back_clicked" data-track-location="case_hero" data-track-target="story_case_notes">Back to story</a>
+            <span class="case-title-label">Side project</span>
+          </div>
           <div class="title-note case-title-note jasne-title-note">
             <span class="kicker">Ongoing / medium case</span>
             <h1 id="case-title">Jasne.ai.</h1>
-            <p class="lead">An AI-native learning management system and employee-success app direction, shown as a workflow that learns with people instead of a set of static screens.</p>
+            <p class="lead">We believe sales teams need a better way to make sales representatives and managers passionate about the products they represent, because training tools teach product facts but rarely make people genuinely interested in what they sell.</p>
             <div class="jasne-store-badges" role="group" aria-label="Jasne.ai app store links">
               <a class="jasne-store-badge jasne-store-badge-ios" href="https://apps.apple.com/pl/app/jasne/id6747730526" target="_blank" rel="noreferrer" aria-label="Download Jasne on the App Store">
                 <img src="../../assets/jasne-ai/app-store-badge.svg" alt="">
@@ -44,13 +48,31 @@
                 <img src="../../assets/jasne-ai/google-play-badge.svg" alt="">
               </a>
             </div>
-            <span class="jasne-card-reasoning" data-rive-src="../../assets/jasne-ai/rive/crm-public/logo/jasne_reasoning_lightmode.riv" data-rive-state-machine="State Machine 1" data-rive-speed="2" data-rive-fit="Contain" data-rive-alignment="Center" aria-hidden="true">
+            <span class="jasne-card-reasoning" data-rive-src="../../assets/jasne-ai/rive/crm-public/jasne_loader_lightmode.riv" data-rive-sequence-srcs="../../assets/jasne-ai/rive/crm-public/jasne_loader_lightmode.riv,../../assets/jasne-ai/rive/crm-public/logo/jasne_reasoning_lightmode.riv" data-rive-sequence-duration="2200" data-rive-sequence-durations="2000,2200" data-rive-state-machine="State Machine 1" data-rive-fit="Contain" data-rive-alignment="Center" aria-hidden="true">
               <canvas width="220" height="220"></canvas>
             </span>
           </div>
         </div>
 
         <div class="jasne-hero-side">
+          <div class="jasne-hero-map-sticker" data-jasne-map-magnifier tabindex="0" aria-label="Jasne.ai workflow map preview">
+            <img src="../../assets/jasne-ai/learning-workflow-map-hero.png" width="1500" height="720" alt="Jasne.ai workflow map showing learning, course generation, lessons, and feedback paths" data-jasne-map-magnifier-image data-jasne-map-magnifier-src="../../assets/jasne-ai/learning-workflow-map-hero-hq.png">
+            <span class="jasne-hero-map-lens" data-jasne-map-magnifier-lens aria-hidden="true"></span>
+          </div>
+          <div class="jasne-mobile-showcase" aria-label="Jasne.ai mobile learning mockups">
+            <figure class="jasne-mobile-mockup jasne-mobile-mockup-static">
+              <div class="jasne-mobile-shell">
+                <img src="../../assets/jasne-ai/jasne-quiz-screen.png" width="1179" height="2556" alt="Jasne.ai mobile quiz screen with a question about e-consultation waiting time" loading="eager" decoding="async">
+              </div>
+              <figcaption>Mobile quiz answer screen</figcaption>
+            </figure>
+            <figure class="jasne-mobile-mockup jasne-mobile-mockup-video">
+              <div class="jasne-mobile-shell">
+                <video src="../../assets/jasne-ai/jasne-quiz-flow.mp4" width="590" height="1278" autoplay muted loop playsinline preload="metadata" poster="../../assets/jasne-ai/jasne-quiz-screen.png" aria-label="Looped Jasne.ai mobile quiz interaction preview"></video>
+              </div>
+              <figcaption>Looped mobile quiz interaction</figcaption>
+            </figure>
+          </div>
           <figure class="jasne-hero-video-card">
             <div class="jasne-video-frame">
               <video src="../../assets/jasne-ai/jasne-course-generation.mp4" width="1104" height="716" autoplay muted loop playsinline preload="metadata" aria-label="Jasne.ai course generation workflow preview" data-video-click-toggle tabindex="0"></video>
@@ -87,11 +109,67 @@
       </div>
     </section>
 
+    <section class="jasne-ruler-section" aria-labelledby="jasne-ruler-title">
+      <div class="shell jasne-ruler-shell">
+        <h2 id="jasne-ruler-title" class="visually-hidden">Jasne.ai thesis and steps</h2>
+
+        <ol class="jasne-ruler-track" aria-label="Jasne.ai mission to value steps">
+          <li class="jasne-ruler-card">
+            <span class="jasne-ruler-number">00</span>
+            <span class="jasne-ruler-stage">Mission</span>
+            <h3>Make sales teams passionate about their products.</h3>
+          </li>
+          <li class="jasne-ruler-card">
+            <span class="jasne-ruler-number">01</span>
+            <span class="jasne-ruler-stage">Audience</span>
+            <h3>Sales teams</h3>
+            <p>Sales teams operate in highly competitive domains, where markets move fast and product knowledge from their own company and competitors is hard to keep up with.</p>
+            <span class="jasne-ruler-proof">Can sales teams see whether training creates real product passion?</span>
+          </li>
+          <li class="jasne-ruler-card">
+            <span class="jasne-ruler-number">02</span>
+            <span class="jasne-ruler-stage">User</span>
+            <h3>Sales representatives and managers</h3>
+            <p>Today, managers organize day-long training sessions, sales representatives attend them, and product knowledge stays scattered across company manuals, presentations, and brochures.</p>
+            <span class="jasne-ruler-proof">Do sales representatives and managers feel more curious and confident about what they sell?</span>
+          </li>
+          <li class="jasne-ruler-card">
+            <span class="jasne-ruler-number">03</span>
+            <span class="jasne-ruler-stage">Need</span>
+            <h3>Build product curiosity</h3>
+            <p>Sales representatives need product information in easy-to-digest portions they can take in every day, so they keep up with the market and grow liking toward what they sell.</p>
+            <span class="jasne-ruler-proof">Does product knowledge become something sales representatives and managers want to explore?</span>
+          </li>
+          <li class="jasne-ruler-card">
+            <span class="jasne-ruler-number">04</span>
+            <span class="jasne-ruler-stage">Infrastructure</span>
+            <h3>Feed the passion engine</h3>
+            <p>Mobile apps help build daily learning habits, while LLMs quickly create digestible, personalized content at scale so product learning stays engaging.</p>
+            <span class="jasne-ruler-proof">Can sources, AI, integrations, and feedback keep product curiosity alive?</span>
+          </li>
+          <li class="jasne-ruler-card">
+            <span class="jasne-ruler-number">05</span>
+            <span class="jasne-ruler-stage">Product</span>
+            <h3>From product knowledge to belief</h3>
+            <p>Generate knowledge, shape materials, deliver learning, and show progress so sales representatives and managers can understand the product story and make it their own.</p>
+            <span class="jasne-ruler-proof">Does the product turn knowledge into belief sales teams can use?</span>
+          </li>
+          <li class="jasne-ruler-card">
+            <span class="jasne-ruler-number">06</span>
+            <span class="jasne-ruler-stage">Value</span>
+            <h3>Sales teams sell with conviction</h3>
+            <p>Managers see where interest grows, sales representatives explain products with more energy, and teams can measure whether learning changes sales conversations.</p>
+            <span class="jasne-ruler-proof">Do sales conversations show more confidence, energy, and product understanding?</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
     <section class="jasne-steps-section" aria-labelledby="jasne-steps-title">
       <div class="shell">
         <div class="jasne-steps-heading">
-          <span class="kicker">Website product loop</span>
-          <h2 id="jasne-steps-title">Learning management system for <em>managers</em></h2>
+          <span class="kicker">What we've shipped so far</span>
+          <h2 id="jasne-steps-title">Learning management system for <em>sales teams</em></h2>
         </div>
 
         <ol class="jasne-step-list">
@@ -156,32 +234,6 @@
               <canvas width="160" height="260"></canvas>
             </span>
           </figure>
-        </div>
-      </div>
-    </section>
-
-    <section class="lendi-map-section jasne-flow-section" aria-labelledby="jasne-flow-title">
-      <div class="shell">
-        <div class="board-heading">
-          <h2 id="jasne-flow-title">How the learning workflow moves.</h2>
-        </div>
-
-        <div class="lendi-flow-board jasne-flow-board">
-          <div class="node-graph-toolbar">
-            <span class="node-graph-label">flow chart</span>
-          </div>
-
-          <div class="jasne-figma-embed">
-            <iframe
-              title="Jasne.ai FigJam flow chart"
-              style="border: 1px solid rgba(0, 0, 0, 0.1);"
-              width="800"
-              height="450"
-              src="https://embed.figma.com/board/u80R71Teg9fitNWb1dD5TC/Model?node-id=2001-626&embed-host=share"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
-          </div>
         </div>
       </div>
     </section>

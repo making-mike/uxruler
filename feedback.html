@@ -111,6 +111,29 @@
       color: inherit;
     }
 
+    .skip-link {
+      position: fixed;
+      z-index: 10000;
+      top: 8px;
+      left: 8px;
+      transform: translateY(calc(-100% - 16px));
+      border: 3px solid var(--black);
+      padding: 10px 14px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 14px;
+      line-height: var(--meta-line);
+      text-decoration: none;
+      transition: transform 120ms ease;
+    }
+
+    .skip-link:focus,
+    .skip-link:focus-visible {
+      transform: translateY(0);
+      outline: 3px solid var(--white);
+      outline-offset: 3px;
+    }
+
     button,
     input,
     textarea {
@@ -153,6 +176,11 @@
       width: 100%;
       height: 24px;
       object-fit: fill;
+    }
+
+    .feedback-brand:focus-visible {
+      outline: 3px solid var(--white);
+      outline-offset: 5px;
     }
 
     .kicker {
@@ -536,7 +564,8 @@
   </script>
 </head>
 <body>
-  <main class="page">
+  <a class="skip-link" href="#main">Przejdź do treści</a>
+  <main class="page" id="main" tabindex="-1">
     <section class="feedback-card" aria-labelledby="feedbackTitle">
       <div class="feedback-head">
         <a class="feedback-brand" href="index.html#about" aria-label="UX RULER">
