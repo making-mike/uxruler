@@ -3799,6 +3799,42 @@
     });
   }
 
+  function initStoryMobileRuler() {
+    const mobileRuler = document.querySelector(".story-mobile-ruler");
+
+    if (!mobileRuler) {
+      return;
+    }
+
+    let rulerFrame = 0;
+
+    function renderMobileRuler() {
+      rulerFrame = 0;
+
+      const navWidth = window.innerWidth;
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const rulerSpeed = 0.2;
+      const rulerTrackWidth = Math.round(Math.max(navWidth + 480, maxScroll * rulerSpeed + navWidth + 96));
+      const rulerOffset = -Math.round(window.scrollY * rulerSpeed);
+
+      mobileRuler.style.setProperty("--mobile-ruler-track-width", `${rulerTrackWidth}px`);
+      mobileRuler.style.setProperty("--mobile-ruler-offset", `${rulerOffset}px`);
+    }
+
+    function scheduleMobileRuler() {
+      if (rulerFrame) {
+        return;
+      }
+
+      rulerFrame = window.requestAnimationFrame(renderMobileRuler);
+    }
+
+    window.addEventListener("scroll", scheduleMobileRuler, { passive: true });
+    window.addEventListener("resize", scheduleMobileRuler);
+    window.addEventListener("load", scheduleMobileRuler);
+    renderMobileRuler();
+  }
+
   renderLendiGraph();
   initRiveAnimations();
   initRiveSequences();
@@ -3809,6 +3845,7 @@
   initJasneMapMagnifier();
   initJasneStepMobileHover();
   initLendiTitleScrollPreview();
+  initStoryMobileRuler();
   initLendiStickerStack();
   initPortfolioSurvey();
   initCaseStickerTooltips();

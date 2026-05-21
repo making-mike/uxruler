@@ -305,6 +305,10 @@ img {
   outline-offset: 3px;
 }
 
+.story-mobile-ruler {
+  display: none;
+}
+
 .topnav a {
   display: inline-flex;
   align-items: center;
@@ -796,7 +800,7 @@ em::after {
   --note-rotate: -4deg;
   position: absolute;
   z-index: 5;
-  top: clamp(292px, 53%, 438px);
+  top: clamp(292px, 46%, 386px);
   left: calc(66.667% - var(--hero-pin-overlap) - 92px);
   width: var(--hero-pin-width);
   margin: 0;
@@ -2253,7 +2257,7 @@ body[data-case-id="millennium"] .millennium-case-copy .kicker {
 
 body[data-case-id="millennium"] .millennium-phone-mockup {
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 1;
   align-self: start;
   justify-self: end;
   width: min(100%, 320px);
@@ -2269,8 +2273,8 @@ body[data-case-id="millennium"] .millennium-phone-mockup .phone-screen {
 }
 
 body[data-case-id="millennium"] .millennium-case-summary {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-column: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-column: 1 / -1;
   grid-row: 2;
   margin-top: 18px;
 }
@@ -3080,6 +3084,14 @@ body[data-case-id="lendi"] .case-title-note h1 {
   margin-top: 28px;
 }
 
+.jasne-sticker-summary .case-meta:nth-child(3) {
+  display: none;
+}
+
+.jasne-sticker-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .jasne-case-page .case-board-hero-grid {
   grid-template-columns: minmax(420px, 0.95fr) minmax(420px, 1.05fr);
   grid-template-rows: auto;
@@ -3126,13 +3138,15 @@ body[data-case-id="lendi"] .case-title-note h1 {
 }
 
 .jasne-hero-side {
+  --jasne-hero-media-row-height: clamp(154px, 13vw, 248px);
   position: relative;
   display: grid;
   grid-column: 2;
   grid-row: 1;
-  grid-template-columns: clamp(156px, 16vw, 218px) minmax(0, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: var(--jasne-hero-media-row-height) auto;
   gap: clamp(14px, 1.5vw, 20px);
-  align-self: end;
+  align-self: start;
   align-content: start;
   justify-items: stretch;
   justify-self: stretch;
@@ -3166,14 +3180,16 @@ body[data-case-id="lendi"] .case-title-note h1 {
 .jasne-mobile-showcase {
   position: relative;
   z-index: 3;
-  display: flex;
-  grid-column: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-column: 1 / span 2;
   grid-row: 1;
   width: 100%;
+  height: 100%;
   min-width: 0;
   justify-self: start;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: stretch;
   gap: clamp(5px, 0.6vw, 10px);
   padding: 4px 2px 0;
 }
@@ -3182,8 +3198,11 @@ body[data-case-id="lendi"] .case-title-note h1 {
   --mockup-rotate: -3.2deg;
   position: relative;
   display: grid;
-  width: clamp(72px, 7vw, 98px);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1179 / 2556;
   margin: 0;
+  align-self: end;
   transform: rotate(var(--mockup-rotate));
   transform-origin: center bottom;
   transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -3192,13 +3211,16 @@ body[data-case-id="lendi"] .case-title-note h1 {
 
 .jasne-mobile-mockup-video {
   --mockup-rotate: 4.4deg;
-  width: clamp(70px, 6.8vw, 96px);
+  width: 100%;
+  height: auto;
+  align-self: end;
   margin-bottom: clamp(8px, 0.8vw, 14px);
 }
 
 .jasne-mobile-shell {
   display: grid;
   width: 100%;
+  height: auto;
   aspect-ratio: 1179 / 2556;
   overflow: hidden;
   border: 2px solid var(--black);
@@ -3239,14 +3261,15 @@ body[data-case-id="lendi"] .case-title-note h1 {
   --map-pan-end: -24%;
   position: relative;
   z-index: 2;
-  grid-column: 2;
+  grid-column: 3 / span 3;
   grid-row: 1;
   top: auto;
   right: auto;
   left: auto;
   display: block;
   justify-self: end;
-  width: min(100%, 340px);
+  width: 100%;
+  height: 100%;
   margin: 0;
   border: 2px solid var(--black);
   padding: 7px;
@@ -3266,10 +3289,11 @@ body[data-case-id="lendi"] .case-title-note h1 {
   display: block;
   width: 132%;
   max-width: none;
-  height: auto;
+  height: 100%;
   border: 1px solid rgba(0, 0, 0, 0.14);
   background: var(--white);
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   animation: jasne-map-pan-right-left 9800ms 560ms cubic-bezier(0.37, 0, 0.18, 1) infinite alternate;
   will-change: transform;
 }
@@ -3448,7 +3472,8 @@ body[data-case-id="lendi"] .case-title-note h1 {
   }
 
   .jasne-case-hero .jasne-hero-side {
-    grid-template-columns: clamp(148px, 26vw, 210px) minmax(0, 1fr);
+    --jasne-hero-media-row-height: clamp(220px, 24vw, 300px);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
 
@@ -5217,6 +5242,18 @@ body.node-modal-active {
   margin-top: 0;
 }
 
+@media (min-width: 1041px) and (max-width: 1700px) {
+  .lendi-lessons-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .lendi-lessons-side {
+    justify-items: start;
+    width: min(100%, 720px);
+  }
+}
+
 .lendi-sticker-rail {
   justify-self: end;
   width: 100%;
@@ -5806,6 +5843,22 @@ body.node-modal-active {
   text-align: center;
 }
 
+@media (min-width: 1041px) and (max-width: 1600px) {
+  .lendi-sticker-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: min(100%, 980px);
+  }
+
+  body[data-case-id="millennium"] .millennium-case-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .jasne-sticker-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (min-width: 1041px) and (max-width: 1400px) {
   .board-hero-grid {
     grid-template-rows: auto auto auto auto;
@@ -5838,13 +5891,13 @@ body.node-modal-active {
   .hero-pin {
     position: relative;
     grid-column: 2;
-    grid-row: 1;
+    grid-row: 2;
     align-self: start;
-    justify-self: start;
+    justify-self: center;
     top: auto;
     left: auto;
     width: min(100%, 280px);
-    margin: clamp(164px, 16vw, 220px) 0 0 clamp(18px, 3vw, 40px);
+    margin: clamp(18px, 2.2vw, 30px) 0 0;
     transform: rotate(var(--note-rotate));
   }
 
@@ -6483,6 +6536,10 @@ body.node-modal-active {
     padding-bottom: calc(clamp(24px, 4vw, 44px) + clamp(230px, 28vw, 300px));
   }
 
+  .jasne-case-hero .case-title-note {
+    padding-bottom: clamp(24px, 4vw, 44px);
+  }
+
   .lendi-case-hero .case-hero-side {
     position: relative;
     z-index: 4;
@@ -6546,6 +6603,9 @@ body.node-modal-active {
   :root {
     --rail-width: 173px;
     --topbar-height: 24px;
+    --mobile-ruler-height: var(--topbar-height);
+    --mobile-ruler-track-width: calc(100vw + 320px);
+    --mobile-ruler-offset: 0px;
     --page-gutter-left: 14px;
     --page-gutter-right: 14px;
     --shell: min(calc(100% - 28px), 620px);
@@ -6584,6 +6644,45 @@ body.node-modal-active {
     justify-self: start;
     min-height: 28px;
     margin-left: 0;
+  }
+
+  .story-mobile-ruler {
+    position: relative;
+    display: block;
+    justify-self: stretch;
+    width: calc(100% + 28px);
+    height: var(--mobile-ruler-height);
+    margin: 0 -14px -12px;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .story-mobile-ruler::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.62);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+
+  .story-mobile-ruler::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: calc(var(--mobile-ruler-offset) + var(--mobile-ruler-track-width));
+    width: var(--mobile-ruler-height);
+    height: var(--mobile-ruler-track-width);
+    pointer-events: none;
+    background-image: url("../assets/ruler.svg");
+    background-repeat: repeat-y;
+    background-position: left top;
+    background-size: var(--mobile-ruler-height) auto;
+    transform: rotate(90deg);
+    transform-origin: top left;
   }
 
   .topline .topnav {
@@ -7050,7 +7149,9 @@ body.node-modal-active {
   }
 
   .jasne-case-hero .jasne-hero-side {
+    --jasne-hero-media-row-height: auto;
     grid-template-columns: 118px minmax(0, 1fr);
+    grid-template-rows: auto auto;
     gap: 12px;
   }
 
@@ -7060,7 +7161,9 @@ body.node-modal-active {
     width: 118px;
     justify-self: start;
     justify-content: flex-start;
+    align-items: flex-end;
     gap: 5px;
+    height: auto;
     margin: 0;
     padding-right: 0;
   }
@@ -7069,29 +7172,41 @@ body.node-modal-active {
     grid-column: 1 / -1;
     grid-row: 2;
     justify-self: start;
-    width: calc(100% - 8px);
+    width: 100%;
     max-width: 100%;
     transform: rotate(0.7deg);
   }
 
   .jasne-mobile-mockup {
     width: 54px;
+    height: auto;
   }
 
   .jasne-mobile-mockup-video {
     width: 52px;
+    height: auto;
     margin-bottom: 7px;
   }
 
   .jasne-mobile-shell {
+    height: auto;
     border-radius: 12px;
     padding: 2px;
     box-shadow: 4px 4px 0 var(--black);
   }
 
+  .jasne-hero-map-sticker {
+    height: auto;
+  }
+
   .jasne-mobile-shell img,
   .jasne-mobile-shell video {
     border-radius: 10px;
+  }
+
+  .jasne-hero-map-sticker img {
+    height: auto;
+    object-fit: contain;
   }
 
   .jasne-hero-map-lens {
