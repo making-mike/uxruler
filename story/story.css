@@ -3067,9 +3067,14 @@ body[data-case-id="lendi"] .case-title-note h1 {
   margin: 0 auto;
   border: 2px solid var(--black);
   padding: clamp(24px, 4vw, 56px);
-  background: #d8d4d1;
+  background: var(--white);
   box-shadow: 10px 10px 0 var(--black);
   transform: rotate(0.25deg);
+}
+
+.lendi-design-system-copy {
+  display: grid;
+  gap: 12px;
 }
 
 .lendi-design-system-showcase h2 {
@@ -3081,13 +3086,21 @@ body[data-case-id="lendi"] .case-title-note h1 {
   line-height: 1.05;
 }
 
+.lendi-design-system-showcase p {
+  max-width: 68ch;
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: clamp(15px, 1.35vw, 18px);
+  line-height: 1.55;
+}
+
 .lendi-design-system-showcase img {
   display: block;
   width: 100%;
   max-width: none;
   height: auto;
   border: 2px solid var(--black);
-  background: #d8d4d1;
+  background: var(--white);
   box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.22);
 }
 
