@@ -6044,13 +6044,13 @@ body.node-modal-active {
   }
 
   body[data-case-id="millennium"] .millennium-phone-mockup {
-    order: 3;
+    order: 2;
     justify-self: start;
     width: min(100%, 300px);
   }
 
   body[data-case-id="millennium"] .millennium-case-summary {
-    order: 2;
+    order: 3;
     margin-top: 0;
   }
 
@@ -6619,6 +6619,19 @@ body.node-modal-active {
   .topbar {
     position: sticky;
     grid-template-columns: 1fr;
+    background: transparent;
+  }
+
+  .topbar::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: var(--topbar-height);
+    background: var(--black);
+    pointer-events: none;
   }
 
   .brand {
@@ -6634,13 +6647,29 @@ body.node-modal-active {
   }
 
   .topline {
+    position: relative;
     grid-template-columns: 1fr;
     gap: 10px;
     border-top: 2px solid var(--white);
     padding: 10px 14px 12px;
+    background: transparent;
+  }
+
+  .topline::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 48px;
+    background: var(--black);
+    pointer-events: none;
   }
 
   .topline-current {
+    position: relative;
+    z-index: 1;
     justify-self: start;
     min-height: 28px;
     margin-left: 0;
@@ -6648,6 +6677,7 @@ body.node-modal-active {
 
   .story-mobile-ruler {
     position: relative;
+    z-index: 1;
     display: block;
     justify-self: stretch;
     width: calc(100% + 28px);
@@ -6742,10 +6772,11 @@ body.node-modal-active {
   }
 
   .lendi-node-board {
-    padding-top: 96px;
+    padding-top: 24px;
   }
 
   .lendi-node-board > .board-heading {
+    position: static;
     right: 18px;
     left: 18px;
     max-width: none;
@@ -6995,6 +7026,10 @@ body.node-modal-active {
   .case-summary,
   .next-grid,
   .footer .shell {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-case-id="millennium"] .millennium-case-summary {
     grid-template-columns: 1fr;
   }
 
