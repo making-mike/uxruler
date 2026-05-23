@@ -3329,6 +3329,8 @@
       }
 
       function togglePlayback() {
+        applySilentInlineVideoPolicy(video);
+
         if (video.paused || video.ended) {
           video.play().catch(() => {
             syncToggle();
@@ -3429,6 +3431,33 @@
       video.addEventListener("timeupdate", syncScrubber);
       syncToggle();
       syncScrubber();
+    });
+  }
+
+  function applySilentInlineVideoPolicy(video) {
+    if (!(video instanceof HTMLVideoElement)) {
+      return;
+    }
+
+    video.defaultMuted = true;
+    video.muted = true;
+    video.volume = 0;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("webkit-playsinline", "");
+  }
+
+  function initSilentInlineVideos() {
+    const videos = Array.from(document.querySelectorAll("video"));
+
+    videos.forEach((video) => {
+      applySilentInlineVideoPolicy(video);
+      video.addEventListener("volumechange", () => {
+        if (!video.muted || video.volume > 0) {
+          applySilentInlineVideoPolicy(video);
+        }
+      });
     });
   }
 
@@ -3841,6 +3870,7 @@
   initLendiPdfPageStack();
   initCaseScreenMagnifiers();
   initBeforeAfterComparisons();
+  initSilentInlineVideos();
   initCaseVideoControls();
   initJasneMapMagnifier();
   initJasneStepMobileHover();
