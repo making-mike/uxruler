@@ -5592,13 +5592,26 @@ body.node-modal-active {
 
 @media (min-width: 1041px) and (max-width: 1700px) {
   .lendi-lessons-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: clamp(28px, 3.2vw, 48px);
   }
 
   .lendi-lessons-side {
-    justify-items: start;
-    width: min(100%, 720px);
+    justify-items: end;
+    width: 100%;
+  }
+
+  .lendi-lessons-photo,
+  .lendi-lessons-layout .lendi-sticker-rail {
+    width: min(100%, 420px);
+  }
+}
+
+@media (min-width: 1041px) and (max-width: 1280px) {
+  .lendi-lessons-layout .lendi-lesson-list li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    align-items: start;
   }
 }
 
@@ -6211,6 +6224,11 @@ body.node-modal-active {
   .board-hero-grid {
     grid-template-rows: auto auto auto auto;
     align-items: start;
+  }
+
+  .whiteboard-hero .title-note h1 {
+    font-size: clamp(52px, 4.6vw, 60px);
+    line-height: 1.08;
   }
 
   .title-note {
