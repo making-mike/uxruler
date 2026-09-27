@@ -6385,8 +6385,8 @@ body.node-modal-active {
     grid-row: 2;
   }
 
-  .timeline.note-wall .timeline-item:nth-child(3) {
-    grid-column: 1 / span 2;
+  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+    grid-column: 1 / -1;
     grid-row: 3;
   }
 
@@ -6396,18 +6396,23 @@ body.node-modal-active {
   }
 
   .timeline.note-wall .timeline-item:nth-child(5) {
-    grid-column: 3 / span 2;
-    grid-row: 3;
+    grid-column: 1 / span 2;
+    grid-row: 5;
   }
 
   .timeline.note-wall .timeline-item:nth-child(6) {
-    grid-column: 5 / span 2;
-    grid-row: 3;
+    grid-column: 3 / span 2;
+    grid-row: 4;
   }
 
   .timeline.note-wall .timeline-item:nth-child(7) {
-    grid-column: 3 / span 2;
+    grid-column: 5 / span 2;
     grid-row: 4;
+  }
+
+  .timeline.note-wall .timeline-item:nth-child(8) {
+    grid-column: 3 / span 2;
+    grid-row: 5;
   }
 
   .timeline.note-wall .timeline-item.timeline-item-rive {
@@ -8122,5 +8127,107 @@ body.node-modal-active {
   .jasne-step-image-3d,
   .jasne-step-image-mockup {
     transition: none;
+  }
+}
+
+/* OpenExpert case */
+.openexpert-hero-grid {
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.openexpert-hero-grid .case-title-actions {
+  margin-bottom: 18px;
+}
+
+.openexpert-hero-grid .lead {
+  max-width: 62ch;
+}
+
+.openexpert-case-page .case-screen-card {
+  justify-self: stretch;
+  width: 100%;
+}
+
+.openexpert-case-page .case-screen-frame img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+.openexpert-media-section {
+  padding: 24px 0 72px;
+}
+
+.openexpert-media-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.openexpert-media-grid .openexpert-video-card {
+  grid-column: auto;
+  grid-row: auto;
+  justify-self: center;
+  max-width: 960px;
+}
+
+.openexpert-devices-card {
+  transform: rotate(0.6deg);
+}
+
+.openexpert-lesson-section {
+  padding-bottom: 72px;
+}
+
+/* OpenExpert timeline banner */
+.timeline.note-wall .timeline-item.timeline-item-openexpert {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  grid-template-rows: auto auto auto 1fr;
+  column-gap: clamp(20px, 3vw, 44px);
+  align-items: start;
+  min-height: 0;
+  padding: 16px 16px 20px;
+  --note-rotate: -0.6deg;
+  --photo-rotate: -0.6deg;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-video-window {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  aspect-ratio: 16 / 10;
+}
+
+.timeline.note-wall .timeline-item-openexpert > :not(.timeline-video-window) {
+  grid-column: 2;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-time {
+  margin-top: 8px;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-title {
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+}
+
+.timeline.note-wall .timeline-item-openexpert .depth-badge {
+  align-self: end;
+  justify-self: start;
+}
+
+@media (max-width: 700px) {
+  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .timeline.note-wall .timeline-item-openexpert .timeline-video-window,
+  .timeline.note-wall .timeline-item-openexpert > :not(.timeline-video-window) {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
