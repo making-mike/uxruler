@@ -8194,7 +8194,6 @@ body.node-modal-active {
   display: block;
   width: 190px;
   height: auto;
-  filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.18));
   transform: rotate(3deg);
 }
 
