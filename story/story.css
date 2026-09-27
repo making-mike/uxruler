@@ -8272,6 +8272,11 @@ body.node-modal-active {
   padding-bottom: clamp(20px, 3vw, 44px);
 }
 
+.openexpert-video-card .jasne-video-frame video {
+  border: 0;
+  aspect-ratio: 1280 / 852;
+}
+
 .openexpert-video-card .jasne-video-frame,
 .openexpert-video-card .jasne-video-caption {
   justify-self: center;
