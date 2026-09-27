@@ -8245,6 +8245,14 @@ body.node-modal-active {
   gap: clamp(32px, 5vw, 64px);
 }
 
+.openexpert-media-grid .openexpert-video-card {
+  grid-column: auto;
+  grid-row: auto;
+  justify-self: center;
+  width: 100%;
+  max-width: 960px;
+}
+
 .openexpert-devices-card {
   transform: rotate(0.6deg);
 }
