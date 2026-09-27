@@ -8297,6 +8297,17 @@ body.node-modal-active {
   line-height: 1.1;
 }
 
+.timeline.note-wall .timeline-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-top: auto;
+}
+
+.timeline.note-wall .timeline-badge-row .depth-badge {
+  margin: 0;
+}
+
 .timeline.note-wall .timeline-item-openexpert .timeline-badge-row {
   display: flex;
   flex-wrap: wrap;
@@ -8407,4 +8418,10 @@ body.node-modal-active {
   .timeline.note-wall .timeline-item.timeline-item-openexpert {
     width: 100%;
   }
+}
+
+/* Jasne.ai timeline tags stack so the store badges don't cover them */
+.timeline.note-wall .timeline-item-jasne .timeline-badge-row {
+  flex-direction: column;
+  align-items: flex-start;
 }
