@@ -8154,10 +8154,12 @@ body.node-modal-active {
   position: relative;
   z-index: 1;
   display: grid;
-  width: 140px;
+  width: 120px;
   margin: 0 -40px 24px 0;
+  overflow: hidden;
   border: 2px solid var(--black);
-  background: var(--white);
+  border-radius: 28px;
+  background: #161616;
   box-shadow: 6px 6px 0 var(--black);
   transform: rotate(-2deg);
 }
@@ -8165,22 +8167,14 @@ body.node-modal-active {
 .openexpert-loader-frame {
   display: grid;
   place-items: center;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1;
   background: #161616;
 }
 
 .openexpert-loader-frame video {
   display: block;
-  width: 46%;
+  width: 58%;
   height: auto;
-}
-
-.openexpert-loader-card figcaption {
-  padding: 6px 10px 7px;
-  font-family: var(--heading-font);
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
 }
 
 .openexpert-hero-phone {
@@ -8212,8 +8206,9 @@ body.node-modal-active {
 
 @media (max-width: 480px) {
   .openexpert-loader-card {
-    width: 96px;
+    width: 84px;
     margin-right: -30px;
+    border-radius: 20px;
   }
 
   .openexpert-hero-phone {
