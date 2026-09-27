@@ -8179,14 +8179,12 @@ body.node-modal-active {
 .timeline.note-wall .timeline-item.timeline-item-openexpert {
   grid-column: 1 / -1;
   justify-self: center;
-  width: calc(50% - clamp(12px, 1.2vw, 17px));
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  width: min(100%, 980px);
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
   grid-template-rows: auto auto auto 1fr;
-  column-gap: clamp(20px, 3vw, 44px);
+  column-gap: clamp(20px, 3vw, 40px);
   align-items: start;
-  align-content: center;
-  min-height: clamp(260px, 19vw, 300px);
-  padding: clamp(24px, 2vw, 30px) 18px clamp(26px, 2.2vw, 32px);
+  padding: 18px 22px 18px 18px;
   --note-rotate: -0.6deg;
   --photo-rotate: -0.6deg;
 }
@@ -8194,7 +8192,9 @@ body.node-modal-active {
 .timeline.note-wall .timeline-item-openexpert .timeline-video-window {
   grid-column: 1;
   grid-row: 1 / span 4;
-  align-self: center;
+  align-self: stretch;
+  width: 100%;
+  height: auto;
   aspect-ratio: 16 / 10;
 }
 
@@ -8203,7 +8203,7 @@ body.node-modal-active {
 }
 
 .timeline.note-wall .timeline-item-openexpert .timeline-time {
-  margin-top: 8px;
+  margin-top: 14px;
 }
 
 .timeline.note-wall .timeline-item-openexpert .timeline-title {
@@ -8220,7 +8220,6 @@ body.node-modal-active {
   .timeline.note-wall .timeline-item.timeline-item-openexpert {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
-    min-height: 0;
     padding: 18px 14px 24px;
   }
 
@@ -8311,7 +8310,7 @@ body.node-modal-active {
   }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 1040px) {
   .timeline.note-wall .timeline-item.timeline-item-openexpert {
     width: 100%;
   }
