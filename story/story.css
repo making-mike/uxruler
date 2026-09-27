@@ -8508,16 +8508,13 @@ body.node-modal-active {
   align-items: flex-start;
 }
 
-/* GitHub contribution note under the hero */
+/* GitHub contribution counter under the hero */
 .github-activity {
   --note-rotate: 0.8deg;
   z-index: 4;
   grid-column: 1 / -1;
-  grid-template-columns: minmax(150px, auto) minmax(0, 1fr);
-  align-items: center;
-  gap: clamp(16px, 3vw, 36px);
   justify-self: center;
-  width: min(100%, 960px);
+  gap: 6px;
   margin-top: clamp(12px, 2vw, 24px);
   background: var(--white);
   color: var(--black);
@@ -8536,51 +8533,4 @@ body.node-modal-active {
 
 .github-activity-copy strong {
   font-variant-numeric: tabular-nums;
-}
-
-.github-activity-graph {
-  display: grid;
-  grid-auto-flow: column;
-  grid-template-rows: repeat(7, auto);
-  grid-template-columns: repeat(var(--weeks, 53), minmax(0, 1fr));
-  gap: 2px;
-  min-width: 0;
-}
-
-.github-activity-graph i {
-  aspect-ratio: 1;
-  border-radius: 2px;
-  background: #ebedf0;
-}
-
-.github-activity-graph i.is-empty {
-  background: transparent;
-}
-
-.github-activity-graph i[data-level="1"] { background: #9be9a8; }
-.github-activity-graph i[data-level="2"] { background: #40c463; }
-.github-activity-graph i[data-level="3"] { background: #30a14e; }
-.github-activity-graph i[data-level="4"] { background: #216e39; }
-
-.github-activity.is-fallback {
-  grid-template-columns: minmax(0, 1fr);
-  width: auto;
-}
-
-.github-activity.is-fallback .github-activity-graph {
-  display: none;
-}
-
-@media (max-width: 720px) {
-  .github-activity {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .github-activity-graph {
-    gap: 1px;
-  }
-
-  .github-activity-graph i {
-    border-radius: 1px;
-  }
 }
