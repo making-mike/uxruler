@@ -8135,6 +8135,10 @@ body.node-modal-active {
   background: transparent;
 }
 
+.openexpert-case-page .jasne-ruler-card:nth-child(1) {
+  --stage-color: #1ecb3a;
+}
+
 .openexpert-hero-grid {
   grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
   align-items: center;
