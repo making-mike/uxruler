@@ -8150,30 +8150,33 @@ body.node-modal-active {
   min-height: 420px;
 }
 
+/* Matches the Lendi loader tile on the timeline card */
 .openexpert-loader-card {
   position: relative;
   z-index: 1;
   display: grid;
-  width: 120px;
-  margin: 0 -40px 24px 0;
-  overflow: hidden;
+  width: 96px;
+  aspect-ratio: 1;
+  margin: 0 -34px 28px 0;
   border: 2px solid var(--black);
-  border-radius: 28px;
-  background: #161616;
-  box-shadow: 6px 6px 0 var(--black);
-  transform: rotate(-2deg);
+  border-radius: 14px;
+  padding: 4px;
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--black);
+  transform: rotate(-6deg);
 }
 
 .openexpert-loader-frame {
   display: grid;
   place-items: center;
-  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 9px;
   background: #161616;
 }
 
 .openexpert-loader-frame video {
   display: block;
-  width: 58%;
+  width: 62%;
   height: auto;
 }
 
@@ -8206,9 +8209,10 @@ body.node-modal-active {
 
 @media (max-width: 480px) {
   .openexpert-loader-card {
-    width: 84px;
-    margin-right: -30px;
-    border-radius: 20px;
+    width: 72px;
+    margin-right: -26px;
+    border-radius: 12px;
+    padding: 3px;
   }
 
   .openexpert-hero-phone {
