@@ -8327,8 +8327,21 @@ body.node-modal-active {
   max-width: 900px;
 }
 
-.openexpert-devices-card {
-  transform: rotate(0.6deg);
+.openexpert-devices-figure {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+}
+
+.openexpert-devices-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.openexpert-devices-figure .jasne-video-caption {
+  color: var(--black);
 }
 
 .openexpert-lesson-section {
