@@ -8265,9 +8265,18 @@ body.node-modal-active {
 .openexpert-media-grid .openexpert-video-card {
   grid-column: auto;
   grid-row: auto;
+  justify-self: stretch;
+  width: 100%;
+  max-width: none;
+  padding-top: clamp(20px, 3vw, 44px);
+  padding-bottom: clamp(20px, 3vw, 44px);
+}
+
+.openexpert-video-card .jasne-video-frame,
+.openexpert-video-card .jasne-video-caption {
   justify-self: center;
   width: 100%;
-  max-width: 960px;
+  max-width: 900px;
 }
 
 .openexpert-devices-card {
