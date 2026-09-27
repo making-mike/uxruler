@@ -176,7 +176,6 @@
           <a class="timeline-item timeline-item-openexpert polaroid mini-polaroid" href="openexpert/" data-track="story_case_opened" data-track-location="timeline" data-case-target="openexpert">
             <span class="photo-frame timeline-video-window" aria-hidden="true">
               <video
-                src="../assets/openexpert/hero-orbit.mp4"
                 poster="../assets/openexpert/hero-orbit-poster.webp"
                 autoplay
                 muted
@@ -184,7 +183,10 @@
                 playsinline
                 webkit-playsinline
                 preload="metadata"
-              ></video>
+              >
+                <source src="../assets/openexpert/hero-orbit-small.webm" type="video/webm">
+                <source src="../assets/openexpert/hero-orbit-small.mp4" type="video/mp4">
+              </video>
             </span>
             <span class="timeline-time">ongoing</span>
             <span class="timeline-title">OpenExpert</span>
