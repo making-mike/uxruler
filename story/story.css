@@ -8531,6 +8531,18 @@ body.node-modal-active {
   gap: 6px;
 }
 
+.github-activity {
+  grid-template-columns: minmax(0, auto) auto;
+  align-items: center;
+  column-gap: clamp(18px, 3vw, 36px);
+}
+
+.github-activity-logo {
+  display: block;
+  width: clamp(36px, 4vw, 48px);
+  height: auto;
+}
+
 .github-activity-copy strong {
   font-variant-numeric: tabular-nums;
 }
