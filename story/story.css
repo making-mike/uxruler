@@ -8278,6 +8278,8 @@ body.node-modal-active {
 
 .openexpert-video-card .jasne-video-frame video {
   border: 0;
+  /* Clip to the recorded browser window's rounded corners */
+  border-radius: 2.8% / 4.2%;
   aspect-ratio: 1280 / 852;
 }
 
