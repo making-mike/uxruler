@@ -8549,3 +8549,7 @@ body.node-modal-active {
 .openexpert-media-grid > .jasne-ruler-title {
   margin-bottom: calc(clamp(32px, 5vw, 64px) * -0.4);
 }
+
+.openexpert-media-grid > .openexpert-media-subtitle {
+  margin-top: clamp(16px, 3vw, 40px);
+}
