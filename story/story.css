@@ -8296,7 +8296,7 @@ body.node-modal-active {
 .timeline.note-wall .timeline-item.timeline-item-openexpert {
   grid-column: 1 / -1;
   justify-self: center;
-  width: min(100%, 980px);
+  width: min(100%, 840px);
   grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
   grid-template-rows: auto auto auto 1fr;
   column-gap: clamp(20px, 3vw, 40px);
