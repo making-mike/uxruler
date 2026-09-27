@@ -8553,3 +8553,29 @@ body.node-modal-active {
 .openexpert-media-grid > .openexpert-media-subtitle {
   margin-top: clamp(16px, 3vw, 40px);
 }
+
+/* Desktop: title in a narrow left column, media fills the rest */
+@media (min-width: 1041px) {
+  .openexpert-media-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 7fr);
+    column-gap: clamp(24px, 3vw, 48px);
+    align-items: start;
+  }
+
+  .openexpert-media-grid > .jasne-ruler-title,
+  .openexpert-media-grid > .openexpert-media-subtitle {
+    grid-column: 1;
+    margin: 0;
+    font-size: clamp(26px, 2.4vw, 38px);
+    line-height: 1.05;
+  }
+
+  .openexpert-media-grid > figure {
+    grid-column: 2;
+  }
+
+  .openexpert-video-card .jasne-video-frame,
+  .openexpert-video-card .jasne-video-caption {
+    max-width: none;
+  }
+}
