@@ -8268,8 +8268,46 @@ body.node-modal-active {
   justify-self: stretch;
   width: 100%;
   max-width: none;
-  padding-top: clamp(20px, 3vw, 44px);
-  padding-bottom: clamp(20px, 3vw, 44px);
+  /* Only the browser recording sits on the page grid, no card around it */
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--black);
+  box-shadow: none;
+  overflow: visible;
+  transform: none;
+}
+
+.openexpert-video-card .jasne-video-caption {
+  color: var(--black);
+}
+
+.openexpert-video-card .jasne-video-slider::-webkit-slider-runnable-track {
+  border-color: var(--black);
+  background: linear-gradient(90deg, var(--black) 0 var(--video-progress), rgba(0, 0, 0, 0.12) var(--video-progress) 100%);
+}
+
+.openexpert-video-card .jasne-video-slider::-webkit-slider-thumb {
+  border-color: var(--black);
+  background: var(--white);
+}
+
+.openexpert-video-card .jasne-video-slider::-moz-range-track {
+  border-color: var(--black);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.openexpert-video-card .jasne-video-slider::-moz-range-progress {
+  background: var(--black);
+}
+
+.openexpert-video-card .jasne-video-slider::-moz-range-thumb {
+  border-color: var(--black);
+  background: var(--white);
+}
+
+.openexpert-video-card .jasne-video-slider:focus-visible {
+  outline-color: var(--black);
 }
 
 .openexpert-video-card::before {
