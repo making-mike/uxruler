@@ -8211,9 +8211,16 @@ body.node-modal-active {
   line-height: 1.1;
 }
 
-.timeline.note-wall .timeline-item-openexpert .depth-badge {
+.timeline.note-wall .timeline-item-openexpert .timeline-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
   align-self: end;
   justify-self: start;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-badge-row .depth-badge {
+  margin: 0;
 }
 
 @media (max-width: 700px) {
