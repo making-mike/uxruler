@@ -8132,7 +8132,7 @@ body.node-modal-active {
 
 /* OpenExpert case */
 .openexpert-hero-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 470px);
   align-items: center;
   gap: clamp(28px, 4vw, 48px);
 }
@@ -8155,7 +8155,7 @@ body.node-modal-active {
   z-index: 1;
   display: grid;
   width: 140px;
-  margin: 0 -18px 40px 0;
+  margin: 0 -40px 24px 0;
   border: 2px solid var(--black);
   background: var(--white);
   box-shadow: 6px 6px 0 var(--black);
@@ -8185,12 +8185,18 @@ body.node-modal-active {
 
 .openexpert-hero-phone {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   display: block;
-  width: 200px;
+  width: 190px;
   height: auto;
   filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.18));
   transform: rotate(3deg);
+}
+
+.openexpert-hero-phone--back {
+  z-index: 2;
+  margin: 0 -58px 56px 0;
+  transform: rotate(-4deg);
 }
 
 @media (max-width: 900px) {
@@ -8206,12 +8212,16 @@ body.node-modal-active {
 
 @media (max-width: 480px) {
   .openexpert-loader-card {
-    width: 104px;
-    margin-right: -14px;
+    width: 96px;
+    margin-right: -30px;
   }
 
   .openexpert-hero-phone {
-    width: 160px;
+    width: 136px;
+  }
+
+  .openexpert-hero-phone--back {
+    margin-right: -40px;
   }
 }
 
