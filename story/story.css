@@ -8161,7 +8161,7 @@ body.node-modal-active {
 /* Matches the Lendi loader tile on the timeline card */
 .openexpert-loader-card {
   position: relative;
-  z-index: 1;
+  z-index: 4;
   display: grid;
   width: 96px;
   aspect-ratio: 1;
