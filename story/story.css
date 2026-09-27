@@ -8154,8 +8154,8 @@ body.node-modal-active {
   position: relative;
   z-index: 1;
   display: grid;
-  width: 210px;
-  margin: 0 -26px 34px 0;
+  width: 140px;
+  margin: 0 -18px 40px 0;
   border: 2px solid var(--black);
   background: var(--white);
   box-shadow: 6px 6px 0 var(--black);
@@ -8176,9 +8176,9 @@ body.node-modal-active {
 }
 
 .openexpert-loader-card figcaption {
-  padding: 8px 12px 10px;
+  padding: 6px 10px 7px;
   font-family: var(--heading-font);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -8206,8 +8206,8 @@ body.node-modal-active {
 
 @media (max-width: 480px) {
   .openexpert-loader-card {
-    width: 150px;
-    margin-right: -18px;
+    width: 104px;
+    margin-right: -14px;
   }
 
   .openexpert-hero-phone {
