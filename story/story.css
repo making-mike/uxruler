@@ -8131,8 +8131,12 @@ body.node-modal-active {
 }
 
 /* OpenExpert case */
+.openexpert-case-page .case-hero {
+  background: transparent;
+}
+
 .openexpert-hero-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 470px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
   align-items: center;
   gap: clamp(28px, 4vw, 48px);
 }
@@ -8196,7 +8200,7 @@ body.node-modal-active {
   transform: rotate(-4deg);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1240px) {
   .openexpert-hero-grid {
     grid-template-columns: minmax(0, 1fr);
   }
