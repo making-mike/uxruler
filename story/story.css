@@ -8545,3 +8545,7 @@ body.node-modal-active {
 .github-activity-copy strong {
   font-variant-numeric: tabular-nums;
 }
+
+.openexpert-media-grid > .jasne-ruler-title {
+  margin-bottom: calc(clamp(32px, 5vw, 64px) * -0.4);
+}
