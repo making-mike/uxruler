@@ -8185,6 +8185,8 @@ body.node-modal-active {
 /* OpenExpert timeline banner */
 .timeline.note-wall .timeline-item.timeline-item-openexpert {
   grid-column: 1 / -1;
+  justify-self: center;
+  width: calc(50% - clamp(12px, 1.2vw, 17px));
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   grid-template-rows: auto auto auto 1fr;
   column-gap: clamp(20px, 3vw, 44px);
@@ -8210,7 +8212,7 @@ body.node-modal-active {
 }
 
 .timeline.note-wall .timeline-item-openexpert .timeline-title {
-  font-size: clamp(28px, 3vw, 40px);
+  font-size: clamp(22px, 2vw, 30px);
   line-height: 1.1;
 }
 
@@ -8309,5 +8311,11 @@ body.node-modal-active {
     grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
     align-items: center;
     gap: 14px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+    width: 100%;
   }
 }
