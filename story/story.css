@@ -8451,6 +8451,13 @@ body.node-modal-active {
   }
 }
 
+/* Leave room for the "VibeConf" title next to the photo on phones */
+@media (max-width: 480px) {
+  .hero-receipts .hero-talk-card {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 1040px) {
   .timeline.note-wall .timeline-item.timeline-item-openexpert {
     width: 100%;
