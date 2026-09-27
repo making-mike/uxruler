@@ -8231,3 +8231,9 @@ body.node-modal-active {
     grid-row: auto;
   }
 }
+
+/* Lendi team presentation photo */
+.lendi-lessons-photo.lendi-presentation-photo {
+  --photo-rotate: -1.4deg;
+  margin-top: clamp(28px, 4vw, 44px);
+}
