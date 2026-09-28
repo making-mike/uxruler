@@ -8613,3 +8613,43 @@ body.node-modal-active {
     flex: 1 1 100%;
   }
 }
+
+/* Lendi sticker stack pinned over the lessons card's bottom-right corner */
+.lendi-lessons-card {
+  position: relative;
+  padding-bottom: clamp(72px, 7vw, 96px);
+}
+
+.lendi-lessons-layout .lendi-sticker-corner {
+  position: absolute;
+  right: clamp(-118px, -7vw, -24px);
+  bottom: clamp(-104px, -6.5vw, -44px);
+  z-index: 5;
+  width: clamp(150px, 15vw, 210px);
+  margin: 0;
+  padding: 0;
+}
+
+.lendi-lessons-layout .lendi-sticker-corner .lendi-sticker-stack {
+  width: 100%;
+}
+
+.lendi-lessons-layout:has(.lendi-sticker-corner) {
+  margin-bottom: clamp(44px, 7vw, 104px);
+}
+
+@media (max-width: 1040px) {
+  .lendi-lessons-card {
+    padding-bottom: 104px;
+  }
+
+  .lendi-lessons-layout .lendi-sticker-corner {
+    right: -8px;
+    bottom: -64px;
+    width: 140px;
+  }
+
+  .lendi-lessons-layout:has(.lendi-sticker-corner) {
+    row-gap: 88px;
+  }
+}
