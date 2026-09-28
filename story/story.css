@@ -8653,3 +8653,21 @@ body.node-modal-active {
     row-gap: 88px;
   }
 }
+
+/* OpenExpert is hidden from the timeline for now; remove `hidden` on its card to bring it back */
+.timeline.note-wall .timeline-item[hidden] {
+  display: none !important;
+}
+
+@media (min-width: 1041px) and (max-width: 1400px) {
+  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(4),
+  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(6),
+  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(7) {
+    grid-row: 3;
+  }
+
+  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(5),
+  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(8) {
+    grid-row: 4;
+  }
+}
