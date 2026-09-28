@@ -8521,13 +8521,28 @@ body.node-modal-active {
 }
 
 /* GitHub contribution counter under the hero */
-.github-activity {
-  --note-rotate: 0.8deg;
+.hero-activity-row {
+  position: relative;
   z-index: 4;
   grid-column: 1 / -1;
-  justify-self: center;
-  gap: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: clamp(16px, 2vw, 28px);
   margin-top: clamp(12px, 2vw, 24px);
+}
+
+.hero-activity-note {
+  --note-rotate: -1deg;
+  align-content: center;
+  gap: 6px;
+  background: var(--white);
+}
+
+.github-activity {
+  --note-rotate: 0.8deg;
+  gap: 6px;
   background: var(--white);
   color: var(--black);
   text-decoration: none;
@@ -8590,5 +8605,11 @@ body.node-modal-active {
   .openexpert-video-card .jasne-video-frame,
   .openexpert-video-card .jasne-video-caption {
     max-width: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-activity-row > * {
+    flex: 1 1 100%;
   }
 }
