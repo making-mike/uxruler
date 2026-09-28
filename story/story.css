@@ -6385,8 +6385,8 @@ body.node-modal-active {
     grid-row: 2;
   }
 
-  .timeline.note-wall .timeline-item:nth-child(3) {
-    grid-column: 1 / span 2;
+  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+    grid-column: 1 / -1;
     grid-row: 3;
   }
 
@@ -6396,18 +6396,23 @@ body.node-modal-active {
   }
 
   .timeline.note-wall .timeline-item:nth-child(5) {
-    grid-column: 3 / span 2;
-    grid-row: 3;
+    grid-column: 1 / span 2;
+    grid-row: 5;
   }
 
   .timeline.note-wall .timeline-item:nth-child(6) {
-    grid-column: 5 / span 2;
-    grid-row: 3;
+    grid-column: 3 / span 2;
+    grid-row: 4;
   }
 
   .timeline.note-wall .timeline-item:nth-child(7) {
-    grid-column: 3 / span 2;
+    grid-column: 5 / span 2;
     grid-row: 4;
+  }
+
+  .timeline.note-wall .timeline-item:nth-child(8) {
+    grid-column: 3 / span 2;
+    grid-row: 5;
   }
 
   .timeline.note-wall .timeline-item.timeline-item-rive {
@@ -8122,5 +8127,489 @@ body.node-modal-active {
   .jasne-step-image-3d,
   .jasne-step-image-mockup {
     transition: none;
+  }
+}
+
+/* OpenExpert case */
+.openexpert-case-page .case-hero {
+  background: transparent;
+}
+
+.openexpert-case-page .jasne-ruler-card:nth-child(1) {
+  --stage-color: #1ecb3a;
+}
+
+.openexpert-hero-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 400px);
+  align-items: center;
+  gap: clamp(28px, 4vw, 48px);
+}
+
+.openexpert-hero-grid > .openexpert-screen-card {
+  grid-column: 1 / -1;
+}
+
+.openexpert-hero-aside {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0;
+  min-height: 420px;
+}
+
+/* Matches the Lendi loader tile on the timeline card */
+.openexpert-loader-card {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  width: 96px;
+  aspect-ratio: 1;
+  margin: 0 -34px 28px 0;
+  border: 2px solid var(--black);
+  border-radius: 14px;
+  padding: 4px;
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--black);
+  transform: rotate(-6deg);
+}
+
+.openexpert-loader-frame {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 9px;
+  background: #161616;
+}
+
+.openexpert-loader-frame video {
+  display: block;
+  width: 62%;
+  height: auto;
+}
+
+.openexpert-hero-phone {
+  position: relative;
+  z-index: 3;
+  display: block;
+  width: 190px;
+  height: auto;
+  transform: rotate(3deg);
+}
+
+.openexpert-hero-phone--back {
+  z-index: 2;
+  margin: 0 -58px 56px 0;
+  transform: rotate(-4deg);
+}
+
+@media (max-width: 1240px) {
+  .openexpert-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .openexpert-hero-aside {
+    justify-content: center;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .openexpert-loader-card {
+    width: 72px;
+    margin-right: -26px;
+    border-radius: 12px;
+    padding: 3px;
+  }
+
+  .openexpert-hero-phone {
+    width: 136px;
+  }
+
+  .openexpert-hero-phone--back {
+    margin-right: -40px;
+  }
+}
+
+.openexpert-hero-grid .case-title-actions {
+  margin-bottom: 18px;
+}
+
+.openexpert-hero-grid .lead {
+  max-width: 62ch;
+}
+
+.openexpert-case-page .case-screen-card {
+  justify-self: stretch;
+  width: 100%;
+}
+
+.openexpert-case-page .case-screen-frame img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+.openexpert-media-section {
+  padding: 24px 0 72px;
+}
+
+.openexpert-media-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.openexpert-media-grid .openexpert-video-card {
+  grid-column: auto;
+  grid-row: auto;
+  justify-self: stretch;
+  width: 100%;
+  max-width: none;
+  /* Only the browser recording sits on the page grid, no card around it */
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--black);
+  box-shadow: none;
+  overflow: visible;
+  transform: none;
+}
+
+.openexpert-video-card .jasne-video-caption {
+  color: var(--black);
+}
+
+.openexpert-video-card .jasne-video-slider::-webkit-slider-runnable-track {
+  border-color: var(--black);
+  background: linear-gradient(90deg, var(--black) 0 var(--video-progress), rgba(0, 0, 0, 0.12) var(--video-progress) 100%);
+}
+
+.openexpert-video-card .jasne-video-slider::-webkit-slider-thumb {
+  border-color: var(--black);
+  background: var(--white);
+}
+
+.openexpert-video-card .jasne-video-slider::-moz-range-track {
+  border-color: var(--black);
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.openexpert-video-card .jasne-video-slider::-moz-range-progress {
+  background: var(--black);
+}
+
+.openexpert-video-card .jasne-video-slider::-moz-range-thumb {
+  border-color: var(--black);
+  background: var(--white);
+}
+
+.openexpert-video-card .jasne-video-slider:focus-visible {
+  outline-color: var(--black);
+}
+
+.openexpert-video-card::before {
+  content: none;
+}
+
+.openexpert-video-card .jasne-video-frame video {
+  border: 0;
+  /* Clip to the recorded browser window's rounded corners */
+  border-radius: 2.8% / 4.2%;
+  aspect-ratio: 1280 / 852;
+}
+
+.openexpert-video-card .jasne-video-frame,
+.openexpert-video-card .jasne-video-caption {
+  justify-self: center;
+  width: 100%;
+  max-width: 900px;
+}
+
+.openexpert-devices-figure {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+}
+
+.openexpert-devices-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.openexpert-devices-figure .jasne-video-caption {
+  color: var(--black);
+}
+
+.openexpert-lesson-section {
+  padding-bottom: 72px;
+}
+
+/* OpenExpert timeline banner */
+.timeline.note-wall .timeline-item.timeline-item-openexpert {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 840px);
+  grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr);
+  grid-template-rows: auto auto auto 1fr;
+  column-gap: clamp(20px, 3vw, 40px);
+  align-items: start;
+  padding: 18px 22px 18px 18px;
+  --note-rotate: -0.6deg;
+  --photo-rotate: -0.6deg;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-video-window {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  align-self: stretch;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
+
+.timeline.note-wall .timeline-item-openexpert > :not(.timeline-video-window) {
+  grid-column: 2;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-time {
+  margin-top: 14px;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-title {
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.1;
+}
+
+.timeline.note-wall .timeline-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin-top: auto;
+}
+
+.timeline.note-wall .timeline-badge-row .depth-badge {
+  margin: 0;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  align-self: end;
+  justify-self: start;
+}
+
+.timeline.note-wall .timeline-item-openexpert .timeline-badge-row .depth-badge {
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    padding: 18px 14px 24px;
+  }
+
+  .timeline.note-wall .timeline-item-openexpert .timeline-video-window,
+  .timeline.note-wall .timeline-item-openexpert > :not(.timeline-video-window) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* Lendi team presentation photo */
+.lendi-lessons-photo.lendi-presentation-photo {
+  --photo-rotate: -1.4deg;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+
+
+/* VibeConf speaker card in the hero receipts */
+.hero-receipts:has(.hero-talk-card) {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.hero-receipts .hero-talk-card {
+  --photo-rotate: -1.6deg;
+  gap: 8px;
+  min-height: 0;
+  margin: 0;
+  padding: 10px 10px 14px;
+}
+
+.hero-receipts .hero-talk-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: 45% 50%;
+}
+
+.hero-receipts .hero-talk-card figcaption {
+  display: grid;
+  gap: 4px;
+}
+
+.hero-receipts .hero-talk-card strong {
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1;
+}
+
+.hero-receipts .hero-talk-card span {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+@media (min-width: 1041px) and (max-width: 1400px) {
+  .hero-receipts:has(.hero-talk-card) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .hero-receipts:has(.hero-talk-card) .stat {
+    aspect-ratio: auto;
+    min-height: 150px;
+  }
+
+  .hero-receipts:has(.hero-talk-card) .stat {
+    overflow-wrap: normal;
+  }
+
+  .hero-receipts:has(.hero-talk-card) .stat strong {
+    font-size: clamp(20px, 2vw, 26px);
+  }
+
+  .hero-receipts .hero-talk-card {
+    min-height: 0;
+    padding: 8px 8px 10px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .hero-receipts:has(.hero-talk-card) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-receipts .hero-talk-card {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+  }
+}
+
+/* Leave room for the "VibeConf" title next to the photo on phones */
+@media (max-width: 480px) {
+  .hero-receipts .hero-talk-card {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 1040px) {
+  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+    width: 100%;
+  }
+}
+
+/* Jasne.ai timeline tags stack so the store badges don't cover them */
+.timeline.note-wall .timeline-item-jasne .timeline-badge-row {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* GitHub contribution counter under the hero */
+.hero-activity-row {
+  position: relative;
+  z-index: 4;
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: clamp(16px, 2vw, 28px);
+  margin-top: clamp(12px, 2vw, 24px);
+}
+
+.hero-activity-note {
+  --note-rotate: -1deg;
+  align-content: center;
+  gap: 6px;
+  background: var(--white);
+}
+
+.github-activity {
+  --note-rotate: 0.8deg;
+  gap: 6px;
+  background: var(--white);
+  color: var(--black);
+  text-decoration: none;
+}
+
+.github-activity:hover,
+.github-activity:focus-visible {
+  box-shadow: 8px 8px 0 var(--black);
+}
+
+.github-activity-copy {
+  display: grid;
+  gap: 6px;
+}
+
+.github-activity {
+  grid-template-columns: minmax(0, auto) auto;
+  align-items: center;
+  column-gap: clamp(18px, 3vw, 36px);
+}
+
+.github-activity-logo {
+  display: block;
+  width: clamp(36px, 4vw, 48px);
+  height: auto;
+}
+
+.github-activity-copy strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.openexpert-media-grid > .jasne-ruler-title {
+  margin-bottom: calc(clamp(32px, 5vw, 64px) * -0.4);
+}
+
+.openexpert-media-grid > .openexpert-media-subtitle {
+  margin-top: clamp(16px, 3vw, 40px);
+}
+
+/* Desktop: title in a narrow left column, media fills the rest */
+@media (min-width: 1041px) {
+  .openexpert-media-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 7fr);
+    column-gap: clamp(24px, 3vw, 48px);
+    align-items: start;
+  }
+
+  .openexpert-media-grid > .jasne-ruler-title,
+  .openexpert-media-grid > .openexpert-media-subtitle {
+    grid-column: 1;
+    margin: 0;
+    font-size: clamp(26px, 2.4vw, 38px);
+    line-height: 1.05;
+  }
+
+  .openexpert-media-grid > figure {
+    grid-column: 2;
+  }
+
+  .openexpert-video-card .jasne-video-frame,
+  .openexpert-video-card .jasne-video-caption {
+    max-width: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero-activity-row > * {
+    flex: 1 1 100%;
   }
 }

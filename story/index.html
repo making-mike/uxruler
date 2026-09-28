@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
   <title>The story behind UX RULER | Michał Drożdżyński</title>
   <meta name="description" content="A portfolio timeline of the product experience that led Michał Drożdżyński to create UX RULER.">
   <meta name="theme-color" content="#000000">
@@ -22,9 +23,10 @@
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/fragment-mono-latin-ext.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-latin.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../assets/fonts/space-grotesk-latin-ext.woff2" crossorigin>
-  <link rel="stylesheet" href="story.css?v=20260523-breakpoints">
+  <link rel="stylesheet" href="story.css?v=20260928-activity">
   <script src="posthog.js" defer></script>
   <script src="story.js?v=20260522-scroll-ruler" defer></script>
+  <script src="github-activity.js?v=20260927-counter" defer></script>
 </head>
 <body data-story-page-type="story_index">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -45,7 +47,7 @@
       <div class="shell board-hero-grid">
         <div class="title-note">
           <h1 id="story-title">The work that became <em>UX RULER.</em></h1>
-          <p class="lead">A messy board of products, proof, and lessons.</p>
+          <p class="lead">A pinned-up board of products, proof, and lessons.</p>
           <div class="hero-actions">
             <a class="button primary" href="#timeline">Open the board</a>
             <a class="button" href="mailto:michal@drozdzynski.pl" data-track="story_contact_clicked" data-track-location="hero" data-track-target="email">Contact</a>
@@ -73,6 +75,20 @@
         <div class="sticky-note sticky-note-yellow hero-pin">
           <strong>10+ years</strong>
           <span>web, mobile, fintech, marketplaces, AI</span>
+        </div>
+
+        <div class="hero-activity-row">
+          <a class="sticky-note github-activity" href="https://github.com/making-mike" data-github-activity="making-mike" data-track="story_github_clicked" data-track-location="hero" aria-label="GitHub activity of making-mike">
+            <span class="github-activity-copy">
+              <strong data-github-activity-total>GitHub</strong>
+              <span data-github-activity-label>Contributions in the last year, @making-mike</span>
+            </span>
+            <svg class="github-activity-logo" viewBox="0 0 16 16" width="44" height="44" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+          <div class="sticky-note hero-activity-note">
+            <strong>40B+</strong>
+            <span>AI tokens used</span>
+          </div>
         </div>
 
         <div class="story-hero-stickers" aria-label="Tools and credentials">
@@ -108,20 +124,27 @@
         <div class="hero-receipts" aria-label="Career proof points">
           <div class="stat sticky-note sticky-note-blue">
             <strong>3,000+</strong>
-            <span>Lendi experts supported</span>
+            <span>Mortgage experts in Poland and Romania using the Lendi platform I led UX for</span>
           </div>
           <div class="stat sticky-note sticky-note-yellow">
             <strong>1.5M+</strong>
-            <span>Morizon monthly visits</span>
+            <span>Monthly visits to Morizon, which I designed and enhanced with AI property search</span>
           </div>
           <div class="stat sticky-note sticky-note-rose">
             <strong>28.58%</strong>
-            <span>Autotrader conversion lift</span>
+            <span>Conversion lift from the Autotrader.pl redesign that saved it from closure</span>
           </div>
           <div class="stat sticky-note sticky-note-green">
             <strong>100+</strong>
-            <span>user interviews and usability studies</span>
+            <span>User interviews and usability tests, from eye tracking to expert research</span>
           </div>
+          <figure class="stat polaroid hero-talk-card">
+            <img src="../assets/story-vibeconf-talk.jpg" width="1042" height="785" alt="Michał on stage at VibeConf, presenting the audience, user, need, product and value model." loading="lazy" decoding="async">
+            <figcaption>
+              <strong>VibeConf</strong>
+              <span>2026 edition conference speaker</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -154,7 +177,10 @@
               <span class="timeline-time">ongoing</span>
               <span class="timeline-title">Jasne.ai</span>
               <span class="timeline-summary">Employee success app created after hours with friends and agents</span>
-              <span class="depth-badge">Side project</span>
+              <span class="timeline-badge-row">
+                <span class="depth-badge">UX Design</span>
+                <span class="depth-badge">Brand Design</span>
+              </span>
             </a>
             <span class="timeline-app-badges" role="group" aria-label="Jasne.ai app store links">
               <a class="timeline-app-badge timeline-app-badge-ios" href="https://apps.apple.com/pl/app/jasne/id6747730526" target="_blank" rel="noreferrer" aria-label="Download Jasne on the App Store">
@@ -165,6 +191,30 @@
               </a>
             </span>
           </article>
+
+          <a class="timeline-item timeline-item-openexpert polaroid mini-polaroid" href="openexpert/" data-track="story_case_opened" data-track-location="timeline" data-case-target="openexpert">
+            <span class="photo-frame timeline-video-window" aria-hidden="true">
+              <video
+                poster="../assets/openexpert/hero-orbit-poster.webp"
+                autoplay
+                muted
+                loop
+                playsinline
+                webkit-playsinline
+                preload="metadata"
+              >
+                <source src="../assets/openexpert/hero-orbit-small.webm" type="video/webm">
+                <source src="../assets/openexpert/hero-orbit-small.mp4" type="video/mp4">
+              </video>
+            </span>
+            <span class="timeline-time">experiment</span>
+            <span class="timeline-title">OpenExpert</span>
+            <span class="timeline-summary">Agentic harness for mortgage brokers</span>
+            <span class="timeline-badge-row">
+              <span class="depth-badge">UX Design</span>
+              <span class="depth-badge">Brand Design</span>
+            </span>
+          </a>
 
           <a class="timeline-item polaroid mini-polaroid" href="morizon/" data-track="story_case_opened" data-track-location="timeline" data-case-target="morizon">
             <span class="photo-frame photo-frame-shot photo-frame-morizon" aria-hidden="true">
