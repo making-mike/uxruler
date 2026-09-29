@@ -6385,7 +6385,7 @@ body.node-modal-active {
     grid-row: 2;
   }
 
-  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+  .timeline.note-wall .timeline-item.timeline-item-banner {
     grid-column: 1 / -1;
     grid-row: 3;
   }
@@ -8348,8 +8348,8 @@ body.node-modal-active {
   padding-bottom: 72px;
 }
 
-/* OpenExpert timeline banner */
-.timeline.note-wall .timeline-item.timeline-item-openexpert {
+/* Full-width timeline banner (Argos; OpenExpert when restored) */
+.timeline.note-wall .timeline-item.timeline-item-banner {
   grid-column: 1 / -1;
   justify-self: center;
   width: min(100%, 840px);
@@ -8362,7 +8362,7 @@ body.node-modal-active {
   --photo-rotate: -0.6deg;
 }
 
-.timeline.note-wall .timeline-item-openexpert .timeline-video-window {
+.timeline.note-wall .timeline-item-banner .timeline-video-window {
   grid-column: 1;
   grid-row: 1 / span 4;
   align-self: stretch;
@@ -8371,15 +8371,15 @@ body.node-modal-active {
   aspect-ratio: 16 / 10;
 }
 
-.timeline.note-wall .timeline-item-openexpert > :not(.timeline-video-window) {
+.timeline.note-wall .timeline-item-banner > :not(.timeline-video-window) {
   grid-column: 2;
 }
 
-.timeline.note-wall .timeline-item-openexpert .timeline-time {
+.timeline.note-wall .timeline-item-banner .timeline-time {
   margin-top: 14px;
 }
 
-.timeline.note-wall .timeline-item-openexpert .timeline-title {
+.timeline.note-wall .timeline-item-banner .timeline-title {
   font-size: clamp(22px, 2vw, 30px);
   line-height: 1.1;
 }
@@ -8395,7 +8395,7 @@ body.node-modal-active {
   margin: 0;
 }
 
-.timeline.note-wall .timeline-item-openexpert .timeline-badge-row {
+.timeline.note-wall .timeline-item-banner .timeline-badge-row {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 10px;
@@ -8403,19 +8403,19 @@ body.node-modal-active {
   justify-self: start;
 }
 
-.timeline.note-wall .timeline-item-openexpert .timeline-badge-row .depth-badge {
+.timeline.note-wall .timeline-item-banner .timeline-badge-row .depth-badge {
   margin: 0;
 }
 
 @media (max-width: 700px) {
-  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+  .timeline.note-wall .timeline-item.timeline-item-banner {
     grid-template-columns: minmax(0, 1fr);
     grid-template-rows: none;
     padding: 18px 14px 24px;
   }
 
-  .timeline.note-wall .timeline-item-openexpert .timeline-video-window,
-  .timeline.note-wall .timeline-item-openexpert > :not(.timeline-video-window) {
+  .timeline.note-wall .timeline-item-banner .timeline-video-window,
+  .timeline.note-wall .timeline-item-banner > :not(.timeline-video-window) {
     grid-column: 1;
     grid-row: auto;
   }
@@ -8509,7 +8509,7 @@ body.node-modal-active {
 }
 
 @media (max-width: 1040px) {
-  .timeline.note-wall .timeline-item.timeline-item-openexpert {
+  .timeline.note-wall .timeline-item.timeline-item-banner {
     width: 100%;
   }
 }
@@ -8655,25 +8655,123 @@ body.node-modal-active {
   }
 }
 
-/* OpenExpert is hidden from the timeline for now; remove `hidden` on its card to bring it back */
+/* OpenExpert is hidden from the timeline for now (its card sits last in the wall); remove `hidden` and move it back next to the other banner to restore it */
 .timeline.note-wall .timeline-item[hidden] {
   display: none !important;
 }
 
 @media (min-width: 1041px) and (max-width: 1400px) {
-  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(4),
-  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(6),
-  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(7) {
+  .timeline.note-wall:not(:has(.timeline-item-banner:not([hidden]))) .timeline-item:nth-child(4),
+  .timeline.note-wall:not(:has(.timeline-item-banner:not([hidden]))) .timeline-item:nth-child(6),
+  .timeline.note-wall:not(:has(.timeline-item-banner:not([hidden]))) .timeline-item:nth-child(7) {
     grid-row: 3;
   }
 
-  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(5),
-  .timeline.note-wall:has(.timeline-item-openexpert[hidden]) .timeline-item:nth-child(8) {
+  .timeline.note-wall:not(:has(.timeline-item-banner:not([hidden]))) .timeline-item:nth-child(5),
+  .timeline.note-wall:not(:has(.timeline-item-banner:not([hidden]))) .timeline-item:nth-child(8) {
     grid-row: 4;
   }
 }
 
 /* Keep long titles (Autotrader.pl) from widening the text column past the card */
-.timeline.note-wall .timeline-item.mini-polaroid {
+.timeline.note-wall .timeline-item.mini-polaroid:not(.timeline-item-banner) {
   grid-template-columns: minmax(0, 1fr);
+}
+
+/* Argos case */
+@media (min-width: 1241px) {
+  .argos-hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 480px);
+  }
+}
+
+.argos-intro-card {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  transform: rotate(1.2deg);
+}
+
+.argos-intro-frame {
+  overflow: hidden;
+  border: 2px solid var(--black);
+  border-radius: 14px;
+  background: #0b0b0b;
+  box-shadow: 6px 6px 0 var(--black);
+}
+
+.argos-intro-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+}
+
+.argos-intro-card .jasne-video-caption {
+  color: var(--black);
+}
+
+.argos-feature-copy {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+}
+
+.argos-feature-copy p {
+  margin: 0;
+  max-width: 62ch;
+}
+
+.argos-feature-figure {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+}
+
+.argos-feature-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid var(--black);
+  border-radius: 12px;
+  background: #f4f3ef;
+}
+
+.argos-feature-figure .jasne-video-caption {
+  color: var(--black);
+}
+
+.argos-media-grid > .argos-feature-copy:not(:first-child) {
+  margin-top: clamp(16px, 3vw, 40px);
+}
+
+@media (min-width: 1041px) {
+  .argos-media-grid > .argos-feature-copy {
+    grid-column: 1;
+  }
+
+  .argos-media-grid > .argos-feature-copy .jasne-ruler-title {
+    margin: 0;
+    font-size: clamp(26px, 2.4vw, 38px);
+    line-height: 1.05;
+  }
+
+  .argos-media-grid > .argos-feature-copy:not(:first-child) {
+    margin-top: 0;
+  }
+
+  .argos-media-grid > .argos-feature-copy p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 1240px) {
+  .argos-intro-card {
+    justify-self: center;
+    width: min(100%, 560px);
+  }
 }
