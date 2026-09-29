@@ -8672,3 +8672,8 @@ body.node-modal-active {
     grid-row: 4;
   }
 }
+
+/* Keep long titles (Autotrader.pl) from widening the text column past the card */
+.timeline.note-wall .timeline-item.mini-polaroid {
+  grid-template-columns: minmax(0, 1fr);
+}
