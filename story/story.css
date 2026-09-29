@@ -8617,12 +8617,13 @@ body.node-modal-active {
 /* Lendi sticker stack pinned over the lessons card's bottom-right corner */
 .lendi-lessons-card {
   position: relative;
-  padding-bottom: clamp(72px, 7vw, 96px);
+  padding-bottom: clamp(88px, 8vw, 120px);
 }
 
 .lendi-lessons-layout .lendi-sticker-corner {
   position: absolute;
-  right: clamp(-118px, -7vw, -24px);
+  /* Mostly inside the card so the photo caption beside it stays readable */
+  right: clamp(-28px, -1.6vw, -12px);
   bottom: clamp(-104px, -6.5vw, -44px);
   z-index: 5;
   width: clamp(150px, 15vw, 210px);
