@@ -8687,7 +8687,7 @@ body.node-modal-active {
 
 .argos-intro-card {
   display: grid;
-  gap: 18px;
+  gap: 10px;
   min-width: 0;
   margin: 0;
   transform: rotate(1.2deg);
@@ -8695,9 +8695,8 @@ body.node-modal-active {
 
 .argos-intro-frame {
   overflow: hidden;
-  padding: 10px;
   border: 2px solid var(--black);
-  background: var(--white);
+  background: var(--black);
   box-shadow: 8px 8px 0 var(--black);
 }
 
@@ -8707,7 +8706,6 @@ body.node-modal-active {
   height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  border: 2px solid var(--black);
   background: #0b0b0b;
 }
 
