@@ -8775,3 +8775,9 @@ body.node-modal-active {
     width: min(100%, 560px);
   }
 }
+
+.stat .stat-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
