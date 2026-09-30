@@ -8696,9 +8696,8 @@ body.node-modal-active {
 .argos-intro-frame {
   overflow: hidden;
   border: 2px solid var(--black);
-  border-radius: 14px;
-  background: #0b0b0b;
-  box-shadow: 6px 6px 0 var(--black);
+  background: var(--black);
+  box-shadow: 8px 8px 0 var(--black);
 }
 
 .argos-intro-frame video {
@@ -8706,6 +8705,8 @@ body.node-modal-active {
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: #0b0b0b;
 }
 
 .argos-intro-card .jasne-video-caption {
