@@ -10,5 +10,15 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/story-preview",
+      "destination": "https://portfolio-making-mike.vercel.app/story/"
+    },
+    {
+      "source": "/story-preview/:path*",
+      "destination": "https://portfolio-making-mike.vercel.app/story/:path*"
+    }
   ]
 }
