@@ -10,23 +10,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/story-preview",
-      "destination": "https://portfolio-nine-phi.vercel.app/story/"
-    },
-    {
-      "source": "/story-preview/:path*",
-      "destination": "https://portfolio-nine-phi.vercel.app/story/:path*"
-    },
-    {
-      "source": "/story-preview2",
-      "destination": "https://portfolio-nine-phi-2g53vach8m.vercel.app/story/"
-    },
-    {
-      "source": "/story-preview2/:path*",
-      "destination": "https://portfolio-nine-phi-2g53vach8m.vercel.app/story/:path*"
-    }
   ]
 }
